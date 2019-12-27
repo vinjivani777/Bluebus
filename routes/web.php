@@ -150,6 +150,10 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 });
 
 
+//Vendor
+Route::get('vendor','Vendor\VendorController@index')->name('vender');
+Route::post('admin/login','Admin\LoginController@login')->name('admin.login');
+
 
 
 
