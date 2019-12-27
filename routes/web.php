@@ -150,27 +150,12 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 });
 
 
-//Vendor
-Route::get('vendor_','Vendor\VendorController@index')->name('vendor.index');
-Route::group(['prefix' => 'vendor'], function(){
-
-    //Login And Register
-    Route::get('login','Vendor\VendorController@login')->name('vendor.login');
-    Route::get('register','Vendor\VendorController@register')->name('vendor.register');
-    Route::post('registervendor','Vendor\VendorController@registervendor')->name('vendor.registervendor');
-
-    //Profile Update
-    Route::get('profile','Vendor\ProfileController@index')->name('vendor.profile');
-
-
-
-});
 
 
 
 Route::get('/', function () {
     return view('web.index');
-})->name('index');
+})->name('web.index');
 
 Route::get('/offer', function () {
     return view('web.offer');
