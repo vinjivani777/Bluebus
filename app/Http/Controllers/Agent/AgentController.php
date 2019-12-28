@@ -62,8 +62,8 @@ class AgentController extends Controller
 
     public function profile()
     {
-        $auth_id=Auth::guard('agent')->user()->id;
-        $get_agent=Agent::whereId($auth_id)->first();
+        $agent_id=Auth::guard('agent')->user()->id;
+        $get_agent=Agent::whereId($agent_id)->first();
 
         return view('agent.profile.index',['agent_details'=>$get_agent]);
     }

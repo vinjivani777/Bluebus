@@ -1,5 +1,4 @@
-@extends('admin.layout')
-
+@extends('agent.layout')
 
 @section('page-title')
 
@@ -79,7 +78,6 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-
                     <div class="tab-pane active show" id="settings">
                         <form action="{{ route('agent.profile.update') }}" method="post"  enctype="multipart/form-data">
                             @csrf

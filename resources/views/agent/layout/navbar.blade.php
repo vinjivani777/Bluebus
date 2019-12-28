@@ -69,7 +69,6 @@
             </span>
             <span class="logo-sm">
                  <span class="logo-sm-text-dark">B</span>
-
             </span>
         </a>
     </div>
