@@ -30,7 +30,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('vendor.bus-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i>Book Ticket</a>
+                            <a href="{{ route('vendor.bus-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Book Ticket </a>
+
                             <table id="basic-datatable" class="table  table-striped">
                                 <thead>
                                     <tr>
