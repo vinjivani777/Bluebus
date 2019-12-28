@@ -111,22 +111,18 @@
                 left: 213px;
                  {{-- width: 100%; --}}
               }
-              .card{
-                width: 105%;
-                height: auto;
-            }
+
             .title-icon{
                 width:15px;
                 height:15px;
                 margin-right:10px;
             }
-
-              }
+          
         </style>
 
     </head>
 
-    <body>
+    <body class="pb-0">
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -138,7 +134,7 @@
                         <div class="container">
                                 <div class="logo-box">
                                     <a href="/">
-                                        <h3 class="mt-3 text-info">Blue Bus</h2>
+                                        <h4 class="mt-3 text-info">Blue Bus</h2>
                                     </a>
                                 </div>
                             <nav>
@@ -198,8 +194,8 @@
                                     </div>
                                    <form action="#" method="post">
                                        <div class="row">
-                                        <div class="col-6 col-md-6 col-lg-6 col-sm-6">
-                                            <div class="form-group ">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                                            <div class="form-group  ">
                                                 <div class="ml-1 radio radio-info form-check-inline mt-2">
                                                     <input type="radio" id="oneway" class="type" value="one" name="type" checked="true">
                                                     <label for="oneway"> One Way</label>
@@ -251,44 +247,228 @@
                             </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="offers-slider ">
-                        <div class="container">
-                            <img src="{{ asset('web\images\offers\ppl-20-nov-strip.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="offers-slider">
-                        <div class="container-fluid bg-light">
-                            <div class="offers row">
-                                <div class="col-12">
-                                    <div class="container">
 
+                   
+                   
+                    <div style="background-color:#f8fdfe">
+                        <div class="offers-slider mt-4">
+                            <div class="container">
+                                <img src="{{ asset('web\images\offers\ppl-20-nov-strip.png') }}" alt="">
+                            </div>
+                        </div>
+                        <div class="offers-slider mt-5 " style="height:300px">
+                            <div class="container-fluid " >
+                                <div class="offers row">
+                                    <div class="col-12 mt-1 ">
+                                        <div class="container ">
+                                            <div class="row pt-3">
+                                                <div class="col-4">
+                                                    <img src="{{ asset('web/images/offers/3.jpg') }}" alt="" class="ml-4 mr-4 " style="border-radius:5px;bottom: 59px;position:absolute;width: 188px;;margin-bottom:0px;z-index:1">
+                                                    <div class="card shadow-lg " style="position:relative;z-index:0">
+                                                        <div class="card-body">
+                                                            <h4 class="max-auto text-center">TOP OFFERS SLIDER</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="{{ asset('web/images/offers/4.png') }}" alt="" class="ml-4 mr-4 " style="border-radius:5px;bottom: 59px;position:absolute;width: 188px;;margin-bottom:0px;z-index:1">
+                                                    <div class="card shadow-lg " style="position:relative;z-index:0">
+                                                        <div class="card-body">
+                                                            <h4 class="max-auto text-center">TOP OFFERS SLIDER</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="{{ asset('web/images/offers/5.jpg') }}" alt="" class="ml-4 mr-4 " style="border-radius:5px;bottom: 59px;position:absolute;width: 188px;;margin-bottom:0px;z-index:1">
+                                                    <div class="card shadow-lg " style="position:relative;z-index:0">
+                                                        <div class="card-body">
+                                                            <h4 class="max-auto text-center">TOP OFFERS SLIDER</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="row pb-3">
+                                                <div class="col-6">
+                                                    <button class="btn btn-sm btn-round btn-info float-right"><i class=" mdi mdi-step-backward"></i></button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button class="btn btn-sm btn-round btn-info float-left"><i class=" mdi mdi-step-forward"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="container-fluid bg-white" style="height:500px;">
+                            <div class="row">
+                                <div class="col-12 mt-5" >
+                                    <div class="container" >
+                                        <div class="card " style="border:1px solid #c3cbd1;">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h2 class="">Why Choose BlueBus</h2>
+                                                        <p class="text-justify">On Bluebuspro.com, you can tailor your trip from end-to-end by scouring suitable flights and making your flight booking before proceeding with your hotel bookings. Yatra’s vast hotel repository will see you through this process seamlessly. Any intervening journey can be conveniently planned by searching up relevant train connectivity and making an IRCTC ticket booking. Look up well-researched holiday packages, sift through cruise packages and finalise your entire trip on just one platform.</p>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <img src="{{ asset('web/images/slider/1.jpg') }}" height="300px;" width="500px" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="container-fluid" style="border-top:1px solid #c3cbd1;border-bottom:1px solid #c3cbd1">
+                           <div class="container" >
+                                <div class="row mt-4 mb-0">
+                                    <div class="col-8">
+                                        <h2>Sign up for Exclusive Email-only Newsletter</h2>
+                                        <h4>Exclusive access to coupons, special offers and promotions.</h4>
+                                    </div>
+                                    <div class="col-4 mb-4">
+                                        <div class="form-group mb-3">
+                                            <label>Newsletter</label>
+                                            <div class="input-group m-b-20">
+                                                <input class="form-control" id="single-input" type="text" value="" placeholder="Email">
+                                                <div class="input-group-append">
+                                                    <button type="button" id="check-minutes" class="btn waves-effect waves-light btn-info">Newsletter</button>
+                                                </div>
+                                            </div>                
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                          
+                        </div>
+                     
                     </div>
                 </div>
-
-
-            <!-- end Topbar -->
-
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
-
-            <div class="content-page">
-
-
-
             </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-
-        </div>
+                <!-- Footer Start -->
+                <div class="container-fluid bg-white" style="height:300px;;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="font-size:50px">Operators</h3>
+                            </div>
+                        </div>
+                        <hr>
+                         <div class="row mt-2" >
+                             <div class="col-12 mr-0">
+                                <p style="font-size:17px;text-align:justify">Top Operators|
+                                    SRS Travels |
+                                    Evacay Bus |
+                                    Kallada Travels |
+                                    KPN Travels |
+                                    Orange Travels |
+                                    Parveen Travels |
+                                    Rajdhani Express |
+                                    VRL Travels |
+                                    Chartered Speed Bus |
+                                    Bengal Tiger |
+                                    SRM Travels |
+                                    Infant Jesus |
+                                    Patel Travels |
+                                    JBT Travels |
+                                    Shatabdi Travels | 
+                                    Eagle Travels | 
+                                    Kanker Roadways |
+                                    Komitla |
+                                    Sri Krishna Travels |
+                                    Humsafar Travels | 
+                                    Mahasagar Travels |
+                                    Raj Express |
+                                    Sharma Travels |
+                                    Shrinath Travels |
+                                    Universal Travels |
+                                    Verma Travels |
+                                    Gujarat Travels |
+                                    Madurai Radha Travels |
+                                    Patel Tours and Travels |
+                                    Paulo Travels |
+                                    Royal Travels |
+                                    Amarnath Travels |
+                                    Vaibhav Travels |
+                                    Ganesh Travels |
+                                    Jabbar Travels |
+                                    Jain Travels |
+                                    Manish Travels |
+                                    Pradhan Travels |
+                                    YBM Travels |
+                                    Hebron Transports |
+                                    Mahalaxmi travels | 
+                                    MR Travels |
+                                    Vivegam Travels |
+                                    VST Travels |
+                                    Jakhar Travels |
+                                    Kaleswari Travels |
+                                    Mahendra Travels |
+                                    Neeta Tours and Travels |
+                                    Yamani Travels |
+                                    Arthi Travels |
+                                    </p>
+                             </div> 
+                         </div>
+                         <div class="row">
+                            <div class="col-12">
+                                <span class="font-size:50px float-right">More -></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid bg-light" style="height:300px">
+                   <div class="container">
+                        <div class="row mt-2" >
+                            <div class="col-4 mr-0">
+                                <h3>Bluebus</h3>
+                                <hr>
+                               <p>
+                                blueBus is the world's largest online bus ticket booking service trusted by over 17 million happy customers globally. redBus offers bus ticket booking through its website,iOS and Android mobile apps for all major routes.
+                               </p>
+                               <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
+                               <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
+                               <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
+                              
+                            </div>
+                            <div class="col-3 mr-0">
+                                <h3>Our Website</h3>
+                                <hr>
+                                <h6><a href="" style="color:#6c757d">About Us</a></h6>
+                                <h6><a href="" style="color:#6c757d">Contact US</a></h6>
+                                <h6><a href="" style="color:#6c757d">Offers</a></h6>
+                                <h6><a href="" style="color:#6c757d">Booking Ticket</a></h6>
+                            </div>
+                     
+                            <div class="col-3 ml-0">
+                                <h3>Information</h3>
+                                <hr>
+                                <h6><a href="" style="color:#6c757d">Privacy Policy</a></h6>
+                                <h6><a href="" style="color:#6c757d">T & C</a></h6>
+                                <h6><a href="" style="color:#6c757d">FAQ</a></h6>
+                                <h6><a href="" style="color:#6c757d">Blog</a></h6>
+                                <h6><a href="" style="color:#6c757d">Newsletter</a></h6>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="container-fluid bg-info">
+                    <div class="row" style="height:70px">
+                        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                            <h6 class="text-center">Copyright © 2019-2020 Bluebus Group. All rights reserved</h6>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                            <h6 class="text-center">All product names, logos, brands, trademarks and registered trademarks are property of their respective owners.</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- end Footer -->
+       
         <!-- END wrapper -->
 
 
@@ -303,7 +483,6 @@
 
         <!-- Init js-->
         <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
-        <script>
 
         <!-- App js -->
         <script src="{{ asset('web/js/app.min.js')}}"></script>
