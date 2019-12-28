@@ -96,7 +96,7 @@ class BoardPointController extends Controller
     {
         $auth=Auth::guard('vendor')->user()->id;
         $data = array();
-        $data['bus_list'] = Bus::select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vender','status'=>true])->get();
+        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
         $data['board_point'] = BoardPoint::findorfail($id);
         return view('vendor.board-point.edit',$data);
     }

@@ -47,6 +47,7 @@ return [
         'vendor' => [
             'driver' => 'session',
             'provider' => 'vendors',
+        ],
         'agent' => [
             'driver' => 'session',
             'provider' => 'agents',
@@ -89,6 +90,7 @@ return [
         'vendors' => [
             'driver' => 'database',
             'table' => 'vendor',
+        ],
         'agents' => [
             'driver' => 'database',
             'table' => 'agent',
