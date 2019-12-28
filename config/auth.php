@@ -44,9 +44,15 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+<<<<<<< HEAD
         'vendor' => [
             'driver' => 'session',
             'provider' => 'vendors',
+=======
+        'agent' => [
+            'driver' => 'session',
+            'provider' => 'agents',
+>>>>>>> 43c2a3003781d8f5c59822ce5b0407e844ae63be
         ],
 
         'api' => [
@@ -83,9 +89,15 @@ return [
             'driver' => 'database',
             'table' => 'admin',
         ],
+<<<<<<< HEAD
         'vendors' => [
             'driver' => 'database',
             'table' => 'vendor',
+=======
+        'agents' => [
+            'driver' => 'database',
+            'table' => 'agent',
+>>>>>>> 43c2a3003781d8f5c59822ce5b0407e844ae63be
         ],
     ],
 
