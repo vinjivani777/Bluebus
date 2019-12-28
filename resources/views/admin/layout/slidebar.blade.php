@@ -116,6 +116,22 @@
                     </ul>
                 </li>
 
+                 {{-- vendor management --}}
+                 <li>
+                    <a href="javascript: void(0);">
+                        <i class=" fas fa-users-cog"></i>
+                        <span>Vendor</span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('vendor-detail') }}">View All</a>
+                        </li>
+                        {{-- <li>
+                            <a href="index.html">Add Bus Gallery </a>
+                        </li> --}}
+                    </ul>
+                </li>
+
                 {{-- customer details --}}
                 <li>
                     <a href="{{ route('customer-detail') }}">

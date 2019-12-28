@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'vendor' => [
+            'driver' => 'session',
+            'provider' => 'vendors',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -78,6 +82,10 @@ return [
         'admins' => [
             'driver' => 'database',
             'table' => 'admin',
+        ],
+        'vendors' => [
+            'driver' => 'database',
+            'table' => 'vendor',
         ],
     ],
 

@@ -98,6 +98,15 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('agent-detail/update/{id}','Admin\AgentController@update')->name('agent-detail.update');
     Route::get('agent-detail/destroy','Admin\AgentController@destroy')->name('agent-detail.destroy');
 
+     //vendor  Details
+     Route::get('vendor-detail','Admin\VendorContrller@index')->name('vendor-detail');
+     Route::get('vendor-detail/add','Admin\VendorContrller@create')->name('vendor-detail.add');
+     Route::post('vendor-detail/store','Admin\VendorContrller@store')->name('vendor-detail.store');
+     Route::get('vendor-detail/edit/{id}','Admin\VendorContrller@edit')->name('vendor-detail.edit');
+     Route::post('vendor-detail/update/{id}','Admin\VendorContrller@update')->name('vendor-detail.update');
+     Route::get('vendor-detail/destroy','Admin\VendorContrller@destroy')->name('vendor-detail.destroy');
+
+
     //Customer  Details
     Route::get('customer-detail','Admin\CustomerController@index')->name('customer-detail');
     // Route::get('customer-detail/add','Admin\CustomerController@create')->name('customer-detail.add');
@@ -149,11 +158,119 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
 });
 
-
 //Vendor
-Route::get('vendor','Vendor\VendorController@index')->name('vender');
-Route::post('admin/login','Admin\LoginController@login')->name('admin.login');
+Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
+Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
 
+//vendor register
+Route::get('register','Vendor\VendorController@register')->name('vendor.register');
+Route::post('register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
+
+Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
+
+    //dashboard
+    Route::get('index','Vendor\VendorController@index')->name('vendor.index');
+
+
+    //profile management
+    Route::get('profile','Vendor\VendorController@profile')->name('vendor.profile');
+    Route::post('profile/update','Vendor\VendorController@profileupdate')->name('vendor.profile.update');
+    Route::post('profile/password/update','Vendor\VendorController@vendorpassword')->name('vendor.profile.passwor.update');
+
+    //vendor logout
+    Route::get('logout','Vendor\LoginController@logout')->name('vendor.logout');
+
+    //commen status change route
+    Route::post('status-change','Vendor\VendorController@statuschange')->name('vendor.status.change');
+
+    //bus management
+    Route::get('bus-detail','Vendor\BusController@index')->name('vendor.bus-detail');
+    Route::get('bus-detail/add','Vendor\BusController@create')->name('vendor.bus-detail.add');
+    Route::post('bus-detail/store','Vendor\BusController@store')->name('vendor.bus-detail.store');
+    Route::get('bus-detail/edit/{id}','Vendor\BusController@edit')->name('vendor.bus-detail.edit');
+    Route::post('bus-detail/update/{id}','Vendor\BusController@update')->name('vendor.bus-detail.update');
+    Route::get('bus-detail/destory','Vendor\BusController@busdestory')->name('vendor.bus-detail.destory');
+
+    //bus type
+    Route::get('bus-detail/bus-type','Vendor\BusController@bustype')->name('vendor.bus-type');
+    Route::post('bus-detail/bus-type/add','Vendor\BusController@bustypeadd')->name('vendor.bus-type.add');
+    Route::get('bus-detail/bus-type/edit/{id}','Vendor\BusController@bustypeedit')->name('vendor.bus-type.edit');
+    Route::post('bus-detail/bus-type/update/{id}','Vendor\BusController@bustypeupdate')->name('vendor.bus-type.update');
+    Route::get('bus-detail/bus-type/destory','Vendor\BusController@bustypedestory')->name('vendor.bus-type.destory');
+
+    //route details
+    Route::get('route-detail','Vendor\RouteController@index')->name('vendor.route-detail');
+    Route::get('route-detail/add','Vendor\RouteController@create')->name('vendor.route-detail.add');
+    Route::post('route-detail/store','Vendor\RouteController@store')->name('vendor.route-detail.store');
+    Route::get('route-detail/edit/{id}','Vendor\RouteController@edit')->name('vendor.route-detail.edit');
+    Route::post('route-detail/update/{id}','Vendor\RouteController@update')->name('vendor.route-detail.update');
+    Route::get('route-detail/destory','Vendor\RouteController@routedestroy')->name('vendor.route-detail.destory');
+
+    Route::get('bus-route-detail','Vendor\RouteController@busroute')->name('vendor.bus-route-detail.get');
+
+    //Board point details
+    Route::get('board-point','Vendor\BoardPointController@index')->name('vendor.board-point');
+    Route::get('board-point/add','Vendor\BoardPointController@create')->name('vendor.board-point.add');
+    Route::post('board-point/store','Vendor\BoardPointController@store')->name('vendor.board-point.store');
+    Route::get('board-point/edit/{id}','Vendor\BoardPointController@edit')->name('vendor.board-point.edit');
+    Route::post('board-point/update/{id}','Vendor\BoardPointController@update')->name('vendor.board-point.update');
+    Route::get('board-point/destory','Vendor\BoardPointController@boarddestory')->name('vendor.board-point.destory');
+
+    //Drop point details
+    Route::get('drop-point','Vendor\DropPointController@index')->name('vendor.drop-point');
+    Route::get('drop-point/add','Vendor\DropPointController@create')->name('vendor.drop-point.add');
+    Route::post('drop-point/store','Vendor\DropPointController@store')->name('vendor.drop-point.store');
+    Route::get('drop-point/edit/{id}','Vendor\DropPointController@edit')->name('vendor.drop-point.edit');
+    Route::post('drop-point/update/{id}','Vendor\DropPointController@update')->name('vendor.drop-point.update');
+    Route::get('drop-point/destory','Vendor\DropPointController@dropdestory')->name('vendor.drop-point.destory');
+
+    //Promo Management details
+    Route::get('promo-detail','Vendor\PromoController@index')->name('vendor.promo-detail');
+    Route::get('promo-detail/add','Vendor\PromoController@create')->name('vendor.promo-detail.add');
+    Route::post('promo-detail/store','Vendor\PromoController@store')->name('vendor.promo-detail.store');
+    Route::get('promo-detail/edit/{id}','Vendor\PromoController@edit')->name('vendor.promo-detail.edit');
+    Route::post('promo-detail/update/{id}','Vendor\PromoController@update')->name('vendor.promo-detail.update');
+    Route::get('promo-detail/destory','Vendor\PromoController@destroy')->name('vendor.promo-detail.destory');
+
+    //BusImage Gallery
+    Route::get('img_gallery','Vendor\ImageGalleryController@index')->name('vendor.img_gallery');
+    Route::get('img_gallery/add','Vendor\ImageGalleryController@create')->name('vendor.img_gallery.add');
+    Route::post('img_gallery/store','Vendor\ImageGalleryController@store')->name('vendor.img_gallery.store');
+    Route::get('img_gallery/edit/{id}','Vendor\ImageGalleryController@edit')->name('vendor.img_gallery.edit');
+    Route::post('img_gallery/update/{id}','Vendor\ImageGalleryController@update')->name('vendor.img_gallery.update');
+    Route::get('img_gallery/destory','Vendor\ImageGalleryController@destroy')->name('vendor.img_gallery.destory');
+
+
+    //Customer  Details
+    Route::get('customer-detail','Vendor\CustomerController@index')->name('vendor.customer-detail');
+    // Route::get('customer-detail/add','Vendor\CustomerController@create')->name('vendor.customer-detail.add');
+    // Route::post('customer-detail/store','Vendor\CustomerController@store')->name('vendor.customer-detail.store');
+    // Route::get('customer-detail/edit/{id}','Vendor\CustomerController@edit')->name('vendor.customer-detail.edit');
+    // Route::put('customer-detail/update/{?id}','Vendor\CustomerController@update')->name('vendor.customer-detail.update');
+    // Route::delete('customer-detail/destory/{id}','Vendor\CustomerController@destory')->name('vendor.customer-detail.destory');
+
+    //Booking  Details
+    Route::get('booking-detail','Vendor\BookingController@index')->name('vendor.booking-detail');
+    Route::get('booking-detail/show','Vendor\BookingController@show')->name('vendor.booking-detail.show');
+    // Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
+    // Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
+    // Route::put('booking-detail/update/{?id}','Vendor\BookingController@update')->name('vendor.booking-detail.update');
+    // Route::delete('booking-detail/destory/{id}','Vendor\BookingController@destory')->name('vendor.booking-detail.destory');
+
+     //Cancellation
+     Route::get('cancellation-detail','Vendor\CancellationController@index')->name('vendor.cancellation-detail');
+     Route::get('cancellation-detail/add','Vendor\CancellationController@create')->name('vendor.cancellation-detail.add');
+     Route::post('cancellation-detail/store','Vendor\CancellationController@store')->name('vendor.cancellation-detail.store');
+     Route::get('cancellation-detail/edit/{id}','Vendor\CancellationController@edit')->name('vendor.cancellation-detail.edit');
+     Route::post('cancellation-detail/update/{id}','Vendor\CancellationController@update')->name('vendor.cancellation-detail.update');
+     Route::get('cancellation-detail/destroy','Vendor\CancellationController@destroy')->name('vendor.cancellation-detail.destroy');
+
+    //Rating
+    Route::get('rating','Vendor\RatingController@index')->name('vendor.rating');
+
+
+
+});
 
 
 
