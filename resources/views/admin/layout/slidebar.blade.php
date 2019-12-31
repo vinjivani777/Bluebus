@@ -31,6 +31,19 @@
                         <li>
                             <a href="{{ route('bus-type') }}">Add Bus Type</a>
                         </li>
+                        <li>
+                            <a href="{{ route('bus-detail') }}">View All Routes </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('bus-detail') }}">View Board Point</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('bus-detail') }}">View Drop Point</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('bus-detail') }}">Seat Layout</a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -104,11 +117,11 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i class=" fas fa-users-cog"></i>
-                        <span>Agent</span>
+                        <span>Other Admin</span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="{{ route('agent-detail') }}">View All</a>
+                            <a href="{{ route('otheradmin-detail') }}">View All</a>
                         </li>
                         {{-- <li>
                             <a href="index.html">Add Bus Gallery </a>

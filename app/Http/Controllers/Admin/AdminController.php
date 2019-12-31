@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
 use App\Model\Admin;
-use App\Model\Agent;
 use App\Model\Route;
 use App\Model\BusType;
 use App\Model\DropPoint;
@@ -47,8 +46,8 @@ class AdminController extends Controller
             $find_model = DropPoint::findorfail($request->id);
         }elseif ($model == "PromoCode") {
             $find_model = PromoCode::findorfail($request->id);
-        }elseif ($model == "Agent") {
-            $find_model = Agent::findorfail($request->id);
+        }elseif ($model == "Admin") {
+            $find_model = Admin::findorfail($request->id);
         }
 
         $find_model->status = $request->status;
