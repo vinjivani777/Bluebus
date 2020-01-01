@@ -32,16 +32,16 @@
                             <a href="{{ route('bus-type') }}">Add Bus Type</a>
                         </li>
                         <li>
-                            <a href="{{ route('bus-detail') }}">View All Routes </a>
+                            <a href="{{ route('route-detail') }}">View All Routes </a>
                         </li>
                         <li>
-                            <a href="{{ route('bus-detail') }}">View Board Point</a>
+                            <a href="{{ route('board-point') }}">View Board Point</a>
                         </li>
                         <li>
-                            <a href="{{ route('bus-detail') }}">View Drop Point</a>
+                            <a href="{{ route('drop-point') }}">View Drop Point</a>
                         </li>
                         <li>
-                            <a href="{{ route('bus-detail') }}">Seat Layout</a>
+                            <a href="{{ route('seat-layout') }}">Seat Layout</a>
                         </li>
 
                     </ul>
