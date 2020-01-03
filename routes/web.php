@@ -89,13 +89,13 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('img_gallery/update/{id}','Admin\ImageGalleryController@update')->name('img_gallery.update');
     Route::get('img_gallery/destory','Admin\ImageGalleryController@destroy')->name('img_gallery.destory');
 
-    //Agent  Details
-    Route::get('agent-detail','Admin\AgentController@index')->name('agent-detail');
-    Route::get('agent-detail/add','Admin\AgentController@create')->name('agent-detail.add');
-    Route::post('agent-detail/store','Admin\AgentController@store')->name('agent-detail.store');
-    Route::get('agent-detail/edit/{id}','Admin\AgentController@edit')->name('agent-detail.edit');
-    Route::post('agent-detail/update/{id}','Admin\AgentController@update')->name('agent-detail.update');
-    Route::get('agent-detail/destroy','Admin\AgentController@destroy')->name('agent-detail.destroy');
+    //Other Admins  Details
+    Route::get('otheradmin-detail','Admin\OtherAdminController@index')->name('otheradmin-detail');
+    Route::get('otheradmin-detail/add','Admin\OtherAdminController@create')->name('otheradmin-detail.add');
+    Route::post('otheradmin-detail/store','Admin\OtherAdminController@store')->name('otheradmin-detail.store');
+    Route::get('otheradmin-detail/edit/{id}','Admin\OtherAdminController@edit')->name('otheradmin-detail.edit');
+    Route::post('otheradmin-detail/update/{id}','Admin\OtherAdminController@update')->name('otheradmin-detail.update');
+    Route::get('otheradmin-detail/destroy','Admin\OtherAdminController@destroy')->name('otheradmin-detail.destroy');
 
      //vendor  Details
      Route::get('vendor-detail','Admin\VendorContrller@index')->name('vendor-detail');
