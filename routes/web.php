@@ -169,6 +169,9 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     //dashboard
     Route::get('index','Vendor\VendorController@index')->name('vendor.index');
 
+    //Send Register Mail
+    Route::post('emailthanks','SendMailController@sendmail')->name('emailthanks');
+    Route::get('sendmail','SendMailController@index')->name('sendmail');
 
     //profile management
     Route::get('profile','Vendor\VendorController@profile')->name('vendor.profile');
