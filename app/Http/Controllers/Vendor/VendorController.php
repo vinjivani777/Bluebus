@@ -55,6 +55,24 @@ class VendorController extends Controller
        }
    }
 
+   public function showforgetpage()
+   {
+        return view('vendor.forgetpassword');
+   }
+
+   public function forgetpassword(Request $request)
+   {
+       $b=$request->emailphone;
+        b:if(is_numeric($b))
+        {
+            return "Message";   
+        }
+        else{
+            return "Email";
+        }
+        // return view('vendor.forgetcodesuccess');
+   }
+
    public function statuschange(Request $request)
    {
        $model = $request->model;

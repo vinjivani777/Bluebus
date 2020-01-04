@@ -163,6 +163,8 @@ Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
 Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
 //vendor register
 Route::get('register','Vendor\VendorController@register')->name('vendor.register');
+Route::get('forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
+Route::post('forgetpassword','Vendor\VendorController@forgetpassword')->name('vendor.forgetpassword');
 Route::post('register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
 Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
 
