@@ -57,7 +57,7 @@
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
                                   <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
+                                    <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" required>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -67,9 +67,10 @@
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
                                     <div class="form-group">
                                         <label for="">Select Seat Type</label>
-                                        <select name="seat_type" id="seat_type" class="form-control">
+                                        <select name="seat_type" id="seat_type" class="form-control seat_type">
+                                            <option value="" selected>Select Type</option>
                                             <option value="1">Seater</option>
-                                            <option value="2" selected="">Sleeper</option>
+                                            <option value="2">Sleeper</option>
                                             <option value="3">Seater && Sleeper</option>
                                         </select>
                                       </div>
@@ -77,28 +78,28 @@
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
                                    <div class="form-group">
                                        <label for="">Total Seat</label>
-                                        <input type="number" name="total_seat" id="total_seat" class="form-control" placeholder="Total Seat">
+                                        <input type="number" name="total_seat" id="total_seat" class=" total_seat form-control" placeholder="Total Seat">
                                    </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
                                     <div class="form-group">
                                         <label>Select Layout Type</label>
-                                        <select class="form-control" name="layout" id="layout">
-                                          <option value="layout-1"> 1 X 1 </option>
-                                          <option value="layout-2" selected=""> 1 X 2 </option>
-                                          <option value="layout-3"> 2 X 2 </option>
-                                          <option value="layout-4"> 2 X 3 </option>
+                                        <select class="form-control layout" name="layout" id="layout">
+                                            <option value="" selected>Select Layout</option>
+                                            <option value="1 X 1"> 1 X 1 </option>
+                                            <option value="1 X 2" > 1 X 2 </option>
+                                            <option value="2 X 2"> 2 X 2 </option>
                                         </select>
                                       </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
                                     <div class="form-group">
                                         <label for="">No of last row seats</label>
-                                         <input type="number" name="last_row_seat" id="last_row_seat" class="form-control" placeholder="Last Row No Of Seat">
+                                         <input type="number" name="last_row_seat" id="last_row_seat" class="last_row_seat form-control" placeholder="Last Row No Of Seat">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 mt-4 ">
-                                    <button class="btn btn-sm btn-info ">View Layout</button>
+                                    <button class="btn btn-sm btn-info " id="view">View Layout</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -108,7 +109,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12 form-group">
-                                    <input type="submit" class="btn btn-sm btn-primary" value="Submit">
+                                    <input type="submit" id="view" class="btn btn-sm btn-primary" value="Submit">
                                 </div>
                             </div>
                         </div>
@@ -127,11 +128,11 @@
                                     <hr>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 ">
+
+                                <div class="quick_layout">
 
                                 </div>
-                            </div>
+
                         </div>
                     </div>
                 </div> <!-- end col -->
@@ -161,4 +162,41 @@
 
     <!-- Init js-->
     <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
+
+    <script>
+        $('#view').click(function(){
+           
+            var seat_type=$('.seat_type').val();
+            var layout=$('.layout').val();
+            var total_seat=$('.total_seat').val();
+            var bus_name=$('.bus_name').val();
+
+            if(seat_type == "")
+            {
+                $('.seat_type').addClass('border-danger');
+            }
+            if(bus_name == "")
+            {
+                $('.bus_name').addClass('border-danger');
+            }
+            if(total_seat == "")
+            {
+                $('.total_seat').addClass('border-danger');
+            }
+            if(layout=="")
+            {
+                $('.layout').addClass('border-danger');
+            }
+            if(seat_type != "" && bus_name != "" && total_seat != "" && layout != "" )
+            $.ajax({
+                type:'POST',
+                url:'{{route('seat-layout.view')}}',
+                data:{'seat_type':seat_type,'bus_name':bus_name,'total_seat':total_seat,'layout': layout,"_token": "{{ csrf_token() }}"},
+                success:function(responce){
+
+                    $('.quick_layout').html(responce);
+                }
+            });
+        });
+    </script>
 @endsection

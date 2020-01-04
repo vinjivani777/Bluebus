@@ -143,7 +143,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
      //Seat Layout
     Route::get('seat-layout','Admin\SeatLayoutController@index')->name('seat-layout');
     Route::get('seat-layout/add','Admin\SeatLayoutController@create')->name('seat-layout.add');
-    //  Route::post('seat-layout/store','Admin\SeatLayoutController@store')->name('seat-layout.store');
+    Route::post('seat-layout/view','Admin\SeatLayoutController@view')->name('seat-layout.view');
     //  Route::get('seat-layout/edit/{id}','Admin\SeatLayoutController@edit')->name('seat-layout.edit');
     //  Route::put('seat-layout/update/{?id}','Admin\SeatLayoutController@update')->name('seat-layout.update');
     //  Route::delete('seat-layout/destory/{id}','Admin\SeatLayoutController@destory')->name('seat-layout.destory');

@@ -33,9 +33,32 @@
                 font-weight: 300;
                 margin-top: 10px;
             }
+            .seo a {
+                display: block;
+                color: #444343;
+                cursor: pointer;
+                margin-bottom: 15px;
+            }
+            a:hover{
+                text-decoration: none;
+                color:#d84f57;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .footer-row{
+                background-color:#1b2330;
+                overflow: hidden;
+            }
+            .footer-links a {
+                display: block;
+                color: #d7d7d7;
+                cursor: pointer;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
         </style>
     </head>
-<body class="bg-white">
+<body class="bg-white" style="padding-bottom: 0px;">
     <section>
         <nav class="navbar navbar-expand-xl sticky-top  navbar-light  " style="background-color:#d84f57">
             <a class="navbar-brand text-white" href="#">BlueBus</a>
@@ -68,7 +91,8 @@
                     </div>
                 </div>
             </section>
-            {{-- <section class="search-bar">
+
+            <section class="search-bar">
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <form action="">
@@ -82,7 +106,8 @@
                         </form>
                     </div>
                 </div>
-            </section> --}}
+            </section>
+
             <section class="offerforu bg-light" style="height:430px;background-color: #f7f7f7;margin-top: -9px;">
                 <div class="offer-body">
                     <div class="row">
@@ -243,7 +268,11 @@
                     </div>
                 </div>
             </section>
-<section><div class="main-body" style="background-image: url(https://s3.rdbuz.com/Images/TVC-Banner.jpg);background-repeat: no-repeat;position: relative;width: 1122px;height: 236px;margin: 0 auto; top: 25px;"><div class="video_section" style="position: relative;width: 375px;margin: 0 auto;float: left;top: 21px;x;left: 5px;"><iframe width="375" height="198" src="https://www.youtube.com/embed/NMsv_NPLTY4?rel=0"></iframe></div></div></section>
+
+            <section>
+                <div class="main-body" style="background-image: url(https://s3.rdbuz.com/Images/TVC-Banner.jpg);background-repeat: no-repeat;position: relative;width: 1122px;height: 236px;margin: 0 auto; top: 25px;"><div class="video_section" style="position: relative;width: 375px;margin: 0 auto;float: left;top: 21px;x;left: 5px;"><iframe width="375" height="198" src="https://www.youtube.com/embed/NMsv_NPLTY4?rel=0"></iframe></div></div>
+            </section>
+
             <section>
                 <div class="row" >
                     <div class="col-10 mx-auto" style="width: 1122px; height: 524px;background-color: #e8ecef;margin: 0 auto;margin-top: 50px;">
@@ -590,6 +619,269 @@
                     </div>
                 </div>
             </section>
+
+            <div style="padding-bottom: 0;padding-top: 15px;background-color: #ededed;border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
+                <section>
+                    <div style="min-width: 1000px;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                    overflow: hidden;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <img src="{{ asset('web/images/redbus/custsupport/promise.png') }}"     height="100"  alt="">
+                            </div>
+                            <div class="col-12 text-center">
+                                <h2>WE PROMISE TO DELIVER</h2>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 30px auto;color: #8d8d8d;margin-top: 13px;">
+                            <div class="col-11 mx-auto">
+                                <div class="row" >
+                                    <div class="col-3" style="box-shadow: 0 0 1.2px #686868;height: 390px;color: #3c3d41;background-color: #fff">
+                                        <div class="image text-center" style="    margin-top: 35px; margin-bottom: 15px;min-height: 125px">
+                                            <img src="{{ asset('web/images/redbus/custsupport/maximum_choices.png') }}" alt="" height="100">
+                                        </div>
+                                        <div class="adv_title text-center" style="color: #4a4a4a;font-weight: 400;font-size: 17px;letter-spacing: 1px;word-spacing: 8px;margin-bottom: 27px;margin: 0 auto;width: 215px;text-align: center;text-transform: uppercase;">
+                                            MAXIMUM CHOICE
+                                        </div>
+                                        <div class="adv_content text-center" style="margin-left: 15px;margin-right: 15px;color: #737373;font-size: 16px;padding-left: 20px;padding-right: 20px;position: absolute;top: 60%;">
+                                            We take care of your travel beyond ticketing by providing you with innovative and unique benefits.
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="box-shadow: 0 0 1.2px #686868;height: 390px;color: #3c3d41;background-color: #fff">
+                                        <div class="image text-center" style="    margin-top: 35px; margin-bottom: 15px;min-height: 125px">
+                                            <img src="{{ asset('web/images/redbus/custsupport/customer_care.png') }}" alt="" height="100">
+                                        </div>
+                                        <div class="adv_title text-center" style="color: #4a4a4a;font-weight: 400;font-size: 17px;letter-spacing: 1px;word-spacing: 8px;margin-bottom: 27px;margin: 0 auto;width: 215px;text-align: center;text-transform: uppercase;">
+                                            SUPERIOR CUSTOMER SERVICE
+                                        </div>
+                                        <div class="adv_content text-center" style="margin-left: 15px;margin-right: 15px;color: #737373;font-size: 16px;padding-left: 20px;padding-right: 20px;position: absolute;top: 60%;">
+                                            We take care of your travel beyond ticketing by providing you with innovative and unique benefits.
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="box-shadow: 0 0 1.2px #686868;height: 390px;color: #3c3d41;background-color: #fff">
+                                        <div class="image text-center" style="    margin-top: 35px; margin-bottom: 15px;min-height: 125px">
+                                            <img src="{{ asset('web/images/redbus/custsupport/lowest_Fare.png') }}" alt="" height="100">
+                                        </div>
+                                        <div class="adv_title text-center" style="color: #4a4a4a;font-weight: 400;font-size: 17px;letter-spacing: 1px;word-spacing: 8px;margin-bottom: 27px;margin: 0 auto;width: 215px;text-align: center;text-transform: uppercase;">
+                                            LOWEST PRICES
+                                        </div>
+                                        <div class="adv_content text-center" style="margin-left: 15px;margin-right: 15px;color: #737373;font-size: 16px;padding-left: 20px;padding-right: 20px;position: absolute;top: 60%;">
+                                            We take care of your travel beyond ticketing by providing you with innovative and unique benefits.
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="box-shadow: 0 0 1.2px #686868;height: 390px;color: #3c3d41;background-color: #fff">
+                                        <div class="image text-center" style="    margin-top: 35px; margin-bottom: 15px;min-height: 125px">
+                                            <img src="{{ asset('web/images/redbus/custsupport/benefits.png') }}" alt="" height="100">
+                                        </div>
+                                        <div class="adv_title text-center" style="color: #4a4a4a;font-weight: 400;font-size: 17px;letter-spacing: 1px;word-spacing: 8px;margin-bottom: 27px;margin: 0 auto;width: 215px;text-align: center;text-transform: uppercase;">
+                                            UNMATCHED BENEFITS
+                                        </div>
+                                        <div class="adv_content text-center" style="margin-left: 15px;margin-right: 15px;color: #737373;font-size: 16px;padding-left: 20px;padding-right: 20px;position: absolute;top: 60%;">
+                                            We take care of your travel beyond ticketing by providing you with innovative and unique benefits.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </section>
+            </div>
+
+            <div class="growing" style="min-width: 1000px;max-width: 1300px;margin: 0 auto;overflow: hidden;">
+                <section class="" style="margin: 50px 0;margin-bottom: 85px">
+                    <div class="row">
+                        <div class="col-12 text-center" style="text-transform: uppercase;font-size: 30px;line-height: 1.1em;color: #4a4a4a;font-weight: 600;">
+                            <h2>The numbers are growing!</h2>
+                        </div>
+                    </div>
+                    <div class="" style="margin: 50px 0">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-4 text-center">
+                                    <div class="title" style="letter-spacing:2px;font-size: 17px;">
+                                        CUSTOMERS
+                                    </div>
+                                    <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                                        17 M
+                                    </div>
+                                    <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
+                                        redBus is trusted by over 17 million happy customers globally
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="title" style="letter-spacing:2px;font-size: 17px;">
+                                        OPERATORS
+                                    </div>
+                                    <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                                        2300
+                                    </div>
+                                    <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
+                                        network of over 2300 bus operators worldwide
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="title" style="letter-spacing:2px;font-size: 17px;">
+                                        BUS TICKETS
+                                    </div>
+                                    <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                                        180+ M
+                                    </div>
+                                    <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
+                                        Over 180 million trips booked using redBus
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <div style="padding-bottom: 0;padding-top: 15px;color:#444343;background-color: #e5e5e5;border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
+                        <div style="min-width: 1000px;max-width: 1300px;margin: 0 auto;overflow: hidden;">
+                            <div class="container-fluid">
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-2 seo">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Bus Routes</h3>
+                                        <a href="#" target="_blank" title="Hyderabad to Bangalore Bus" >Hyderabad to Bangalore Bus</a>
+                                        <a href="#" target="_blank" title="Bangalore to Chennai Bus" >Bangalore to Chennai Bus</a>
+                                        <a href="#" target="_blank" title="Pune to Bangalore Bus" >Pune to Bangalore Bus</a>
+                                        <a href="#" target="_blank" title="Mumbai to Bangalore Bus" >Mumbai to Bangalore Bus</a>
+                                        <a href="#" target="_blank" title="More" >More ></a>
+                                    </div>
+                                    <div class="col-2 seo">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Cities</h3>
+                                        <a href="#" target="_blank" title="Hyderabad Bus Tickets" >Hyderabad Bus Tickets</a>
+                                        <a href="#" target="_blank" title="Bangalore Bus Tickets" >Bangalore Bus Tickets</a>
+                                        <a href="#" target="_blank" title="Pune Bus Tickets" >Pune Bus Tickets</a>
+                                        <a href="#" target="_blank" title="Mumbai Bus Tickets" >Mumbai Bus Tickets</a>
+                                        <a href="#" target="_blank" title="More" >More ></a>
+                                    </div>
+                                    <div class="col-2 seo">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top RTC's</h3>
+                                        <a href="#" target="_blank" title="APSRTC" >APSRTC</a>
+                                        <a href="#" target="_blank" title="MSRTC" >MSRTC</a>
+                                        <a href="#" target="_blank" title="HRTC" >HRTC</a>
+                                        <a href="#" target="_blank" title="UPSRTC" >UPSRTC</a>
+                                        <a href="#" target="_blank" title="More" >More ></a>
+                                    </div>
+                                    <div class="col-2 seo">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Others</h3>
+                                        <a href="#" target="_blank" title="GSRTC" >GSRTC</a>
+                                        <a href="#" target="_blank" title="RSRTC" >RSRTC</a>
+                                        <a href="#" target="_blank" title="KTCL" >KTCL</a>
+                                        <a href="#" target="_blank" title="PEPSU" >PEPSU</a>
+                                        <a href="#" target="_blank" title="More" >More ></a>
+                                    </div>
+                                    <div class="col-2 seo">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Tempo Traveller in Cities</h3>
+                                        <a href="#" target="_blank" title="Tempo Traveller Bangalore">Tempo traveller in Bangalore</a>
+                                        <a href="#" target="_blank" title="Tempo Traveller Chennai">Tempo traveller in Chennai</a>
+                                        <a href="#" target="_blank" title="Tempo traveller in Mumbai">Tempo traveller in Mumbai</a>
+                                        <a href="#" target="_blank" title="Tempo traveller in Hyderabad">Tempo traveller in Hyderabad</a>
+                                        <a href="#" target="_blank" title="Tempo traveller in Ahmedabad">Tempo traveller in Ahmedabad</a>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-11 mx-auto">
+                                        <hr class="" style="border:0.5px solid #999;">
+                                    </div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="col-1"></div>
+                                    <div class="col-10">
+                                        <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Operator</h3>
+                                        <p style="font-size:16.2px">
+                                            SRS Travels &nbsp; | &nbsp; Evacay Bus &nbsp; | &nbsp; Kallada Travels &nbsp; | &nbsp; KPN Travels &nbsp; | &nbsp; Orange Travels &nbsp; | &nbsp; Parveen Travels &nbsp; | &nbsp; Rajdhani Express &nbsp; | &nbsp; VRL Travels &nbsp; | &nbsp; Chartered Speed Bus
+                                            Bengal Tiger &nbsp; | &nbsp; SRM Travels &nbsp; | &nbsp; Infant Jesus &nbsp; | &nbsp; Patel Travels &nbsp; | &nbsp; JBT Travels &nbsp; | &nbsp; Shatabdi Travels &nbsp; | &nbsp; Eagle Travels &nbsp; | &nbsp; Kanker Roadways &nbsp; | &nbsp; Komitla &nbsp; | &nbsp;
+                                            Sri Krishna Travels &nbsp; | &nbsp; Humsafar Travels &nbsp; | &nbsp; Mahasagar Travels &nbsp; | &nbsp; Raj Express &nbsp; | &nbsp; Sharma Travels &nbsp; | &nbsp; Shrinath Travels &nbsp; | &nbsp; Universal Travels &nbsp; | &nbsp; Verma Travels &nbsp; | &nbsp;
+                                            Gujarat Travels &nbsp; | &nbsp; Madurai Radha Travels &nbsp; | &nbsp; Patel Tours and Travels &nbsp; | &nbsp; Paulo Travels &nbsp; | &nbsp; Royal Travels &nbsp; | &nbsp; Amarnath Travels &nbsp; | &nbsp; Vaibhav Travels &nbsp; | &nbsp; Ganesh Travels &nbsp; | &nbsp;
+                                            Jabbar Travels &nbsp; | &nbsp; Jain Travels &nbsp; | &nbsp; Manish Travels &nbsp; | &nbsp; Pradhan Travels &nbsp; | &nbsp; YBM Travels &nbsp; | &nbsp; Hebron Transports &nbsp; | &nbsp; Mahalaxmi travels &nbsp; | &nbsp; MR Travels &nbsp; | &nbsp;
+                                            Vivegam Travels &nbsp; | &nbsp; VST Travels &nbsp; | &nbsp; Jakhar Travels &nbsp; | &nbsp; Kaleswari Travels &nbsp; | &nbsp; Mahendra Travels &nbsp; | &nbsp; Neeta Tours and Travels &nbsp; | &nbsp; Yamani Travels &nbsp; | &nbsp; Arthi Travels
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-12 text-right ">
+                                        <h3 class="mb-4 mr-5" style="font-weight: 800;font-size: 1.1em;">All Operator ></h3>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+                <div class="footer-row" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8 mt-3 ml-3">
+                                 <div class="row footer-links">
+                                    <div class="col-3 ">
+                                        <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">About redBus</h3>
+                                        <a href="/info/aboutus" target="_blank">About Us</a>
+                                        <a href="/info/contactus" target="_blank">Contact Us</a>
+                                        <a href="//m.redbus.in" target="_blank">Mobile Version</a>
+                                        <a href="/info/mobile" target="_blank">redBus on Mobile</a>
+                                        <a href="/sitemap.html" target="_blank">Sitemap</a>
+                                        <a href="/info/OfferTerms" target="_blank">Offers</a>
+                                        <a href="/careers" target="_blank">Careers</a>
+                                        <a href="/values" target="_blank">Values</a>
+                                    </div>
+                                    <div class="col-3 ">
+                                        <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Info </h3>
+                                        <a href="/info/termscondition" target="_blank">T &amp; C</a>
+                                        <a href="/info/privacypolicy" target="_blank">Privacy Policy</a>
+                                        <a href="/info/faq" target="_blank">FAQ</a>
+                                        <a href="http://blog.redbus.in/" target="_blank">Blog</a>
+                                        <a href="https://in3.seatseller.travel/" target="_blank">Agent Registration</a>
+                                        <a href="https://www.icicilombard.com/" target="_blank">Insurance Partner</a>
+                                        <a href="/info/useragreement" target="_blank">User Agreement</a>
+                                    </div>
+                                    <div class="col-3 ">
+                                        <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Global Sites </h3>
+                                        <a href="https://www.redbus.in" target="_blank">India</a>
+                                        <a href="https://www.redbus.sg" target="_blank">Singapore</a>
+                                        <a href="https://www.redbus.my" target="_blank">Malaysia</a>
+                                        <a href="https://www.redbus.id" target="_blank">Indonesia</a>
+                                        <a href="https://www.redbus.pe" target="_blank">Peru</a>
+                                        <a href="https://www.redbus.co" target="_blank">Colombia</a>
+                                    </div>
+                                    <div class="col-3 ">
+                                        <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Our Partners</h3>
+                                        <a href="https://www.redbus.in" target="_blank">Goibibo</a>
+                                        <a href="https://www.redbus.sg" target="_blank">redbus</a>
+                                        <a href="https://www.redbus.my" target="_blank">MakeMytrip</a>
+                                        <a href="https://www.redbus.id" target="_blank">Easytotrip</a>
+                                        <a href="https://www.redbus.pe" target="_blank">HappyJourny</a>
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="col-3 mt-3">
+                                <h3 class="text-white" href="#">BlueBus</h3>
+                                <div style="color:#d7d7d7;font-size:14px">
+                                    redBus is the world's largest online bus ticket booking service trusted by over
+                                    17 million happy customers globally. redBus offers bus ticket booking through its
+                                    website,iOS and Android mobile apps for all major routes.
+                                </div>
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect"><i class="fe-facebook color-white"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-twitter color-white"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-instagram color-white"></i></button>
+                                </div>
+                                <div class=" text-white mt-2 ml-0 ">
+                                    <span>Ⓒ</span><span> 2019-2020 ......... All rights reserved</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
         </div>
     </section>
 </body>
