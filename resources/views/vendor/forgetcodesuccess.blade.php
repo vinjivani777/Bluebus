@@ -39,8 +39,11 @@
                                 <form action="">
                                     @csrf
                                     <div class="form-group mb-3">
-                                        <label for="data">Password Reset Link Has Been Sent to Your Email-ID/Phone Number.
-                                                            Check Message For Further Process. </label>
+                                        <label for="data">
+                                            Hi,{{$details['name']}}<br>
+                                            Link to reset your password is {{$details['email']}}<br>
+                                            Click On <a href='{{$details['link']}}'>{{$details['link']}}</a>
+                                        </label>
                                     </div>
                                 </form>
 

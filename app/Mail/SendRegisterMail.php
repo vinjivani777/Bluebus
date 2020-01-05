@@ -16,9 +16,9 @@ class SendRegisterMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -28,6 +28,6 @@ class SendRegisterMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('mayuritaliya1998@gmail.com')->view('vendor.forgetcodesuccess')->subject('Click On Given Link To Reset Password')->with('details', $this->details);
     }
 }

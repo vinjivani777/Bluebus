@@ -15,6 +15,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use App\Mail\SendRegisterMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class VendorController extends Controller
 {
@@ -62,13 +66,26 @@ class VendorController extends Controller
 
    public function forgetpassword(Request $request)
    {
+       $otp= mt_rand(000000,999999);
        $b=$request->emailphone;
         b:if(is_numeric($b))
         {
-            return "Message";   
+            return Redirect::to('https://2factor.in/API/V1/d15b8dc8-2c7d-11ea-9fa5-0200cd936042/SMS/'.$b.'/'.$otp);
+            // return redirect()->route('vendor.passwordresetsms');
+            // dd(SMSController::sendSMS($b,$otp));
         }
         else{
-            return "Email";
+            // $status = MailController::sendmail($b);
+            // return redirect()->route('vendor.passwordresetmail',['b'=>$request]);
+            $z= "127.0.0.1:8000/vendor/resetpassword/".Vendor::where('email',$b)->first()->remember_token;
+            $details = [
+                'email' => $b,
+                'name'=> Vendor::where('email',$b)->first()->first_name,
+                'link' =>$z
+            ];
+
+            Mail::to($b)->send(new SendRegisterMail($details));
+            return redirect()->route('vendor');
         }
         // return view('vendor.forgetcodesuccess');
    }
