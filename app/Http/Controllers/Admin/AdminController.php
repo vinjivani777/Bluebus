@@ -8,6 +8,7 @@ use App\Model\Route;
 use App\Model\BusType;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
+use App\Model\Amenitie;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,8 @@ class AdminController extends Controller
             $find_model = BusType::findorfail($request->id);
         }elseif ($model == "Bus") {
             $find_model = Bus::findorfail($request->id);
+        }elseif ($model == "Amenitie") {
+            $find_model = Amenitie::findorfail($request->id);
         }elseif ($model == "Route") {
             $find_model = Route::findorfail($request->id);
         }elseif ($model == "BoardPoint") {

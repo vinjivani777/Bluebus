@@ -14,6 +14,7 @@
 //Admin
 Route::get('admin_','Admin\LoginController@index')->name('admin');
 Route::post('admin/login','Admin\LoginController@login')->name('admin.login');
+
 Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
     //dashboard
@@ -23,6 +24,13 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('profile','Admin\AdminController@profile')->name('profile');
     Route::post('profile/update','Admin\AdminController@profileupdate')->name('profile.update');
     Route::post('profile/password/update','Admin\AdminController@adminpassword')->name('profile.passwor.update');
+
+    //Bus Amentities
+    Route::get('amenities','Admin\AmenitiesController@index')->name('amenities');
+    Route::post('amenities/store','Admin\AmenitiesController@store')->name('amenities.store');
+    Route::get('amenities/edit/{id}','Admin\AmenitiesController@edit')->name('amenities.edit');
+    Route::post('amenities/update','Admin\AmenitiesController@update')->name('amenities.update');
+    Route::get('amenities/destroy','Admin\AmenitiesController@busdestory')->name('amenities.destroy');
 
     // admin logout
     Route::get('logout','Admin\LoginController@logout')->name('admin.logout');
@@ -166,9 +174,12 @@ Route::get('vendor/register','Vendor\VendorController@register')->name('vendor.r
 Route::get('vendor/forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
 Route::post('vendor/register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
 //Vendor Password Reset
-Route::post('vendor/forgetpassword','Vendor\VendorController@forgetpassword')->name('vendor.forgetpassword');
-Route::post('vendor/passwordresetsms','Vendor\VendorController@passwordresetsms')->name('vendor.passwordresetsms');
+Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassword')->name('vendor.forgetpassword');
+Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
 Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
+Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
+Route::get('vendor/resetpassword/sms','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
+
 
 Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
 

@@ -34,6 +34,7 @@ class VendorController extends Controller
 
    public function registernew(Request $request)
    {
+    //    return $request;
        $validator=Validator::make($request->all(),[
             'username'  => 'required',
             'emailid'   =>  'required',
@@ -50,11 +51,15 @@ class VendorController extends Controller
        $params['email']=$request->emailid;
        $params['password']=bcrypt($request->password);
        $params['status']=false;
+       $params['remember_token']= str_random(60);
 
        $Vendor=Vendor::create($params);
 
        if($Vendor)
        {
+            return redirect()->route('vendor');
+       }
+       else{
            return redirect()->back();
        }
    }
@@ -235,6 +240,7 @@ class VendorController extends Controller
 
        }
    }
+
 
 
 }

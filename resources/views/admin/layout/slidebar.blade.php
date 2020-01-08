@@ -223,6 +223,19 @@
                     </a>
                 </li>
 
+                {{-- amenities details --}}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span> Amenities Details </span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('amenities') }}">View All</a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
 
         </div>
