@@ -104,18 +104,10 @@ class AmenitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validator= $request->validate([
-            'amenities_name' => 'required|min:2',
-            'amenities_type' => 'required',
-            'amenities_reg_no' => 'required|min:5',
-            'max_seats' => 'required',
-            'board_point' => 'required',
-            'drop_point' => 'required',
-            'board_time' => 'required',
-            'drop_time' => 'required',
-            'amenities' => 'required',
+            'editamenitiename' => 'required|min:2',
         ]);
 
 
@@ -125,30 +117,33 @@ class AmenitiesController extends Controller
         }
         else
         {
-            $newamenities = Amenitie::findorfail($id);
-            $banner="bus_img";
+            $newamenities = Amenitie::findorfail($request->editid);
+            $newamenities->amenities= $request->editamenitiename;
+            $image="admin/images/amenities/default.png";
 
-        if ($request->hasFile('bus_img')) {
-            $type = $request->file('bus_img')->getMimeType();
-            if(strpos($type, 'image/') !== false){
-                $banner = substr(str_slug($request->input('bus_name')),0,20).'_'.str_random(10).'.'.$request->bus_img->getClientOriginalExtension();
+            if ($request->hasFile('newimage')) {
+                $type = $request->file('newimage')->getMimeType();
+                if(strpos($type, 'image/') !== false){
+                    $image = $request->editamenitiename.'.'.$request->newimage->getClientOriginalExtension();
 
-                $request->bus_img->move(public_path('admin/images/bus-image/'),$banner);
-                $banner = 'admin/images/bus-image/'.$banner;
-            }
-            if($request->input('old_img'))
-                {
-                    unlink(public_path().'/'.$request->old_img);
-                }else{
-                    $banner;
+                    $request->newimage->move(public_path('admin/images/amenities/'),$image);
+                    $image = 'admin/images/amenities/'.$image;
                 }
-        }else{
-            $banner= $request->input('old_img');
-        }
+                if($request->input('old_profile'))
+                {
+                    unlink(public_path().'/'.$request->oldimage);
+                }else{
+                    $image;
+                }
+                $newamenities->image= $image;
+
+            }else{
+                $image;
+            }
 
             $newamenities->save();
 
-            return redirect()->route('amenities-detail');
+            return redirect()->route('amenities');
         }
     }
 

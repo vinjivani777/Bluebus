@@ -117,7 +117,7 @@
                                         <div class="col-lg-4">
                                             <div class="mt-3">
                                                 <input type="hidden" name="old_profile" value="{{ $admin_details->profile_picture }}">
-                                                <input type="file" class="dropify" name="profile_image" data-default-file="admin_image"  />
+                                                <input type="file" class="dropify" name="profile_image" data-default-file="profile_image"  />
                                                 <p class="text-muted text-center mt-2 mb-0">Admin Image</p>
                                                 <span class="text-danger">@error('profile_image') {{ $message }} @enderror</span>
                                             </div>

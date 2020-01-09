@@ -16,6 +16,11 @@
     <link href="{{asset('admin/libs/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- Plugins css -->
+    <link href="{{ asset('admin/libs/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/libs/dropify/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -62,31 +67,22 @@
                             <div class="row">
                                 <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                     <div class="form-group">
-                                        <label for="amenitiename">ID</label>
-                                        <input type="text" class="form-control" name="editid" value="{{$amenities->id}}" id="editid" placeholder="AmenitieName" required>
-                                        <span class="text-danger">@error('id') {{  $message }} @enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="editid" value="{{$amenities->id}}" hidden id="editid" readonly placeholder="AmenitieName" required>
                                         <label for="amenitiename">Amenitie Name</label>
                                         <input type="text" class="form-control" name="editamenitiename" value="{{$amenities->amenities}}" id="editamenitiename" placeholder="AmenitieName" required>
                                         <span class="text-danger">@error('amenitiename') {{  $message }} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                    <div class="form-group">
-                                        <label for="oldimage">Old Image</label>
-                                        <img src="{{asset($amenities->image)}}" style="width:150px;height:100px;" class="ml-5" name="oldimage">
+                                    <div class="form-group ">
+                                        <div class="col-md-8">
+                                            <label for="amenitiename">Amenitie Name</label>
+                                            <input type="hidden" name="oldimage" value="{{asset($amenities->image)}}" >
+                                            <input type="file" class="dropify" name="newimage" data-default-file="Old_image"  />
+                                            <span class="text-danger">@error('newimage') {{ $message }} @enderror</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                    <div class="form-group">
-                                        <label for="image">Image</label>
-                                        <input type="file" class="form-control" name="editimage"  id="editimage" required>
-                                        <span class="text-danger">@error('image') {{  $message }} @enderror</span>
-                                    </div>
-                                </div>
+                                </div><!-- end col -->
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-12 col-lg-12 col-sm-12 pb-3 pl-3">
@@ -121,6 +117,13 @@
     <script src="{{asset('admin/libs/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+
+    <!-- Plugins js -->
+    <script src="{{ asset('admin/libs/dropzone/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin/libs/dropify/dropify.min.js') }}"></script>
+
+    <!-- Init js-->
+    <script src="{{ asset('admin/js/pages/form-fileuploads.init.js') }}"></script>
 
     <!-- Init js-->
     <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
