@@ -33,12 +33,12 @@
                                 <div class="text-center w-75 m-auto">
                                     <a href="{{route('vendor.index')}}">
                                         <span><img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="22"></span>
-                                        <p class="text-muted mb-4 mt-3">Enter your password and Confirm  password to Reset the password.</p>
                                     </a>
+                                    <p class="text-muted mb-4 mt-3">Hi,<a href="#">Vendor</a> <br>Enter your password and Confirm  password to Reset the password.</p>
                                     <p class="text-muted mb-4 mt-3"></p>
                                 </div>
 
-                                <form action="{{route('vendor.updatepassword')}}" method="POST">
+                                <form action="{{route('vendor.savepasswordmail')}}" method="POST">
                                     @csrf
                                     {{-- <div class="form-group mb-3">
                                         <label for="data">Mobile Number</label>

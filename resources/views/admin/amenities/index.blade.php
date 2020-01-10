@@ -190,7 +190,7 @@
         });
    });
     //delete board point
-    $('.remove_board_point').click(function(){
+    $('.remove_amenities').click(function(){
         var c_id= $(this).attr('id');
         swal({
             title: "Are you sure?",

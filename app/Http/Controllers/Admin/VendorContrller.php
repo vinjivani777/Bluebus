@@ -73,6 +73,7 @@ class VendorContrller extends Controller
         $data->city = $request->city;
         $data->state = $request->state;
         $data->status = "0";
+        $data->remember_token=str_random(60);
         // return $data;
         $data->save();
         return redirect()->route('vendoradmin-detail');

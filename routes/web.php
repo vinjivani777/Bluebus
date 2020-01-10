@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('amenities/store','Admin\AmenitiesController@store')->name('amenities.store');
     Route::get('amenities/edit/{id}','Admin\AmenitiesController@edit')->name('amenities.edit');
     Route::post('amenities/update','Admin\AmenitiesController@update')->name('amenities.update');
-    Route::get('amenities/destroy','Admin\AmenitiesController@busdestory')->name('amenities.destroy');
+    Route::get('amenities/destroy','Admin\AmenitiesController@amenitiesdestory')->name('amenities.destroy');
 
     // admin logout
     Route::get('logout','Admin\LoginController@logout')->name('admin.logout');
@@ -178,7 +178,9 @@ Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassw
 Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
 Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
 Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
+Route::get('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
 Route::get('vendor/resetpassword/sms','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
+Route::get('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
 
 
 Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {

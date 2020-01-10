@@ -32,13 +32,16 @@
 
                                 <div class="text-center w-75 m-auto">
                                     <a href="{{route('vendor.index')}}">
-                                        <span><img src="assets/images/logo-dark.png" alt="" height="22"></span>
+                                        <span><img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="22"></span>
                                     </a>
                                     <p class="text-muted mb-4 mt-3">Enter your E-mail Address/Mobile Number and we'll send you an email with instructions to reset your password.</p>
                                 </div>
 
                                 <form action="{{route('vendor.forgetpassword')}}" method="POST">
                                     @csrf
+                                    @if (Session::has('status'))
+                                        <div class="alert alert-danger">{{Session::get('status')}}</div>
+                                    @endif
                                     <div class="form-group mb-3">
                                         <label for="data">Email address/ Mobile Number</label>
                                         <input class="form-control" name="emailphone" type="text" id="data" required="" placeholder="Enter your E -mail/Mobile No">
