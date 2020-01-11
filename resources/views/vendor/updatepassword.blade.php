@@ -34,11 +34,19 @@
                                     <a href="{{route('vendor.index')}}">
                                         <span><img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="22"></span>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Hi,<a href="#">Vendor</a> <br>Enter your password and Confirm  password to Reset the password.</p>
+                                    <p class="text-muted mb-4 mt-3">Hi,
+                                        <a href="#">
+                                            @if ($firstname)
+                                                {{$firstname}}
+                                            @else
+                                                {{"User"}}
+                                            @endif
+                                        </a><br>Enter your Password and Confirm  Password to Reset the Password.
+                                    </p>
                                     <p class="text-muted mb-4 mt-3"></p>
                                 </div>
 
-                                <form action="{{route('vendor.savepasswordmail')}}" method="POST">
+                                <form action="{{route('vendor.savepasswordmail',['token'=>$token])}}" method="POST">
                                     @csrf
                                     {{-- <div class="form-group mb-3">
                                         <label for="data">Mobile Number</label>
@@ -50,15 +58,16 @@
                                         <input class="form-control" name="otp" type="text" id="otp" required placeholder="Enter OTP">
                                         <span class="text-danger">@error('otp') {{ $message }} @enderror</span>
                                     </div> --}}
+                                    @if (Session::has('status'))
+                                        <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
+                                    @endif
                                     <div class="form-group mb-3">
-                                        <label for="password">Password</label>
-                                        <input class="form-control" type="password" name="password" required id="password" placeholder="Enter your Password">
-                                        <span class="text-danger">@error('password') {{ $message }} @enderror</span>
+                                        <label for="Password">Password</label>
+                                        <input class="form-control" type="Password" name="Password" required id="Password" placeholder="Enter your Password">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="password">Confirm Password</label>
-                                        <input class="form-control" type="password" name="confirmpassword" required id="confirmpassword" placeholder="Enter your Confirm Password">
-                                        <span class="text-danger">@error('confirmpassword') {{ $message }} @enderror</span>
+                                        <label for="Password">Confirm Password</label>
+                                        <input class="form-control" type="Password" name="ConfirmPassword" required id="confirmPassword" placeholder="Enter your Confirm Password">
                                     </div>
 
                                     <div class="form-group mb-0 text-center">

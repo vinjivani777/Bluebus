@@ -39,6 +39,9 @@
 
                                 <form action="{{ route('vendor.login') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @if (Session::has('status'))
+                                        <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
+                                    @endif
                                     <div class="form-group mb-3">
                                         <label for="username">User Name</label>
                                         <input class="form-control" type="text" id="username"  name="username" value="{{ old('username') }}" required placeholder="Enter your username">

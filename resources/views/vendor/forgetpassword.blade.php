@@ -40,7 +40,7 @@
                                 <form action="{{route('vendor.forgetpassword')}}" method="POST">
                                     @csrf
                                     @if (Session::has('status'))
-                                        <div class="alert alert-danger">{{Session::get('status')}}</div>
+                                        <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
                                     @endif
                                     <div class="form-group mb-3">
                                         <label for="data">Email address/ Mobile Number</label>
