@@ -116,7 +116,6 @@ class ForgetPasswordController extends Controller
 
    public function savepasswordsms(request $request)
    {
-    //    return $request;
         $validator=Validator::make($request->all(),[
             'MobileNo'  =>  'required|digits:10|numeric',
             'OTP'   =>  'required|numeric|min:6',

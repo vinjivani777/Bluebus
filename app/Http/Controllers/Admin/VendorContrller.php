@@ -67,7 +67,7 @@ class VendorContrller extends Controller
         $data->email = $request->email;
         $data->phone_number = $request->phone_number;
         $data->company_name = $request->company_name;
-        $data->profile_picture = "vendor\images\admin-profile\admin_KZsCR.jpg";
+        $data->profile_picture = "vendor\images\vendor.png";
         $data->logo = "vendor\images\products\product-1.jpg";
         $data->address = $request->address;
         $data->city = $request->city;
@@ -158,8 +158,20 @@ class VendorContrller extends Controller
     {
         $image=$request->profilepicture;
         $logo=$request->logo;
-        unlink(public_path().'/'.$image);
-        unlink(public_path().'/'.$logo);
+        if($image="vendor\images\vendor.png")
+        {
+            $request->profilepicture;
+        }
+        else{
+            unlink(public_path().'/'.$image);
+        }
+        if($logo="vendor\images\products\product-1.jpg")
+        {
+            $request->logo;
+        }
+        else{
+            unlink(public_path().'/'.$logo);
+        }
         $removevendor =  Vendor::findorfail($request->id);
         $removevendor->delete();
 
