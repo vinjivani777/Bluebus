@@ -60,7 +60,7 @@
                                         <td>{{$vendor->id}}</td>
                                         <td>{{$vendor->username}}</td>
                                         <td>{{$vendor->company_name}}</td>
-                                        <td>{{  $vendor->email}}</td>
+                                        <td>{{$vendor->email}}</td>
                                         <td>{{$vendor->phone_number}}</td>
                                         <td>{{$vendor->city}}</td>
                                         <td>

@@ -10,7 +10,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{{asset('vendor/images/favicon.ico')}}">
 
         <!-- App css -->
         <link href="{{ asset('admin/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -39,6 +39,9 @@
 
                                 <form action="{{ route('vendor.login') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @if (Session::has('status'))
+                                        <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
+                                    @endif
                                     <div class="form-group mb-3">
                                         <label for="username">User Name</label>
                                         <input class="form-control" type="text" id="username"  name="username" value="{{ old('username') }}" required placeholder="Enter your username">
@@ -69,7 +72,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p> <a href="pages-recoverpw.html" class="text-white-50 ml-1">Forgot your password?</a></p>
+                                <p> <a href="{{route('vendor.showforgetpage')}}" class="text-white-50 ml-1">Forgot your password?</a></p>
                                 <p class="text-white-50">Don't have an account? <a href="{{ route('vendor.register') }}" class="text-white ml-1"><b>Sign Up</b></a></p>
                             </div> <!-- end col -->
                         </div>
