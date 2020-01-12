@@ -35,8 +35,8 @@
             dateFormat: "d-m-Y",
         }),
 
-        e("#basic-datepicker").flatpickr(),
-        e('#return-datepicker').flatpickr(),
+        e(".basic-datepicker").flatpickr(),
+        e('.return-datepicker').flatpickr(),
         e("#datetime-datepicker").flatpickr({
             enableTime: !0,
             dateFormat: "Y-m-d H:i"
