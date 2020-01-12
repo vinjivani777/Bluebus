@@ -56,6 +56,9 @@
                 margin-bottom: 5px;
                 font-weight: 600;
             }
+            .search_input{
+                border-radius:0px;
+            }
         </style>
     </head>
 <body class="bg-white" style="padding-bottom: 0px;">
@@ -92,18 +95,34 @@
                 </div>
             </section>
 
-            <section class="search-bar">
-                <div class="row">
-                    <div class="col-12 col-md-12">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="from-group">
-                                        <input type="text" class="form-control" name="" id="" placeholder="From">
+            <section class="search-bar" >
+                <div class="row" >
+                    <div class="col-9 col-md-9 mx-auto">
+                        <div class="container ml-3" style="position: absolute;bottom: 186px;z-index:2;">
+                            <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-row align-items-center">
+                                    <div class="col-3 mr-0 pr-0">
+                                        <input type="text" class="form-control mb-2 search_input source_palace" name="source_palace" tabindex="1" autocomplete="off" id="inlineFormInput" placeholder="Source Place">
+                                        <div id="countryList" class=""></div>
+                                    </div>
+                                    <div class="col-3 ml-0 pl-0 mr-0 pr-0">
+                                        <input type="text" class="form-control mb-2 search_input destination_palace" name="destination_palace" tabindex="2" autocomplete="off" id="inlineFormInput" placeholder="Destination Place">
+                                        <div id="destationList" class=""></div>
+                                    </div>
+                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0">
+                                        <input type="text" class="form-control mb-2 search_input basic-datepicker " name="onward" tabindex="3" id="inlineFormInput" placeholder="Onward Date">
+                                    </div>
+                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0">
+                                        <input type="text" class="form-control mb-2 search_input return-datepicker" name="return" tabindex="4" id="inlineFormInput" placeholder="Return Date">
+                                    </div>
+                                    <div class="col-2 ml-0 pl-0">
+                                        <button class="btn  btn-danger mb-2 search_input" id="inlineFormInput"><b>Search Bus</b></button>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -882,6 +901,7 @@
                     </div>
                 </div>
             </footer>
+
         </div>
     </section>
 </body>
@@ -890,7 +910,105 @@
 
 <script src="{{ asset('web/js/pages/animation.init.js')}}"></script>
 
+<!-- Plugins js-->
+<script src="{{ asset('web/libs/flatpickr/flatpickr.min.js') }}"></script>
+<script src="{{ asset('web/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+<script src="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
+
+<!-- Init js-->
+<script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
+
+{{--  <script>
+$(document).ready(function(){
+
+    $('.source_palace').keyup(function(){
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('search') }}",
+          method:"POST",
+          data:{query:query,token:_token},
+          success:function(data){
+              alert(data);
+           $('#sourceList').fadeIn();
+                    $('#sourceList').html(data);
+          }
+         });
+        }
+    });
+
+    $(document).on('click', 'li', function(){
+        $('.source_palace').val($(this).text());
+        $('#sourceList').fadeOut();
+    });
+
+});
+</script>  --}}
+
+<script>
+    $('.source_palace').keyup(function(){
+       var Source=$(this).val();
+            $.ajax({
+                    url:'{{route('source')}}',
+                    data:{Source : Source},
+                    type:'get',
+                    success:function(resource)
+                    {
+
+                        if(resource != " ")
+                        {
+                            $('#countryList').show(100);
+                            $('#countryList').html(resource);
+                        }                
+
+                    }
+                });
+            });
+
+            $(document).on('click', '.source_select', function(){
+                $('.source_palace').val($(this).text());
+                $('#countryList').fadeOut();
+            });
+
+            $('.source_palace').focusout( function(){
+                $('#countryList').fadeOut();
+            });
+</script>
+
+<script>
+    $('.destination_palace').keyup(function(){
+       var Destnation=$(this).val();
+            $.ajax({
+                    url:'{{route('dest')}}',
+                    data:{Destnation : Destnation},
+                    type:'get',
+                    success:function(resource)
+                    {
+
+                        if(resource != " ")
+                        {
+                            $('#destationList').show(100);
+                            $('#destationList').html(resource);
+                        }                
+
+                    }
+                });
+            });
+
+            $(document).on('click', '.dest_select', function(){
+                $('.destination_palace').val($(this).text());
+                $('#destationList').fadeOut();
+            });
+
+            $('.destination_palace').focusout( function(){
+                $('#destationList').fadeOut();
+            });
+</script>
+
 <!-- App js -->
 <script src="{{ asset('web/js/app.min.js')}}"></script>
+
 
 </html>
