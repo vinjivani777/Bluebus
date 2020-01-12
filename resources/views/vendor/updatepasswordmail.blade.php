@@ -4,7 +4,7 @@
 
 <head>
         <meta charset="utf-8" />
-        <title>Forget Password</title>
+        <title>Reset Password</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured vendor theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -22,7 +22,7 @@
 
     <body class="authentication-bg authentication-bg-pattern">
 
-        <div class="account-pages mt-5 mb-5" style="padding-top:30px;">
+        <div class="account-pages mt-5 mb-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
@@ -31,20 +31,33 @@
                             <div class="card-body p-4">
 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="#">
-                                        <h3>Blue Bus</h3>
+                                    <a href="{{route('vendor.index')}}">
+                                        <span><img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="22"></span>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Enter your E-mail Address/Mobile Number and we'll send you an email with instructions to reset your password.</p>
+                                    <p class="text-muted mb-4 mt-3">Hi,
+                                        <a href="#">
+                                            @if ($firstname)
+                                                {{$firstname}}
+                                            @else
+                                                {{"User"}}
+                                            @endif
+                                        </a><br>Enter your Password and Confirm  Password to Reset the Password.
+                                    </p>
+                                    <p class="text-muted mb-4 mt-3"></p>
                                 </div>
 
-                                <form action="{{route('vendor.forgetpassword')}}" method="POST">
+                                <form action="{{route('vendor.savepasswordmail',['token'=>$token])}}" method="POST">
                                     @csrf
                                     @if (Session::has('status'))
                                         <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
                                     @endif
                                     <div class="form-group mb-3">
-                                        <label for="data">Email address/ Mobile Number</label>
-                                        <input class="form-control" name="emailphone" type="text" id="data" required="" placeholder="Enter your E -mail/Mobile No">
+                                        <label for="Password">Password</label>
+                                        <input class="form-control" type="Password" name="Password" required id="Password" placeholder="Enter your Password">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="Password">Confirm Password</label>
+                                        <input class="form-control" type="Password" name="ConfirmPassword" required id="confirmPassword" placeholder="Enter your Confirm Password">
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
@@ -59,7 +72,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p class="text-white-50">Back to <a href="{{route('vendor')}}" class="text-white ml-1"><b>Log in</b></a></p>
+                                <p class="text-white-50">Back to <a href="pages-login.html" class="text-white ml-1"><b>Log in</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->

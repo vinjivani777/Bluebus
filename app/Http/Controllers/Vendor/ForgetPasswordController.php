@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Vendor;
 use App\Model\Vendor;
 use Illuminate\Http\Request;
 use App\Mail\SendRegisterMail;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,7 @@ class ForgetPasswordController extends Controller
                 // return $record;
                 $tokendata = Vendor::findorfail($record->first()->id);
                 $tokendata->forgettoken=$forgettoken;
-                $tokendata->token_time= now();
+                $tokendata->token_time=  Carbon::now();
                 // return $tokendata;
                 $tokendata->save();
                 $z= "127.0.0.1:8000/vendor/resetpassword/email/".Vendor::where('email',$b)->first()->forgettoken;
@@ -69,18 +70,22 @@ class ForgetPasswordController extends Controller
         if(count($record))
         {
             $start_time=strtotime($record->first()->token_time);
-            $end_time=strtotime(now());
+            $end_time=strtotime( Carbon::now());
             if(($end_time - $start_time)>600)
             {
+                $update=Vendor::findorfail($record->first()->id);
+                $update->forgettoken="";
+                $update->token_time= Carbon::now();
+                $update->save();
                 return redirect()->route('vendor.showforgetpage')->with(['status' => 'Sorry,The Link is Expired']);
             }
             else{
-                return view('vendor.updatepassword')->with(['firstname' =>$record->first()->first_name])->with(['token'=>$record->first()->forgettoken]);
+                return view('vendor.updatepasswordmail')->with(['firstname' =>$record->first()->first_name])->with(['token'=>$record->first()->forgettoken]);
             }
         }
         else
         {
-            return redirect()->route('vendor.showforgetpage')->with(['status' => 'Invalid Link']);
+            return redirect()->route('vendor.showforgetpage')->with(['status' => 'Link Expired, Please Try Again.']);
         }
    }
 
@@ -99,19 +104,41 @@ class ForgetPasswordController extends Controller
         $update=Vendor::findorfail($id);
         $update->password=bcrypt($request->password);
         $update->forgettoken="";
-        $update->token_time=now();
+        $update->token_time= Carbon::now();
         $update->save();
         return redirect()->route('vendor')->with(['status' => 'Password Changed Successfully']);
    }
 
    public function updatepasswordsms()
    {
-        return view('vendor.updatepassword');
+        return view('vendor.updatepasswordsms');
    }
 
    public function savepasswordsms(request $request)
    {
-        return $request;
+    //    return $request;
+        $validator=Validator::make($request->all(),[
+            'MobileNo'  =>  'required|digits:10|numeric',
+            'OTP'   =>  'required|numeric|min:6',
+            'Password'  => 'required',
+            'ConfirmPassword'   =>  'required|same:Password',
+        ],);
+
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+        $id=Vendor::where('phone_number',$request->MobileNo)->where('otp',$request->OTP)->get()->first()->id;
+        if(!($id))
+        {
+            return redirect()->back()->withErrors($validator)->withInput($request->all())->with(['status' => 'MobileNo/OTP is Invalid.']);
+        }
+        $update=Vendor::findorfail($id);
+        $update->password=bcrypt($request->password);
+        $update->otp="";
+        return $update;
+        $update->save();
+        return redirect()->route('vendor')->with(['status' => 'Password Changed Successfully']);
    }
 
 }
