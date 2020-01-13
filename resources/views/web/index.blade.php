@@ -961,7 +961,7 @@ $(document).ready(function(){
                         {
                             $('#countryList').show(100);
                             $('#countryList').html(resource);
-                        }                
+                        }
 
                     }
                 });
@@ -991,7 +991,7 @@ $(document).ready(function(){
                         {
                             $('#destationList').show(100);
                             $('#destationList').html(resource);
-                        }                
+                        }
 
                     }
                 });

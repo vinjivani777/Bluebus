@@ -3,7 +3,7 @@
 
 <head>
         <meta charset="utf-8" />
-        <title>Blue Bus Travels  | Booking Volvo</title>
+        <title>Blue Bus Travels  | Searech Bus Tickets</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured web theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -71,7 +71,9 @@
                 border: 1px solid #ddd;
                 border-radius: 3px;
             }
-
+            .return{
+                transform:rotate(180deg);
+            }
         </style>
 
     </head>
@@ -92,10 +94,12 @@
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <div class="ml-3 " style="font-size:18px;">
-                                        <span class="text-dark">Surat </span>
+                                        <span class="text-dark">{{ $source }} </span>
                                         <i class="fe-arrow-right "></i>
-                                        <span class="text-dark"> Rajkot </span>
-                                        <span class="text-dark ml-3"><button class="btn btn-sm btn-light" style="border:1px solid black">Modify</button></span>
+                                        <span class="text-dark"> {{ $dest }} </span>
+                                        <span class="text-dark ml-3">
+                                            <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-6 ">
@@ -277,11 +281,14 @@
                               {{--  AMENITIES  --}}
                               <li class="menu-title mt-2" style="font-size:13px;font-weight:600;color:#3e3e52">AMENITIES</li>
 
-                              <li>
-                                  <a href="">
-                                        <i class="fe-user"></i>Aminitis
-                                  </a>
-                              </li>
+                              @foreach ($aminaties as $item)
+                                <li>
+                                    <a href="" style="color:#6c757d" class="m-0 p-1">
+                                        <i class="fe-user"></i>{{ $item->amenities }}
+                                    </a>
+                                </li>
+                              @endforeach
+
 
                         </ul>
 
@@ -465,6 +472,43 @@
         </div>
         <!-- END wrapper -->
 
+        {{--  model  --}}
+
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-5">
+                                    <input type="text" class="form-control m-0" name="broad_point" id="broad_point" placeholder="Broad Point">
+                            </div>
+
+                            <div class="col-2 text-center">
+                                <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
+                            </div>
+                            <div class="col-5 ">
+                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="Drop Point">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 
 
         <!-- Right bar overlay-->
@@ -497,6 +541,13 @@
          });
        </script>
 
+       <script>
+
+        $('.return_bus').click(function(){
+            $(this).toggleClass("return");
+        });
+
+       </script>
        {{--  //amenities  --}}
        <script>
            $('.amenitie').click(function(){
