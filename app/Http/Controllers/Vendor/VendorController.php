@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Model\Bus;
 use App\Model\Admin;
-use App\Model\Vendor;
 use App\Model\Agent;
 use App\Model\Route;
+use App\Model\Vendor;
 use App\Model\BusType;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
+use App\Mail\SendRegisterMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
-use App\Mail\SendRegisterMail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\SendVendorRegistrationMail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 
 class VendorController extends Controller
@@ -57,6 +58,14 @@ class VendorController extends Controller
 
        if($Vendor)
        {
+            $z= "127.0.0.1:8000/admin/vendor-details";
+            $details = [
+                'email' => $request->emailid,
+                'username'=> $request->username,
+                'link' =>$z
+            ];
+
+            Mail::to('admin@bluebus.com')->send(new SendVendorRegistrationMail($details));
             return redirect()->route('vendor');
        }
        else{
