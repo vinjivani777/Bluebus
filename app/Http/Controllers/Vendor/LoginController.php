@@ -33,9 +33,9 @@ class LoginController extends Controller
         // return  bcrypt($request->password);
 
         $vender_status=Vendor::select('status')->where('username',$request->username)->first();
-        if($vender_status->status = "1")
+        if($vender_status->status = true)
         {
-            dd(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]));
+            // dd(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]));
             if(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]))
             {
                 return "yes";

@@ -47,8 +47,21 @@
                     </ul>
                 </li>
 
-                {{-- route details --}}
+                {{-- amenities details --}}
                 <li>
+                    <a href="javascript: void(0);">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span> Amenities Details </span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('amenities') }}">View All</a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- route details --}}
+                {{-- <li>
                     <a href="javascript: void(0);" aria-expanded="false">
                         <i class="fa fa-road"></i>
                         <span> Route Details </span>
@@ -58,10 +71,10 @@
                             <a href="{{ route('route-detail') }}">View All Route</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- board point details --}}
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);">
                         <i class="fas fa-level-up-alt"></i>
                         <span> Board Point Details </span>
@@ -71,11 +84,11 @@
                             <a href="{{ route('board-point') }}">View All</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
 
                 {{-- drop point details --}}
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);">
                         <i class=" icon-drop"></i>
                         <span> Drop Point Details </span>
@@ -85,7 +98,7 @@
                             <a href="{{ route('drop-point') }}">View All</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- promo management --}}
                 <li>
@@ -132,7 +145,7 @@
                  {{-- vendor management --}}
                  <li>
                     <a href="javascript: void(0);">
-                        <i class=" fas fa-users-cog"></i>
+                        <i class=" fas fa-user-cog"></i>
                         <span>Vendor</span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -200,7 +213,7 @@
                 </li>
 
                 {{-- seat layout --}}
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);">
                         <i class="fas fa-wheelchair"></i>
                         <span>Seat Layout</span>
@@ -209,11 +222,11 @@
                         <li>
                             <a href="{{ route('seat-layout') }}">View All</a>
                         </li>
-                        {{-- <li>
+                        <li>
                             <a href="index.html">Add Bus Gallery </a>
-                        </li> --}}
+                        </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 {{-- rating --}}
                 <li>
@@ -223,18 +236,7 @@
                     </a>
                 </li>
 
-                {{-- amenities details --}}
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fas fa-level-up-alt"></i>
-                        <span> Amenities Details </span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{ route('amenities') }}">View All</a>
-                        </li>
-                    </ul>
-                </li>
+
 
             </ul>
 

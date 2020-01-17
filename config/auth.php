@@ -87,7 +87,7 @@ return [
             'driver' => 'database',
             'table' => 'admin',
         ],
-        'vendors' => [
+        'vendor' => [
             'driver' => 'database',
             'table' => 'vendor',
         ],
