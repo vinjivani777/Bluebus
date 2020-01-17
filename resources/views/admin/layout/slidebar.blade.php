@@ -47,6 +47,19 @@
                     </ul>
                 </li>
 
+                {{-- amenities details --}}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span> Amenities Details </span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('amenities') }}">View All</a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{-- route details --}}
                 {{-- <li>
                     <a href="javascript: void(0);" aria-expanded="false">
@@ -132,7 +145,7 @@
                  {{-- vendor management --}}
                  <li>
                     <a href="javascript: void(0);">
-                        <i class=" fas fa-users-cog"></i>
+                        <i class=" fas fa-user-cog"></i>
                         <span>Vendor</span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -223,18 +236,7 @@
                     </a>
                 </li>
 
-                {{-- amenities details --}}
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fas fa-level-up-alt"></i>
-                        <span> Amenities Details </span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{ route('amenities') }}">View All</a>
-                        </li>
-                    </ul>
-                </li>
+
 
             </ul>
 
