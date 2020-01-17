@@ -22,7 +22,7 @@
 
     <body class="authentication-bg authentication-bg-pattern">
 
-        <div class="account-pages mt-5 mb-5">
+        <div class="account-pages mt-4 mb-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
@@ -31,43 +31,36 @@
                             <div class="card-body p-4">
 
                                 <div class="text-center w-75 m-auto">
-                                    <a href="{{route('vendor.index')}}">
-                                        <span><img src="{{asset('admin/images/logo-dark.png')}}" alt="" height="22"></span>
+                                    <a href="#">
+                                        <h3>Blue Bus</h3>
                                     </a>
-                                    <p class="text-muted mb-4 mt-3">Hi,
-                                        <a href="#">
-                                            @if ($firstname)
-                                                {{$firstname}}
-                                            @else
-                                                {{"User"}}
-                                            @endif
-                                        </a><br>Enter your Password and Confirm  Password to Reset the Password.
-                                    </p>
-                                    <p class="text-muted mb-4 mt-3"></p>
+                                   <p class="text-muted mb-4 mt-3"></p>
                                 </div>
 
-                                <form action="{{route('vendor.savepasswordmail',['token'=>$token])}}" method="POST">
+                                <form action="{{route('vendor.savepasswordsms')}}" method="POST">
                                     @csrf
-                                    {{-- <div class="form-group mb-3">
-                                        <label for="data">Mobile Number</label>
-                                        <input class="form-control" name="mobileno" type="text" id="mobileno" required  placeholder="Enter your Mobile No">
-                                        <span class="text-danger">@error('mobileno') {{ $message }} @enderror</span>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="data">OTP</label>
-                                        <input class="form-control" name="otp" type="text" id="otp" required placeholder="Enter OTP">
-                                        <span class="text-danger">@error('otp') {{ $message }} @enderror</span>
-                                    </div> --}}
                                     @if (Session::has('status'))
                                         <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
                                     @endif
                                     <div class="form-group mb-3">
+                                        <label for="MobileNo">Mobile No.</label>
+                                        <input class="form-control" type="number"  name="MobileNo" value="{{ old('MobileNo') }}" required id="mobileno" placeholder="Enter your MobileNo">
+                                        <span class="text-danger">@error('MobileNo') {{  $message }} @enderror</span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="OTP">OTP</label>
+                                        <input class="form-control" type="number" name="OTP" value="{{ old('OTP') }}" required id="otp" placeholder="Enter your otp">
+                                        <span class="text-danger">@error('OTP') {{  $message }} @enderror</span>
+                                    </div>
+                                    <div class="form-group mb-3">
                                         <label for="Password">Password</label>
-                                        <input class="form-control" type="Password" name="Password" required id="Password" placeholder="Enter your Password">
+                                        <input class="form-control" type="password" name="Password" value="{{ old('Password') }}" required id="password" placeholder="Enter your Password">
+                                        <span class="text-danger">@error('Password') {{  $message }} @enderror</span>
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="Password">Confirm Password</label>
-                                        <input class="form-control" type="Password" name="ConfirmPassword" required id="confirmPassword" placeholder="Enter your Confirm Password">
+                                        <input class="form-control" type="Password" name="ConfirmPassword" value="{{ old('ConfirmPassword') }}" required id="confirmPassword" placeholder="Enter your Confirm Password">
+                                        <span class="text-danger">@error('ConfirmPassword') {{  $message }} @enderror</span>
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
@@ -82,7 +75,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p class="text-white-50">Back to <a href="pages-login.html" class="text-white ml-1"><b>Log in</b></a></p>
+                                <p class="text-white-50">Back to <a href="{{route('vendor')}}" class="text-white ml-1"><b>Log in</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->

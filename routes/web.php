@@ -298,6 +298,9 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
 
 
 
+Route::get('errors', function () {
+    return view('errors.401')->withMessage('they are simple yet pretty');;
+})->name('errors');
 
 
 Route::get('/', function () {
