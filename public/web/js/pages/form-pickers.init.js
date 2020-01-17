@@ -34,9 +34,19 @@
         e("#datee").flatpickr({
             dateFormat: "d-m-Y",
         }),
-      
-        e(".basic-datepicker").flatpickr(),
-        e(".return-datepicker").flatpickr(), 
+
+        e(".basic-datepicker").flatpickr({
+        //    disable: ["2020-01-10", "2020-01-21", "2020-01-30"],
+            // dateFormat: "Y-m-d"
+            format:'yyyy-mm-dd',
+            autoclose: true,
+            minDate:new Date()
+        }),
+        e(".return-datepicker").flatpickr({
+            format:'yyyy-mm-dd',
+            autoclose: true,
+            minDate:new Date()
+        }),
         e("#datetime-datepicker").flatpickr({
             enableTime: !0,
             dateFormat: "Y-m-d H:i"
@@ -87,11 +97,12 @@
         }),  e("#check-minutes").click(function(i) {
             i.stopPropagation(), e("#single-input").clockpicker("show").clockpicker("toggleView", "minutes")
         })
-        
-        
+
+
     }, e.FormPickers = new i, e.FormPickers.Constructor = i
 }(window.jQuery),
 function(e) {
     "use strict";
+
     e.FormPickers.init()
 }(window.jQuery);
