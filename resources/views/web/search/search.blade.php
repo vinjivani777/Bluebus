@@ -3,7 +3,7 @@
 
 <head>
         <meta charset="utf-8" />
-        <title>Blue Bus Travels  | Booking Volvo</title>
+        <title>Blue Bus Travels  | Searech Bus Tickets</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured web theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -20,6 +20,8 @@
         <link href="{{ asset('web/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.css') }}" rel="stylesheet" type="text/css" />
         <link href=" {{ asset('web/libs/animate/animate.min.css') }} " rel="stylesheet" type="text/css" />
+        <link href="{{asset('web/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('web/libs/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
 
         <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
@@ -71,7 +73,9 @@
                 border: 1px solid #ddd;
                 border-radius: 3px;
             }
-
+            .return{
+                transform:rotate(180deg);
+            }
         </style>
 
     </head>
@@ -92,10 +96,12 @@
                             <div class="row mt-2">
                                 <div class="col-6">
                                     <div class="ml-3 " style="font-size:18px;">
-                                        <span class="text-dark">Surat </span>
+                                        <span class="text-dark">{{ $source }} </span>
                                         <i class="fe-arrow-right "></i>
-                                        <span class="text-dark"> Rajkot </span>
-                                        <span class="text-dark ml-3"><button class="btn btn-sm btn-light" style="border:1px solid black">Modify</button></span>
+                                        <span class="text-dark"> {{ $dest }} </span>
+                                        <span class="text-dark ml-3">
+                                            <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-6 ">
@@ -277,11 +283,14 @@
                               {{--  AMENITIES  --}}
                               <li class="menu-title mt-2" style="font-size:13px;font-weight:600;color:#3e3e52">AMENITIES</li>
 
-                              <li>
-                                  <a href="">
-                                        <i class="fe-user"></i>Aminitis
-                                  </a>
-                              </li>
+                              @foreach ($aminaties as $item)
+                                <li>
+                                    <a href="" style="color:#6c757d" class="m-0 p-1">
+                                        <i class="fe-user"></i>{{ $item->amenities }}
+                                    </a>
+                                </li>
+                              @endforeach
+
 
                         </ul>
 
@@ -309,7 +318,7 @@
                                 <table  class=" table table-borderless ">
                                     <thead class="">
                                         <tr>
-                                            <th>1 Buses <span style="font-weight: 400;">Found</span>  <span class="float-right">Sort By:</span></th>
+                                            <th>{{ count($total_bus) }} Buses <span style="font-weight: 400;">Found</span>  <span class="float-right">Sort By:</span></th>
 
                                             <th><span style="font-weight: 400;">Departure</span></th>
                                             <th><span style="font-weight: 400;">Duration</span></th>
@@ -321,11 +330,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr style="border:1px solid #ddd">
+                                        @foreach ($total_bus as $item)
+                                        <tr style="border:1px solid #ddd" class="mb-2">
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:16px;font-weight: 700;">Orange tours and travels</span>
+                                                        <span style="font-size:16px;font-weight: 700;">{{ $item->Bus_Name->bus_name }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -344,7 +354,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:19px;font-weight:700">06:35</span>
+                                                        <span style="font-size:19px;font-weight:400">{{ $item->board_time }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -375,7 +385,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:18px;font-weight:400">10:15</span>
+                                                        <span style="font-size:18px;font-weight:400">{{ $item->drop_time }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -405,7 +415,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:18px;font-weight:400">INR 500</span>
+                                                        <span style="font-size:18px;font-weight:400">INR {{ $item->fare }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -435,8 +445,9 @@
                                                     </div>
                                                 </div>
                                             </td>
+
                                         </tr>
-                                        <tr class="amenities" style="background-color:#f8f9fa;display:none">
+                                        <tr class="amenities mb-2" style="background-color:#f8f9fa;display:none" >
                                             <td colspan="7">
                                                 <div class="row">
                                                     <div class="col-12 mt-4 mb-3 ml-3 data">
@@ -447,6 +458,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -465,6 +477,43 @@
         </div>
         <!-- END wrapper -->
 
+        {{--  model  --}}
+
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-5">
+                                    <input type="text" class="form-control m-0" name="broad_point" id="broad_point" placeholder="Broad Point">
+                            </div>
+
+                            <div class="col-2 text-center">
+                                <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
+                            </div>
+                            <div class="col-5 ">
+                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="Drop Point">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
 
 
         <!-- Right bar overlay-->
@@ -472,12 +521,13 @@
         <script src="{{ asset('web/js/vendor.min.js')}}"></script>
 
         <script src="{{ asset('web/js/pages/animation.init.js')}}"></script>
-
+        <script src="{{ asset('web/libs/moment/moment.min.js') }}"></script>
         <!-- Plugins js-->
         <script src="{{ asset('web/libs/flatpickr/flatpickr.min.js') }}"></script>
         <script src="{{ asset('web/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
         <script src="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
-
+        <script src=" {{ asset('web/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('web/libs/daterangepicker/daterangepicker.js') }}"></script>
         <!-- Init js-->
         <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
 
@@ -497,6 +547,13 @@
          });
        </script>
 
+       <script>
+
+        $('.return_bus').click(function(){
+            $(this).toggleClass("return");
+        });
+
+       </script>
        {{--  //amenities  --}}
        <script>
            $('.amenitie').click(function(){

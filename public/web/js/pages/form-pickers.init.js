@@ -34,9 +34,9 @@
         e("#datee").flatpickr({
             dateFormat: "d-m-Y",
         }),
-
+      
         e(".basic-datepicker").flatpickr(),
-        e('.return-datepicker').flatpickr(),
+        e(".return-datepicker").flatpickr(), 
         e("#datetime-datepicker").flatpickr({
             enableTime: !0,
             dateFormat: "Y-m-d H:i"
@@ -84,33 +84,11 @@
             noCalendar: !0,
             dateFormat: "H:i",
             defaultDate: "01:45"
-        }),
-        e("#board_time").flatpickr({
-            enableTime: !0,
-            noCalendar: !0,
-            dateFormat: "H:i",
-            defaultDate: "19:30"
-        }),
-        e("#drop_time").flatpickr({
-            enableTime: !0,
-            noCalendar: !0,
-            dateFormat: "H:i",
-            defaultDate: "08:45"
-        }),
-        e("#board_time_edit").flatpickr({
-            enableTime: !0,
-            noCalendar: !0,
-            dateFormat: "H:i"
-        }),
-        e("#drop_time_edit").flatpickr({
-            enableTime: !0,
-            noCalendar: !0,
-            dateFormat: "H:i"
         }),  e("#check-minutes").click(function(i) {
             i.stopPropagation(), e("#single-input").clockpicker("show").clockpicker("toggleView", "minutes")
         })
-
-
+        
+        
     }, e.FormPickers = new i, e.FormPickers.Constructor = i
 }(window.jQuery),
 function(e) {

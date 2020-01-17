@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Model\Route;
+use App\Model\Amenitie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -63,7 +64,17 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $source=$request->source_palace;
+        $dest=$request->destination_palace;
+        $total_bus=Route::with('Bus_Name')->where(['status'=>'1','board_point'=>$source,'drop_point'=>$dest])->get();
 
-        return view('web.search.search');
+        $aminaties=Amenitie::whereStatus(1)->get();
+
+
+        $params=array();
+        $params['source']=$source;
+        $params['dest']=$dest;
+        $params['aminaties']=$aminaties;
+        $params['total_bus']=$total_bus;
+        return view('web.search.search',$params);
     }
 }
