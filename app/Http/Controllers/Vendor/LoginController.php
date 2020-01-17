@@ -35,7 +35,7 @@ class LoginController extends Controller
         $vender_status=Vendor::select('status')->where('username',$request->username)->first();
         if($vender_status->status = true)
         {
-            // dd(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]));
+            // dd(Auth::guard('vendor'));
             if(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]))
             {
                 return "yes";
