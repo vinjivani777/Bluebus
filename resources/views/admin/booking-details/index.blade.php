@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-
+Booking
 @endsection
 
 @section('content')
@@ -17,10 +17,10 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
-                                <li class="breadcrumb-item active">Booking Details</li>
+                                <li class="breadcrumb-item active">@yield('page-title') Details</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Booking List</h4>
+                        <h4 class="page-title">@yield('page-title') List</h4>
                     </div>
                 </div>
             </div>
@@ -30,6 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <a href="{{ route('booking-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Booking</a>
                             <table id="basic-datatable" class="table  table-striped">
                                 <thead>
                                     <tr>
@@ -65,7 +66,7 @@
 
                                     @endforeach
                                   </tbody>
-                               
+
                             </table>
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->

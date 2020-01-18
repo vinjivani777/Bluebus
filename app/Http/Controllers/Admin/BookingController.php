@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Booking;
+use App\Model\Bus;
+use App\Model\Route;
+use App\Model\DropPoint;
 use App\Model\User;
 use App\Model\Customer;
 use Illuminate\Http\Request;
@@ -41,6 +44,13 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function add()
+    {
+        $data=Route::get();
+        return $data;
+        return view('admin.booking-details.create',['bus_list'=>Bus::select('bus_name')->get(),'route_list'=>Route::get()]);
     }
 
     /**

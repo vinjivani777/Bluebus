@@ -44,7 +44,7 @@
                             <table id="basic-datatable" class="table dt-responsive table-striped">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Bua Name</th>
+                                        <th>Bus Name</th>
                                         <th>Route</th>
                                         <th>New Droping Point</th>
                                         <th>Start Time</th>

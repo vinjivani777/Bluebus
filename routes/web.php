@@ -125,10 +125,11 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     //Booking  Details
     Route::get('booking-detail','Admin\BookingController@index')->name('booking-detail');
     Route::get('booking-detail/show','Admin\BookingController@show')->name('booking-detail.show');
-    // Route::post('booking-detail/store','Admin\BookingController@store')->name('booking-detail.store');
-    // Route::get('booking-detail/edit/{id}','Admin\BookingController@edit')->name('booking-detail.edit');
-    // Route::put('booking-detail/update/{?id}','Admin\BookingController@update')->name('booking-detail.update');
-    // Route::delete('booking-detail/destory/{id}','Admin\BookingController@destory')->name('booking-detail.destory');
+    Route::get('booking-detail/add','Admin\BookingController@add')->name('booking-detail.add');
+    Route::post('booking-detail/store','Admin\BookingController@store')->name('booking-detail.store');
+    Route::get('booking-detail/edit/{id}','Admin\BookingController@edit')->name('booking-detail.edit');
+    Route::put('booking-detail/update/{?id}','Admin\BookingController@update')->name('booking-detail.update');
+    Route::delete('booking-detail/destory/{id}','Admin\BookingController@destory')->name('booking-detail.destory');
 
     //Cancellation
     Route::get('cancellation-detail','Admin\CancellationController@index')->name('cancellation-detail');
