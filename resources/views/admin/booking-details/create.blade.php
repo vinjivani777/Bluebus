@@ -152,8 +152,8 @@ booking
                     type:'get',
                     success:function(responce)
                     {
-                        alert('success');
-                        $('#route_id').empty();
+                        // alert('success');
+                        // $('#route_id').empty();
                         if(responce.length != ""){
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("route_id");
@@ -170,8 +170,8 @@ booking
         });
         $("#route_id").on('change',function(){
             route_id = this.value;
-            bus_id = "1";
-            // alert(route_id);
+            bus_id = 1;//$("#bus_name").value;
+            alert(bus_id);
             if(route_id != "" && route_id != 0){
                 $.ajax({
                     url:'{{route('booking-bookingboardpoint.get')}}',
@@ -182,7 +182,8 @@ booking
                     type:'get',
                     success:function(responce)
                     {
-                        $('#route_id').empty();
+                        // alert(bus_id);
+                        // $('#route_id').empty();
                         if(responce.length != ""){
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("starting_point");
@@ -198,8 +199,8 @@ booking
         });
         $(".route_id").on('change',function(){
             route_id = this.value;
-            bus_id = "1";
-            alert(route_id);
+            bus_id = 1;//$("#bus_name :selected").value;
+            alert(bus_id);
             if(route_id != "" && route_id != 0){
                 $.ajax({
                     url:'{{route('booking-bookingdroppoint.get')}}',
@@ -210,13 +211,13 @@ booking
                     type:'get',
                     success:function(responce)
                     {
-                        alert("responce");
-                        $('#route_id').empty();
+                        // alert(responce['id']);
+                        // $('#route_id').empty();
                         if(responce.length != ""){
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("stoping_point");
                             var option = document.createElement("option");
-                            option.text = responce[i].board_point;
+                            option.text = responce[i].drop_point;
                             option.value = responce[i].id;
                             route_id.add(option);
                             }

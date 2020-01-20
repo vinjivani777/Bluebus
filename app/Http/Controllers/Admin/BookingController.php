@@ -121,11 +121,11 @@ class BookingController extends Controller
 
     public function bookingboardpoint(Request $request)
     {
-        return BoardPoint::where(['status'=>'1',"id"=>$request->route_id])->select('id','bus_id','board_point')->get();
+        return BoardPoint::where(['status'=>'1',"bus_id"=>$request->bus_id])->select('id','bus_id','board_point')->get();
     }
     public function bookingdroppoint(Request $request)
     {
-        return DropPoint::where(['status'=>'1',"id"=>$request->route_id])->select('id','bus_id','drop_point')->get();
+        return DropPoint::where(['status'=>'1',"bus_id"=>$request->bus_id])->select('id','bus_id','drop_point')->get();
     }
 
 }

@@ -38,11 +38,9 @@ class LoginController extends Controller
             // dd(Auth::guard('vendor'));
             if(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]))
             {
-                return "yes";
                 return redirect()->intended(route('vendor.index'));
             }else{
-                return "no";
-            return  redirect()->back()->with(['status','Username/Password is invalid']);
+                return  redirect()->back()->with(['status','Username/Password is invalid']);
             }
         }else {
             return  redirect()->back()->with(['status','Vendor is Not Active Yet']);
