@@ -57,13 +57,14 @@ booking
                             <hr>
                         </div>
                     </div>
-                    <form action="{{route('booking-detail.store')}}" method="post">
+                    <form action="{{route('booking-detail.store')}}" method="post" id="myform">
                         @csrf
                         <div class="row">
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" required>
+                                    <select name="bus_name"  class="form-control bus_name" id="bus_name" data-toggle="select2" required>
+
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -73,7 +74,7 @@ booking
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select  class="form-control route_id" name="" id="route_id" data-toggle="select2" required>
+                                    <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" required>
 
                                     </select>
                                 </div>
@@ -81,7 +82,7 @@ booking
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="starting_point">New Pick-Up Point</label>
-                                    <select  class="form-control" name="starting_point" id="starting_point" data-toggle="select2" required>
+                                    <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" required>
 
                                     </select>
                                 </div>
@@ -89,21 +90,39 @@ booking
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">New Droping Point</label>
-                                    <select  class="form-control" name="stoping_point" id="stoping_point" data-toggle="select2" required>
+                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" required>
 
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Land Mark" required>
+                                    <input type="text" class="form-control" name="starting_point_landmark" id="starting_point_landmark" placeholder="Pick-Up Land Mark" required>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
+                                    <input type="text" class="form-control" name="starting_point_address" id="starting_point_address" placeholder="Pick-Up Address" required>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                <div class="form-group">
+                                    <label for="landmark">Land Mark</label>
+                                    <input type="text" class="form-control" name="stoping_point_landmark" id="stoping_point_landmark" placeholder="Drop Land Mark" required>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" name="stoping_point_address" id="stoping_point_address" placeholder="Drop Address" required>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                <div class="form-group">
+                                    <label for="amount">Amount</label>
+                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" required>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +160,20 @@ booking
     <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
 
     <script>
-        $("#bus_name").on('change',function(){
+        $(document).ready(function(){
+
+            document.getElementById("myform").reset();
+            $('.bus_name').append(`<option value="0" disabled selected >Select Bus</option>`);
+        });
+
+        $(".bus_name").on('change',function(){
+            $('#stoping_point').empty();
+            $('#starting_point').empty();
+            $('#route_id').empty();
+            $('#starting_point_address').empty();
+            $('#starting_point_landmark').empty();
+            $('#stoping_point_address').empty();
+            $('#stoping_point_landmark').empty();
             bus_id = this.value;
             if(bus_id != "" && bus_id != 0){
                 $.ajax({
@@ -152,15 +184,13 @@ booking
                     type:'get',
                     success:function(responce)
                     {
-                        // alert('success');
-                        // $('#route_id').empty();
                         if(responce.length != ""){
+                            $('.route_id').append(`<option value="0" disabled selected>Select Route</option>`);
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
                             option.text = responce[i].board_point+" - "+responce[i].drop_point;
                             option.value = responce[i].id;
-                            $(this).name = responce[i].bus_id;
                             route_id.add(option);
                             }
                         }
@@ -168,10 +198,10 @@ booking
                 });
             }
         });
-        $("#route_id").on('change',function(){
+
+        $(".route_id").on('change',function(){
             route_id = this.value;
-            bus_id = 1;//$("#bus_name").value;
-            alert(bus_id);
+            bus_id = $("#bus_name option:selected").val();
             if(route_id != "" && route_id != 0){
                 $.ajax({
                     url:'{{route('booking-bookingboardpoint.get')}}',
@@ -183,12 +213,13 @@ booking
                     success:function(responce)
                     {
                         // alert(bus_id);
-                        // $('#route_id').empty();
+                        $("#starting_point").empty();
+                        $('#starting_point').append(`<option value="0" disabled selected>Select</option>`);
                         if(responce.length != ""){
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("starting_point");
                             var option = document.createElement("option");
-                            option.text = responce[i].board_point;
+                            option.text = responce[i].pickup_point;
                             option.value = responce[i].id;
                             route_id.add(option);
                             }
@@ -197,10 +228,10 @@ booking
                 });
             }
         });
+
         $(".route_id").on('change',function(){
             route_id = this.value;
-            bus_id = 1;//$("#bus_name :selected").value;
-            alert(bus_id);
+            bus_id = $("#bus_name :selected").val();
             if(route_id != "" && route_id != 0){
                 $.ajax({
                     url:'{{route('booking-bookingdroppoint.get')}}',
@@ -212,15 +243,61 @@ booking
                     success:function(responce)
                     {
                         // alert(responce['id']);
-                        // $('#route_id').empty();
+                        $('#stoping_point').empty();
+                        $('#stoping_point').append(`<option value="0" disabled selected>Select</option>`);
+
                         if(responce.length != ""){
                             for (var i = 0; i < responce.length; i++) {
                             var route_id = document.getElementById("stoping_point");
                             var option = document.createElement("option");
-                            option.text = responce[i].drop_point;
+                            option.text = responce[i].stoping_point;
                             option.value = responce[i].id;
                             route_id.add(option);
                             }
+                        }
+                    }
+                });
+            }
+        });
+
+        $(".starting_point").on('change',function(){
+            starting_point_id = this.value;
+            if(route_id != "" && route_id != 0){
+                $.ajax({
+                    url:'{{route('booking-bookingboardpointdetails.get')}}',
+                    data:{
+                        starting_point_id : starting_point_id
+                    },
+                    type:'get',
+                    success:function(responce)
+                    {
+                        $('#starting_point_address').empty();
+                        $('#starting_point_landmark').empty();
+                        if(responce.length != ""){
+                            $("#starting_point_address").val(responce.address);
+                            $("#starting_point_landmark").val(responce.landmark);
+                        }
+                    }
+                });
+            }
+        });
+
+        $(".stoping_point").on('change',function(){
+            stoping_point_id = this.value;
+            if(route_id != "" && route_id != 0){
+                $.ajax({
+                    url:'{{route('booking-bookingdroppointdetails.get')}}',
+                    data:{
+                        stoping_point_id : stoping_point_id
+                    },
+                    type:'get',
+                    success:function(responce)
+                    {
+                        $('#stoping_point_address').empty();
+                        $('#stoping_point_landmark').empty();
+                        if(responce.length != ""){
+                            $("#stoping_point_address").val(responce.address);
+                            $("#stoping_point_landmark").val(responce.landmark);
                         }
                     }
                 });

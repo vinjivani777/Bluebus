@@ -44,7 +44,40 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
+        $validator= $request->validate([
+            'bus_name' => 'required',
+            'route_name' => 'required',
+            'starting_point' => 'required',
+            'stoping_point' => 'required',
+            'amount' => 'required|numeric',
+            'payment_status' => 'required',
+            'payment_option' => 'required',
+            'seat_no' => 'required|numeric',
+        ]);
+
+
+
+        if($validator == false)
+        {
+            return "error in validtion";
+        }else{
+            $newbus= new Bus;
+            $amenities =  implode(',', $request->amenities);
+            $newbus->bus_name= $request->bus_name;
+            $newbus->bus_type_id= $request->bus_type;
+            $newbus->amenities_id= $amenities;
+            $newbus->bus_reg_no= $request->bus_reg_no;
+            $newbus->max_seats= $request->max_seats;
+            $newbus->board_point= $request->board_point;
+            $newbus->drop_point= $request->drop_point;
+            $newbus->board_time= $request->board_time;
+            $newbus->drop_time= $request->drop_time;
+            $newbus->created_by= "admin";
+            $newbus->save();
+
+            return redirect()->route('bus-detail');
+        }
     }
 
     public function add()
@@ -121,11 +154,19 @@ class BookingController extends Controller
 
     public function bookingboardpoint(Request $request)
     {
-        return BoardPoint::where(['status'=>'1',"bus_id"=>$request->bus_id])->select('id','bus_id','board_point')->get();
+        return BoardPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','pickup_point')->get();
     }
     public function bookingdroppoint(Request $request)
     {
-        return DropPoint::where(['status'=>'1',"bus_id"=>$request->bus_id])->select('id','bus_id','drop_point')->get();
+        return DropPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','stoping_point')->get();
+    }
+    public function bookingboardpointdetails(Request $request)
+    {
+        return BoardPoint::where(["id"=>$request->starting_point_id])->select('address','landmark')->get()->first();
+    }
+    public function bookingdroppointdetails(Request $request)
+    {
+        return DropPoint::where(["id"=>$request->stoping_point_id])->select('address','landmark')->get()->first();
     }
 
 }

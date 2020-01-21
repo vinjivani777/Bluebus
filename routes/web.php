@@ -133,6 +133,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('bus-routes','Admin\BookingController@bookingroute')->name('booking-busroutes.get');
     Route::get('bus-boardpoint','Admin\BookingController@bookingboardpoint')->name('booking-bookingboardpoint.get');
     Route::get('bus-droppoint','Admin\BookingController@bookingdroppoint')->name('booking-bookingdroppoint.get');
+    Route::get('bus-boardpointdetails','Admin\BookingController@bookingboardpointdetails')->name('booking-bookingboardpointdetails.get');
+    Route::get('bus-droppointdetails','Admin\BookingController@bookingdroppointdetails')->name('booking-bookingdroppointdetails.get');
 
     //Cancellation
     Route::get('cancellation-detail','Admin\CancellationController@index')->name('cancellation-detail');
