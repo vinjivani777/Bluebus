@@ -150,9 +150,16 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        return $id;
+        $removebooking =  Booking::findorfail($request->id);
+        $removebooking->delete();
+
+        if($removebooking){
+            return "success";
+        }else{
+            return "error";
+        }
     }
 
     public function bookingroute(Request $request)
