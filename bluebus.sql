@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2019 at 03:12 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jan 23, 2020 at 02:08 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,7 +44,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `mobile_no`, `password`, `profile_picture`, `status`, `user_type`) VALUES
-(1, 'admin', 'admin@gmail.com', '9712703191', '$2y$10$tONBBrb0M8qzktQtayHFKe36Ui6h0QRaRJ/DY.9TqkkbOPvuqv1ha', 'admin/images/admin-profile/admin_WYbNA.jpg', '1', 1);
+(1, 'admin', 'admin@gmail.com', '9712703191', '$2y$10$tONBBrb0M8qzktQtayHFKe36Ui6h0QRaRJ/DY.9TqkkbOPvuqv1ha', 'images/admin-profile/admin_WYbNA.jpg', '1', 1),
+(2, 'jjj', 'jjjjj@gmail.com', '8888888888', '00000000', 'images/admin-profile/_LWOKvgxZFu.JPG', '0', 1),
+(4, 'llll', 'mayur@gmail.com', '9999999999', 'ggggggggg', 'images/admin-profile/_ofJgcmqHhd.JPG', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -86,28 +88,31 @@ INSERT INTO `agent` (`id`, `email`, `username`, `first_name`, `last_name`, `pass
 CREATE TABLE `amenities` (
   `id` int(250) NOT NULL,
   `amenities` varchar(250) NOT NULL,
-  `status` int(250) NOT NULL DEFAULT 1
+  `status` int(250) NOT NULL DEFAULT 1,
+  `image` varchar(200) NOT NULL,
+  `created_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `amenities`
 --
 
-INSERT INTO `amenities` (`id`, `amenities`, `status`) VALUES
-(1, 'WIFI', 0),
-(2, 'Water Bottle', 1),
-(3, 'Blankets', 1),
-(4, 'Snacks', 1),
-(5, 'Charging Point', 1),
-(6, 'Movie', 1),
-(7, 'Reading Light', 0),
-(8, 'Pillow', 0),
-(9, 'Personal TV', 1),
-(10, 'Track My Bus', 0),
-(11, 'Emergency exit', 1),
-(12, 'Fire Extinguisher', 0),
-(13, 'Hammer (to break glass)', 0),
-(14, 'Emergency Contact Number', 0);
+INSERT INTO `amenities` (`id`, `amenities`, `status`, `image`, `created_by`) VALUES
+(1, 'WIfi', 0, 'admin/images/amenities/WIFi.JPG', ''),
+(2, 'Water Bottle', 1, '', ''),
+(3, 'Blankets', 1, '', ''),
+(4, 'Snacks', 1, '', ''),
+(5, 'Charging Point', 1, '', ''),
+(6, 'Movie', 1, '', ''),
+(7, 'Reading Light', 0, '', ''),
+(9, 'Personal TV', 1, '', ''),
+(10, 'Track My Bus', 1, '', ''),
+(11, 'Emergency exit', 1, '', ''),
+(12, 'Fire Extinguisher', 0, '', ''),
+(13, 'Hammer (to break glass)', 0, '', ''),
+(14, 'Emergency Contact Number', 0, '', ''),
+(15, 'jaja', 0, 'admin/images/amenities/jaja.png', ''),
+(16, 'jaj', 1, 'admin/images/amenities/jaj.JPG', '');
 
 -- --------------------------------------------------------
 
@@ -139,6 +144,7 @@ INSERT INTO `blogs` (`id`, `block_name`, `blog_content`) VALUES
 CREATE TABLE `board_points` (
   `id` int(11) NOT NULL,
   `bus_id` int(11) NOT NULL,
+  `route_id` int(200) NOT NULL,
   `board_point` int(11) NOT NULL,
   `pickup_point` varchar(20) NOT NULL,
   `pickup_time` varchar(20) NOT NULL,
@@ -146,16 +152,23 @@ CREATE TABLE `board_points` (
   `address` varchar(200) NOT NULL,
   `status` int(200) NOT NULL DEFAULT 1,
   `created_id` int(11) NOT NULL,
-  `created_by` varchar(11) NOT NULL
+  `created_by` varchar(11) NOT NULL,
+  `updated_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `board_points`
 --
 
-INSERT INTO `board_points` (`id`, `bus_id`, `board_point`, `pickup_point`, `pickup_time`, `landmark`, `address`, `status`, `created_id`, `created_by`) VALUES
-(1, 1, 2, 'Surat', '19:30', 'sdklf', 'skldvsd', 1, 0, '0'),
-(3, 15, 22, 'surat', '19:30', 'gujarat', '302,B-8,opera royal, kamrej', 1, 1, 'vendor');
+INSERT INTO `board_points` (`id`, `bus_id`, `route_id`, `board_point`, `pickup_point`, `pickup_time`, `landmark`, `address`, `status`, `created_id`, `created_by`, `updated_by`) VALUES
+(1, 1, 5, 1, 'Nana Varachha', '19:30', 'sdklf', 'skldvsd', 1, 0, '0', ''),
+(3, 2, 4, 2, 'surat', '19:30', 'gujarat', '302,B-8,opera royal, kamrej', 1, 1, 'vendor', ''),
+(4, 3, 3, 3, 'Surat', '19:30', 'sdklf', 'skldvsd', 1, 0, '0', ''),
+(5, 4, 4, 4, 'surat', '19:30', 'gujarat', '302,B-8,opera royal, kamrej', 1, 1, 'vendor', ''),
+(6, 5, 5, 5, 'Surat', '19:30', 'sdklf', 'skldvsd', 1, 0, '0', ''),
+(7, 7, 8, 7, 'surat', '19:30', 'gujarat', '302,B-8,opera royal, kamrej', 1, 1, 'vendor', ''),
+(8, 1, 11, 8, 'Surat', '19:30', 'sdklf', 'skldvsd', 1, 0, '0', ''),
+(9, 1, 11, 9, 'surat', '19:30', 'gujarat', '302,B-8,opera royal, kamrej', 1, 1, 'vendor', '');
 
 -- --------------------------------------------------------
 
@@ -165,18 +178,32 @@ INSERT INTO `board_points` (`id`, `bus_id`, `board_point`, `pickup_point`, `pick
 
 CREATE TABLE `booking_details` (
   `id` int(11) NOT NULL,
-  `booking_id` varchar(250) NOT NULL,
+  `booking_id` varchar(7) NOT NULL,
   `amount` varchar(250) NOT NULL,
-  `bus_id` varchar(250) NOT NULL,
-  `rout_id` varchar(250) NOT NULL,
+  `bus_id` int(250) NOT NULL,
+  `route_id` int(250) NOT NULL,
   `boarding_point_id` varchar(250) NOT NULL,
+  `drop_point_id` int(200) NOT NULL,
   `user_id` varchar(250) NOT NULL,
   `seat_no` varchar(250) NOT NULL,
   `payment_status` varchar(250) NOT NULL,
   `payment_option` varchar(251) NOT NULL,
   `booking_date` varchar(250) NOT NULL,
-  `status` varchar(250) NOT NULL
+  `status` varchar(250) NOT NULL,
+  `created_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `booking_details`
+--
+
+INSERT INTO `booking_details` (`id`, `booking_id`, `amount`, `bus_id`, `route_id`, `boarding_point_id`, `drop_point_id`, `user_id`, `seat_no`, `payment_status`, `payment_option`, `booking_date`, `status`, `created_by`) VALUES
+(1, '#66416', '9090', 1, 11, '8', 5, '1', '90', '1', 'COD', '11', '1', 'admin'),
+(2, '#50948', '9090', 1, 11, '8', 5, '1', '90', '1', 'COD', '11', '1', 'admin'),
+(3, '#48692', '9090', 1, 11, '8', 5, '1', '90', '1', 'COD', '11', '1', 'admin'),
+(4, '#95873', '800', 1, 11, '8', 5, '1', '18', '1', 'COD', '11', '1', 'admin'),
+(5, '#11165', '90', 2, 4, '3', 2, '1', '90', '1', 'COD', '4', '1', 'admin'),
+(6, '#14263', '900', 1, 11, '8', 5, '1', '9', '1', 'COD', '23-01-2020', '1', 'admin');
 
 -- --------------------------------------------------------
 
@@ -403,6 +430,7 @@ INSERT INTO `customer_details` (`id`, `customer_name`, `age`, `mobile`, `email`,
 CREATE TABLE `drop_points` (
   `id` int(11) NOT NULL,
   `bus_id` varchar(250) NOT NULL,
+  `route_id` int(200) NOT NULL,
   `drop_point` varchar(250) NOT NULL,
   `stoping_point` varchar(250) NOT NULL,
   `drop_time` varchar(250) NOT NULL,
@@ -417,9 +445,34 @@ CREATE TABLE `drop_points` (
 -- Dumping data for table `drop_points`
 --
 
-INSERT INTO `drop_points` (`id`, `bus_id`, `drop_point`, `stoping_point`, `drop_time`, `landmark`, `address`, `status`, `created_id`, `created_by`) VALUES
-(2, '2', '6', 'Nana Bus satnd', '07:45', 'Nana Bus satnd as', 'Nana Bus , Lala Chwok', 1, 0, ''),
-(3, '16', '22', 'surat', '08:45', 'Other', 'abc mall', 1, 1, 'vendor');
+INSERT INTO `drop_points` (`id`, `bus_id`, `route_id`, `drop_point`, `stoping_point`, `drop_time`, `landmark`, `address`, `status`, `created_id`, `created_by`) VALUES
+(2, '2', 4, '6', 'Nana Bus satnd', '07:45', 'Nana Bus satnd as', 'Nana Bus , Lala Chwok', 1, 0, ''),
+(3, '1', 5, '22', 'Kamrej', '08:45', 'Other', 'abc mall', 1, 1, 'vendor'),
+(4, '8', 0, '6', 'Nana Bus satnd', '07:45', 'Nana Bus satnd as', 'Nana Bus , Lala Chwok', 1, 0, ''),
+(5, '1', 11, '28', 'Shyam Dham', '08:45', 'Shyam IceCream', 'abc mall,Shyam Dham,Surat', 1, 1, 'vendor'),
+(6, '1', 11, '6', 'Nana Bus satnd', '07:45', 'Nana Bus satnd as', 'Nana Bus , Lala Chwok', 1, 0, ''),
+(7, '16', 0, '22', 'surat', '08:45', 'Other', 'abc mall', 1, 1, 'vendor'),
+(8, '2', 0, '6', 'Nana Bus satnd', '07:45', 'Nana Bus satnd as', 'Nana Bus , Lala Chwok', 1, 0, ''),
+(9, '16', 0, '22', 'surat', '08:45', 'Other', 'abc mall', 1, 1, 'vendor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forgetpassword`
+--
+
+CREATE TABLE `forgetpassword` (
+  `vid` int(200) NOT NULL,
+  `token` varchar(200) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `forgetpassword`
+--
+
+INSERT INTO `forgetpassword` (`vid`, `token`, `created_at`) VALUES
+(1, 'jjohihgzjhvbzv vbn', '2020-01-10 09:57:31');
 
 -- --------------------------------------------------------
 
@@ -505,27 +558,21 @@ CREATE TABLE `route` (
 --
 
 INSERT INTO `route` (`id`, `bus_id`, `board_point`, `board_time`, `drop_point`, `drop_time`, `fare`, `status`, `created_id`, `created_by`) VALUES
-(1, 2, 'Surat', '10:00', 'Amreli', '07:45', 600, 0, 0, 'admin'),
-(2, 1, 'Surat', '11:00', 'Ahmedabad', '05:45', 450, 1, 0, 'admin'),
-(4, 1, 'Surat', '19:30', 'Bharuch', '08:45', 140, 1, 0, 'admin'),
+(1, 1, 'Surat', '10:00', 'Amreli', '07:45', 600, 0, 0, 'admin'),
+(2, 2, 'Surat', '11:00', 'Ahmedabad', '05:45', 450, 1, 0, 'admin'),
+(4, 2, 'Surat', '19:30', 'Bharuch', '08:45', 140, 1, 0, 'admin'),
 (5, 1, 'Surat', '19:30', 'Vadodara', '07:45', 250, 0, 0, 'admin'),
 (6, 2, 'Surat', '10:00', 'Rajkot', '07:45', 600, 1, 0, 'admin'),
-(7, 1, 'Surat', '19:30', 'Vadodara', '07:45', 250, 1, 0, 'admin'),
-(8, 2, 'Surat', '10:00', 'Rajkot', '07:45', 600, 1, 0, 'admin'),
-(9, 1, 'Surat', '19:30', 'Bharuch', '08:45', 140, 1, 0, 'admin'),
-(10, 2, 'Surat', '10:00', 'Amreli', '07:45', 600, 1, 0, 'admin'),
-(11, 1, 'Surat', '11:00', 'Ahmedabad', '05:45', 450, 1, 0, 'admin'),
-(12, 1, 'Surat', '19:30', 'Vadodara', '07:45', 250, 1, 0, 'admin'),
-(13, 1, 'Surat', '19:30', 'Vadodara', '07:45', 250, 1, 0, 'admin'),
-(14, 2, 'Surat', '10:00', 'Rajkot', '07:45', 600, 1, 0, 'admin'),
-(15, 2, 'Surat', '10:00', 'Rajkot', '07:45', 600, 1, 0, 'admin'),
-(16, 1, 'Surat', '19:30', 'Bharuch', '08:45', 140, 1, 0, 'admin'),
-(17, 1, 'Surat', '19:30', 'Bharuch', '08:45', 140, 1, 0, 'admin'),
-(18, 2, 'Surat', '10:00', 'Amreli', '07:45', 600, 1, 0, 'admin'),
-(19, 2, 'Surat', '10:00', 'Amreli', '07:45', 600, 1, 0, 'admin'),
-(20, 1, 'Surat', '11:00', 'Ahmedabad', '05:45', 450, 1, 0, 'admin'),
-(21, 1, 'Surat', '11:00', 'Ahmedabad', '05:45', 450, 1, 0, 'admin'),
-(22, 15, 'surat', '19:30', 'valiya chokdi', '08:45', 100, 1, 1, 'vendor');
+(11, 1, 'Surat', '11:00', 'Kutch', '05:45', 450, 1, 0, 'admin'),
+(12, 1, 'Surat', '19:30', 'Nana Varachha', '07:45', 250, 1, 0, 'admin'),
+(13, 1, 'Surat', '19:30', 'Sanod', '07:45', 250, 1, 0, 'admin'),
+(14, 2, 'Surat', '10:00', 'Bhavnagar', '07:45', 600, 1, 0, 'admin'),
+(15, 2, 'Surat', '10:00', 'Palitana', '07:45', 600, 1, 0, 'admin'),
+(16, 1, 'Surat', '19:30', 'Vadiya', '08:45', 140, 1, 0, 'admin'),
+(17, 1, 'Surat', '19:30', 'Ratanpar', '08:45', 140, 1, 0, 'admin'),
+(18, 2, 'Surat', '10:00', 'Khijadiya', '07:45', 600, 1, 0, 'admin'),
+(19, 2, 'Surat', '10:00', 'Div', '07:45', 600, 1, 0, 'admin'),
+(20, 1, 'Surat', '11:00', 'Daman', '05:45', 450, 1, 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -650,16 +697,34 @@ CREATE TABLE `vendor` (
   `city` varchar(200) DEFAULT NULL,
   `state` varchar(250) DEFAULT NULL,
   `status` varchar(150) NOT NULL,
-  `remember_token` text NOT NULL
+  `remember_token` text NOT NULL,
+  `forgettoken` varchar(200) DEFAULT NULL,
+  `token_time` datetime DEFAULT current_timestamp(),
+  `otp` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vendor`
 --
 
-INSERT INTO `vendor` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`, `company_name`, `profile_picture`, `logo`, `address`, `city`, `state`, `status`, `remember_token`) VALUES
-(1, 'vendor', '$2y$10$klmuTSnNnprhKt2dfP690OIMKyaNyQQNDcO6rWC6Q8OeO.DFo6LDi', 'jjj', 'koko', 'vendor@gmail.com', 9999999990, 'coname', 'vendor/images/admin-profile/vendor_2EdYR.jpg', 'vendor/images/logo/vendor_hcxhF.png', 'yogi chowk', 'Surat', 'Gujarat', '1', ''),
-(2, 'vin', '$2y$10$klmuTSnNnprhKt2dfP690OIMKyaNyQQNDcO6rWC6Q8OeO.DFo6LDi', NULL, NULL, 'vin@me.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '');
+INSERT INTO `vendor` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `phone_number`, `company_name`, `profile_picture`, `logo`, `address`, `city`, `state`, `status`, `remember_token`, `forgettoken`, `token_time`, `otp`) VALUES
+(1, 'vendor', '$2y$10$Zy/bmdQ9/TBPRktDy2Ktrex8hvo6LIZnhajMsSpSb547KufdBqfqG', 'jjj', 'koko', 'vendor@gmail.com', 9999999990, 'coname', 'vendor/images/admin-profile/vendor_2EdYR.jpg', 'vendor/images/logo/vendor_hcxhF.png', 'yogi chowk', 'Surat', 'Gujarat', '1', 'Wyx6NebMUjnwO0C771IojIfPh4VSySJkV5WbJ5zSm0qzjlD2WhO0jmrtgi14', 'H2xDzD16wjwG9QrsGCTZ0PLtmrWx2U2BcIiXC3PP1bs4WVkUzA7nJUXX1WnD', '2020-01-18 11:40:38', 579099),
+(2, 'vin', '$2y$10$04YSt1cQAo0XcTasI1n/nuORJCtv1SfNjXJZ5BMjce6laXsUxLrMS', NULL, NULL, 'vin@me.com', 9664675543, NULL, NULL, NULL, NULL, NULL, NULL, '1', '', '', '2020-01-11 00:00:00', 0),
+(5, 'jjjj', '1111', NULL, NULL, 'jjjj@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'hEPI7XTVV1JTZCBHhPgpHLSxFVWwDZ5f2iPV8Y86', '', '2020-01-11 00:00:00', 0),
+(6, 'klklk', '$2y$10$GULdAScdWajKaXChDNhL0.tFYz05BzuVtRNpsDZSzvCs9Sbj8gVyi', NULL, NULL, 'jjjj@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0SUMjXYBcnfk5eO3reEI87YauziSPO5zzdWexLnqA41nPTvXFODYwdf3G1ZL', '', '2020-01-11 00:00:00', 0),
+(7, 'klklk', '$2y$10$cp0vG3Dogl0090trdccMtelWidQDjSlJR.sP4toCARyLW3QrI1j3u', NULL, NULL, 'llll@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '6bSz5oN8tqlQiGYYTtlPkbLZ4WsfJuQNcuoTvX6MWsUgPlryQb8auJ2cW1WS', '', '2020-01-11 00:00:00', 0),
+(8, 'klklk', '$2y$10$g466QTSwd7RDXAb1thPq.Ox3dLzqeAZPr72u3LGMVYGO4BBgXPwRq', NULL, NULL, 'llll@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'iE60YWPtvZII2m5Qu22xnlP7hC5fSzFZkgwFiyaxtHAJmjCX8FhY2fMAs9ux', '', '2020-01-11 00:00:00', 0),
+(9, 'okoko', '$2y$10$4.rcXzi3KdEkA1grUkQO/OrIHa9PgGHVrHaS8.28tZE.hpsm8W2Oy', NULL, NULL, 'koko@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'bs1Dro5L27kbb536a34eupTFUBAMCHqDONEtYTcetnfLqaZYtfDGYFKkIGA8', '', '2020-01-11 00:00:00', 0),
+(10, 'mayu', '$2y$10$48mP9qCc3MZV24PfSsHZPugckJloZki/eZoEveEsNCPi6EciI2V2e', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'AWLq2go9rlbQbeoy0jojMDk9xcM10tuJ9lXyR9XXwtI8KTXcHEfkLm4j42ot', NULL, '2020-01-16 19:27:49', NULL),
+(11, 'mayu', '$2y$10$n1etBjEdcZR8jKQYSqiVV.2Uq8/42i5dqfhwPmvf4kAN9HUFcYexa', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'vIgYzx2uZKWsLCPLmYGsx2IYQbDgJcC8iYrVBc8SeSSwG6HKBeQ6yNdXZNMQ', NULL, '2020-01-16 19:30:08', NULL),
+(12, 'mayu', '$2y$10$DLlksvVsm2e4jcUzwidlQeNCv.QNQJvPY.XbCEO2DOP2Y54/u/sL6', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '4c4UTKr0TsGfKCy4KP4d96S73fTq2dmUEslf9gUpInJlKKBrTvNdjuc2be2M', NULL, '2020-01-16 19:30:16', NULL),
+(13, 'mayu', '$2y$10$eRjgrKmsAeoEWmvG.Nf8sOpgsxCnBf4r6kCrtj7pfi0EoqGYahSHa', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '2UDKnLxQxT5nin4N8NHljvedluYABD3nRchvSj7saUoNLzHi0YQ7cK7GMUZ1', NULL, '2020-01-16 19:30:59', NULL),
+(14, 'mayu', '$2y$10$G.msOdFCjWaHqwOeXpxqfOYCmq0esoDQLlBdx6FRu18Cmoz0RK5KK', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'fDkYqpbCfewDEBa9HL7UfybBfGsN209KOKadjJTmucsRT1D6KUZ9ap08128B', NULL, '2020-01-16 19:32:03', NULL),
+(15, 'mayu', '$2y$10$aVqgfn1BwoSTHFHh.H0ZsOlILLqgENwagfUqF/3XZGcFnBQCxCOU.', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '2LSu5Uc8X2eSZDKOX0KvhKpHMq7mwlyv3WGzLfqr6HbC40ABQDzrvpjN5vLd', NULL, '2020-01-16 19:33:18', NULL),
+(16, 'mayu', '$2y$10$FS9NhtuoPTpv5iTHfYtJMerRSD2hQFTueAo8cxB0RA6fLybZmZidC', NULL, NULL, 'mayu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'iN85zuz4OocL41Dg651GY9WEJT1DVY0VYsdA4B7ykF2G5gRbkuiLIMioOsBJ', NULL, '2020-01-16 19:33:26', NULL),
+(17, 'mayuri', '$2y$10$tJtJjPHMl04VD9ZW8T6bRuLmRkr1pN39s7A7lYg6tS6Truh8rolXu', NULL, NULL, 'mayuri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'loYhaG8a3vLluRes1817KeY4MbIApu8MZQ5oHbc85MJRYjNRnbZjimhsYZj7', NULL, '2020-01-16 19:35:14', NULL),
+(18, 'mayuri', '$2y$10$ZRTCLdvnDF.Ueq2WniZtk.13HKFDjYxK4wBtZdxVkhbFC5c3mqxVy', NULL, NULL, 'mayuri@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', 'RcaWT79gEeKuTIHaH3Eyi39li2r8h88Ldq3fINp371mD9ZUjqyTfl0vt9SsL', NULL, '2020-01-16 19:35:27', NULL),
+(19, 'kjkj', '$2y$10$BYwYJv0X.ctm8eX.bOrft.w6PE2gnnHLnjPre/CC/zqWXCwJz/NR.', NULL, NULL, 'kjkj@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '7mJYtmdJ2Fi1K3W0WMIEdZZVJIbarKsIllXBfGTnWTcYiln1OSFo7uL6CbxM', NULL, '2020-01-16 19:57:32', NULL);
 
 --
 -- Indexes for dumped tables
@@ -699,7 +764,8 @@ ALTER TABLE `board_points`
 -- Indexes for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `booking_id` (`booking_id`);
 
 --
 -- Indexes for table `book_bus`
@@ -742,6 +808,12 @@ ALTER TABLE `customer_details`
 --
 ALTER TABLE `drop_points`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `forgetpassword`
+--
+ALTER TABLE `forgetpassword`
+  ADD PRIMARY KEY (`vid`);
 
 --
 -- Indexes for table `promocode`
@@ -794,7 +866,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `agent`
@@ -806,7 +878,7 @@ ALTER TABLE `agent`
 -- AUTO_INCREMENT for table `amenities`
 --
 ALTER TABLE `amenities`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -818,13 +890,13 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `board_points`
 --
 ALTER TABLE `board_points`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `book_bus`
@@ -866,7 +938,7 @@ ALTER TABLE `customer_details`
 -- AUTO_INCREMENT for table `drop_points`
 --
 ALTER TABLE `drop_points`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `promocode`
@@ -908,7 +980,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
