@@ -152,7 +152,7 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 
     public function bookingroute(Request $request)

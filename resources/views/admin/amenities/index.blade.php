@@ -208,9 +208,9 @@
                             id : c_id
                         },
                         type:'get',
-                        success:function(responce)
+                        success:function(response)
                         {
-                            if (responce=="success") {
+                            if (response=="success") {
                             swal({
                                 title: "Deleted !",
                                 text: "Successfully deleted amenitie.",
@@ -253,8 +253,8 @@
                     type:'POST',
                     url:'{{route('status.change')}}',
                     data:{'status':status,'id':id,'model':'Amenitie',"_token": "{{ csrf_token() }}"},
-                    success:function(responce){
-                        if (responce=="success" && status==true) {
+                    success:function(response){
+                        if (response=="success" && status==true) {
                             $('#'+id).addClass("btn-outline-primary ");
                             $('#'+id).removeClass("btn-outline-danger  ");
                             $('#'+id).val('Active');

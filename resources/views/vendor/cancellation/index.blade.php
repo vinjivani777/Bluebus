@@ -168,10 +168,10 @@
                             url:'{{route('vendor.cancellation-detail.destroy')}}',
                             data:{'id':c_id},
                             type:'get',
-                            success:function(responce)
+                            success:function(response)
                             {
 
-                                if (responce=="Success") {
+                                if (response=="Success") {
                                 swal({
                                     title: "Deleted !",
                                     text: "Successfull deleted",

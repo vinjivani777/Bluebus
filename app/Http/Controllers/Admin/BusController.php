@@ -154,7 +154,7 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function busdestory(request $request)
+    public function busdestroy(request $request)
     {
         $newbus =  Bus::findorfail($request->id);
         $newbus->delete();
@@ -201,7 +201,7 @@ class BusController extends Controller
         return redirect()->route('bus-type');
     }
 
-    public function bustypedestory(request $request)
+    public function bustypedestroy(request $request)
     {
         $newtype =  Bustype::findorfail($request->id);
         $newtype->delete();

@@ -153,7 +153,7 @@ class AmenitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function amenitiesdestory(request $request)
+    public function amenitiesdestroy(request $request)
     {
         $newamenities =  Amenitie::findorfail($request->id);
         $newamenities->delete();
@@ -200,7 +200,7 @@ class AmenitiesController extends Controller
         return redirect()->route('amenities-type');
     }
 
-    public function amenitiestypedestory(request $request)
+    public function amenitiestypedestroy(request $request)
     {
         $newtype =  Bustype::findorfail($request->id);
         $newtype->delete();

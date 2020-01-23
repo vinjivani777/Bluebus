@@ -569,9 +569,9 @@
                     url:'{{route('bus-image')}}',
                     data:{id : id},
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
-                        $('.data').html(responce);
+                        $('.data').html(response);
                     }
                 });
             });

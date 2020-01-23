@@ -200,15 +200,15 @@ booking
                         bus_id : bus_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
-                        if(responce.length != ""){
+                        if(response.length != ""){
                             $('.route_id').append(`<option value="0" disabled selected>Select Route</option>`);
-                            for (var i = 0; i < responce.length; i++) {
+                            for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
-                            option.text = responce[i].board_point+" - "+responce[i].drop_point;
-                            option.value = responce[i].id;
+                            option.text = response[i].board_point+" - "+response[i].drop_point;
+                            option.value = response[i].id;
                             route_id.add(option);
                             }
                         }
@@ -232,17 +232,17 @@ booking
                         bus_id : bus_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
                         // alert(bus_id);
                         $("#starting_point").empty();
                         $('#starting_point').append(`<option value="0" disabled selected>Select</option>`);
-                        if(responce.length != ""){
-                            for (var i = 0; i < responce.length; i++) {
+                        if(response.length != ""){
+                            for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("starting_point");
                             var option = document.createElement("option");
-                            option.text = responce[i].pickup_point;
-                            option.value = responce[i].id;
+                            option.text = response[i].pickup_point;
+                            option.value = response[i].id;
                             route_id.add(option);
                             }
                         }
@@ -262,18 +262,18 @@ booking
                         bus_id : bus_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
-                        // alert(responce['id']);
+                        // alert(response['id']);
                         $('#stoping_point').empty();
                         $('#stoping_point').append(`<option value="0" disabled selected>Select</option>`);
 
-                        if(responce.length != ""){
-                            for (var i = 0; i < responce.length; i++) {
+                        if(response.length != ""){
+                            for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("stoping_point");
                             var option = document.createElement("option");
-                            option.text = responce[i].stoping_point;
-                            option.value = responce[i].id;
+                            option.text = response[i].stoping_point;
+                            option.value = response[i].id;
                             route_id.add(option);
                             }
                         }
@@ -293,13 +293,13 @@ booking
                         starting_point_id : starting_point_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
                         $('#starting_point_address').empty();
                         $('#starting_point_landmark').empty();
-                        if(responce.length != ""){
-                            $("#starting_point_address").val(responce.address);
-                            $("#starting_point_landmark").val(responce.landmark);
+                        if(response.length != ""){
+                            $("#starting_point_address").val(response.address);
+                            $("#starting_point_landmark").val(response.landmark);
                         }
                     }
                 });
@@ -317,13 +317,13 @@ booking
                         stoping_point_id : stoping_point_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
                         $('#stoping_point_address').empty();
                         $('#stoping_point_landmark').empty();
-                        if(responce.length != ""){
-                            $("#stoping_point_address").val(responce.address);
-                            $("#stoping_point_landmark").val(responce.landmark);
+                        if(response.length != ""){
+                            $("#stoping_point_address").val(response.address);
+                            $("#stoping_point_landmark").val(response.landmark);
                         }
                     }
                 });

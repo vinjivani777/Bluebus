@@ -136,7 +136,7 @@ class DropPointController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function dropdestory(Request $request)
+    public function dropdestroy(Request $request)
     {
         $newdrop =  DropPoint::findorfail($request->id);
         $newdrop->delete();

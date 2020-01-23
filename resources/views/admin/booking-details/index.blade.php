@@ -60,6 +60,7 @@ Booking
                                         <td>{{ $item->bus->drop_time }}</td>
                                         <td>
                                             <a  class="mr-1 text-info booking_details" id="{{ $item->booking_id }}" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                            <a href="#"  class="mr-1 text-danger remove_booking" id="{{$item->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
 
                                     </tr>
@@ -141,6 +142,52 @@ Booking
 <script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <script>
+    $('.remove_booking').click(function(){
+        var c_id= $(this).attr('id');
+        swal({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn btn-confirm mt-2",
+            cancelButtonClass: "btn btn-cancel ml-2 mt-2",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.value) {
+                    $.ajax({
+                            url:'{{route('booking.destroy')}}',
+                        data:{
+                            id : c_id
+                        },
+                        type:'get',
+                        success:function(response)
+                        {
+                            alert(response);
+                            if (response=="success") {
+                            swal({
+                                title: "Deleted !",
+                                text: "Successfull deleted board point.",
+                                type: "success",
+                                timer: 500,
+                                showConfirmButton: false
+                            })
+                            $("#"+c_id).closest("tr").fadeOut(1000);
+                            } else {
+                                new PNotify({
+                                    title: 'Warning Notification',
+                                    text: 'Contact Support Team',
+                                    icon: 'icofont icofont-info-circle',
+                                    type: 'Warning'
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    swal("Ohhhhh........No!");
+                }
+            });
+    });
+
     $('.booking_details').click(function(){
         var id= $(this).attr('id');
                 $.ajax({
@@ -149,9 +196,9 @@ Booking
                         id : id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
-                        $('#tbody').html(responce);
+                        $('#tbody').html(response);
                     }
                 });
 

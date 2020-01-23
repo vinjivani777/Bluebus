@@ -30,7 +30,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('amenities/store','Admin\AmenitiesController@store')->name('amenities.store');
     Route::get('amenities/edit/{id}','Admin\AmenitiesController@edit')->name('amenities.edit');
     Route::post('amenities/update','Admin\AmenitiesController@update')->name('amenities.update');
-    Route::get('amenities/destroy','Admin\AmenitiesController@amenitiesdestory')->name('amenities.destroy');
+    Route::get('amenities/destroy','Admin\AmenitiesController@amenitiesdestroy')->name('amenities.destroy');
 
     // admin logout
     Route::get('logout','Admin\LoginController@logout')->name('admin.logout');
@@ -44,14 +44,14 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('bus-detail/store','Admin\BusController@store')->name('bus-detail.store');
     Route::get('bus-detail/edit/{id}','Admin\BusController@edit')->name('bus-detail.edit');
     Route::post('bus-detail/update/{id}','Admin\BusController@update')->name('bus-detail.update');
-    Route::get('bus-detail/destory','Admin\BusController@busdestory')->name('bus-detail.destory');
+    Route::get('bus-detail/destroy','Admin\BusController@busdestroy')->name('bus-detail.destroy');
 
     //bus type
     Route::get('bus-detail/bus-type','Admin\BusController@bustype')->name('bus-type');
     Route::post('bus-detail/bus-type/add','Admin\BusController@bustypeadd')->name('bus-type.add');
     Route::get('bus-detail/bus-type/edit/{id}','Admin\BusController@bustypeedit')->name('bus-type.edit');
     Route::post('bus-detail/bus-type/update/{id}','Admin\BusController@bustypeupdate')->name('bus-type.update');
-    Route::get('bus-detail/bus-type/destory','Admin\BusController@bustypedestory')->name('bus-type.destory');
+    Route::get('bus-detail/bus-type/destroy','Admin\BusController@bustypedestroy')->name('bus-type.destroy');
 
 
     //route details
@@ -60,7 +60,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('route-detail/store','Admin\RouteController@store')->name('route-detail.store');
     Route::get('route-detail/edit/{id}','Admin\RouteController@edit')->name('route-detail.edit');
     Route::post('route-detail/update/{id}','Admin\RouteController@update')->name('route-detail.update');
-    Route::get('route-detail/destory','Admin\RouteController@routedestroy')->name('route-detail.destory');
+    Route::get('route-detail/destroy','Admin\RouteController@routedestroy')->name('route-detail.destroy');
 
     Route::get('bus-route-detail','Admin\RouteController@busroute')->name('bus-route-detail.get');
 
@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('board-point/store','Admin\BoardPointController@store')->name('board-point.store');
     Route::get('board-point/edit/{id}','Admin\BoardPointController@edit')->name('board-point.edit');
     Route::post('board-point/update/{id}','Admin\BoardPointController@update')->name('board-point.update');
-    Route::get('board-point/destory','Admin\BoardPointController@boarddestory')->name('board-point.destory');
+    Route::get('board-point/destroy','Admin\BoardPointController@boarddestroy')->name('board-point.destroy');
 
     //Drop point details
     Route::get('drop-point','Admin\DropPointController@index')->name('drop-point');
@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('drop-point/store','Admin\DropPointController@store')->name('drop-point.store');
     Route::get('drop-point/edit/{id}','Admin\DropPointController@edit')->name('drop-point.edit');
     Route::post('drop-point/update/{id}','Admin\DropPointController@update')->name('drop-point.update');
-    Route::get('drop-point/destory','Admin\DropPointController@dropdestory')->name('drop-point.destory');
+    Route::get('drop-point/destroy','Admin\DropPointController@dropdestroy')->name('drop-point.destroy');
 
     //Promo Management details
     Route::get('promo-detail','Admin\PromoController@index')->name('promo-detail');
@@ -87,7 +87,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('promo-detail/store','Admin\PromoController@store')->name('promo-detail.store');
     Route::get('promo-detail/edit/{id}','Admin\PromoController@edit')->name('promo-detail.edit');
     Route::post('promo-detail/update/{id}','Admin\PromoController@update')->name('promo-detail.update');
-    Route::get('promo-detail/destory','Admin\PromoController@destroy')->name('promo-detail.destory');
+    Route::get('promo-detail/destroy','Admin\PromoController@destroy')->name('promo-detail.destroy');
 
     //BusImage Gallery
     Route::get('img_gallery','Admin\ImageGalleryController@index')->name('img_gallery');
@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('img_gallery/store','Admin\ImageGalleryController@store')->name('img_gallery.store');
     Route::get('img_gallery/edit/{id}','Admin\ImageGalleryController@edit')->name('img_gallery.edit');
     Route::post('img_gallery/update/{id}','Admin\ImageGalleryController@update')->name('img_gallery.update');
-    Route::get('img_gallery/destory','Admin\ImageGalleryController@destroy')->name('img_gallery.destory');
+    Route::get('img_gallery/destroy','Admin\ImageGalleryController@destroy')->name('img_gallery.destroy');
 
     //Other Admins  Details
     Route::get('otheradmin-detail','Admin\OtherAdminController@index')->name('otheradmin-detail');
@@ -120,7 +120,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     // Route::post('customer-detail/store','Admin\CustomerController@store')->name('customer-detail.store');
     // Route::get('customer-detail/edit/{id}','Admin\CustomerController@edit')->name('customer-detail.edit');
     // Route::put('customer-detail/update/{?id}','Admin\CustomerController@update')->name('customer-detail.update');
-    // Route::delete('customer-detail/destory/{id}','Admin\CustomerController@destory')->name('customer-detail.destory');
+    // Route::delete('customer-detail/destroy/{id}','Admin\CustomerController@destroy')->name('customer-detail.destroy');
 
     //Booking  Details
     Route::get('booking-detail','Admin\BookingController@index')->name('booking-detail');
@@ -129,12 +129,13 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('booking-detail/store','Admin\BookingController@store')->name('booking-detail.store');
     Route::get('booking-detail/edit/{id}','Admin\BookingController@edit')->name('booking-detail.edit');
     Route::put('booking-detail/update/{?id}','Admin\BookingController@update')->name('booking-detail.update');
-    Route::delete('booking-detail/destory/{id}','Admin\BookingController@destory')->name('booking-detail.destory');
+    Route::delete('booking-detail/destroy/{id}','Admin\BookingController@destroy')->name('booking-detail.destroy');
     Route::get('bus-routes','Admin\BookingController@bookingroute')->name('booking-busroutes.get');
     Route::get('bus-boardpoint','Admin\BookingController@bookingboardpoint')->name('booking-bookingboardpoint.get');
     Route::get('bus-droppoint','Admin\BookingController@bookingdroppoint')->name('booking-bookingdroppoint.get');
     Route::get('bus-boardpointdetails','Admin\BookingController@bookingboardpointdetails')->name('booking-bookingboardpointdetails.get');
     Route::get('bus-droppointdetails','Admin\BookingController@bookingdroppointdetails')->name('booking-bookingdroppointdetails.get');
+    Route::get('booking/destroy','Admin\BookingController@destroy')->name('booking.destroy');
 
     //Cancellation
     Route::get('cancellation-detail','Admin\CancellationController@index')->name('cancellation-detail');
@@ -160,7 +161,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::post('seat-layout/view','Admin\SeatLayoutController@view')->name('seat-layout.view');
     //  Route::get('seat-layout/edit/{id}','Admin\SeatLayoutController@edit')->name('seat-layout.edit');
     //  Route::put('seat-layout/update/{?id}','Admin\SeatLayoutController@update')->name('seat-layout.update');
-    //  Route::delete('seat-layout/destory/{id}','Admin\SeatLayoutController@destory')->name('seat-layout.destory');
+    //  Route::delete('seat-layout/destroy/{id}','Admin\SeatLayoutController@destroy')->name('seat-layout.destroy');
 
 
      //Rating
@@ -219,14 +220,14 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('bus-detail/store','Vendor\BusController@store')->name('vendor.bus-detail.store');
     Route::get('bus-detail/edit/{id}','Vendor\BusController@edit')->name('vendor.bus-detail.edit');
     Route::post('bus-detail/update/{id}','Vendor\BusController@update')->name('vendor.bus-detail.update');
-    Route::get('bus-detail/destory','Vendor\BusController@busdestory')->name('vendor.bus-detail.destory');
+    Route::get('bus-detail/destroy','Vendor\BusController@busdestroy')->name('vendor.bus-detail.destroy');
 
     //bus type
     Route::get('bus-detail/bus-type','Vendor\BusController@bustype')->name('vendor.bus-type');
     Route::post('bus-detail/bus-type/add','Vendor\BusController@bustypeadd')->name('vendor.bus-type.add');
     Route::get('bus-detail/bus-type/edit/{id}','Vendor\BusController@bustypeedit')->name('vendor.bus-type.edit');
     Route::post('bus-detail/bus-type/update/{id}','Vendor\BusController@bustypeupdate')->name('vendor.bus-type.update');
-    Route::get('bus-detail/bus-type/destory','Vendor\BusController@bustypedestory')->name('vendor.bus-type.destory');
+    Route::get('bus-detail/bus-type/destroy','Vendor\BusController@bustypedestroy')->name('vendor.bus-type.destroy');
 
     //route details
     Route::get('route-detail','Vendor\RouteController@index')->name('vendor.route-detail');
@@ -234,7 +235,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('route-detail/store','Vendor\RouteController@store')->name('vendor.route-detail.store');
     Route::get('route-detail/edit/{id}','Vendor\RouteController@edit')->name('vendor.route-detail.edit');
     Route::post('route-detail/update/{id}','Vendor\RouteController@update')->name('vendor.route-detail.update');
-    Route::get('route-detail/destory','Vendor\RouteController@routedestroy')->name('vendor.route-detail.destory');
+    Route::get('route-detail/destroy','Vendor\RouteController@routedestroy')->name('vendor.route-detail.destroy');
 
     Route::get('bus-route-detail','Vendor\RouteController@busroute')->name('vendor.bus-route-detail.get');
 
@@ -244,7 +245,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('board-point/store','Vendor\BoardPointController@store')->name('vendor.board-point.store');
     Route::get('board-point/edit/{id}','Vendor\BoardPointController@edit')->name('vendor.board-point.edit');
     Route::post('board-point/update/{id}','Vendor\BoardPointController@update')->name('vendor.board-point.update');
-    Route::get('board-point/destory','Vendor\BoardPointController@boarddestory')->name('vendor.board-point.destory');
+    Route::get('board-point/destroy','Vendor\BoardPointController@boarddestroy')->name('vendor.board-point.destroy');
 
     //Drop point details
     Route::get('drop-point','Vendor\DropPointController@index')->name('vendor.drop-point');
@@ -252,7 +253,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('drop-point/store','Vendor\DropPointController@store')->name('vendor.drop-point.store');
     Route::get('drop-point/edit/{id}','Vendor\DropPointController@edit')->name('vendor.drop-point.edit');
     Route::post('drop-point/update/{id}','Vendor\DropPointController@update')->name('vendor.drop-point.update');
-    Route::get('drop-point/destory','Vendor\DropPointController@dropdestory')->name('vendor.drop-point.destory');
+    Route::get('drop-point/destroy','Vendor\DropPointController@dropdestroy')->name('vendor.drop-point.destroy');
 
     //Promo Management details
     Route::get('promo-detail','Vendor\PromoController@index')->name('vendor.promo-detail');
@@ -260,7 +261,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('promo-detail/store','Vendor\PromoController@store')->name('vendor.promo-detail.store');
     Route::get('promo-detail/edit/{id}','Vendor\PromoController@edit')->name('vendor.promo-detail.edit');
     Route::post('promo-detail/update/{id}','Vendor\PromoController@update')->name('vendor.promo-detail.update');
-    Route::get('promo-detail/destory','Vendor\PromoController@destroy')->name('vendor.promo-detail.destory');
+    Route::get('promo-detail/destroy','Vendor\PromoController@destroy')->name('vendor.promo-detail.destroy');
 
     //BusImage Gallery
     Route::get('img_gallery','Vendor\ImageGalleryController@index')->name('vendor.img_gallery');
@@ -268,7 +269,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::post('img_gallery/store','Vendor\ImageGalleryController@store')->name('vendor.img_gallery.store');
     Route::get('img_gallery/edit/{id}','Vendor\ImageGalleryController@edit')->name('vendor.img_gallery.edit');
     Route::post('img_gallery/update/{id}','Vendor\ImageGalleryController@update')->name('vendor.img_gallery.update');
-    Route::get('img_gallery/destory','Vendor\ImageGalleryController@destroy')->name('vendor.img_gallery.destory');
+    Route::get('img_gallery/destroy','Vendor\ImageGalleryController@destroy')->name('vendor.img_gallery.destroy');
 
 
     //Customer  Details
@@ -277,7 +278,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     // Route::post('customer-detail/store','Vendor\CustomerController@store')->name('vendor.customer-detail.store');
     // Route::get('customer-detail/edit/{id}','Vendor\CustomerController@edit')->name('vendor.customer-detail.edit');
     // Route::put('customer-detail/update/{?id}','Vendor\CustomerController@update')->name('vendor.customer-detail.update');
-    // Route::delete('customer-detail/destory/{id}','Vendor\CustomerController@destory')->name('vendor.customer-detail.destory');
+    // Route::delete('customer-detail/destroy/{id}','Vendor\CustomerController@destroy')->name('vendor.customer-detail.destroy');
 
     //Booking  Details
     Route::get('booking-detail','Vendor\BookingController@index')->name('vendor.booking-detail');
@@ -285,7 +286,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     // Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
     // Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
     // Route::put('booking-detail/update/{?id}','Vendor\BookingController@update')->name('vendor.booking-detail.update');
-    // Route::delete('booking-detail/destory/{id}','Vendor\BookingController@destory')->name('vendor.booking-detail.destory');
+    // Route::delete('booking-detail/destroy/{id}','Vendor\BookingController@destroy')->name('vendor.booking-detail.destroy');
 
      //Cancellation
      Route::get('cancellation-detail','Vendor\CancellationController@index')->name('vendor.cancellation-detail');

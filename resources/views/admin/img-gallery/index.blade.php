@@ -157,14 +157,14 @@
         }).then((result) => {
             if (result.value) {
                     $.ajax({
-                        url:'{{route('img_gallery.destory')}}',
+                        url:'{{route('img_gallery.destroy')}}',
                         data:{
                             id : c_id
                         },
                         type:'get',
-                        success:function(responce)
+                        success:function(response)
                         {
-                            if (responce=="success") {
+                            if (response=="success") {
                             swal({
                                 title: "Deleted !",
                                 text: "Successfull deleted bus",

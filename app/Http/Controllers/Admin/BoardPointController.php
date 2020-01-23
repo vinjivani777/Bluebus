@@ -136,7 +136,7 @@ class BoardPointController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function boarddestory(Request $request)
+    public function boarddestroy(Request $request)
     {
         $newboard =  BoardPoint::findorfail($request->id);
         $newboard->delete();

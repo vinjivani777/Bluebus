@@ -146,15 +146,15 @@
                         bus_id : bus_id
                     },
                     type:'get',
-                    success:function(responce)
+                    success:function(response)
                     {
                         $('#route_id').empty();
-                        if(responce.length != ""){
-                            for (var i = 0; i < responce.length; i++) {
+                        if(response.length != ""){
+                            for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
-                            option.text = responce[i].board_point+" - "+responce[i].drop_point;
-                            option.value = responce[i].id;
+                            option.text = response[i].board_point+" - "+response[i].drop_point;
+                            option.value = response[i].id;
                             route_id.add(option);
                             }
                         }

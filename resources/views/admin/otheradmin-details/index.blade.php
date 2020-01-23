@@ -183,10 +183,10 @@
                             profilepicture : profileimage
                         },
                         type:'get',
-                        success:function(responce)
+                        success:function(response)
                         {
-                            // alert(responce);
-                            if (responce=="success") {
+                            // alert(response);
+                            if (response=="success") {
                             swal({
                                 title: "Deleted !",
                                 text: "Successfull deleted bus",
@@ -229,8 +229,8 @@
                     type:'POST',
                     url:'{{route('status.change')}}',
                     data:{'status':status,'id':id,'model':'Admin',"_token": "{{ csrf_token() }}"},
-                    success:function(responce){
-                        if (responce=="success" && status==true) {
+                    success:function(response){
+                        if (response=="success" && status==true) {
                             $('#'+id).addClass("btn-outline-primary ");
                             $('#'+id).removeClass("btn-outline-danger  ");
                             $('#'+id).val('Active');

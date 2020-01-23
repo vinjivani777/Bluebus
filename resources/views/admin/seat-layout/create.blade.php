@@ -165,7 +165,7 @@
 
     <script>
         $('#view').click(function(){
-           
+
             var seat_type=$('.seat_type').val();
             var layout=$('.layout').val();
             var total_seat=$('.total_seat').val();
@@ -192,9 +192,9 @@
                 type:'POST',
                 url:'{{route('seat-layout.view')}}',
                 data:{'seat_type':seat_type,'bus_name':bus_name,'total_seat':total_seat,'layout': layout,"_token": "{{ csrf_token() }}"},
-                success:function(responce){
+                success:function(response){
 
-                    $('.quick_layout').html(responce);
+                    $('.quick_layout').html(response);
                 }
             });
         });

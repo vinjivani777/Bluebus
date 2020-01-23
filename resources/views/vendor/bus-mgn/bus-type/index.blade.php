@@ -137,14 +137,14 @@
             }).then((result) => {
                 if (result.value) {
                         $.ajax({
-                            url:'{{route('vendor.bus-type.destory')}}',
+                            url:'{{route('vendor.bus-type.destroy')}}',
                             data:{
                                 id : c_id
                             },
                             type:'get',
-                            success:function(responce)
+                            success:function(response)
                             {
-                                if (responce=="success") {
+                                if (response=="success") {
                                 swal({
                                     title: "Deleted !",
                                     text: "Successfull deleted bus type",
@@ -188,8 +188,8 @@
                         type:'POST',
                         url:'{{route('vendor.status.change')}}',
                         data:{'status':status,'id':id,'model':'BusType',"_token": "{{ csrf_token() }}"},
-                        success:function(responce){
-                            if (responce=="success" && status==true) {
+                        success:function(response){
+                            if (response=="success" && status==true) {
                                 $('#'+id).addClass("btn-outline-primary ");
                                 $('#'+id).removeClass("btn-outline-danger  ");
                                 $('#'+id).val('Active');
