@@ -11,26 +11,33 @@ class SearchController extends Controller
 {
     public function source(Request $request)
     {
-         $search=$request->get('Source');
+
+        $result = Route::select("board_point")
+                ->where("board_point","LIKE","%{$request->input('term')}%")
+                ->get();
+
+        return response()->json($result);
+
+    //      $search=$request->get('Source');
 
 
-       $result = Route::where('board_point', 'LIKE', '%'. $search. '%')->get();
+    //    $result = Route::where('board_point', 'LIKE', '%'. $search. '%')->get();
 
-         if($result == '')
-         {
-            $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
-            $output .= '<li><a href="#"> So Sorry !</a></li>';
-            $output .= '</ul>';
-            return  $output;
-         }else{
-            $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
-            foreach($result as $row)
-            {
-                $output .= '<li class="source_select"><a>'.$row->board_point.'</a></li>';
-            }
-            $output .= '</ul>';
-            return  $output;
-         }
+    //      if($result == '')
+    //      {
+    //         $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
+    //         $output .= '<li><a href="#"> So Sorry !</a></li>';
+    //         $output .= '</ul>';
+    //         return  $output;
+    //      }else{
+    //         $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
+    //         foreach($result as $row)
+    //         {
+    //             $output .= '<li class="source_select"><a>'.$row->board_point.'</a></li>';
+    //         }
+    //         $output .= '</ul>';
+    //         return  $output;
+    //      }
 
 
     }
