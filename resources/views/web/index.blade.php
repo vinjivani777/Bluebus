@@ -11,7 +11,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('web/images/favicon.ico')}}">
 
-
+        <link rel="stylesheet" href="{{ asset('web\jquery\jquery-ui.css') }}">
         <!-- extra css  -->
         @yield('other-page-css')
 
@@ -27,6 +27,12 @@
         <link href="{{ asset('web/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
 
         <style>
+
+            #ui-id-1{
+                height:200px;
+                overflow: inherit;
+            }
+
             .desc-op-new {
                 color: #4a4a4a;
                 font-size: 16px;
@@ -906,6 +912,8 @@
     </section>
 </body>
 
+
+
 <script src="{{ asset('web/js/vendor.min.js')}}"></script>
 
 <script src="{{ asset('web/js/pages/animation.init.js')}}"></script>
@@ -918,36 +926,35 @@
 <!-- Init js-->
 <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
 
-{{--  <script>
-$(document).ready(function(){
+<script type="text/javascript">
+    var path = "{{ route('source') }}";
+    $(document).ready(function() {
+        $('.source_palace').autocomplete({
 
-    $('.source_palace').keyup(function(){
-        var query = $(this).val();
-        if(query != '')
-        {
-         var _token = $('input[name="_token"]').val();
-         $.ajax({
-          url:"{{ route('search') }}",
-          method:"POST",
-          data:{query:query,token:_token},
-          success:function(data){
-              alert(data);
-           $('#sourceList').fadeIn();
-                    $('#sourceList').html(data);
-          }
-         });
-        }
+            source: function(request, response) {
+                $.ajax({
+                url: path,
+                data: {
+                        term : request.term
+                 },
+                dataType: "json",
+                success: function(data){
+                   var resp = $.map(data,function(obj){
+                        //console.log(obj.board_point);
+                        return obj.board_point;
+                   });
+
+                   response(resp);
+                }
+            });
+        },
+        minLength: 1
+     });
     });
 
-    $(document).on('click', 'li', function(){
-        $('.source_palace').val($(this).text());
-        $('#sourceList').fadeOut();
-    });
+</script>
 
-});
-</script>  --}}
-
-<script>
+{{-- <script>
     $('.source_palace').keyup(function(){
        var Source=$(this).val();
             $.ajax({
@@ -975,9 +982,9 @@ $(document).ready(function(){
             $('.source_palace').focusout( function(){
                 $('#countryList').fadeOut();
             });
-</script>
+</script> --}}
 
-<script>
+{{-- <script>
     $('.destination_palace').keyup(function(){
        var Destnation=$(this).val();
             $.ajax({
@@ -1005,10 +1012,14 @@ $(document).ready(function(){
             $('.destination_palace').focusout( function(){
                 $('#destationList').fadeOut();
             });
-</script>
+</script> --}}
 
 <!-- App js -->
 <script src="{{ asset('web/js/app.min.js')}}"></script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 </html>
