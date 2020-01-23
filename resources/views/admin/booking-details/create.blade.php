@@ -63,66 +63,85 @@ booking
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name"  class="form-control bus_name" id="bus_name" data-toggle="select2" required>
+                                    <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" >
 
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text-danger">@error('bus_name') {{ "Please select Bus Name" }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" required>
+                                    <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" >
 
                                     </select>
+                                    <span class="text-danger">@error('route_name') {{ "Please select Route" }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="starting_point">New Pick-Up Point</label>
-                                    <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" required>
+                                    <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" >
 
                                     </select>
+                                    <span class="text-danger">@error('starting_point') {{ "The Starting Point Field is required" }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">New Droping Point</label>
-                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" required>
+                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" >
 
                                     </select>
+                                    <span class="text-danger">@error('stoping_point') {{ "The Stoping Point Field is required" }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" name="starting_point_landmark" id="starting_point_landmark" placeholder="Pick-Up Land Mark" required>
+                                    <input type="text" class="form-control" readonly name="starting_point_landmark" id="starting_point_landmark" placeholder="Pick-Up Land Mark" >
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="starting_point_address" id="starting_point_address" placeholder="Pick-Up Address" required>
+                                    <input type="text" class="form-control" readonly name="starting_point_address" id="starting_point_address" placeholder="Pick-Up Address" >
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" name="stoping_point_landmark" id="stoping_point_landmark" placeholder="Drop Land Mark" required>
+                                    <input type="text" class="form-control" readonly name="stoping_point_landmark" id="stoping_point_landmark" placeholder="Drop Land Mark" >
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="stoping_point_address" id="stoping_point_address" placeholder="Drop Address" required>
+                                    <input type="text" class="form-control" readonly name="stoping_point_address" id="stoping_point_address" placeholder="Drop Address" >
                                 </div>
                             </div>
-                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
                                 <div class="form-group">
                                     <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" required>
+                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" >
+                                    <span class="text-danger">@error('amount') {{ $message }} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
+                                <div class="form-group">
+                                    <label for="seatno">Seat No</label>
+                                    <input type="text" class="form-control" name="seatno" id="seatno" placeholder="Seat No" >
+                                    <span class="text-danger">@error('seatno') {{ $message }} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
+                                <div class="form-group">
+                                    <label for="paymentstatus">Payment Method</label>
+                                    <input type="text" class="form-control" name="paymentstatus" id="paymentstatus" placeholder="COD" value="COD" readonly >
+                                    <span class="text-danger">@error('paymentstatus') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +180,6 @@ booking
 
     <script>
         $(document).ready(function(){
-
             document.getElementById("myform").reset();
             $('.bus_name').append(`<option value="0" disabled selected >Select Bus</option>`);
         });
@@ -170,10 +188,10 @@ booking
             $('#stoping_point').empty();
             $('#starting_point').empty();
             $('#route_id').empty();
-            $('#starting_point_address').empty();
-            $('#starting_point_landmark').empty();
-            $('#stoping_point_address').empty();
-            $('#stoping_point_landmark').empty();
+            $('#starting_point_address').val("");
+            $('#starting_point_landmark').val("");
+            $('#stoping_point_address').val("");
+            $('#stoping_point_landmark').val("");
             bus_id = this.value;
             if(bus_id != "" && bus_id != 0){
                 $.ajax({
@@ -200,6 +218,10 @@ booking
         });
 
         $(".route_id").on('change',function(){
+            $('#starting_point_landmark').val("");
+            $('#stoping_point_address').val("");
+            $('#starting_point_address').val("");
+            $('#stoping_point_landmark').val("");
             route_id = this.value;
             bus_id = $("#bus_name option:selected").val();
             if(route_id != "" && route_id != 0){
@@ -261,6 +283,8 @@ booking
         });
 
         $(".starting_point").on('change',function(){
+            $('#starting_point_landmark').val("");
+            $('#starting_point_address').val("");
             starting_point_id = this.value;
             if(route_id != "" && route_id != 0){
                 $.ajax({
@@ -283,6 +307,8 @@ booking
         });
 
         $(".stoping_point").on('change',function(){
+            $('#stoping_point_address').val("");
+            $('#stoping_point_landmark').val("");
             stoping_point_id = this.value;
             if(route_id != "" && route_id != 0){
                 $.ajax({

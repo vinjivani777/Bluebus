@@ -11,6 +11,7 @@ use App\Model\DropPoint;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -44,39 +45,46 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        // return date("d-m-Y");
         $validator= $request->validate([
             'bus_name' => 'required',
             'route_name' => 'required',
             'starting_point' => 'required',
             'stoping_point' => 'required',
             'amount' => 'required|numeric',
-            'payment_status' => 'required',
-            'payment_option' => 'required',
-            'seat_no' => 'required|numeric',
+            'paymentstatus' => 'required',
+            'seatno' => 'required|numeric',
         ]);
 
-
+            // return $validator;
 
         if($validator == false)
         {
-            return "error in validtion";
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }else{
-            $newbus= new Bus;
-            $amenities =  implode(',', $request->amenities);
-            $newbus->bus_name= $request->bus_name;
-            $newbus->bus_type_id= $request->bus_type;
-            $newbus->amenities_id= $amenities;
-            $newbus->bus_reg_no= $request->bus_reg_no;
-            $newbus->max_seats= $request->max_seats;
-            $newbus->board_point= $request->board_point;
-            $newbus->drop_point= $request->drop_point;
-            $newbus->board_time= $request->board_time;
-            $newbus->drop_time= $request->drop_time;
+            $newbus= new Booking;
+            $newbus->booking_id= '#'.rand(10000,99999);
+            $newbus->amount= $request->amount;
+            $newbus->bus_id= $request->bus_name;
+            $newbus->route_id= $request->route_name;
+            $newbus->boarding_point_id= $request->starting_point;
+            $newbus->drop_point_id= $request->stoping_point;
+            $newbus->user_id= Auth::guard('admin')->user()->id;
+            $newbus->seat_no= $request->seatno;
+            $newbus->payment_status= 1;
+            $newbus->payment_option= $request->paymentstatus;
+            $newbus->booking_date= date("d-m-Y");
+            $newbus->status= "1";
             $newbus->created_by= "admin";
-            $newbus->save();
-
-            return redirect()->route('bus-detail');
+            // return $newbus;
+            $data = $newbus->save();
+            if($data)
+            {
+                return redirect()->route('booking-detail');
+            }
+            else{
+                return redirect()->back()->withErrors($validator)->withInput($request->all())->withStatus('Something Went Wrong.');
+            }
         }
     }
 

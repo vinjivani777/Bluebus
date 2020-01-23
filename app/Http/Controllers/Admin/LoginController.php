@@ -28,6 +28,7 @@ class LoginController extends Controller
 
         if(Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password]))
         {
+            // Auth::guard('admin')->loginUsingId(1);
             return redirect()->intended(route('index'));
         }else{
           return  redirect()->route('admin');
