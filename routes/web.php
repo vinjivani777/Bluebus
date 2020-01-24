@@ -186,7 +186,7 @@ Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordr
 Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
 Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
 Route::post('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
-Route::get('vendor/resetpassword/sms','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
+Route::get('vendor/resetpassword/sms/{phone}','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
 Route::post('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
 
 

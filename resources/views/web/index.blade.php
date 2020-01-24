@@ -83,8 +83,45 @@
                     <li class="nav-item">
                     <a class="nav-link text-white" href="#">Offers</a>
                     </li>
+
                 </ul>
             <div>
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Help</a>
+                        </li>
+                        <li class="dropdown notification-list show">
+                            <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <img src="{{ asset('web\user.png') }}" alt="user-image" class="rounded-circle">
+                                <span class="pro-user-name ml-1">
+                                <i class="mdi mdi-chevron-down text-white"></i>
+                                </span>
+                            </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown " x-placement="bottom-end" style="background-color:#fff;position: absolute;margin-top:12px;width:220px; will-change: transform; top: 20px; left: 0px; transform: translate3d(-52px, 70px, 0px);">
+                            <!-- item-->
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            <!-- item-->
+                             <a  data-toggle="modal" data-target=".bs-example-modal-center" class="dropdown-item notify-item">
+                                <i class="fe-user"></i>
+                                <span>SignUp / SignIN</span>
+                            </a>
+                            {{-- <div class="dropdown-divider"></div> --}}
+{{--
+                            <!-- item-->
+                            <a href="http://127.0.0.1:8000/admin/logout" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a> --}}
+
+                        </div>
+                    </li></ul>
+
+                    {{-- <img src="{{ asset('web\user.png') }} " alt="user" style="width:30px;height:30px" > --}}
+                    </div>
             </div>
             </div>
         </nav>
@@ -910,6 +947,25 @@
 
         </div>
     </section>
+
+
+    {{-- LOGIN MODEL --}}
+
+    <!--  Modal content for the above example -->
+    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 </body>
 
 

@@ -11,9 +11,13 @@ class SMSController extends Controller
         if(strlen($number) <= 10){
             $number = "91".$number;
         }
-        $client = new GuzzleHttp\Client();
-        return $url = "https://2factor.in/API/V1/d15b8dc8-2c7d-11ea-9fa5-0200cd936042/SMS/$number/$otp";
-        $request = $client->get($url);
+        // dd($number,$otp);
+        $client = new \GuzzleHttp\Client();
+        $url = "https://2factor.in/API/V1/d15b8dc8-2c7d-11ea-9fa5-0200cd936042/SMS/$number/$otp";
+
+         $request = $client->get($url);
         $response = $request->getBody();
+        return json_decode($response);
+
     }
 }
