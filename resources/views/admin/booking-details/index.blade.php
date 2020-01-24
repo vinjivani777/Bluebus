@@ -34,6 +34,7 @@ Booking
                             <table id="basic-datatable" class="table  table-striped">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Booking Id</th>
                                         <th>Bus Name</th>
                                         <th>Pickup Point</th>
@@ -49,6 +50,7 @@ Booking
                                 <tbody>
                                     @foreach ($Booking as $item)
                                     <tr>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->booking_id }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
                                         <td>{{ $item->bus->board_point }}</td>
@@ -144,6 +146,7 @@ Booking
 <script>
     $('.remove_booking').click(function(){
         var c_id= $(this).attr('id');
+        // alert(c_id);
         swal({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -162,7 +165,6 @@ Booking
                         type:'get',
                         success:function(response)
                         {
-                            alert(response);
                             if (response=="success") {
                             swal({
                                 title: "Deleted !",

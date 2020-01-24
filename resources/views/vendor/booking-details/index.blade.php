@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-
+Booking
 @endsection
 
 @section('content')
@@ -17,10 +17,10 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
-                                <li class="breadcrumb-item active">Booking Details</li>
+                                <li class="breadcrumb-item active">@yield('page-title') Details</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Booking List</h4>
+                        <h4 class="page-title">@yield('page-title') List</h4>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('vendor.bus-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Book Ticket </a>
-
+                            <a href="{{ route('booking-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Booking</a>
                             <table id="basic-datatable" class="table  table-striped">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Booking Id</th>
                                         <th>Bus Name</th>
                                         <th>Pickup Point</th>
@@ -50,6 +50,7 @@
                                 <tbody>
                                     @foreach ($Booking as $item)
                                     <tr>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->booking_id }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
                                         <td>{{ $item->bus->board_point }}</td>
@@ -61,6 +62,7 @@
                                         <td>{{ $item->bus->drop_time }}</td>
                                         <td>
                                             <a  class="mr-1 text-info booking_details" id="{{ $item->booking_id }}" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                            <a href="#"  class="mr-1 text-danger remove_booking" id="{{$item->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
 
                                     </tr>
@@ -124,28 +126,74 @@
 
 @section('other-page-css')
 
-<link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendor/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendor/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendor/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('vendor/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
 
 {{-- sweetalert --}}
-<link href="{{asset('admin/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('vendor/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('other-page-js')
 
-<script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('vendor/libs/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('vendor/libs/datatables/dataTables.bootstrap4.js')}}"></script>
 <!-- Datatables init -->
-<script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script>
-<script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{ asset('vendor/js/pages/datatables.init.js')}}"></script>
+<script src="{{asset('vendor/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <script>
+    $('.remove_booking').click(function(){
+        var c_id= $(this).attr('id');
+        // alert(c_id);
+        swal({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn btn-confirm mt-2",
+            cancelButtonClass: "btn btn-cancel ml-2 mt-2",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.value) {
+                    $.ajax({
+                            url:'{{route('booking.destroy')}}',
+                        data:{
+                            id : c_id
+                        },
+                        type:'get',
+                        success:function(response)
+                        {
+                            if (response=="success") {
+                            swal({
+                                title: "Deleted !",
+                                text: "Successfull deleted board point.",
+                                type: "success",
+                                timer: 500,
+                                showConfirmButton: false
+                            })
+                            $("#"+c_id).closest("tr").fadeOut(1000);
+                            } else {
+                                new PNotify({
+                                    title: 'Warning Notification',
+                                    text: 'Contact Support Team',
+                                    icon: 'icofont icofont-info-circle',
+                                    type: 'Warning'
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    swal("Ohhhhh........No!");
+                }
+            });
+    });
+
     $('.booking_details').click(function(){
         var id= $(this).attr('id');
                 $.ajax({
-                    url:'{{route('vendor.booking-detail.show')}}',
+                    url:'{{route('booking-detail.show')}}',
                     data:{
                         id : id
                     },
