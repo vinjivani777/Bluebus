@@ -314,6 +314,7 @@ Route::get('/', function () {
     return view('web.index');
 })->name('web.index');
 
+Route::get('/offer','Web\OfferController@index')->name('offer');
 Route::get('/source','Web\SearchController@source')->name('source');
 Route::get('/dest','Web\SearchController@dest')->name('dest');
 
@@ -322,6 +323,3 @@ Route::post('/search','Web\SearchController@search')->name('search');
 // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
-Route::get('/offer', function () {
-    return view('web.offer');
-})->name('offers');
