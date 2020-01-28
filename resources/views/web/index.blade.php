@@ -84,7 +84,7 @@
 <body class="bg-white" style="padding-bottom: 0px;">
     <section>
         <nav class="navbar navbar-expand-xl sticky-top  navbar-light  " style="background-color:#d84f57">
-            <a class="navbar-brand text-white" href="#">BlueBus</a>
+            <a class="navbar-brand text-white" href="{{ route('web.index')}}">BlueBus</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -92,7 +92,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Booking Ticket <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('offer') }}">Offers</a>
