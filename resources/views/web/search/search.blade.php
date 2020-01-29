@@ -458,6 +458,18 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr style="background-color:#f8f9fa;">
+                                            <td colspan="7">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <canvas data-type="lower" width="489" height="211" class=""></canvas>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        fgfd
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
