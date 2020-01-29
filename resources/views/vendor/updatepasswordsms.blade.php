@@ -42,9 +42,9 @@
                                     @if (Session::has('status'))
                                         <div class="alert alert-danger " style="text-align:center" >{{Session::get('status')}}</div>
                                     @endif
-                                    <div class="form-group mb-3">
+                                    <div class="form-group mb-3" hidden>
                                         <label for="MobileNo">Mobile No.</label>
-                                        <input class="form-control" type="number"  name="MobileNo" value="{{ old('MobileNo') }}" required id="mobileno" placeholder="Enter your MobileNo">
+                                        <input class="form-control" type="number"  name="MobileNo" readonly value="{{ $phone }}" required id="mobileno" placeholder="Enter your MobileNo">
                                         <span class="text-danger">@error('MobileNo') {{  $message }} @enderror</span>
                                     </div>
                                     <div class="form-group mb-3">

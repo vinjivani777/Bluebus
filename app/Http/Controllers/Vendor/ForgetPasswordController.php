@@ -133,7 +133,7 @@ class ForgetPasswordController extends Controller
             'Password'  => 'required',
             'ConfirmPassword'   =>  'required|same:Password',
         ],);
-
+        // return $request;
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
@@ -146,7 +146,7 @@ class ForgetPasswordController extends Controller
         $update=Vendor::findorfail($id);
         $update->password=bcrypt($request->password);
         $update->otp="";
-        return $update;
+        // return $update;
         $update->save();
         return redirect()->route('vendor')->with(['status' => 'Password Changed Successfully']);
    }
