@@ -65,12 +65,26 @@
             .search_input{
                 border-radius:0px;
             }
+            .input-icons i {
+            position: absolute;
+        }
+
+        .input-icons {
+            width: 100%;
+            /* margin-bottom: 10px; */
+        }
+
+        .icon {
+            padding: 10px;
+            min-width: 50px;
+            text-align: center;
+        }
         </style>
     </head>
 <body class="bg-white" style="padding-bottom: 0px;">
     <section>
         <nav class="navbar navbar-expand-xl sticky-top  navbar-light  " style="background-color:#d84f57">
-            <a class="navbar-brand text-white" href="#">BlueBus</a>
+            <a class="navbar-brand text-white" href="{{ route('web.index')}}">BlueBus</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -78,10 +92,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="nav-link text-white" href="#">Booking Ticket <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Offers</a>
+                    <a class="nav-link text-white" href="{{ route('offer') }}">Offers</a>
                     </li>
 
                 </ul>
@@ -92,25 +106,43 @@
                             <a class="nav-link text-white" href="#">Help</a>
                         </li>
                         <li class="dropdown notification-list show">
-                            <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{{ asset('web\user.png') }}" alt="user-image" class="rounded-circle">
+                            <a class="nav-link dropdown-toggle nav-user mr-0 mt-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <span class="text-white">
+                                    Manage Booking
+                                </span>
                                 <span class="pro-user-name ml-1">
                                 <i class="mdi mdi-chevron-down text-white"></i>
                                 </span>
                             </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown " x-placement="bottom-end" style="background-color:#fff;position: absolute;margin-top:12px;width:220px; will-change: transform; top: 20px; left: 0px; transform: translate3d(-52px, 70px, 0px);">
                             <!-- item-->
-                            <div class="dropdown-header noti-title">
-                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            <div class="dropdown-header noti-title pb-0">
+                                <h6 class="text-overflow m-0">BUS TICKET</h6>
                             </div>
 
                             <!-- item-->
-                             <a  data-toggle="modal" data-target=".bs-example-modal-center" class="dropdown-item notify-item">
+                             <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                                <i class="fe-alert-octagon"></i>
+                                <span>Cancel/Refund</span>
+                            </a>
+                            {{-- <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
                                 <i class="fe-user"></i>
-                                <span>SignUp / SignIN</span>
+                                <span>Reschedule</span>
+                            </a> --}}
+                            <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                                <i class="fe-printer"></i>
+                                <span>
+                                    Print/Download
+                                </span>
+                            </a>
+                            <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                                <i class="fe-send"></i>
+                                <span>
+                                    Email/SMS
+                                </span>
                             </a>
                             {{-- <div class="dropdown-divider"></div> --}}
-{{--
+                        {{--
                             <!-- item-->
                             <a href="http://127.0.0.1:8000/admin/logout" class="dropdown-item notify-item">
                                 <i class="fe-log-out"></i>
@@ -118,7 +150,36 @@
                             </a> --}}
 
                         </div>
-                    </li></ul>
+                    </li>
+                    <li class="dropdown notification-list show">
+                        <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="{{ asset('web\user.png') }}" alt="user-image" class="rounded-circle">
+                            <span class="pro-user-name ml-1">
+                            <i class="mdi mdi-chevron-down text-white"></i>
+                            </span>
+                        </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown " x-placement="bottom-end" style="background-color:#fff;position: absolute;margin-top:12px;width:220px; will-change: transform; top: 20px; left: 0px; transform: translate3d(-52px, 70px, 0px);">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
+
+                        <!-- item-->
+                         <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>SignUp / SignIN</span>
+                        </a>
+                        {{-- <div class="dropdown-divider"></div> --}}
+{{--
+                        <!-- item-->
+                        <a href="http://127.0.0.1:8000/admin/logout" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Logout</span>
+                        </a> --}}
+
+                    </div>
+                </li>
+                </ul>
 
                     {{-- <img src="{{ asset('web\user.png') }} " alt="user" style="width:30px;height:30px" > --}}
                     </div>
@@ -144,20 +205,22 @@
                         <div class="container ml-3" style="position: absolute;bottom: 186px;z-index:2;">
                             <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-row align-items-center">
-                                    <div class="col-3 mr-0 pr-0">
-                                        <input type="text" class="form-control mb-2 search_input source_palace" name="source_palace" tabindex="1" autocomplete="off" id="inlineFormInput" placeholder="Source Place">
-                                        <div id="countryList" class=""></div>
+                                <div class="form-row align-items-center ">
+                                    <div class="col-3 mr-0 pr-0 input-icons">
+                                        <i class="far fa-building icon"></i>
+                                        <input type="text" class="form-control mb-2 search_input source_palace text-center" name="source_palace" tabindex="1" autocomplete="off" id="inlineFormInput" placeholder="Source Place">
                                     </div>
-                                    <div class="col-3 ml-0 pl-0 mr-0 pr-0">
-                                        <input type="text" class="form-control mb-2 search_input destination_palace" name="destination_palace" tabindex="2" autocomplete="off" id="inlineFormInput" placeholder="Destination Place">
-                                        <div id="destationList" class=""></div>
+                                    <div class="col-3 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                        <i class="far fa-building icon"></i>
+                                        <input type="text" class="form-control mb-2 search_input destination_palace text-center" name="destination_palace" tabindex="2" autocomplete="off" id="inlineFormInput" placeholder="Destination Place">
                                     </div>
-                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0">
-                                        <input type="text" class="form-control mb-2 search_input basic-datepicker " name="onward" tabindex="3" id="inlineFormInput" placeholder="Onward Date">
+                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                        <i class="fe-calendar icon"></i>
+                                        <input type="text" class="form-control mb-2 search_input basic-datepicker text-center" name="onward" tabindex="3" id="inlineFormInput" placeholder="Onward Date">
                                     </div>
-                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0">
-                                        <input type="text" class="form-control mb-2 search_input return-datepicker" name="return" tabindex="4" id="inlineFormInput" placeholder="Return Date">
+                                    <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                        <i class="fe-calendar icon"></i>
+                                        <input type="text" class="form-control mb-2 search_input return-datepicker text-center" name="return" tabindex="4" id="inlineFormInput" placeholder="Return Date">
                                     </div>
                                     <div class="col-2 ml-0 pl-0">
                                         <button class="btn  btn-danger mb-2 search_input" id="inlineFormInput"><b>Search Bus</b></button>
@@ -951,21 +1014,79 @@
 
     {{-- LOGIN MODEL --}}
 
-    <!--  Modal content for the above example -->
-    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+     <!--  Modal content for the above example -->
+     <div class="modal fade bs-example-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" style="border-radius:25px;">
+            <div class="modal-content" style="border-radius: 0.8rem;">
+                {{-- <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                </div>
-                <div class="modal-body">
-                    ...
+                </div> --}}
+                <div class="modal-body p-0" style="overflow:hidden;border-radius: 0.6rem;" >
+                    <div class="row ">
+                        <div class="col-6 pr-0">
+                            <img src="{{ asset('web\images\login\login-ilistratar.jpg')}}" alt="" width="100%" height="100%">
+                        </div>
+                        {{-- <div class="col-6 pl-0" style="background-image:url({{ asset('web/images/login/login-bg.jpg') }});background-size: cover;opacity: 0.3;border-radius: 0.8rem;width:100%" > --}}
+                        <div class="col-6 mt-3 mb-3 pr-1">
+                            <div class="row mt-0">
+                                <div class="col-11">
+                                    <button type="button" class="close float-right" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-12">
+                                    <img src="{{ asset('web\images\redbus\logo_r.png') }}">
+                                </div>
+                                <div class="col-12">
+                                        <h3 style="color:#f1556c;">Welcome Into Happy Journey</h3>
+                                </div>
+                            </div>
+                            <form method="post" action="#">
+                                <div class="row mt-3">
+                                    <div class="col-11 ">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control"  name="phone" placeholder="Enter Your Mobile no">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-11 ">
+                                        <input type="submit" class="btn btn-danger text-center" value="CONTINUE" style="width:100%;font-weight:700">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row mt-2">
+                                <div class="col-5">
+                                    <hr style="border: 0.5px solid #ddd;">
+                                </div>
+                                <div class="col-1 pl-0 pr-0 mt-1">
+                                    <span>OR</span>
+                                </div>
+                                <div class="col-5 pl-0 pr-2">
+                                    <hr style="border: 0.5px solid #ddd;">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                <button class="btn bg-white btn-rounded width-lg pt-2 pb-2 " style="border:1px solid #ced4da"><span class="float-left"><img src="{{ asset('web\images\redbus\social-icon\icons-8-google.svg') }}" alt=""></span><span class=" font-weight-bold float-right" style="color:#ff3d00">Google</span></button>
+                                </div>
+                                <div class="col-6">
+                                <button class="btn bg-white btn-rounded width-lg pt-2 pb-2 float-left" style="border:1px solid #ced4da"><span class="float-left"><img src="{{ asset('web\images\redbus\social-icon\facebook-icon.svg')}}" alt=""></span><span class=" font-weight-bold float-right" style="color:#485a96">Facebook</span></button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-11 text-center">
+                                    <p>By signing up, you agree to
+                                        our <a href="#" class="text-info">Terms & Conditions</a> and <a href="#" class="text-info">Privacy Policy</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
 </body>
 
 
