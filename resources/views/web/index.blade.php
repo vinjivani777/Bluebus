@@ -103,7 +103,7 @@
                 <div>
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Help</a>
+                            <a class="nav-link text-white" href="{{route('bluecare')}}">Help</a>
                         </li>
                         <li class="dropdown notification-list show">
                             <a class="nav-link dropdown-toggle nav-user mr-0 mt-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -121,7 +121,7 @@
                             </div>
 
                             <!-- item-->
-                             <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                            <a  href="{{route('cancellation')}}"   class="dropdown-item notify-item pb-0">
                                 <i class="fe-alert-octagon"></i>
                                 <span>Cancel/Refund</span>
                             </a>
@@ -129,13 +129,13 @@
                                 <i class="fe-user"></i>
                                 <span>Reschedule</span>
                             </a> --}}
-                            <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                            <a href="{{ route('printticket')}}"  class="dropdown-item notify-item pb-0">
                                 <i class="fe-printer"></i>
                                 <span>
                                     Print/Download
                                 </span>
                             </a>
-                            <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item pb-0">
+                            <a  href="{{route('smsandemailticket')}}" class="dropdown-item notify-item pb-0">
                                 <i class="fe-send"></i>
                                 <span>
                                     Email/SMS

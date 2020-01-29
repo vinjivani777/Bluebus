@@ -448,7 +448,7 @@
 
                                         </tr>
                                         <tr class="amenities mb-2" style="background-color:#f8f9fa;display:none" >
-                                            <td colspan="7">
+                                            <td colspan="7" class="amenities_content">
                                                 <div class="row">
                                                     <div class="col-12 mt-4 mb-3 ml-3 data">
                                                         <span style="font-size:17px;font-weight: 300;"><i class="fe-tv"></i> Personal TV</span>

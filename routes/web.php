@@ -320,6 +320,14 @@ Route::get('/dest','Web\SearchController@dest')->name('dest');
 
 Route::post('/search','Web\SearchController@search')->name('search');
 
+// manage booking
+Route::get('Cancellation','Web\ManageBookingController@cancellation')->name('cancellation');
+Route::get('PrintTicket','Web\ManageBookingController@printticket')->name('printticket');
+Route::get('SmsAndEmailTicket','Web\ManageBookingController@smsandemailticket')->name('smsandemailticket');
+
+// blue helpcenter
+Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
+
 // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
