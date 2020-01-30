@@ -173,21 +173,21 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
 
 
-//Vendor
-Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
-Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
-//vendor register
-Route::get('vendor/register','Vendor\VendorController@register')->name('vendor.register');
-Route::get('vendor/forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
-Route::post('vendor/register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
-//Vendor Password Reset
-Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassword')->name('vendor.forgetpassword');
-Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
-Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
-Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
-Route::post('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
-Route::get('vendor/resetpassword/sms/{phone}','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
-Route::post('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
+    //Vendor
+    Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
+    Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
+    //vendor register
+    Route::get('vendor/register','Vendor\VendorController@register')->name('vendor.register');
+    Route::get('vendor/forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
+    Route::post('vendor/register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
+    //Vendor Password Reset
+    Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassword')->name('vendor.forgetpassword');
+    Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
+    Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
+    Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
+    Route::post('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
+    Route::get('vendor/resetpassword/sms/{phone}','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
+    Route::post('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
 
 
 Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
@@ -314,20 +314,22 @@ Route::get('/', function () {
     return view('web.index');
 })->name('web.index');
 
-Route::get('/offer','Web\OfferController@index')->name('offer');
-Route::get('/source','Web\SearchController@source')->name('source');
-Route::get('/dest','Web\SearchController@dest')->name('dest');
+    Route::get('/offer','Web\OfferController@index')->name('offer');
+    Route::get('/source','Web\SearchController@source')->name('source');
+    Route::get('/dest','Web\SearchController@dest')->name('dest');
 
-Route::post('/search','Web\SearchController@search')->name('search');
+    Route::post('/search','Web\SearchController@search')->name('search');
 
-// manage booking
-Route::get('Cancellation','Web\ManageBookingController@cancellation')->name('cancellation');
-Route::get('PrintTicket','Web\ManageBookingController@printticket')->name('printticket');
-Route::get('SmsAndEmailTicket','Web\ManageBookingController@smsandemailticket')->name('smsandemailticket');
+    // manage booking
+    Route::get('Cancellation','Web\ManageBookingController@cancellation')->name('cancellation');
+    Route::get('PrintTicket','Web\ManageBookingController@printticket')->name('printticket');
+    Route::get('SmsAndEmailTicket','Web\ManageBookingController@smsandemailticket')->name('smsandemailticket');
 
-// blue helpcenter
-Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
+    // blue helpcenter
+    Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
 
-// findbus
+    //user Profile
+    Route::get('UserProfile','Web\ProfileController@index')->name('user.profile');
+    // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 

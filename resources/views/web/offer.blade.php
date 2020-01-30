@@ -154,6 +154,10 @@
                                         <i class="fe-user"></i>
                                         <span>SignUp / SignIN</span>
                                     </a>
+                                    <a  href="{{route('user.profile')}}" class="dropdown-item notify-item">
+                                        <i class="fe-user"></i>
+                                        <span>Profile</span>
+                                    </a>
                                 </div>
                             </li>
                         </ul>

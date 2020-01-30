@@ -169,6 +169,10 @@
                             <i class="fe-user"></i>
                             <span>SignUp / SignIN</span>
                         </a>
+                        <a  href="{{route('user.profile')}}" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>Profile</span>
+                        </a>
                         {{-- <div class="dropdown-divider"></div> --}}
 {{--
                         <!-- item-->
@@ -223,7 +227,7 @@
                                         <input type="text" class="form-control mb-2 search_input return-datepicker text-center" name="return" tabindex="4" id="inlineFormInput" placeholder="Return Date">
                                     </div>
                                     <div class="col-2 ml-0 pl-0">
-                                        <button class="btn  btn-danger mb-2 search_input" id="inlineFormInput"><b>Search Bus</b></button>
+                                        <button class="btn  btn-danger mb-2 search_input search_bus_btn" id="inlineFormInput"><b>Search Bus</b></button>
                                     </div>
                                 </div>
                             </form>
@@ -1104,6 +1108,39 @@
 <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
 
 <script type="text/javascript">
+
+$('.search_bus_btn').click(function(){
+
+    if($('.source_palace').val()=="")
+    {
+        $(".source_palace").css("border", "1px solid #f1556c");
+    }
+
+    if($('.destination_palace').val()=="")
+    {
+        $(".destination_palace").css("border", "1px solid #f1556c");
+    }
+
+    if($('.basic-datepicker').val()=="")
+    {
+        $(".basic-datepicker").css("border", "1px solid #f1556c");
+    }
+});
+
+$('.source_palace').keyup(function(){
+    $(".source_palace").css("border", "1px solid #f1556c");
+
+});
+$('.destination_palace').keyup(function(){
+    $(".destination_palace").css("border", "1px solid #f1556c");
+
+});
+$('.basic-datepicker').click(function(){
+    $(".basic-datepicker").css("border", "1px solid #f1556c");
+
+});
+
+
     var path = "{{ route('source') }}";
     $(document).ready(function() {
         $('.source_palace').autocomplete({
