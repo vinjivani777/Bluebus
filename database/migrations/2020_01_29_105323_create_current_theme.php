@@ -14,7 +14,10 @@ class CreateCurrentTheme extends Migration
     public function up()
     {
         Schema::create('current_theme', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('name');
+            $table->foreign('theme_id')->references('_id')->on('themes');
+            $table->foreign('theme_title')->references('titles')->on('themes');
             $table->timestamps();
         });
     }

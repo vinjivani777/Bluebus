@@ -14,7 +14,10 @@ class CreatePaymentMethod extends Migration
     public function up()
     {
         Schema::create('payment_method', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('name');
+            $table->string('environment');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

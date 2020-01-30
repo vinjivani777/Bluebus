@@ -13,8 +13,18 @@ class CreateTicketBooking extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_booking', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('booking_details', function (Blueprint $table) {
+            $table->bigIncrements('_id');
+            $table->string('ticket_no');
+            $table->integer('seat_no');
+            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->foreign('route_id')->references('_id')->on('route');
+            $table->foreign('board_point_id')->references('_id')->on('board_point');
+            $table->foreign('drop_point_id')->references('_id')->on('drop_point');
+            $table->integer('total_fare');
+            $table->string('note');
+            $table->boolean('insurance_policy');
+            $table->boolean('booking_status');
             $table->timestamps();
         });
     }
@@ -26,6 +36,6 @@ class CreateTicketBooking extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_booking');
+        Schema::dropIfExists('booking_details');
     }
 }

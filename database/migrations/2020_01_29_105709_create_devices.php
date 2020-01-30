@@ -14,7 +14,14 @@ class CreateDevices extends Migration
     public function up()
     {
         Schema::create('devices', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->ipAddress('ip_address');
+            $table->string('device_type');
+            $table->string('location');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->boolean('status');
+            $table->foreign('user_id')->references('_id')->on('user');
             $table->timestamps();
         });
     }

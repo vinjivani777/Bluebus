@@ -14,7 +14,13 @@ class CreatePassengerDetails extends Migration
     public function up()
     {
         Schema::create('passenger_details', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->foreign('user_id')->references('_id')->on('user');
+            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->foreign('ticket_id')->references('ticket_number')->on('booking_details');
+            $table->date('date_of_journey');
+            $table->boolean('insurance_status');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

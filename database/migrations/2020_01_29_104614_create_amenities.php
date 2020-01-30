@@ -14,7 +14,11 @@ class CreateAmenities extends Migration
     public function up()
     {
         Schema::create('amenities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('image_path');
+            $table->string('description');
+            $table->boolean('status');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

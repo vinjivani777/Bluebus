@@ -13,7 +13,14 @@ class CreteCancellationPolicy extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('cancellation_policy', function (Blueprint $table) {
+            $table->bigIncrements('_id');
+            $table->string('time_to_depart');//define duration in hours like 24hrs,48hrs
+            $table->integer('percentage');// %  to deduct from refund as per remaining time
+            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->timestamps();
+        });
+
     }
 
     /**

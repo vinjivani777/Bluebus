@@ -23,16 +23,6 @@ class CreateBusCancellation extends Migration
             $table->foreign('bus_id')->references('_id')->on('bus');
             $table->foreign('route_id')->references('_id')->on('route');
             $table->timestamps();
-
-            // $table->string('last_name');
-            // $table->time('ending_time');
-            // $table->integer('vendor_id');
-            // $table->char('gender');
-            // $table->string('email');
-            // $table->boolean('status');
-            // $table->bigInteger('mobile_no');
-            // $table->foreign('role_id')->references('_id')->on('user_role');
-
         });
     }
 

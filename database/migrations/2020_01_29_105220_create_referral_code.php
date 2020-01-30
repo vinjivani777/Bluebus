@@ -14,7 +14,10 @@ class CreateReferralCode extends Migration
     public function up()
     {
         Schema::create('referral_code', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('value');
+            $table->integer('amount');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

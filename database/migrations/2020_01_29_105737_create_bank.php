@@ -14,7 +14,14 @@ class CreateBank extends Migration
     public function up()
     {
         Schema::create('bank', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->foreign('transaction_id')->references('_id')->on('transaction_history');
+            $table->integer('amount');
+            $table->date('date_of_transaction');
+            $table->string('bank_name');
+            $table->integer('cheque_no');
+            $table->date('date_of_cheque');
+            $table->bigInteger('account_no');
             $table->timestamps();
         });
     }

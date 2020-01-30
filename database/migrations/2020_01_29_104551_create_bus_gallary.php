@@ -14,7 +14,11 @@ class CreateBusGallary extends Migration
     public function up()
     {
         Schema::create('bus_gallary', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('slug');
+            $table->string('image_path');
+            $table->string('created_by');
+            $table->foreign('bus_id')->references('_id')->on('bus');
             $table->timestamps();
         });
     }
