@@ -15,8 +15,9 @@ class CreateState extends Migration
     {
         Schema::create('state', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('country_id')->unsigned();
             $table->string('state_name');
-            $table->foreign('country_id')->references('_id')->on('country');
+            //$table->foreign('country_id')->references('_id')->on('country');
             $table->boolean('status');
             $table->timestamps();
         });

@@ -15,13 +15,15 @@ class CreateBoardPoint extends Migration
     {
         Schema::create('board_point', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('bus_id')->unsigned();
+            $table->integer('route_id')->unsigned();
             $table->string('board_point');
             $table->time('pickup_time');
             $table->string('address');
             $table->string('landmark');
             $table->boolean('status');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('route_id')->references('_id')->on('route');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('route_id')->references('_id')->on('route');
             $table->timestamps();
         });
     }

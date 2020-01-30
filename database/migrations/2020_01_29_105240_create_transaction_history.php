@@ -15,13 +15,14 @@ class CreateTransactionHistory extends Migration
     {
         Schema::create('transaction_history', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('user_id')->unsigned();
             $table->string('reference_no');
             $table->integer('amount');
             $table->string('type');
             $table->string('description');
             $table->integer('credit_amount');
             $table->integer('debit_amount');
-            $table->foreign('user_id')->references('_id')->on('user');
+            //$table->foreign('user_id')->references('_id')->on('user');
             $table->timestamps();
         });
     }

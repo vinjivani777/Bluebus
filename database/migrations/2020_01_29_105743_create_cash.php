@@ -15,10 +15,12 @@ class CreateCash extends Migration
     {
         Schema::create('cash', function (Blueprint $table) {
             $table->bigIncrements('_id');
-            $table->foreign('transaction_id')->references('_id')->on('transaction_history');
+            $table->integer('transaction_id')->unsigned();
             $table->integer('amount');
             $table->date('date_of_transaction');
             $table->timestamps();
+            //$table->foreign('transaction_id')->references('_id')->on('transaction_history');
+
         });
     }
 

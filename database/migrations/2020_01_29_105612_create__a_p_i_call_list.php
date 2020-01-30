@@ -15,9 +15,10 @@ class CreateAPICallList extends Migration
     {
         Schema::create('api_call_list', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('device_id')->unsigned();
             $table->string('url');
             $table->time('call_time');
-            $table->foreign('device_id')->references('_id')->on('devices');
+            //$table->foreign('device_id')->references('_id')->on('devices');
             $table->timestamps();
         });
     }

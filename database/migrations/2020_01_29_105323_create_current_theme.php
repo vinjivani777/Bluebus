@@ -15,9 +15,11 @@ class CreateCurrentTheme extends Migration
     {
         Schema::create('current_theme', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('theme_id')->unsigned();
+            $table->integer('theme_title')->unsigned();
             $table->string('name');
-            $table->foreign('theme_id')->references('_id')->on('themes');
-            $table->foreign('theme_title')->references('titles')->on('themes');
+            //$table->foreign('theme_id')->references('_id')->on('themes');
+            //$table->foreign('theme_title')->references('titles')->on('themes');
             $table->timestamps();
         });
     }

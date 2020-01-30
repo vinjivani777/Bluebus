@@ -13,8 +13,9 @@ class CreateUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_table', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('role_id')->unsigned();
             $table->string('username');
             $table->string('first_name');
             $table->string('last_name');
@@ -31,7 +32,7 @@ class CreateUserTable extends Migration
             $table->string('forget_token');
             $table->string('referral_code');
             $table->integer('parent_id');
-            $table->foreign('role_id')->references('_id')->on('user_role');
+            //$table->foreign('role_id')->references('_id')->on('user_role');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class CreateBank extends Migration
     {
         Schema::create('bank', function (Blueprint $table) {
             $table->bigIncrements('_id');
-            $table->foreign('transaction_id')->references('_id')->on('transaction_history');
+            $table->integer('transaction_id')->unsigned();
             $table->integer('amount');
             $table->date('date_of_transaction');
             $table->string('bank_name');
@@ -23,6 +23,8 @@ class CreateBank extends Migration
             $table->date('date_of_cheque');
             $table->bigInteger('account_no');
             $table->timestamps();
+            //$table->foreign('transaction_id')->references('_id')->on('transaction_history');
+
         });
     }
 

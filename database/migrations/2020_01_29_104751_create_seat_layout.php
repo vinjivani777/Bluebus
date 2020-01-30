@@ -15,13 +15,13 @@ class CreateSeatLayout extends Migration
     {
         Schema::create('seat_layout', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('bus_type');
+            $table->integer('bus_id')->unsigned();
             $table->integer('total_seat');
             $table->string('layout');
             $table->string('layout_type');
             $table->integer('no_of_seat_at_last');
             $table->string('created_by');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
             $table->timestamps();
         });
     }

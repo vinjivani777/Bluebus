@@ -15,10 +15,11 @@ class CreateUserActivity extends Migration
     {
         Schema::create('user_activity', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('user_id')->unsigned();
             $table->string('action');
             $table->string('ip_address');
             $table->string('browser_name');
-            $table->foreign('user_id')->references('_id')->on('user_table');
+            //$table->foreign('user_id')->references('_id')->on('user_table');
             $table->timestamps();
         });
     }

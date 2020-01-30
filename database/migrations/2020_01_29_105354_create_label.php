@@ -15,9 +15,10 @@ class CreateLabel extends Migration
     {
         Schema::create('label', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('language_id')->unsigned();
             $table->string('name');
             $table->string('value');
-            $table->foreign('language_id')->references('_id')->on('language');
+            //$table->foreign('language_id')->references('_id')->on('language');
             $table->timestamps();
         });
     }

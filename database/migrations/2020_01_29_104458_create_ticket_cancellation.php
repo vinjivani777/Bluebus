@@ -15,12 +15,14 @@ class CreateTicketCancellation extends Migration
     {
         Schema::create('ticket_cancellation', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('bus_id')->unsigned();
+            $table->integer('ticket_id')->unsigned();
             $table->integer('total_fare');
             $table->integer('cancellation_charges');
             $table->integer('refund_amount');
             $table->string('refund_type');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('ticket_id')->references('_id')->on('booking_details');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('ticket_id')->references('_id')->on('booking_details');
             $table->string('note');
             $table->timestamps();
         });

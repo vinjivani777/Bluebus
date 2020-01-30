@@ -15,13 +15,15 @@ class CreateBusCancellation extends Migration
     {
         Schema::create('bus_cancellation', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('bus_id')->unsigned();
+            $table->integer('route_id')->unsigned();
             $table->date('cancellation_date');
             $table->time('cancellation_time');
             $table->string('note');
             $table->integer('compensation_amount');
             $table->date('date_of_cancel');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('route_id')->references('_id')->on('route');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('route_id')->references('_id')->on('route');
             $table->timestamps();
         });
     }

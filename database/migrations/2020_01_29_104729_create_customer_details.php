@@ -25,7 +25,7 @@ class CreateCustomerDetails extends Migration
             $table->boolean('email_verification_status');
             $table->boolean('mobileno_verification_status');
             $table->date('dob');
-            $table->remember_token();
+            $table->string('remember_tocken');
             $table->timestamps();
         });
     }

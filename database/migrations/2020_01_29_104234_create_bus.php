@@ -15,6 +15,9 @@ class CreateBus extends Migration
     {
         Schema::create('bus', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('route_id')->unsigned();
+            $table->integer('bus_type_id')->unsigned();
+            $table->integer('amenities_id')->unsigned();
             $table->string('bus_name');
             $table->string('bus_reg_no');
             $table->string('starting_point');
@@ -24,9 +27,9 @@ class CreateBus extends Migration
             $table->integer('max_seats');
             $table->boolean('status');
             $table->integer('vendor_id');
-            $table->foreign('route_id')->references('_id')->on('route');
-            $table->foreign('bus_type_id')->references('_id')->on('bus_type');
-            $table->foreign('amenities_id')->references('_id')->on('amenities');
+            //$table->foreign('route_id')->references('_id')->on('route');
+            //$table->foreign('bus_type_id')->references('_id')->on('bus_type');
+            //$table->foreign('amenities_id')->references('_id')->on('amenities');
             $table->timestamps();
         });
     }

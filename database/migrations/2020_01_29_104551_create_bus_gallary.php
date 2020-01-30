@@ -15,10 +15,11 @@ class CreateBusGallary extends Migration
     {
         Schema::create('bus_gallary', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('bus_id')->unsigned();
             $table->string('slug');
             $table->string('image_path');
             $table->string('created_by');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
             $table->timestamps();
         });
     }

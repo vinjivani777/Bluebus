@@ -15,10 +15,11 @@ class CreatePromocodeTransaction extends Migration
     {
         Schema::create('promocode_transaction', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('promocode_id')->unsigned();
             $table->integer('amount_used');
             $table->integer('limit');//max amount to be used in redeeming in promocode
             $table->integer('remaining_balance');
-            $table->foreign('promocode_id')->references('_id')->on('promocode');
+            //$table->foreign('promocode_id')->references('_id')->on('promocode');
             $table->timestamps();
         });
     }

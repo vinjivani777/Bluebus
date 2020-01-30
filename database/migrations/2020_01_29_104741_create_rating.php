@@ -15,11 +15,13 @@ class CreateRating extends Migration
     {
         Schema::create('rating', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('bus_id')->unsigned();
             $table->integer('rate');
             $table->string('description');
             $table->string('type');
-            $table->foreign('user_id')->references('_id')->on('user');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            //$table->foreign('user_id')->references('_id')->on('user');
+            //$table->foreign('bus_id')->references('_id')->on('bus');
             $table->timestamps();
         });
     }

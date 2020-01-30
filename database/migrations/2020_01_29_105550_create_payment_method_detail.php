@@ -15,9 +15,10 @@ class CreatePaymentMethodDetail extends Migration
     {
         Schema::create('payment_method_detail', function (Blueprint $table) {
             $table->bigIncrements('_id');
+            $table->integer('payment_method_id')->unsigned();
             $table->string('key');
             $table->string('value');
-            $table->foreign('payment_method_id')->references('_id')->on('payment_method');
+            //$table->foreign('payment_method_id')->references('_id')->on('payment_method');
             $table->timestamps();
         });
     }

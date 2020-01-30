@@ -15,10 +15,12 @@ class CreateCity extends Migration
     {
         Schema::create('city', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('state_id')->unsigned();
+            $table->integer('city_id')->unsigned();
             $table->string('city_name');
             $table->boolean('status');
-            $table->foreign('state_id')->references('_id')->on('state');
-            $table->foreign('city_id')->references('_id')->on('country');
+            //$table->foreign('state_id')->references('_id')->on('state');
+            //$table->foreign('city_id')->references('_id')->on('country');
             $table->timestamps();
         });
     }
