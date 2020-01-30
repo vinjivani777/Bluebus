@@ -15,6 +15,12 @@ class CreateCurrencies extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('code');
+            $table->string('symbol_path');
+            $table->string('currency_origin');
+            $table->integer('decimal_point');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

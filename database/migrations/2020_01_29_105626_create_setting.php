@@ -14,7 +14,9 @@ class CreateSetting extends Migration
     public function up()
     {
         Schema::create('setting', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
         });
     }

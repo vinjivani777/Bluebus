@@ -15,6 +15,11 @@ class CreateLanguage extends Migration
     {
         Schema::create('language', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('logo');
+            $table->string('code');
+            $table->boolean('status');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

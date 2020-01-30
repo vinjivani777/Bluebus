@@ -15,6 +15,8 @@ class CreateNewsletter extends Migration
     {
         Schema::create('newsletter', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
         });
     }

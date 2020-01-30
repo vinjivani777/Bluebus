@@ -14,7 +14,13 @@ class CreateCustomerWallet extends Migration
     public function up()
     {
         Schema::create('customer_wallet', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('_id');
+            $table->integer('amount');
+            $table->integer('wallet_balance');
+            $table->string('description');
+            $table->foreign('user_id')->references('_id')->on('user');
+            $table->foreign('transaction_id')->references('_id')->on('transaction');
+            $table->string('status');
             $table->timestamps();
         });
     }
