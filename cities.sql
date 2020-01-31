@@ -21885,7 +21885,7 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 (22266, 'Longarone', 1813),
 (22267, 'Pedavena', 1813),
 (22268, 'San Bartolomeo', 1814),
-(22269, '', 1815),
+(22269, 'San Bartolomeos', 1815),
 (22270, 'Bagnatica', 1815),
 (22271, 'Bergamo', 1815),
 (22272, 'Bolgare', 1815),

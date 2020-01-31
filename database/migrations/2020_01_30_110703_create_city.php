@@ -14,13 +14,11 @@ class CreateCity extends Migration
     public function up()
     {
         Schema::create('city', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBiginteger('state_id');
-            $table->unsignedBiginteger('city_id');
+            $table->bigIncrements('_id');
             $table->string('city_name');
-            $table->boolean('status');
+            $table->unsignedBiginteger('state_id');
+            $table->boolean('status')->nullable()->default(1);
             $table->foreign('state_id')->references('_id')->on('state');
-            $table->foreign('city_id')->references('_id')->on('country');
             $table->timestamps();
         });
     }
