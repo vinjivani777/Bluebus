@@ -333,3 +333,7 @@ Route::get('/', function () {
     // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
