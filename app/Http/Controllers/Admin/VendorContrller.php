@@ -41,16 +41,15 @@ class VendorContrller extends Controller
     {
         // return $request;
         $validator = Validator::make($request->all(), [
-            'username' => 'required|max:20',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email'   => 'required|email',
-            'phone_number'  =>  'required|min:10|max:10',
-            'company_name'  =>  'required',
-            'address'  =>  'required',
-            'city'  =>  'required',
-            'state'  =>  'required',
-            'password'  =>  'required',
+            'username'      =>  'required|max:20|unique:vendors,username',
+            'first_name'    =>  'required',
+            'last_name'     =>  'required',
+            'email'         =>  'required|email',
+            'phone_number'  =>  'required',
+            'gender'        =>  'required',
+            'status'        =>  'required',
+            'avatar'        =>  'nullable|image',
+            'password'      =>  'required',
         ]);
 
         if($validator->fails())
@@ -61,22 +60,29 @@ class VendorContrller extends Controller
 
         $data = new Vendor;
         $data->username = $request->username;
-        $data->password = $request->password;
         $data->first_name = $request->first_name;
         $data->last_name= $request->last_name;
+        $data->gender = $request->gender;
         $data->email = $request->email;
-        $data->phone_number = $request->phone_number;
-        $data->company_name = $request->company_name;
-        $data->profile_picture = "vendor\images\vendor.png";
-        $data->logo = "vendor\images\products\product-1.jpg";
-        $data->address = $request->address;
-        $data->city = $request->city;
-        $data->state = $request->state;
+        $data->mobile_no = $request->phone_number;
+        $data->password = $request->password;
+
+        $vendor_img="vendor\images\vendor.png";
+
+        if ($request->hasFile('avatar')) {
+            $type = $request->file('avatar')->getMimeType();
+            if(strpos($type, 'image/') !== false){
+                $banner = substr(str_slug($request->input('username')),0,10).'_'.str_random(5).'.'.$request->avatar->getClientOriginalExtension();
+
+                $request->avatar->move(public_path('vendor/images/profile/'),$banner);
+                $vendor_img = 'vendor/images/profile/'.$banner;
+            }
+        }
+        $data->avatar = $vendor_img;
         $data->status = "0";
-        $data->remember_token=str_random(60);
         // return $data;
         $data->save();
-        return redirect()->route('vendoradmin-detail');
+        return redirect()->route('vendor-detail');
     }
 
 
@@ -115,7 +121,7 @@ class VendorContrller extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|max:20',
+            'Vendorname' => 'required|max:20',
             'first_name' => 'required',
             'last_name' => 'required',
             'email'   => 'required|email',
@@ -133,7 +139,7 @@ class VendorContrller extends Controller
         }
 
         $data = Vendor::findorfail($id);
-        $data->username = $request->username;
+        $data->Vendorname = $request->Vendorname;
         $data->first_name = $request->first_name;
         $data->last_name= $request->last_name;
         $data->email = $request->email;

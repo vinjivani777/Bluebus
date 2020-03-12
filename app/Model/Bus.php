@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bus extends Model
 {
-    protected $table = "bus";
+    protected $table = "buses";
     public $timestamps = false;
 
     public function Bus_Type()

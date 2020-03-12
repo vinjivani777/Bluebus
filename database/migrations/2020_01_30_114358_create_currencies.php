@@ -14,13 +14,13 @@ class CreateCurrencies extends Migration
     public function up()
     {
         Schema::create('currencies', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('code');
-            $table->string('symbol_path');
-            $table->string('currency_origin');
-            $table->integer('decimal_point');
-            $table->boolean('status');
+            $table->string('symbol');
+            $table->string('currency_origin')->nullable();
+            $table->integer('decimal_point')->nullable()->default(.00);
+            $table->boolean('status')->nullable()->default(1);
             $table->timestamps();
         });
     }

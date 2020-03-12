@@ -13,8 +13,8 @@ class CreateBank extends Migration
      */
     public function up()
     {
-        Schema::create('bank', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('banks', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('transaction_id');
             $table->integer('amount');
             $table->date('date_of_transaction');
@@ -23,7 +23,7 @@ class CreateBank extends Migration
             $table->date('date_of_cheque');
             $table->bigInteger('account_no');
             $table->timestamps();
-            $table->foreign('transaction_id')->references('_id')->on('transaction_history');
+            $table->foreign('transaction_id')->references('id')->on('transaction_historys')->onDelete('cascade');
 
         });
     }
@@ -35,6 +35,6 @@ class CreateBank extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank');
+        Schema::dropIfExists('banks');
     }
 }

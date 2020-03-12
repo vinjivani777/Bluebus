@@ -41,28 +41,28 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{{ route('vendor-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Vendor</a>
-                            <table id="basic-datatable" class="table dt-responsive table-striped">
+                            <table id="basic-datatable" class="table dt-responsive text-center table-centered table-striped">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>#</th>
                                         <th>Username</th>
-                                        <th>Company Name</th>
+                                        <th>Avatar</th>
                                         <th>Email</th>
-                                        <th>Phone <Noscript></Noscript></th>
-                                        <th>City</th>
+                                        <th>Phone </th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
+                                    <?php $r=0; ?>
                                     @foreach ($vendor_list as $vendor)
+                                    <?php $r++; ?>
                                     <tr>
-                                        <td>{{$vendor->id}}</td>
-                                        <td>{{$vendor->username}}</td>
-                                        <td>{{$vendor->company_name}}</td>
+                                        <td>{{$r}}</td>
+                                        <td>{{$vendor->first_name .' '. $vendor->last_name}}</td>
+                                        <td> <img src="{{ asset('/'. $vendor->avatar)}}" class="rounded-circle avatar-md img-thumbnail" alt="profile-image"> </td>
                                         <td>{{$vendor->email}}</td>
-                                        <td>{{$vendor->phone_number}}</td>
-                                        <td>{{$vendor->city}}</td>
+                                        <td>{{$vendor->mobile_no}}</td>
                                         <td>
                                             <button class="btn status-change {{$vendor->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$vendor->status==1?"Active":"Disable"}}" id="{{$vendor->id}}">{{$vendor->status==1?"Active":"Disable"}}</button>
                                         </td>
@@ -207,7 +207,7 @@
         var id=$(this).prop('id');
         swal({
                 title: "Are you sure?",
-                text: "Update the status on bus board point.",
+                text: "Update the status on Vendor.",
                 type: "warning",
                 showCancelButton: !0,
                 confirmButtonClass: "btn btn-confirm mt-2",

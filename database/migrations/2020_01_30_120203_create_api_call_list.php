@@ -13,12 +13,12 @@ class CreateApiCallList extends Migration
      */
     public function up()
     {
-        Schema::create('api_call_list', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('api_call_lists', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('device_id');
             $table->string('url');
             $table->time('call_time');
-            $table->foreign('device_id')->references('_id')->on('devices');
+            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateApiCallList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('api_call_list');
+        Schema::dropIfExists('api_call_lists');
     }
 }

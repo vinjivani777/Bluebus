@@ -17,14 +17,14 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'username'  => 'required|exists:admin,username',
+            'username'  => 'required|exists:admins,username',
             'password' => 'required',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
-        //return  bcrypt($request->password);
+        // return  bcrypt($request->password);
 
         if(Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password]))
         {

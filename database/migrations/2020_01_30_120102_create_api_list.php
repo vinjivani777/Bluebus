@@ -13,8 +13,8 @@ class CreateApiList extends Migration
      */
     public function up()
     {
-        Schema::create('api_list', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('api_lists', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('url');
             $table->string('type');
@@ -30,6 +30,6 @@ class CreateApiList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('api_list');
+        Schema::dropIfExists('api_lists');
     }
 }

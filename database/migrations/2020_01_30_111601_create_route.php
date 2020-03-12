@@ -13,15 +13,15 @@ class CreateRoute extends Migration
      */
     public function up()
     {
-        Schema::create('route', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('routes', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('source_point');
-            $table->time('source_time');
+            $table->time('source_time')->nullable();
             $table->string('destination_point');
-            $table->time('destination_time');
-            $table->integer('fare_price');
+            $table->time('destination_time')->nullable();
+            $table->integer('fare_price')->nullable();
             $table->boolean('status');
-            $table->time('journey_duration');
+            $table->time('journey_duration')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateRoute extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('route');
+        Schema::dropIfExists('routes');
     }
 }

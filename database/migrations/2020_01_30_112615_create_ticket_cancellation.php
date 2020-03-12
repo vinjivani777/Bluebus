@@ -13,16 +13,16 @@ class CreateTicketCancellation extends Migration
      */
     public function up()
     {
-        Schema::create('ticket_cancellation', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('ticket_cancellations', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('ticket_id');
             $table->integer('total_fare');
             $table->integer('cancellation_charges');
             $table->integer('refund_amount');
             $table->string('refund_type');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('ticket_id')->references('_id')->on('booking_details');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('ticket_id')->references('id')->on('booking_details')->onDelete('cascade');
             $table->string('note');
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateTicketCancellation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ticket_cancellation');
+        Schema::dropIfExists('ticket_cancellations');
     }
 }

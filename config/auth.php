@@ -78,18 +78,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
+
 
         'admins' => [
             'driver' => 'database',
-            'table' => 'admin',
+            'table' => 'admins',
         ],
         'vendors' => [
             'driver' => 'database',
-            'table' => 'vendor',
+            'table' => 'vendors',
         ],
         'agents' => [
             'driver' => 'database',

@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
-    protected $table = "route";
+    protected $table = "routes";
     public $timestamps = false;
 
-    public function Bus_Name()
+    public function source()
     {
-        return $this->belongsTo('App\Model\Bus', 'bus_id');
+        return $this->belongsTo('App\Model\City', 'source_point');
+    }
+    public function destination()
+    {
+        return $this->belongsTo('App\Model\city', 'destination_point');
     }
 
 }

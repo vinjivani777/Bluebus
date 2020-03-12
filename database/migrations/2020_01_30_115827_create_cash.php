@@ -13,13 +13,13 @@ class CreateCash extends Migration
      */
     public function up()
     {
-        Schema::create('cash', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('cashs', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('transaction_id');
             $table->integer('amount');
             $table->date('date_of_transaction');
             $table->timestamps();
-            $table->foreign('transaction_id')->references('_id')->on('transaction_history');
+            $table->foreign('transaction_id')->references('id')->on('transaction_historys')->onDelete('cascade');
 
         });
     }
@@ -31,6 +31,6 @@ class CreateCash extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cash');
+        Schema::dropIfExists('cashs');
     }
 }

@@ -14,7 +14,7 @@ class CreateCustomerDetails extends Migration
     public function up()
     {
         Schema::create('customer_details', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->integer('age');
             $table->char('gender');

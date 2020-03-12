@@ -14,12 +14,12 @@ class CreateLanguages extends Migration
     public function up()
     {
         Schema::create('languages', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->string('logo');
             $table->string('code');
-            $table->boolean('status');
-            $table->string('created_by');
+            $table->string('logo')->nullable();
+            $table->boolean('status')->nullable()->default(1);
+            $table->string('created_by')->nullable()->default(1);
             $table->timestamps();
         });
     }

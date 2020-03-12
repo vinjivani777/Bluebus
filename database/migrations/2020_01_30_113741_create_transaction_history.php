@@ -13,8 +13,8 @@ class CreateTransactionHistory extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_history', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('transaction_historys', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('user_id');
             $table->string('reference_no');
             $table->integer('amount');
@@ -22,7 +22,7 @@ class CreateTransactionHistory extends Migration
             $table->string('description');
             $table->integer('credit_amount');
             $table->integer('debit_amount');
-            $table->foreign('user_id')->references('_id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateTransactionHistory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_history');
+        Schema::dropIfExists('transaction_historys');
     }
 }

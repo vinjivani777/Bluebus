@@ -63,7 +63,7 @@
                     <form action="{{route('route-detail.store')}}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            {{-- <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
                                     <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
@@ -78,20 +78,30 @@
                                     <label for="price">Price</label>
                                     <input type="number" value="100" class="form-control" name="fare" id="fare" step="1" min="1" placeholder="Price" required>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="from_place">From Place</label>
-                                    <input type="text" class="form-control" name="board_point" id="board_point" placeholder="From Place" required>
+                                    <select name="from_place" class="form-control" id="from_place" data-toggle="select2" required>
+                                        <option value="">Select City</option>
+                                        @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="to_place">To Place</label>
-                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="To Place" required>
+                                    <select name="to_place" class="form-control" id="to_place" data-toggle="select2" required>
+                                        <option value="">Select City</option>
+                                        @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            {{-- <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="start_time">Board Time</label>
                                     <input type="text" class="form-control" name="board_time" id="board_time" placeholder="Start Time" required>
@@ -103,9 +113,9 @@
                                     <input type="text" class="form-control" name="drop_time" id="drop_time" placeholder="Arrival Time" required>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
-                            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 ml-2">
                                 <input type="submit" class="btn btn-sm btn-primary" value="Submit">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                             </div>

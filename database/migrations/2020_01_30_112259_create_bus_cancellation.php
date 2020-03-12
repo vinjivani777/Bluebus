@@ -13,8 +13,8 @@ class CreateBusCancellation extends Migration
      */
     public function up()
     {
-        Schema::create('bus_cancellation', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('bus_cancellations', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('route_id');
             $table->date('cancellation_date');
@@ -22,8 +22,8 @@ class CreateBusCancellation extends Migration
             $table->string('note');
             $table->integer('compensation_amount');
             $table->date('date_of_cancel');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('route_id')->references('_id')->on('route');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateBusCancellation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_cancellation');
+        Schema::dropIfExists('bus_cancellations');
     }
 }

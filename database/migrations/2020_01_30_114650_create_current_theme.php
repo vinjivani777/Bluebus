@@ -13,12 +13,12 @@ class CreateCurrentTheme extends Migration
      */
     public function up()
     {
-        Schema::create('current_theme', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('current_themes', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('theme_id');
             $table->string('theme_title');
             $table->string('name');
-            $table->foreign('theme_id')->references('_id')->on('themes');
+            $table->foreign('theme_id')->references('id')->on('themes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCurrentTheme extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('current_theme');
+        Schema::dropIfExists('current_themes');
     }
 }

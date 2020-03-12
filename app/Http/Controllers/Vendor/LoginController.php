@@ -33,18 +33,18 @@ class LoginController extends Controller
         // return  bcrypt($request->password);
 
         $vender_status=Vendor::select('status')->where('username',$request->username)->first();
-        if($vender_status->status = true)
-        {
-            // dd(Auth::guard('vendor'));
+        // if($vender_status->status == true)
+        // {
             if(Auth::guard('vendor')->attempt(['username' => $request->username, 'password' => $request->password]))
             {
                 return redirect()->intended(route('vendor.index'));
             }else{
+
                 return  redirect()->back()->with(['status','Username/Password is invalid']);
             }
-        }else {
-            return  redirect()->back()->with(['status','Vendor is Not Active Yet']);
-        }
+        // }else {
+            // return  redirect()->back()->with(['status','Vendor is Not Active Yet']);
+        // }
 
     }
 

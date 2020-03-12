@@ -13,8 +13,8 @@ class CreateUserRole extends Migration
      */
     public function up()
     {
-        Schema::create('user_role', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('user_roles', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateUserRole extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('user_roles');
     }
 }

@@ -13,8 +13,8 @@ class CreatePaymentMethod extends Migration
      */
     public function up()
     {
-        Schema::create('payment_method', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('environment');
             $table->boolean('status');
@@ -29,6 +29,6 @@ class CreatePaymentMethod extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_method');
+        Schema::dropIfExists('payment_methods');
     }
 }

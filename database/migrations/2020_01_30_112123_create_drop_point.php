@@ -13,8 +13,8 @@ class CreateDropPoint extends Migration
      */
     public function up()
     {
-        Schema::create('drop_point', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('drop_points', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('route_id');
             $table->string('drop_point');
@@ -22,8 +22,8 @@ class CreateDropPoint extends Migration
             $table->string('address');
             $table->string('landmark');
             $table->boolean('status');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('route_id')->references('_id')->on('route');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ class CreateDropPoint extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drop_point');
+        Schema::dropIfExists('drop_points');
     }
 }

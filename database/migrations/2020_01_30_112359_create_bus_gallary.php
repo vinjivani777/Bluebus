@@ -13,13 +13,13 @@ class CreateBusGallary extends Migration
      */
     public function up()
     {
-        Schema::create('bus_gallary', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('bus_gallarys', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->string('slug');
             $table->string('image_path');
             $table->string('created_by');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateBusGallary extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_gallary');
+        Schema::dropIfExists('bus_gallarys');
     }
 }

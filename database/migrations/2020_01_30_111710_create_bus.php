@@ -13,8 +13,8 @@ class CreateBus extends Migration
      */
     public function up()
     {
-        Schema::create('bus', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('buses', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('route_id');
             $table->unsignedBiginteger('bus_type_id');
             $table->unsignedBiginteger('amenities_id');
@@ -27,9 +27,9 @@ class CreateBus extends Migration
             $table->integer('max_seats');
             $table->boolean('status');
             $table->integer('vendor_id');
-            $table->foreign('route_id')->references('_id')->on('route');
-            $table->foreign('bus_type_id')->references('_id')->on('bus_type');
-            $table->foreign('amenities_id')->references('_id')->on('amenities');
+            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
+            $table->foreign('bus_type_id')->references('id')->on('bus_types')->onDelete('cascade');
+            $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -41,6 +41,6 @@ class CreateBus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus');
+        Schema::dropIfExists('buses');
     }
 }

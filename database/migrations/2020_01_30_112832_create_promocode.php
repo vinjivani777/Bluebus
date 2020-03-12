@@ -13,8 +13,8 @@ class CreatePromocode extends Migration
      */
     public function up()
     {
-        Schema::create('promocode', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('promocodes', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('promocode');
             $table->date('expiry_date');
             $table->string('description');
@@ -39,6 +39,6 @@ class CreatePromocode extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promocode');
+        Schema::dropIfExists('promocodes');
     }
 }

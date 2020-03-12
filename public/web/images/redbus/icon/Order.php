@@ -545,7 +545,7 @@ class Order extends Model
 
 
 
-                          // $params['updatedBy']=Auth::guard('admin')->user()->name;
+                          // $params['updatedBy']=Auth::guard('web')->user()->name;
                            $data= json_encode($params);
                         //   dd($data);
 
@@ -615,7 +615,7 @@ class Order extends Model
             } else {
                 DB::table('customers_basket')->where('customers_id', auth()->guard('customer')->user()->id)->update(['is_order' => '1']);
             }
-            
+
             return $payment_status;
         } else if ($payment_status == "failed") {
             return $payment_status;

@@ -13,12 +13,12 @@ class CreatePaymentMethodDetail extends Migration
      */
     public function up()
     {
-        Schema::create('payment_method_detail', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('payment_method_details', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('payment_method_id');
             $table->string('key');
             $table->string('value');
-            $table->foreign('payment_method_id')->references('_id')->on('payment_method');
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePaymentMethodDetail extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_method_detail');
+        Schema::dropIfExists('payment_method_details');
     }
 }

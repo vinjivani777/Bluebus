@@ -13,8 +13,8 @@ class CreateCountry extends Migration
      */
     public function up()
     {
-        Schema::create('country', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('countrys', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('country_code',2);
             $table->string('country_name',100);
             $table->integer('phone_code');
@@ -30,6 +30,6 @@ class CreateCountry extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('country');
+        Schema::dropIfExists('countrys');
     }
 }

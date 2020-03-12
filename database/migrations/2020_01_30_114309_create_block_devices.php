@@ -14,7 +14,7 @@ class CreateBlockDevices extends Migration
     public function up()
     {
         Schema::create('block_devices', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+            $table->bigIncrements('id');
             $table->ipAddress('ip_address');
             $table->string('reason');
             $table->date('blocked_on');

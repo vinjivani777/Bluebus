@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUser extends Migration
+class Customers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateUser extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBiginteger('role_id');
             $table->string('username');
             $table->string('first_name');
             $table->string('last_name');
@@ -23,16 +22,17 @@ class CreateUser extends Migration
             $table->string('email');
             $table->bigInteger('mobile_no');
             $table->string('password');
-            $table->string('avatar');
-            $table->boolean('status');
+            $table->longtext('avatar');
+            $table->boolean('status')->default(1);
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable()->default('india');
             $table->rememberToken();
-            $table->date('dob');
-            $table->string('token');
-            $table->integer('otp');
-            $table->string('forget_token');
-            $table->string('referral_code');
-            $table->integer('parent_id');
-            $table->foreign('role_id')->references('id')->on('user_roles')->onDelete('cascade');
+            $table->date('dob')->nullable();
+            $table->string('token')->nullable();
+            $table->integer('otp')->nullable();
+            $table->string('forget_token')->nullable();
+            $table->string('referral_code')->nullable();
             $table->timestamps();
         });
     }
@@ -44,6 +44,6 @@ class CreateUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('customers');
     }
 }

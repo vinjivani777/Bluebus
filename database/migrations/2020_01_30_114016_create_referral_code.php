@@ -13,8 +13,8 @@ class CreateReferralCode extends Migration
      */
     public function up()
     {
-        Schema::create('referral_code', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('referral_codes', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('value');
             $table->integer('amount');
             $table->boolean('status');
@@ -29,6 +29,6 @@ class CreateReferralCode extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referral_code');
+        Schema::dropIfExists('referral_codes');
     }
 }

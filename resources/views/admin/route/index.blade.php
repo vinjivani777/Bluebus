@@ -42,31 +42,31 @@
                         <div class="card-body">
                             <a href="{{ route('route-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Route</a>
 
-                            <table id="basic-datatable" class="table dt-responsive table-striped">
+                            <table id="basic-datatable" class="table dt-responsive table-striped text-center table-center">
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="hidden">#</th>
-                                        <th>Bus Name</th>
+                                        {{-- <th>Bus Name</th> --}}
                                         <th>Board Point</th>
-                                        <th>Bus Time</th>
+                                        {{-- <th>Bus Time</th> --}}
                                         <th>Drop Point</th>
-                                        <th>Drop Time</th>
-                                        <th>Fare</th>
+                                        {{-- <th>Drop Time</th> --}}
+                                        {{-- <th>Fare</th> --}}
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;?>
-                                    @foreach ($route_list as $route)
+                                    @foreach ($record as $route)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$route->Bus_Name->bus_name}}</td>
-                                        <td>{{$route->board_point}}</td>
-                                        <td>{{date("g:i A",strtotime($route->board_time))}}</td>
-                                        <td>{{$route->drop_point}}</td>
-                                        <td>{{date("g:i A",strtotime($route->drop_time))}}</td>
-                                        <td>{{$route->fare}}</td>
+                                        {{-- <td>{{$route->Bus_Name->bus_name}}</td> --}}
+                                        <td>{{$route->source->city_name}}</td>
+                                        {{-- <td>{{date("g:i A",strtotime($route->board_time))}}</td> --}}
+                                        <td>{{$route->destination->city_name}}</td>
+                                        {{-- <td>{{date("g:i A",strtotime($route->drop_time))}}</td> --}}
+                                        {{-- <td>{{$route->fare}}</td> --}}
                                         <td>
                                             <button class="btn status-change {{$route->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$route->status==1?"Active":"Disable"}}" id="{{$route->id}}">{{$route->status==1?"Active":"Disable"}}</button>
                                         </td>

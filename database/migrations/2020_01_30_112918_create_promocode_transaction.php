@@ -13,13 +13,13 @@ class CreatePromocodeTransaction extends Migration
      */
     public function up()
     {
-        Schema::create('promocode_transaction', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('promocode_transactions', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('promocode_id');
             $table->integer('amount_used');
             $table->integer('limit');//max amount to be used in redeeming in promocode
             $table->integer('remaining_balance');
-            $table->foreign('promocode_id')->references('_id')->on('promocode');
+            $table->foreign('promocode_id')->references('id')->on('promocodes')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreatePromocodeTransaction extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promocode_transaction');
+        Schema::dropIfExists('promocode_transactions');
     }
 }

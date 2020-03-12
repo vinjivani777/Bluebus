@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Model\Bus;
 use App\Model\Route;
+use App\Model\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class RouteController extends Controller
     public function index()
     {
         $data = array();
-        $data['route_list'] = Route::with('Bus_Name')->get();
+        $data['record']= Route::with('destination','source')->get();
         return view('admin.route.index',$data);
     }
 
@@ -29,7 +30,7 @@ class RouteController extends Controller
     public function create()
     {
         $data = array();
-        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
+        $data['cities'] = City::whereStatus(true)->select('id','city_name')->get();
         return view('admin.route.create',$data);
     }
 
@@ -42,26 +43,28 @@ class RouteController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'bus_name' => 'required|numeric|min:0|not_in:0',
-            'fare' => 'required|numeric|min:0|not_in:0',
-            'board_point' => 'required|min:3',
-            'drop_point' => 'required|min:3',
-            'board_time' => 'required',
-            'drop_time' => 'required'
+            // 'bus_name' => 'required|numeric|min:0|not_in:0',
+            // 'fare' => 'required|numeric|min:0|not_in:0',
+            'from_place' => 'required',
+            'to_place' => 'required',
+            // 'board_time' => 'required',
+            // 'drop_time' => 'required'
         ]);
 
         if($validator->fails())
         {
-            dd($validator);
+            return redirect()->back()->withErrors($validator);
         }else{
             $newbus= new Route;
-            $newbus->bus_id= $request->bus_name;
-            $newbus->fare= $request->fare;
-            $newbus->board_point= $request->board_point;
-            $newbus->drop_point= $request->drop_point;
-            $newbus->board_time= $request->board_time;
-            $newbus->drop_time= $request->drop_time;
-            $newbus->created_by= "admin";
+            // $newbus->bus_id= $request->bus_name;
+            // $newbus->fare= $request->fare;
+            $newbus->source_point= $request->from_place;
+            $newbus->destination_point= $request->to_place;
+            // $newbus->board_time= $request->board_time;
+            // $newbus->drop_time= $request->drop_time;
+            $newbus->status=1;
+            // $newbus->created_by= "admin";
+            // return $newbus;
             $newbus->save();
 
             return redirect()->route('route-detail');
@@ -88,7 +91,7 @@ class RouteController extends Controller
     public function edit($id)
     {
         $route = array();
-        $route['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
+        $route['cities'] = City::whereStatus(true)->select('id','city_name')->get();
         $route['route_detail'] = Route::find($id);
         return view('admin.route.edit',$route);
     }
@@ -102,31 +105,31 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
-            'bus_name' => 'required|numeric|min:0|not_in:0',
-            'fare' => 'required|numeric|min:0|not_in:0',
-            'board_point' => 'required|min:3',
-            'drop_point' => 'required|min:3',
-            'board_time' => 'required',
-            'drop_time' => 'required'
+            $validator = Validator::make($request->all(),[
+                'from_place' => 'required',
+                'to_place' => 'required',
         ]);
 
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $newbus= Route::findorfail($id);
-            $newbus->bus_id= $request->bus_name;
-            $newbus->fare= $request->fare;
-            $newbus->board_point= $request->board_point;
-            $newbus->drop_point= $request->drop_point;
-            $newbus->board_time= $request->board_time;
-            $newbus->drop_time= $request->drop_time;
-            $newbus->created_by= "admin";
+            return redirect()->back()->withErrors($validator);
+
+        }
+
+           $newbus= Route::findorfail($id);
+            // $newbus->bus_id= $request->bus_name;
+            // $newbus->fare= $request->fare;
+            $newbus->source_point= $request->from_place;
+            $newbus->destination_point= $request->to_place;
+            // $newbus->board_time= $request->board_time;
+            // $newbus->drop_time= $request->drop_time;
+            $newbus->status=1;
+            // $newbus->created_by= "admin";
+            // return $newbus;
             $newbus->save();
 
             return redirect()->route('route-detail');
-        }
+
     }
 
     /**

@@ -13,15 +13,15 @@ class CreateRating extends Migration
      */
     public function up()
     {
-        Schema::create('rating', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('user_id');
             $table->unsignedBiginteger('bus_id');
             $table->integer('rate');
             $table->string('description');
             $table->string('type');
-            $table->foreign('user_id')->references('_id')->on('user');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateRating extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rating');
+        Schema::dropIfExists('ratings');
     }
 }

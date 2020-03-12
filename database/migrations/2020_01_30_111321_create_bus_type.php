@@ -13,11 +13,11 @@ class CreateBusType extends Migration
      */
     public function up()
     {
-        Schema::create('bus_type', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('bus_types', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('type_name');
-            $table->string('description');
-            $table->boolean('status');
+            $table->string('description')->nullable();
+            $table->boolean('status')->nullable()->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateBusType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bus_type');
+        Schema::dropIfExists('bus_types');
     }
 }

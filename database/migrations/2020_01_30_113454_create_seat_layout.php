@@ -13,15 +13,15 @@ class CreateSeatLayout extends Migration
      */
     public function up()
     {
-        Schema::create('seat_layout', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('seat_layouts', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->integer('total_seat');
             $table->string('layout');
             $table->string('layout_type');
             $table->integer('no_of_seat_at_last');
             $table->string('created_by');
-            $table->foreign('bus_id')->references('_id')->on('bus');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateSeatLayout extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seat_layout');
+        Schema::dropIfExists('seat_layouts');
     }
 }

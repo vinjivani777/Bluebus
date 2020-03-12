@@ -13,12 +13,12 @@ class CreateCity extends Migration
      */
     public function up()
     {
-        Schema::create('city', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('citys', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('city_name');
             $table->unsignedBiginteger('state_id');
             $table->boolean('status')->nullable()->default(1);
-            $table->foreign('state_id')->references('_id')->on('state');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCity extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('city');
+        Schema::dropIfExists('citys');
     }
 }

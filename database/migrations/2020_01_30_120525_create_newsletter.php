@@ -13,8 +13,8 @@ class CreateNewsletter extends Migration
      */
     public function up()
     {
-        Schema::create('newsletter', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('newsletters', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
             $table->timestamps();
@@ -28,6 +28,6 @@ class CreateNewsletter extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newsletter');
+        Schema::dropIfExists('newsletters');
     }
 }

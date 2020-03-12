@@ -13,13 +13,13 @@ class CreateUserActivity extends Migration
      */
     public function up()
     {
-        Schema::create('user_activity', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+        Schema::create('user_activitys', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('user_id');
             $table->string('action');
             $table->string('ip_address');
             $table->string('browser_name');
-            $table->foreign('user_id')->references('_id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateUserActivity extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_activity');
+        Schema::dropIfExists('user_activitys');
     }
 }

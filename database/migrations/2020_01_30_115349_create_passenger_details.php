@@ -14,7 +14,7 @@ class CreatePassengerDetails extends Migration
     public function up()
     {
         Schema::create('passenger_details', function (Blueprint $table) {
-            $table->bigIncrements('_id');
+            $table->bigIncrements('id');
             $table->unsignedBiginteger('user_id');
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('ticket_id');
@@ -22,9 +22,9 @@ class CreatePassengerDetails extends Migration
             $table->boolean('insurance_status');
             $table->boolean('status');
             $table->timestamps();
-            $table->foreign('user_id')->references('_id')->on('user');
-            $table->foreign('bus_id')->references('_id')->on('bus');
-            $table->foreign('ticket_id')->references('_id')->on('booking_details');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('ticket_id')->references('id')->on('booking_details')->onDelete('cascade');
 
         });
     }
