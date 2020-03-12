@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="editid" value="{{$amenities->id}}" hidden id="editid" readonly placeholder="AmenitieName" required>
                                         <label for="amenitiename">Amenitie Name</label>
-                                        <input type="text" class="form-control" name="editamenitiename" value="{{$amenities->amenities}}" id="editamenitiename" placeholder="AmenitieName" required>
+                                        <input type="text" class="form-control" name="editamenitiename" value="{{$amenities->description}}" id="editamenitiename" placeholder="AmenitieName" required>
                                         <span class="text-danger">@error('amenitiename') {{  $message }} @enderror</span>
                                     </div>
                                 </div>
@@ -77,8 +77,8 @@
                                     <div class="form-group ">
                                         <div class="col-md-8">
                                             <label for="amenitiename">Amenitie Name</label>
-                                            <input type="hidden" name="oldimage" value="{{asset($amenities->image)}}" >
-                                            <input type="file" class="dropify" name="newimage" data-default-file="Old_image"  />
+                                            <input type="hidden" name="oldimage" value="{{asset($amenities->image_path)}}" >
+                                            <input type="file" class="dropify" name="newimage" data-default-file="{{asset("/".$amenities->image_path)}}"  />
                                             <span class="text-danger">@error('newimage') {{ $message }} @enderror</span>
                                         </div>
                                     </div>

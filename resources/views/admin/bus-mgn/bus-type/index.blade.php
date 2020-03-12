@@ -101,7 +101,7 @@
                                 @foreach ($data as $item)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$item['bus_type']}}</td>
+                                    <td>{{$item->type_name}}</td>
                                     <td> <button class="btn status-change {{$item->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->status==1?"Active":"Disable"}}" id="{{$item->id}}">{{$item->status==1?"Active":"Disable"}}</button></td>
                                     <td>
                                         <a href="{{ route('bus-type.edit',['id'=>$item->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>

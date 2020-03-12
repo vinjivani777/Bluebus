@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cancellation extends Model
 {
-    protected $table = "cancellation";
+    protected $table = "cancellations";
     protected $fillable=[ 'id', 'bus_id', 'advertisement_status', 'cancel_time', 'percentage', 'flat', 'type'];
     public $timestamps = false;
 

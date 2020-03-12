@@ -77,7 +77,7 @@
                                     <label for="bustype">Bus Type</label>
                                     <select name="bus_type" id="bus_type" class="form-control">
                                         @foreach ($bus_type as $type)
-                                        <option value="{{$type->id}}">{{$type->bus_type}}</option>
+                                        <option value="{{$type->id}}">{{$type->type_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -90,25 +90,25 @@
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="board_point">Board Point</label>
+                                    <label for="board_point">Start Point</label>
                                     <input type="text" class="form-control" name="board_point" id="board_point" placeholder="Board Point" required>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="droppoint">Drop Point</label>
+                                    <label for="droppoint">End Point</label>
                                     <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="Drop Point" required>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="boardtime">Board Time</label>
+                                    <label for="boardtime">Start Time</label>
                                     <input type="text" class="form-control" id="board_time" name="board_time" placeholder="Pick a time">
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="droptime">Drop Time</label>
+                                    <label for="droptime">End Time</label>
                                     <input type="text" class="form-control" id="drop_time" name="drop_time" placeholder="Drop Time">
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                                     <label for="amenities">Amenities</label>
                                     <select name="amenities[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
                                         @foreach ($amenities as $type)
-                                        <option value="{{$type->id}}">{{$type->amenities}}</option>
+                                        <option value="{{$type->id}}">{{$type->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>

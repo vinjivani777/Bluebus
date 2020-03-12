@@ -29,7 +29,7 @@ class AmenitiesController extends Controller
     {
         $amenities = array();
         $amenities['amenities'] = Amenitie::whereStatus(true)->get();
-        $amenities['amenities_type'] = Bustype::whereStatus(true)->get();
+        // $amenities['amenities_type'] = $request->image;
         return view('admin.amenities.create',$amenities);
     }
 
@@ -55,18 +55,18 @@ class AmenitiesController extends Controller
         else
         {
             $newamenities= new Amenitie;
-            $newamenities->amenities= $request->amenitiename;
+            $newamenities->description= $request->amenitiename;
             if ($request->hasFile('image')) {
                 $type = $request->file('image')->getMimeType();
                 if(strpos($type, 'image/') !== false){
-                    $image = $request->amenitiename.$request->image->getClientOriginalExtension();
+                    $image = $request->amenitiename.'.'.$request->image->getClientOriginalExtension();
 
-                    $request->image->move(public_path('admin/images/amenities/'),$image);
-                    $image = 'admin/images/amenities/'.$image;
+                    $request->image->move(public_path('web/images/aminites/'),$image);
+                    $image = 'web/images/aminites/'.$image;
                 }
             }
-            $newamenities->image= $image;
-            $newamenities->status= "0";
+            $newamenities->image_path= $image;
+            $newamenities->status= "1";
             $newamenities->save();
 
             return redirect()->route('amenities');
@@ -118,18 +118,18 @@ class AmenitiesController extends Controller
         else
         {
             $newamenities = Amenitie::findorfail($request->editid);
-            $newamenities->amenities= $request->editamenitiename;
-            $image="admin/images/amenities/default.png";
+            $newamenities->description= $request->editamenitiename;
+            $image="web/images/aminites/default.png";
 
             if ($request->hasFile('newimage')) {
                 $type = $request->file('newimage')->getMimeType();
                 if(strpos($type, 'image/') !== false){
                     $image = $request->editamenitiename.'.'.$request->newimage->getClientOriginalExtension();
 
-                    $request->newimage->move(public_path('admin/images/amenities/'),$image);
-                    $image = 'admin/images/amenities/'.$image;
+                    $request->newimage->move(public_path('web/images/aminites/'),$image);
+                    $image = 'web/images/aminites/'.$image;
                 }
-                if($request->input('old_profile'))
+                if($request->input('oldimage'))
                 {
                     unlink(public_path().'/'.$request->oldimage);
                 }else{
@@ -168,7 +168,7 @@ class AmenitiesController extends Controller
     public function amenitiestype()
     {
         $amenitiestype= array();
-        $amenitiestype['data'] = Bustype::select()->get();
+        $AmenitiesType['data'] = Bustype::select()->get();
         return view('admin.amenities.amenities-type.index',$amenitiestype);
     }
 

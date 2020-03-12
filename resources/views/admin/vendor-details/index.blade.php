@@ -68,7 +68,7 @@
                                         </td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('board-point.edit',['id'=>$vendor->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                            <a href="{{ route('vendor-detail.edit',['id'=>$vendor->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
                                             <a href="#"  class="mr-1 text-danger remove_vendor" id="{{$vendor->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

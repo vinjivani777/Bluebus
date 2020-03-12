@@ -179,7 +179,7 @@ class BusController extends Controller
             'bus_type' => 'required|min:2|max:20',
         ]);
         $newtype= new Bustype;
-        $newtype->bus_type= $request->bus_type;
+        $newtype->type_name= $request->bus_type;
         $newtype->save();
         return redirect()->back()->withErrors($validator);
     }
@@ -196,7 +196,7 @@ class BusController extends Controller
             'bus_type' => 'required|min:2|max:20',
         ]);
         $newtype =  Bustype::findorfail($id);
-        $newtype->bus_type= $request->bus_type;
+        $newtype->type_name= $request->bus_type;
         $newtype->save();
         return redirect()->route('bus-type');
     }

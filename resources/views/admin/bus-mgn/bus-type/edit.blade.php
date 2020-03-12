@@ -50,7 +50,7 @@
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="bustype">Bus Type</label>
-                                    <input type="text" class="form-control" name="bus_type" id="bus_type" value="{{$bustype->bus_type}}" placeholder="Bus Type" required>
+                                    <input type="text" class="form-control" name="bus_type" id="bus_type" value="{{$bustype->type_name}}" placeholder="Bus Type" required>
                                 </div>
                             </div>
                         </div>

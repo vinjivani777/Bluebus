@@ -30,7 +30,7 @@ class BoardPointController extends Controller
     public function create()
     {
         $data = array();
-        // $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
+        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
         return view('admin.board-point.create',$data);
     }
 

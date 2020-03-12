@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pb-3 pl-3">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12 pb-3">
                                             <input type="submit" class="btn btn-sm btn-primary" value="Submit">
                                             <input type="button" class="btn btn-sm btn-danger ml-3 cancel"  value="Cancel">
                                         </div>
@@ -84,8 +84,8 @@
                                     @foreach ($data as $item)
                                     <tr>
                                         <td>{{$item->id}}</td>
-                                        <td>{{$item->amenities}}</td>
-                                        <td><img src="{{asset($item->image)}}" style="width:70px;height:70px;border-radius:35px" name="image"></td>
+                                        <td>{{$item->description}}</td>
+                                        <td><img src="{{asset('/'.$item->image_path)}}" style="width:50px;height:50px;" name="image"></td>
                                         <td>
                                             <button class="btn status-change {{$item->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->status==1?"Active":"Disable"}}" id="{{$item->id}}">{{$item->status==1?"Active":"Disable"}}</button>
                                         </td>

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class PromoCode extends Model
 {
     public $timestamps=false;
-    protected $table="promocode";
+    protected $table="promocodes";
 }

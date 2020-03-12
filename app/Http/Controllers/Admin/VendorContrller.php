@@ -121,37 +121,56 @@ class VendorContrller extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'Vendorname' => 'required|max:20',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email'   => 'required|email',
-            'phone_number'  =>  'required|min:10|max:10',
-            'company_name'  =>  'required',
-            'address'  =>  'required',
-            'city'  =>  'required',
-            'state'  =>  'required',
+            'username'      =>  'required|max:20',
+            'first_name'    =>  'required',
+            'last_name'     =>  'required',
+            'email'         =>  'required|email',
+            'phone_number'  =>  'required',
+            'gender'        =>  'required',
+            'status'        =>  'required',
+            'avatar'        =>  'nullable|image',
         ]);
 
         if($validator->fails())
         {
-            return redirect()->back()->withErrors($validator);
+            return redirect()->back()->withErrors($validator)->withInput();
 
         }
 
-        $data = Vendor::findorfail($id);
-        $data->Vendorname = $request->Vendorname;
-        $data->first_name = $request->first_name;
-        $data->last_name= $request->last_name;
-        $data->email = $request->email;
-        $data->phone_number = $request->phone_number;
-        $data->company_name = $request->company_name;
-        $data->address = $request->address;
-        $data->city = $request->city;
-        $data->state = $request->state;
-        $data->status = "0";
-        // return $data;
-        $data->save();
-        return redirect()->route('vendoradmin-detail');
+        $data = Array();
+        $data['username']= $request->username;
+        $data['first_name']= $request->first_name;
+        $data['last_name']= $request->last_name;
+        $data['gender']= $request->gender;
+        $data['email']= $request->email;
+        $data['mobile_no']= $request->phone_number;
+
+        $vendor_img="vendor\images\vendor.png";
+
+        if ($request->hasFile('avatar')) {
+            $type = $request->file('avatar')->getMimeType();
+            if(strpos($type, 'image/') !== false){
+                $vendor_img = substr(str_slug($request->input('username')),0,10).'_'.str_random(5).'.'.$request->avatar->getClientOriginalExtension();
+
+                $request->avatar->move(public_path('vendor/images/profile/'),$vendor_img);
+                $vendor_img = 'vendor/images/profile/'.$vendor_img;
+            }
+            if($request->input('old_img') !=  Null)
+                {
+                    unlink(public_path().'/'.$request->old_img);
+                }else{
+                    $vendor_img;
+                }
+        }else{
+            $vendor_img= $request->input('old_img');
+        }
+
+        $data['avatar'] = $vendor_img;
+        $data['status'] = $request->status;
+
+        $Update=Vendor::whereId($id)->update($data);
+
+        return redirect()->route('vendor-detail');
     }
 
     /**
@@ -162,27 +181,17 @@ class VendorContrller extends Controller
      */
     public function destroy(request $request)
     {
-        $image=$request->profilepicture;
-        $logo=$request->logo;
-        if($image="vendor\images\vendor.png")
+        
+        if($request->id)
         {
-            $request->profilepicture;
-        }
-        else{
-            unlink(public_path().'/'.$image);
-        }
-        if($logo="vendor\images\products\product-1.jpg")
-        {
-            $request->logo;
-        }
-        else{
-            unlink(public_path().'/'.$logo);
-        }
-        $removevendor =  Vendor::findorfail($request->id);
-        $removevendor->delete();
+            $RemoveVendor =  Vendor::findorfail($request->id);
 
+            unlink(public_path().'/'.$RemoveVendor->avatar);
+        
+            $RemoveVendor->delete();
+        }
         // return $delete;
-        if($removevendor){
+        if($RemoveVendor){
             return "success";
         }else{
             return "error";

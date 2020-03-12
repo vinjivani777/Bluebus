@@ -37,7 +37,7 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
+        return $request;
         $validator = Validator::make($request->all(), [
             'promo_code' => 'required|max:30',
             'promo_no_use' => 'required',

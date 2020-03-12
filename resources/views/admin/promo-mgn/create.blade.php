@@ -50,7 +50,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="promo_code">Promo Code</label>
-                                    <input type="text" class="form-control" name="promo_code" id="promo_code" placeholder="Promo Code" required>
+                                    <input type="text" class="form-control" uiuistyle="text-transform:uppercase" name="promo_code" id="promo_code" placeholder="Promo Code" required>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">

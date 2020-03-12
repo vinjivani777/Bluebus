@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
-    protected $table = "bus_gallery";
+    protected $table = "bus_gallarys";
     protected $fillable=['id', 'image', 'user_id', 'bus_id','created_id', 'created_by'];
     public $timestamps = false;
 
