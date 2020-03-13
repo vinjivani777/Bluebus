@@ -55,6 +55,7 @@
                                         <th>Board Time</th>
                                         <th>Drop Point</th>
                                         <th>Drop Time</th>
+                                        <th>Journey Duration</th>  
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>
@@ -71,6 +72,7 @@
                                         <td>{{date("g:i A",strtotime($bus->start_time))}}</td>
                                         <td>{{$bus->ending_point}}</td>
                                         <td>{{date("g:i A",strtotime($bus->ending_time))}}</td>
+                                        <td>{{ date('G:i', strtotime($bus->start_time) - strtotime($bus->ending_time)) }}</td>
                                         <td>
                                             <button class="btn status-change {{$bus->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$bus->status==1?"Active":"Disable"}}" id="{{$bus->id}}">{{$bus->status==1?"Active":"Disable"}}</button>
                                         </td>
