@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Admin;
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +16,7 @@ class OtherAdminController extends Controller
      */
     public function index()
     {
-        $otheradmin= Admin::get();
+        $otheradmin= User::whereRole_id(1)->get();
         return view('admin.otheradmin-details.index',['otheradmin'=>$otheradmin]);
     }
 

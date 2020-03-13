@@ -46,23 +46,26 @@
                                         <tr>
                                             <th style="width: 20px;">#</th>
                                             <th>User Name</th>
+                                            <th>Name</th>
                                             <th>Image</th>
                                             <th>Email</th>
                                             <th>Phone Number</th>
-                                            <th>Type</th>
+                                            {{-- <th>Type</th> --}}
                                             <th>Status</th>
                                             <th style="width: 70px;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $no=1;?>
                                         @foreach ($otheradmin as $otheradmin)
                                             <tr>
-                                                <td>{{$otheradmin->id}}</td>
-                                                <td><img src="{{$otheradmin->profile_picture}}" name="profile_image" style="height:50px;width:50px;border-radius:50px "></td>
+                                                <td>{{$no++}}</td>
                                                 <td>{{$otheradmin->username}}</td>
+                                                <td>{{$otheradmin->first_name.' '.$otheradmin->last_name}}</td>
+                                                <td><img src="{{$otheradmin->avatar}}" name="profile_image" style="height:50px;width:50px;border-radius:50px "></td>
                                                 <td>{{$otheradmin->email}}</td>
                                                 <td>{{$otheradmin->mobile_no}}</td>
-                                                <td>{{$otheradmin->user_type}}</td>
+                                                {{-- <td>{{$otheradmin->user_type}}</td> --}}
                                                 <td>
                                                     <button class="btn status-change {{$otheradmin->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$otheradmin->status==1?"Active":"Disable"}}" id="{{$otheradmin->id}}">{{$otheradmin->status==1?"Active":"Disable"}}</button>
                                                 </td>

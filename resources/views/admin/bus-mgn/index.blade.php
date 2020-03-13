@@ -55,7 +55,7 @@
                                         <th>Board Time</th>
                                         <th>Drop Point</th>
                                         <th>Drop Time</th>
-                                        <th>Journey Duration</th>  
+                                        <th>Journey Duration</th>
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>

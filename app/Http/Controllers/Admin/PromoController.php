@@ -85,6 +85,8 @@ class PromoController extends Controller
         $data->promocode_image      = $promo_image_name;
         $data->created_by           = 'admin' ;
         $data->t_and_c              = $request->t_and_c;
+        // $data->include_bus_id       = implode('|',$request->include_bus_id);
+        // $data->exclude_bus_id       = implode('|',$request->exclude_bus_id);
         // dd($data);
         $data->save();
         return redirect()->route('promo-detail');

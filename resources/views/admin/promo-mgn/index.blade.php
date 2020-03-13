@@ -43,30 +43,32 @@
                             <table id="basic-datatable" class="table dt table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Promo code</th>
-                                        <th>No Of Use</th>
-                                        <th>Min No Ticket</th>
-                                        <th>Min Ticket Amount</th>
-                                        <th>Max Ticket Discount</th>
-                                        <th>Promo Type</th>
-                                        <th>Percentage</th>
-                                        <th>Start Date</th>
-                                        <th>Expire Date</th>
+                                        <th>#</th>
+                                        <th>PromoCode</th>
+                                        <th>Image</th>
+                                        {{-- <th>Usage(Total)</th> --}}
+                                        <th>Min.TicketAmt</th>
+                                        <th>PromoType</th>
+                                        <th>Amount</th>
+                                        <th>ExpiryDate</th>
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1; ?>
                                     @foreach ($Promo as $item)
                                     <tr>
-                                        <td>{{$item->promo_code}}</td>
-                                        <td>{{$item->promo_no_use}}</td>
-                                        <td>{{$item->min_no_ticket}}</td>
-                                        <td>{{$item->min_ticket_amount}}</td>
-                                        <td>{{$item->max_discount_amount}}</td>
-                                        <td>{{$item->promo_type}}</td>
-                                        <td>{{$item->percentage}}</td>
-                                        <td>{{date('d-m-Y', strtotime($item->start_date))}}</td>
+                                        <td>{{$no++}}</td>
+                                        <td>{{$item->promocode}}</td>
+                                        <td> <img src="{{ asset('/'. $item->promocode_image)}}" class="rounded-circle avatar-md img-thumbnail" alt="Promocode_image"> </td>
+                                        <td>{{$item->min_order_amount}}</td>
+                                        <td>{{$item->discount_type}}</td>
+                                        @if(($item->discount_type) == "Flat")
+                                            <td>{{'₹'.$item->max_amount}}</td>
+                                        @else
+                                            <td>{{$item->amount.'%(upto₹'.$item->max_amount.')'}}</td>
+                                        @endif
                                         <td>{{date('d-m-Y', strtotime($item->expiry_date))}}</td>
                                         <td>
                                             <button class="btn status-change {{$item->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->status==1?"Active":"Disable"}}" id="{{$item->id}}">{{$item->status==1?"Active":"Disable"}}</button>

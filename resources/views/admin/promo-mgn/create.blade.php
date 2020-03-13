@@ -6,11 +6,12 @@
 @endsection
 
 @section('other-page-css')
-    <link href="{{asset('admin/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/libs/switchery/switchery.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/libs/switchery/switchery.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css">
+
 <!-- Plugins css -->
     <link href="{{asset('admin/libs/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css" />
@@ -127,22 +128,32 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="expiry_date">Terms & Conditions</label>
-                                    <textarea class="form-control" name="t_and_c" rows="9" placeholder="Terms & Conditionsn"></textarea>
+                                    <textarea class="form-control" name="t_and_c" rows="7" placeholder="Terms & Conditionsn"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row" hidden>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="buses">Exclude Buses</label>
-                                    <select name="buses[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Bus">
+                                    <label for="buses">Include Buses</label>
+                                    <select name="include_bus_id[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Bus">
                                         @foreach ($buses as $type)
-                                        <option value="{{$type->id}}">{{$type->bus_name}}</option>
+                                            <option value="{{$type->id}}">{{$type->bus_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                <div class="form-group">
+                                    <label for="buses">Exclude Buses</label>
+                                    <select name="exclude_bus_id[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Bus">
+                                        @foreach ($buses as $type)
+                                            <option value="{{$type->id}}">{{$type->bus_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div> --}}
                         <div class="row">
                             <div class="col-12">
                                 <span id="flatspan" class="text-danger" style="display:none">The Flat Discount Cann't be Greater than Max Discount</span>
@@ -185,7 +196,10 @@
 <script src="{{asset('admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
 <script src="{{asset('admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
 
-    <!-- Plugins js-->
+<!-- Init js-->
+<script src="{{asset('admin/js/pages/form-advanced.init.js')}}"></script>
+
+<!-- Plugins js-->
     <script src="{{asset('admin/libs/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
