@@ -60,24 +60,35 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="busname">Bus Name</label>
                                     <input type="text" class="form-control" name="bus_name" id="bus_name" placeholder="Bus Name" required autofocus="">
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="busregno">Bus RegiNumber</label>
                                     <input type="text" class="form-control" name="bus_reg_no" id="bus_reg_no" placeholder="Bus Regi No" required>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="bustype">Bus Type</label>
                                     <select name="bus_type" id="bus_type" class="form-control">
                                         @foreach ($bus_type as $type)
                                         <option value="{{$type->id}}">{{$type->type_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
+                                <div class="form-group">
+                                    <label for="route">Route</label>
+                                    <select name="route" id="route" class="form-control" data-toggle="select2"  required>
+                                        <option value="">Select Route</option>
+                                        @foreach ($route as $route)
+                                        <option value="{{$route->id}}">{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -118,6 +129,17 @@
                                     <select name="amenities[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
                                         @foreach ($amenities as $type)
                                         <option value="{{$type->id}}">{{$type->description}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
+                                <div class="form-group">
+                                    <label for="vendor">Vendor</label>
+                                    <select name="vendor" id="vendor" class="form-control" data-toggle="select2"  required>
+                                        <option value="">Select Vendor</option>
+                                        @foreach ($vendor as $vendor)
+                                        <option value="{{$vendor->id}}">{{$vendor->first_name . ' ' . $vendor->last_name  }}</option>
                                         @endforeach
                                     </select>
                                 </div>
