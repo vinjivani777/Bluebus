@@ -105,9 +105,9 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $validator = Validator::make($request->all(),[
-                'from_place' => 'required',
-                'to_place' => 'required',
+        $validator = Validator::make($request->all(),[
+            'from_place' => 'required',
+            'to_place' => 'required',
         ]);
 
         if($validator->fails())

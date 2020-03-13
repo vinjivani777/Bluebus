@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Model\PromoCode;
+use App\Model\Bus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +16,7 @@ class PromoController extends Controller
      */
     public function index()
     {
-        $promo= PromoCode::get();
+        $promo= PromoCode::with('Bus_Name1','Bus_Name2')->get();
         return view('admin.promo-mgn.index',['Promo'=>$promo]);
     }
 
@@ -26,7 +27,8 @@ class PromoController extends Controller
      */
     public function create()
     {
-        return view('admin.promo-mgn.create');
+        $buses = Bus::whereStatus(true)->get();
+        return view('admin.promo-mgn.create',['buses'=>$buses]);
     }
 
     /**
@@ -37,22 +39,24 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'promo_code' => 'required|max:30',
-            'promo_no_use' => 'required',
-            'promo_detail' => 'required',
-            'min_no_ticket' => 'required',
+            // 'promo_no_use' => 'required',
+            'description' => 'required',
+            'usage_count' => 'required',
+            'indivisual_count' => 'required|lt:usage_count',
+            // 'min_ticket_amount' =>'required',
             'max_discount_amount'   => 'required',
             'start_date'  =>  'required',
             'expiry_date'  =>  'required',
             'promo_code_image'  => 'image',
             't_and_c'  =>  'required',
         ]);
-
+            // dd($validator->fails());
         if($validator->fails())
         {
-           // return redirect()->back()->withErrors($validator);
+           return redirect()->back()->withErrors($validator);
         }
 
         if ($request->hasFile('promo_code_image')) {
@@ -67,19 +71,21 @@ class PromoController extends Controller
         }
 
         $data = new PromoCode;
-        $data->promo_code           = $request->promo_code;
-        $data->promo_no_use         = $request->promo_no_use;
-        $data->promo_detail         = $request->promo_detail;
-        $data->min_no_ticket        = $request->min_no_ticket;
-        $data->min_ticket_amount    = $request->min_ticket_amount;
-        $data->max_discount_amount  = $request->max_discount_amount;
-        $data->promo_type           = $request->promo_type;
-        $data->percentage           = $request->percentage_pr;
+        $data->promocode           = strtoupper($request->promo_code);
+        // $data->promo_no_use         = $request->promo_no_use;
+        $data->description          = $request->description;
+        $data->usage_count          = $request->usage_count;
+        $data->indivisual_use       = $request->indivisual_count;
+        $data->min_order_amount     = $request->min_ticket_amount;
+        $data->max_amount           = $request->max_discount_amount;
+        $data->discount_type        = $request->promo_type;
+        $data->amount           = $request->percentage_pr;
         $data->start_date           = date('Y-m-d', strtotime($request->start_date));
         $data->expiry_date          = date('Y-m-d', strtotime($request->expiry_date));
-        $data->promo_image          = $promo_image_name;
+        $data->promocode_image      = $promo_image_name;
+        $data->created_by           = 'admin' ;
         $data->t_and_c              = $request->t_and_c;
-
+        // dd($data);
         $data->save();
         return redirect()->route('promo-detail');
     }

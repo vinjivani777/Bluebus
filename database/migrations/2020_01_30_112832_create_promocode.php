@@ -16,18 +16,25 @@ class CreatePromocode extends Migration
         Schema::create('promocodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('promocode');
-            $table->date('expiry_date');
-            $table->string('description');
-            $table->string('discount_type');
-            $table->integer('amount');
-            $table->integer('max_amount');//maximum amount of discount avail at one time
-            $table->integer('usage_count');//how many times we want to make this promocode use
-            $table->integer('indivisual_use');//how many times one user can avail this promocode
-            $table->text('exclude_bus_id');
-            $table->text('include_bus_id');
-            $table->integer('min_order_amount');
-            $table->string('created_by');
-            $table->boolean('status');
+            $table->date('start_date')->default((date('Y-m-d')));
+            $table->date('expiry_date')->nullable();
+            $table->string('description')->nullable();
+            $table->string('discount_type')->nullable();
+            $table->integer('amount')->default(0);
+            $table->integer('max_amount')->nullable();//maximum amount of discount avail at one time
+            $table->integer('usage_count')->nullable();//how many times we want to make this promocode use
+            $table->integer('indivisual_use')->nullable();//how many times one user can avail this promocode
+            $table->text('exclude_bus_id')->nullable();
+            $table->text('include_bus_id')->nullable();
+            $table->string('promocode_image')->nullable();
+            $table->string('t_and_c')->nullable();
+            $table->integer('min_order_amount')->nullable();
+            $table->unsignedBiginteger('include_bus_id')->nullable();
+            $table->unsignedBiginteger('exclude_bus_id')->nullable();
+            $table->string('created_by')->nullable();
+            $table->boolean('status')->default(1);
+            $table->foreign('exclude_bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('include_bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });
     }
