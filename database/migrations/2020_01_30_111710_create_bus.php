@@ -17,7 +17,7 @@ class CreateBus extends Migration
             $table->bigIncrements('id');
             $table->unsignedBiginteger('route_id');
             $table->unsignedBiginteger('bus_type_id');
-            $table->unsignedBiginteger('amenities_id');
+            $table->longtext('amenities_id');
             $table->string('bus_name');
             $table->string('bus_reg_no');
             $table->string('starting_point');
@@ -29,7 +29,6 @@ class CreateBus extends Migration
             $table->integer('vendor_id');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->foreign('bus_type_id')->references('id')->on('bus_types')->onDelete('cascade');
-            $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
             $table->timestamps();
         });
     }

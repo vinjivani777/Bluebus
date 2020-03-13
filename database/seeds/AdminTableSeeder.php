@@ -20,7 +20,7 @@ class AdminTableSeeder extends Seeder
                 'gender' =>  'm',
                 'email' =>  'admin@happyjourney.com',
                 'mobile_no' =>  '7069836598',
-                'password' =>  'admin',
+                'password' =>  '$2y$10$aM11l.u3PG6q3UcPdbT4Iux8hamnAGFM1EP48MArCHiP.SJT.o0uG',
                 'avatar' =>  'admin/images/admin.png',
                 'status' =>  '1',
             ],
