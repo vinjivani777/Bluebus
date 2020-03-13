@@ -14,4 +14,16 @@ class Route extends Model
         return $this->belongsTo('App\Model\Bus', 'bus_id');
     }
 
+    public function Source()
+    {
+        return $this->belongsTo('App\Model\City', 'source_point');
+
+    }
+
+    public function Destination()
+    {
+        return $this->belongsTo('App\Model\City', 'destination_point');
+
+    }
+
 }

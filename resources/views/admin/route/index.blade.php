@@ -62,9 +62,9 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         {{-- <td>{{$route->Bus_Name->bus_name}}</td> --}}
-                                        <td>{{$route->source->city_name}}</td>
+                                        <td>{{$route->Source->city_name}}</td>
                                         {{-- <td>{{date("g:i A",strtotime($route->board_time))}}</td> --}}
-                                        <td>{{$route->destination->city_name}}</td>
+                                        <td>{{$route->Destination->city_name}}</td>
                                         {{-- <td>{{date("g:i A",strtotime($route->drop_time))}}</td> --}}
                                         {{-- <td>{{$route->fare}}</td> --}}
                                         <td>

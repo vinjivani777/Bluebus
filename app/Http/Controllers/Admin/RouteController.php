@@ -18,7 +18,7 @@ class RouteController extends Controller
     public function index()
     {
         $data = array();
-        $data['record']= Route::with('destination','source')->get();
+        $data['record']= Route::with('Destination','Source')->get();
         return view('admin.route.index',$data);
     }
 
