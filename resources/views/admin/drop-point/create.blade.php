@@ -64,6 +64,7 @@
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
                                     <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
+                                        <option >Select Route</option>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -153,7 +154,7 @@
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
-                            option.text = response[i].board_point+" - "+response[i].drop_point;
+                            option.text = response[i].source_point+" - "+response[i].destination_point;
                             option.value = response[i].id;
                             route_id.add(option);
                             }

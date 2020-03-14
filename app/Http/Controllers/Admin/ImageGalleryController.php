@@ -65,6 +65,7 @@ class ImageGalleryController extends Controller
             }
         }
 
+        $params['slug'] = $banner;
         $params['bus_id'] = $request->bus_name;
         $params['image_path']=$banner;
         $params['created_by']= Auth::guard('admin')->user()->username;

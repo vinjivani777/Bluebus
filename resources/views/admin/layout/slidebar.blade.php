@@ -103,16 +103,11 @@
 
                 {{-- promo management --}}
                 <li>
-                    <a href="javascript: void(0);">
-                        <i class=" icon-tag"></i>
+                    <a href="{{ route('promo-detail') }}">
+                        <i class="icon-tag"></i>
                         <span> Promo Management </span>
-                        <span class="menu-arrow"></span>
+                        {{-- <span class="menu-arrow"></span> --}}
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{ route('promo-detail') }}">View All</a>
-                        </li>
-                    </ul>
                 </li>
 
                 {{-- promo management --}}

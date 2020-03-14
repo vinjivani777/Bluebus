@@ -152,6 +152,6 @@ class RouteController extends Controller
 
     public function busroute(Request $request)
     {
-        return Route::whereStatus(true)->whereBus_id($request->bus_id)->select('id','board_point','drop_point')->get();
+        return Route::whereStatus(true)->select('id','source_point','destination_point')->get();
     }
 }

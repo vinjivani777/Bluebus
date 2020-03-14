@@ -73,14 +73,16 @@
                                 <div class="form-group">
                                     <label for="board_point">Route</label>
                                     <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
-
+                                        @foreach ($route_list as $route)
+                                        <option value="{{$route->id}}" {{$route->id == $board_point->route_id?"selected":""}}>{{$route->source_point}} | {{($route->destination_point)}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="board_point">New Boarding Point</label>
-                                    <input type="text" class="form-control" name="board_point" id="board_point" value="{{$board_point->pickup_point}}" placeholder="New Broding Point" required>
+                                    <input type="text" class="form-control" name="board_point" id="board_point" value="{{$board_point->board_point}}" placeholder="New Broding Point" required>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
@@ -143,57 +145,57 @@
             routeFunction(bus_id,route_id); //this calls it on load
         });
 
-        function routeFunction(bus_id,route_id)
-        {
-            $.ajax({
-                url:'{{route('bus-route-detail.get')}}',
-                data:{
-                    bus_id : bus_id
-                },
-                type:'get',
-                success:function(response)
-                {
-                    $('#route_id').empty();
-                    if(response.length != ""){
-                        for (var i = 0; i < response.length; i++) {
-                        var opation_route_id = document.getElementById("route_id");
-                        var option = document.createElement("option");
-                        option.text = response[i].board_point+" - "+response[i].drop_point;
-                        option.value = response[i].id;
-                        opation_route_id.add(option);
-                            if(route_id == response[i].id){
-                                $('#route_id').prop('selectedIndex',i);
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        // function routeFunction(bus_id,route_id)
+        // {
+        //     $.ajax({
+        //         url:'{{route('bus-route-detail.get')}}',
+        //         data:{
+        //             bus_id : bus_id
+        //         },
+        //         type:'get',
+        //         success:function(response)
+        //         {
+        //             $('#route_id').empty();
+        //             if(response.length != ""){
+        //                 for (var i = 0; i < response.length; i++) {
+        //                 var opation_route_id = document.getElementById("route_id");
+        //                 var option = document.createElement("option");
+        //                 option.text = response[i].source_point+" - "+response[i].destination_point;
+        //                 option.value = response[i].id;
+        //                 opation_route_id.add(option);
+        //                     if(route_id == response[i].id){
+        //                         $('#route_id').prop('selectedIndex',i);
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
 
-        $("#bus_name").on('change',function(){
-            bus_id = this.value;
-            if(bus_id != "" && bus_id != 0){
-                $.ajax({
-                    url:'{{route('bus-route-detail.get')}}',
-                    data:{
-                        bus_id : bus_id
-                    },
-                    type:'get',
-                    success:function(response)
-                    {
-                        $('#route_id').empty();
-                        if(response.length != ""){
-                            for (var i = 0; i < response.length; i++) {
-                            var route_id = document.getElementById("route_id");
-                            var option = document.createElement("option");
-                            option.text = response[i].board_point+" - "+response[i].drop_point;
-                            option.value = response[i].id;
-                            route_id.add(option);
-                            }
-                        }
-                    }
-                });
-            }
-        });
+        // $("#bus_name").on('change',function(){
+        //     bus_id = this.value;
+        //     if(bus_id != "" && bus_id != 0){
+        //         $.ajax({
+        //             url:'{{route('bus-route-detail.get')}}',
+        //             data:{
+        //                 bus_id : bus_id
+        //             },
+        //             type:'get',
+        //             success:function(response)
+        //             {
+        //                 $('#route_id').empty();
+        //                 if(response.length != ""){
+        //                     for (var i = 0; i < response.length; i++) {
+        //                     var route_id = document.getElementById("route_id");
+        //                     var option = document.createElement("option");
+        //                     option.text = response[i].board_point+" - "+response[i].drop_point;
+        //                     option.value = response[i].id;
+        //                     route_id.add(option);
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
     </script>
 @endsection

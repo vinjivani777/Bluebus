@@ -16,6 +16,6 @@ class DropPoint extends Model
 
     public function Route_Name()
     {
-        return $this->belongsTo('App\Model\Route', 'drop_point');
+        return $this->belongsTo('App\Model\Route', 'route_id');
     }
 }

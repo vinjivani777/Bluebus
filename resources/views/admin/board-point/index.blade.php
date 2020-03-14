@@ -46,7 +46,7 @@
                             <table id="basic-datatable" class="table dt-responsive table-striped">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Bua Name</th>
+                                        <th>Bus Name</th>
                                         <th>Route</th>
                                         <th>New Boarding Point</th>
                                         <th>Start Time</th>
@@ -60,8 +60,8 @@
                                     @foreach ($board_list as $board)
                                     <tr>
                                         <td>{{$board->Bus_Name->bus_name}} - {{$board->Bus_Name->bus_reg_no}}</td>
-                                        <td>{{$board->Route_Name->board_point}}</td>
-                                        <td>{{$board->pickup_point}}</td>
+                                        <td>{{$board->Route_name->source_point.'-'.$board->Route_name->destination_point}}</td>
+                                        <td>{{$board->board_point}}</td>
                                         <td>{{date("g:i A",strtotime($board->pickup_time))}}</td>
                                         <td>{{$board->landmark}}</td>
                                         <td>{{$board->address}}</td>

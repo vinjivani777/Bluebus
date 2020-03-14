@@ -53,7 +53,7 @@ class VendorController extends Controller
        $params['password']=bcrypt($request->password);
        $params['status']=false;
        $params['remember_token']= str_random(60);
-
+       $params['avatar']="vendor\images\vendor.png";
        $Vendor=Vendor::create($params);
 
        if($Vendor)

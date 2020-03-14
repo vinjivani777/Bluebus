@@ -16,6 +16,6 @@ class BoardPoint extends Model
 
     public function Route_Name()
     {
-        return $this->belongsTo('App\Model\Route', 'board_point');
+        return $this->belongsTo('App\Model\Route', 'route_id');
     }
 }

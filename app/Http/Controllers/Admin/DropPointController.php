@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
+use App\Model\Route;
 use App\Model\DropPoint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -51,22 +52,21 @@ class DropPointController extends Controller
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
-
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= new DropPoint;
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->drop_point= $request->route_id;
-            $droppoint->stoping_point= $request->stoping_point;
-            $droppoint->drop_time= $request->drop_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->save();
-
-            return redirect()->route('drop-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+        $droppoint= new DropPoint;
+        $droppoint->bus_id= $request->bus_name;
+        $droppoint->route_id= $request->route_id;
+        $droppoint->drop_point= $request->stoping_point;
+        $droppoint->drop_time= $request->drop_time;
+        $droppoint->landmark= $request->landmark;
+        $droppoint->address= $request->address;
+        $droppoint->status= 1;
+        $droppoint->save();
+
+        return redirect()->route('drop-point');
     }
 
     /**
@@ -91,6 +91,7 @@ class DropPointController extends Controller
         $data = array();
         $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
         $data['drop_point'] = DropPoint::findorfail($id);
+        $data['route_list'] = Route::get();
         return view('admin.drop-point.edit',$data);
     }
 
@@ -107,7 +108,6 @@ class DropPointController extends Controller
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'stoping_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
             'drop_time' => 'required',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
@@ -115,19 +115,19 @@ class DropPointController extends Controller
 
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= DropPoint::findorfail($id);
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->drop_point= $request->route_id;
-            $droppoint->stoping_point= $request->stoping_point;
-            $droppoint->drop_time= $request->drop_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->save();
-
-            return redirect()->route('drop-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+        $droppoint= DropPoint::findorfail($id);
+        $droppoint->bus_id= $request->bus_name;
+        $droppoint->route_id= $request->route_id;
+        $droppoint->drop_point= $request->stoping_point;
+        $droppoint->drop_time= $request->drop_time;
+        $droppoint->landmark= $request->landmark;
+        $droppoint->address= $request->address;
+        $droppoint->status= 1;
+        $droppoint->save();
+        // dd($droppoint);
+        return redirect()->route('drop-point');
     }
 
     /**

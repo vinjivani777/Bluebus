@@ -60,8 +60,8 @@
                                     @foreach ($drop_list as $drop)
                                     <tr>
                                         <td>{{$drop->Bus_Name->bus_name}} - {{$drop->Bus_Name->bus_reg_no}}</td>
-                                        <td>{{$drop->Route_Name->drop_point}}</td>
-                                        <td>{{$drop->stoping_point}}</td>
+                                        <td>{{$drop->Route_name->source_point.'-'.$drop->Route_name->destination_point}}</td>
+                                        <td>{{$drop->drop_point}}</td>
                                         <td>{{date("g:i A",strtotime($drop->drop_time))}}</td>
                                         <td>{{$drop->landmark}}</td>
                                         <td>{{$drop->address}}</td>

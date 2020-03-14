@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
+use App\Model\Route;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,6 @@ class BoardPointController extends Controller
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'board_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
             'board_time' => 'required',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
@@ -54,19 +54,20 @@ class BoardPointController extends Controller
 
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= new BoardPoint;
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->board_point= $request->route_id;
-            $droppoint->pickup_point= $request->board_point;
-            $droppoint->pickup_time= $request->board_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->save();
-
-            return redirect()->route('board-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+
+        $droppoint= new BoardPoint;
+        $droppoint->bus_id= $request->bus_name;
+        $droppoint->route_id= $request->route_id;
+        $droppoint->board_point= $request->board_point;
+        $droppoint->pickup_time= $request->board_time;
+        $droppoint->landmark= $request->landmark;
+        $droppoint->address= $request->address;
+        $droppoint->status= 1;
+        $droppoint->save();
+        return redirect()->route('board-point');
+
     }
 
     /**
@@ -91,6 +92,8 @@ class BoardPointController extends Controller
         $data = array();
         $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
         $data['board_point'] = BoardPoint::findorfail($id);
+        $data['route_list'] = Route::get();
+        // return $data;
         return view('admin.board-point.edit',$data);
     }
 
@@ -115,19 +118,20 @@ class BoardPointController extends Controller
 
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= BoardPoint::findorfail($id);
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->board_point= $request->route_id;
-            $droppoint->pickup_point= $request->board_point;
-            $droppoint->pickup_time= $request->board_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->save();
-
-            return redirect()->route('board-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+        $boardpoint= BoardPoint::findorfail($id);
+        $boardpoint->bus_id= $request->bus_name;
+        $boardpoint->route_id= $request->route_id;
+        $boardpoint->board_point= $request->board_point;
+        $boardpoint->pickup_time= $request->board_time;
+        $boardpoint->landmark= $request->landmark;
+        $boardpoint->address= $request->address;
+        $boardpoint->status= 1;
+        $boardpoint->save();
+
+        return redirect()->route('board-point');
+
     }
 
     /**

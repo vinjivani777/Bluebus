@@ -51,6 +51,7 @@
                                 <div class="form-group">
                                     <label for="bustype">Bus Name</label>
                                     <select class="form-control" name="bus_name" id="bus_name">
+                                        <option>Select Bus</option>
                                         @foreach ($Bus as $item)
                                             <option value="{{ $item->id }}">{{ $item->bus_name}} | {{$item->bus_reg_no }}</option>
                                         @endforeach
