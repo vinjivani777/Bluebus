@@ -100,7 +100,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
     //Other Admins  Details
     Route::get('otheradmin-detail','Admin\OtherAdminController@index')->name('otheradmin-detail');
-    Route::get('otheradmin-detail/add','Admin\OtherAdminController@create')->name('otheradmin-detail.add');
+    Route::get('user/add','Admin\OtherAdminController@create')->name('otheradmin-detail.add');
     Route::post('otheradmin-detail/store','Admin\OtherAdminController@store')->name('otheradmin-detail.store');
     Route::get('otheradmin-detail/edit/{id}','Admin\OtherAdminController@edit')->name('otheradmin-detail.edit');
     Route::post('otheradmin-detail/update/{id}','Admin\OtherAdminController@update')->name('otheradmin-detail.update');
@@ -131,6 +131,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('booking-detail/edit/{id}','Admin\BookingController@edit')->name('booking-detail.edit');
     Route::put('booking-detail/update/{?id}','Admin\BookingController@update')->name('booking-detail.update');
     Route::delete('booking-detail/destroy/{id}','Admin\BookingController@destroy')->name('booking-detail.destroy');
+
+    //Routes
     Route::get('bus-routes','Admin\BookingController@bookingroute')->name('booking-busroutes.get');
     Route::get('bus-boardpoint','Admin\BookingController@bookingboardpoint')->name('booking-bookingboardpoint.get');
     Route::get('bus-droppoint','Admin\BookingController@bookingdroppoint')->name('booking-bookingdroppoint.get');
@@ -174,21 +176,21 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
 
 
-    //Vendor
-    Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
-    Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
-    //vendor register
-    Route::get('vendor/register','Vendor\VendorController@register')->name('vendor.register');
-    Route::get('vendor/forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
-    Route::post('vendor/register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
-    //Vendor Password Reset
-    Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassword')->name('vendor.forgetpassword');
-    Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
-    Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
-    Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
-    Route::post('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
-    Route::get('vendor/resetpassword/sms/{phone}','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
-    Route::post('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
+//Vendor
+Route::get('vendor_','Vendor\LoginController@index')->name('vendor');
+Route::post('vendor/login','Vendor\LoginController@login')->name('vendor.login');
+//vendor register
+Route::get('vendor/register','Vendor\VendorController@register')->name('vendor.register');
+Route::get('vendor/forgetpage','Vendor\VendorController@showforgetpage')->name('vendor.showforgetpage');
+Route::post('vendor/register/new','Vendor\VendorController@registernew')->name('vendor.register.new');
+//Vendor Password Reset
+Route::post('vendor/forgetpassword','Vendor\ForgetpasswordController@forgetpassword')->name('vendor.forgetpassword');
+Route::post('vendor/passwordresetsms','Vendor\ForgetpasswordController@passwordresetsms')->name('vendor.passwordresetsms');
+Route::post('vendor/passwordresetmail','Vendor\MailController@sendmail')->name('vendor.passwordresetmail');
+Route::get('vendor/resetpassword/email/{token}','Vendor\ForgetpasswordController@updatepasswordmail')->name('vendor.updatepasswordmail');
+Route::post('vendor/updatepassword/email','Vendor\ForgetpasswordController@savepasswordmail')->name('vendor.savepasswordmail');
+Route::get('vendor/resetpassword/sms/{phone}','Vendor\ForgetpasswordController@updatepasswordsms')->name('vendor.updatepasswordsms');
+Route::post('vendor/updatepassword/sms','Vendor\ForgetpasswordController@savepasswordsms')->name('vendor.savepasswordsms');
 
 
 Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {

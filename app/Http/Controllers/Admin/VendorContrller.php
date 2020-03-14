@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Model\Vendor;
+use App\Model\UserRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +35,9 @@ class VendorContrller extends Controller
 
     public function create()
     {
-        return view('admin.vendor-details.create');
+        $Data=Array();
+        $Data['userRole']=UserRole::get();
+        return view('admin.vendor-details.create',$Data);
     }
 
     public function store(request $request)
@@ -181,13 +184,13 @@ class VendorContrller extends Controller
      */
     public function destroy(request $request)
     {
-        
+
         if($request->id)
         {
             $RemoveVendor =  Vendor::findorfail($request->id);
 
             unlink(public_path().'/'.$RemoveVendor->avatar);
-        
+
             $RemoveVendor->delete();
         }
         // return $delete;

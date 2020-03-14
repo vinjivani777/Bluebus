@@ -38,7 +38,6 @@ class OtherAdminController extends Controller
     {
         $Data=Array();
         $Data['userRole']=UserRole::get();
-
         return view('admin.otheradmin-details.create',$Data);
     }
 
@@ -126,7 +125,7 @@ class OtherAdminController extends Controller
             $admin->status=$request->status;
 
             $admin->save();
-
+            return redirect()->route('admin');
 
         }
 
@@ -147,7 +146,7 @@ class OtherAdminController extends Controller
             $vendor->status=$request->status;
 
             $vendor->save();
-
+            return redirect()->route('vendor');
         }
 
         return redirect()->route('otheradmin-detail');
