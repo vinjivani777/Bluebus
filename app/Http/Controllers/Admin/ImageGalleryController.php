@@ -6,6 +6,7 @@ use App\Model\Bus;
 use App\Model\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ImageGalleryController extends Controller
@@ -64,16 +65,16 @@ class ImageGalleryController extends Controller
             }
         }
 
-        $params['image']=$banner;
-        $params['user_id']=1;
         $params['bus_id'] = $request->bus_name;
-        $params['created_by']="0";
+        $params['image_path']=$banner;
+        $params['created_by']= Auth::guard('admin')->user()->username;
 
 
             $bus_gallary = Gallery::create($params);
-           if ($bus_gallary) {
-                return redirect()->route('img_gallery');
-           }
+
+        //    if ($bus_gallary) {
+        //         return redirect()->route('img_gallery');
+        //    }
 
 
         return redirect()->route('img_gallery');
@@ -144,10 +145,10 @@ class ImageGalleryController extends Controller
             $banner= $request->input('old_img');
         }
 
-        $params['image']=$banner;
-        $params['user_id']=1;
         $params['bus_id'] = $request->bus_name;
-        $params['created_by']="0";
+        $params['image_path']=$banner;
+        $params['created_by']= Auth::guard('admin')->user()->username;
+
         // dd($params);
 
          $bus_gallary = Gallery::where('id',$id)->update($params);

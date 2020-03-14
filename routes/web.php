@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
 
     //dashboard
     Route::get('index','Admin\AdminController@index')->name('index');
+    Route::get('admin-detail','Admin\OtherAdminController@admin')->name('admin-detail');
 
     //profile management
     Route::get('profile','Admin\AdminController@profile')->name('profile');

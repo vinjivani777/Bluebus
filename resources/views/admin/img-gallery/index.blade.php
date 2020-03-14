@@ -92,12 +92,12 @@
                             <hr>
                         </div>
                     </div>
-                    <table id="basic-datatable" class="table dt-responsive table-striped">
+                    <table id="basic-datatable" class="table dt-responsive table-striped table-centered">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Bus Name</th>
-                                <th>Total Image</th>
+                                <th>Image</th>
                                 <th style="width: 70px;">Action</th>
                             </tr>
                         </thead>
@@ -106,7 +106,7 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->bus->bus_name }}</td>
-                                <td><img src="{{ asset($item->image) }}" alt="" width="50px" height="50px" ></td>
+                                <td><img src="  {{ asset($item->image_path) }}" alt="" width="35px" height="35px" ></td>
                                 <td>
                                     <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
                                     <a href="{{ route('img_gallery.edit',['id'=>$item->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>

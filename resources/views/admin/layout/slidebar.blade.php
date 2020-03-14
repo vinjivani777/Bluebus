@@ -12,7 +12,7 @@
 
                 {{-- Dashboard --}}
                 <li>
-                    <a href="{{ route('admin') }}">
+                    <a href="{{ route('index') }}">
                         <i class="ti-dashboard"></i>
                         <span> Dashboard </span>
                     </a>
@@ -23,22 +23,23 @@
                     <a href="javascript: void(0);">
                         <i class="fa fa-bus"></i>
                         <span> Bus Management </span>
+                        <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('bus-detail') }}">View All Bus</a>
                         </li>
                         <li>
-                            <a href="{{ route('bus-type') }}">Add Bus Type</a>
+                            <a href="{{ route('bus-type') }}">Bus Type</a>
                         </li>
                         <li>
-                            <a href="{{ route('route-detail') }}">View All Routes </a>
+                            <a href="{{ route('route-detail') }}">Routes </a>
                         </li>
                         <li>
-                            <a href="{{ route('board-point') }}">View Board Point</a>
+                            <a href="{{ route('board-point') }}">Board Point</a>
                         </li>
                         <li>
-                            <a href="{{ route('drop-point') }}">View Drop Point</a>
+                            <a href="{{ route('drop-point') }}">Drop Point</a>
                         </li>
                         <li>
                             <a href="{{ route('seat-layout') }}">Seat Layout</a>
@@ -49,15 +50,15 @@
 
                 {{-- amenities details --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('amenities') }}">
                         <i class="fas fa-level-up-alt"></i>
-                        <span> Amenities Details </span>
+                        <span> Amenities  </span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('amenities') }}">View All</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 {{-- route details --}}
@@ -105,6 +106,7 @@
                     <a href="javascript: void(0);">
                         <i class=" icon-tag"></i>
                         <span> Promo Management </span>
+                        <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
@@ -128,34 +130,51 @@
 
                 {{-- Agent management --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('otheradmin-detail') }}">
                         <i class=" fas fa-users-cog"></i>
-                        <span>Other Admin</span>
+                        <span>All User</span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{ route('otheradmin-detail') }}">View All</a>
-                        </li>
+                    {{-- <ul class="nav-second-level" aria-expanded="false"> --}}
                         {{-- <li>
-                            <a href="index.html">Add Bus Gallery </a>
+                            <a href="{{ route('otheradmin-detail') }}">All User</a>
                         </li> --}}
-                    </ul>
+                        {{-- <li>
+                            <a href="{{ route('otheradmin-detail') }}">Admin List</a>
+                        </li> --}}
+                    {{-- </ul> --}}
+                </li>
+
+
+                {{-- admin management --}}
+                <li>
+                    <a href="{{ route('admin-detail') }}">
+                        <i class=" fas fa-user-cog"></i>
+                        <span>Admin</span>
+                    </a>
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('vendor-detail') }}">View All</a>
+                        </li>
+                        <li>
+                            <a href="index.html">Add Bus Gallery </a>
+                        </li>
+                    </ul> --}}
                 </li>
 
                  {{-- vendor management --}}
                  <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('vendor-detail') }}">
                         <i class=" fas fa-user-cog"></i>
                         <span>Vendor</span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('vendor-detail') }}">View All</a>
                         </li>
-                        {{-- <li>
+                        <li>
                             <a href="index.html">Add Bus Gallery </a>
-                        </li> --}}
-                    </ul>
+                        </li>
+                    </ul> --}}
                 </li>
 
                 {{-- customer details --}}
@@ -192,6 +211,7 @@
                     <a href="javascript: void(0);">
                         <i class="fas fa-cogs"></i>
                         <span>Settings</span>
+                        <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>

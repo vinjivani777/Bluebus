@@ -39,14 +39,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header bg-danger" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
+                        </div>
                         <div class="card-body">
-                            <a href="{{ route('vendor-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Vendor</a>
+                            <a href="{{ route('otheradmin-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New </a>
                             <table id="basic-datatable" class="table dt-responsive text-center table-centered table-striped">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Username</th>
                                         <th>Avatar</th>
+                                        <th>Username</th>
                                         <th>Email</th>
                                         <th>Phone </th>
                                         <th>Status</th>
@@ -59,8 +61,8 @@
                                     <?php $r++; ?>
                                     <tr>
                                         <td>{{$r}}</td>
-                                        <td>{{$vendor->first_name .' '. $vendor->last_name}}</td>
                                         <td> <img src="{{ asset('/'. $vendor->avatar)}}" class="rounded-circle avatar-md img-thumbnail" alt="profile-image"> </td>
+                                        <td>{{$vendor->first_name .' '. $vendor->last_name}}</td>
                                         <td>{{$vendor->email}}</td>
                                         <td>{{$vendor->mobile_no}}</td>
                                         <td>
@@ -68,8 +70,8 @@
                                         </td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('vendor-detail.edit',['id'=>$vendor->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
-                                            <a href="#"  class="mr-1 text-danger remove_vendor" id="{{$vendor->id}}"><i class=" fas fa-trash-alt"></i></a>
+                                            {{-- <a href="{{ route('vendor-detail.edit',['id'=>$vendor->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a> --}}
+                                            {{-- <a href="#"  class="mr-1 text-danger remove_vendor" id="{{$vendor->id}}"><i class=" fas fa-trash-alt"></i></a> --}}
                                         </td>
                                     </tr>
                                     @endforeach

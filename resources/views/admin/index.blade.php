@@ -17,7 +17,7 @@
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Happy Journey</a></li>
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ol>
                             </div>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">58,947</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_bus }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Total Bus</p>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_route }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Total Route</p>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">50</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">0</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Total Book Ticket</p>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">78,412</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">0</span></h3>
                                         <p class="text-muted mb-1 text-truncate">New Inquiry</p>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                     <div class="col-12">
                         <h4 class="page-title mb-3 mt-2 ">
                             <i class="fas fa-users-cog ml-1 mr-2"></i>
-                            Agents Statistics
+                            Vendor Statistics
                         </h4>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">58,947</span></h3>
-                                        <p class="text-muted mb-1 text-truncate">Total Agent</p>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_route }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Vendor</p>
                                     </div>
                                 </div>
                             </div> <!-- end row-->
@@ -143,12 +143,12 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="avatar-lg rounded-circle bg-soft-success border-success border">
-                                        <i class="  fe-truck font-22 avatar-title text-success"></i>
+                                        <i class="fe-truck font-22 avatar-title text-success"></i>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_bus }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate"> Total Bus</p>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">50</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_route }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate"> Total Route</p>
                                     </div>
                                 </div>
@@ -184,8 +184,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">78,412</span></h3>
-                                        <p class="text-muted mb-1 text-truncate">Ban Agent</p>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $ban_vendor}}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Ban Vendor</p>
                                     </div>
                                 </div>
                             </div> <!-- end row-->
@@ -198,7 +198,7 @@
                     <div class="col-12">
                         <h4 class="page-title mb-3 mt-2 ">
                             <i class="fe-users ml-1 mr-2"></i>
-                            Users Statistics
+                            Customer Statistics
                         </h4>
                     </div>
                 </div>
@@ -213,8 +213,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">58,947</span></h3>
-                                        <p class="text-muted mb-1 text-truncate">Total User</p>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ $total_customer }}</span></h3>
+                                        <p class="text-muted mb-1 text-truncate">Total Customer</p>
                                     </div>
                                 </div>
                             </div> <!-- end row-->
@@ -231,7 +231,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">127</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">0</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Email Varified</p>
                                     </div>
                                 </div>
@@ -249,7 +249,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">50</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">0</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Phone Varified</p>
                                     </div>
                                 </div>
@@ -267,7 +267,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-right">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">78,412</span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">0</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Ban User</p>
                                     </div>
                                 </div>

@@ -16,7 +16,7 @@ class CreateBusGallary extends Migration
         Schema::create('bus_gallarys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->string('image_path');
             $table->string('created_by');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');

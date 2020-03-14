@@ -27,10 +27,10 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
-                                <li class="breadcrumb-item active">Board Point Details</li>
+                                <li class="breadcrumb-item active">Seats Layout</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Board Point List</h4>
+                        <h4 class="page-title">Seats Layout</h4>
                     </div>
                 </div>
             </div>
@@ -39,6 +39,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header bg-danger" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
+                        </div>
                         <div class="card-body">
                             <a href="{{ route('seat-layout.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add Seat Layout</a>
                             <table id="basic-datatable" class="table dt-responsive table-striped">

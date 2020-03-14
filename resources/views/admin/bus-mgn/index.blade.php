@@ -40,7 +40,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header bg-danger" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
+                        </div>
                         <div class="card-body">
+
                             <a href="{{ route('bus-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New Bus</a>
 
                             <table id="basic-datatable" class="table dt-responsive table-striped">

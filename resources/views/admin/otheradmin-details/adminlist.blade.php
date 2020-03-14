@@ -27,10 +27,10 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
-                                <li class="breadcrumb-item active">User Mag.</li>
+                                <li class="breadcrumb-item active">Admin</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">All User List</h4>
+                        <h4 class="page-title">All Admin List</h4>
                     </div>
                 </div>
             </div>
@@ -42,9 +42,9 @@
                         <div class="card-header bg-danger" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('otheradmin-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New User</a>
+                            <a href="{{ route('otheradmin-detail.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add New </a>
                                 <table id="basic-datatable" class="table table-striped table-centered">
-                                    <thead class="thead-light">
+                                    <thead class="thead-light text-center">
                                         <tr>
                                             <th style="width: 20px;">#</th>
                                             <th>Avatar</th>
@@ -52,29 +52,25 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone Number</th>
-                                            <th>Type</th>
                                             <th>Status</th>
                                             <th style="width: 70px;">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="text-center">
                                         <?php $r=1;?>
-                                        @foreach ($users as $user)
+                                        @foreach ($admins as $admin)
                                             <tr>
                                                 <td>{{ $r++ }}</td>
-                                                <td><img src="{{ asset('/'.$user->avatar)}}" class="img-fluid avatar-sm rounded "></td>
-                                                <td>{{$user->username}}</td>
-                                                <td>{{$user->first_name.' '.$user->last_name}}</td>
-                                                <td>{{$user->email}}</td>
-                                                <td>{{$user->mobile_no}}</td>
-                                                <td>{{$user->UserRole->name}}</td>
+                                                <td><img src="{{ asset('/'.$admin->avatar)}}" class="img-fluid avatar-sm rounded "></td>
+                                                <td>{{$admin->username}}</td>
+                                                <td>{{$admin->first_name.' '.$admin->last_name}}</td>
+                                                <td>{{$admin->email}}</td>
+                                                <td>{{$admin->mobile_no}}</td>
                                                 <td>
-                                                    <button class="btn status-change {{$user->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$user->status==1?"Active":"Disable"}}" id="{{$user->id}}">{{$user->status==1?"Active":"Disable"}}</button>
+                                                    <button class="btn status-change {{$admin->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$admin->status==1?"Active":"Disable"}}" id="{{$admin->id}}">{{$admin->status==1?"Active":"Disable"}}</button>
                                                 </td>
                                                 <td>
                                                     <a class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                                    <a href="{{ route('otheradmin-detail.edit',['id'=>$user->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
-                                                    <a name="{{$user->profile_picture}}" class="mr-1 text-danger remove_otheradmin" id="{{$user->id}}"  ><i  class=" fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -115,7 +111,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-sm-4 col-md-6 col-lg-6 ">
-                                            <h5>User Name</h5>
+                                            <h5>admin Name</h5>
                                             <span>bus name</span>
                                         </div>
                                         <div class="col-12 col-sm-4 col-md-6 col-lg-6 ">
@@ -167,54 +163,6 @@
 
 
 <script  type="text/javascript">
-    $('.remove_otheradmin').click(function(){
-        var c_id= $(this).attr('id');
-        var profileimage= $(this).attr('name');
-        // alert($(this).attr('name'));
-        swal({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            type: "warning",
-            showCancelButton: !0,
-            confirmButtonClass: "btn btn-confirm mt-2",
-            cancelButtonClass: "btn btn-cancel ml-2 mt-2",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.value) {
-                    $.ajax({
-                        url:'{{route('otheradmin-detail.destroy')}}',
-                        data:{
-                            id : c_id,
-                            profilepicture : profileimage
-                        },
-                        type:'get',
-                        success:function(response)
-                        {
-                            // alert(response);
-                            if (response=="success") {
-                            swal({
-                                title: "Deleted !",
-                                text: "Successfull deleted bus",
-                                type: "success",
-                                timer: 500,
-                                showConfirmButton: false
-                            })
-                            $("#"+c_id).closest("tr").fadeOut(1000);
-                            } else {
-                                new PNotify({
-                                    title: 'Warning Notification',
-                                    text: 'Contact Support Team',
-                                    icon: 'icofont icofont-info-circle',
-                                    type: 'Warning'
-                                });
-                            }
-                        }
-                    });
-                } else {
-                    swal("Ohhhhh........No!");
-                }
-            });
-    });
 
     // Status Change the otheradmin //
     $('.status-change').click(function(){
@@ -233,7 +181,7 @@
                     $.ajax({
                     type:'POST',
                     url:'{{route('status.change')}}',
-                    data:{'status':status,'id':id,'model':'User',"_token": "{{ csrf_token() }}"},
+                    data:{'status':status,'id':id,'model':'Admin',"_token": "{{ csrf_token() }}"},
                     success:function(response){
                         if (response=="success" && status==true) {
                             $('#'+id).addClass("btn-outline-primary ");

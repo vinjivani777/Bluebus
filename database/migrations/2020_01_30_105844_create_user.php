@@ -26,12 +26,12 @@ class CreateUser extends Migration
             $table->string('avatar');
             $table->boolean('status');
             $table->rememberToken();
-            $table->date('dob');
-            $table->string('token');
-            $table->integer('otp');
-            $table->string('forget_token');
-            $table->string('referral_code');
-            $table->integer('parent_id');
+            $table->date('dob')->nullable();
+            $table->string('token')->nullable();
+            $table->integer('otp')->nullable();
+            $table->string('forget_token')->nullable();
+            $table->string('referral_code')->nullable();
+            $table->integer('parent_id')->nullable();
             $table->foreign('role_id')->references('id')->on('user_roles')->onDelete('cascade');
             $table->timestamps();
         });

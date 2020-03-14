@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
+use App\Model\User;
 use App\Model\Admin;
 use App\Model\Route;
+use App\Model\Vendor;
 use App\Model\BusType;
 use App\Model\Amenitie;
+use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
@@ -14,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -24,7 +28,15 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $nav=Array();
+        $nav['total_bus']=count(Bus::get());
+        $nav['total_route']=count(Route::get());
+        $nav['total_vendor']=count(Vendor::get());
+        $nav['ban_vendor']=count(Vendor::whereStatus(1)->get());
+        $nav['total_customer']=count(Customer::get());
+        // $nav['ban_customer']=Customer::whereStatus(1)->get();
+
+        return view('admin.index',$nav);
     }
 
     /**
@@ -51,6 +63,43 @@ class AdminController extends Controller
             $find_model = PromoCode::findorfail($request->id);
         }elseif ($model == "Admin") {
             $find_model = Admin::findorfail($request->id);
+
+            $username= $find_model->username;
+
+
+            $find_user = User::whereUsername($username)->first();
+            $find_user->status = $request->status;
+            $find_user->save();
+
+        }elseif ($model == "Vendor") {
+            $find_model = Vendor::findorfail($request->id);
+
+            $username= $find_model->username;
+
+
+            $find_user = User::whereUsername($username)->first();
+            $find_user->status = $request->status;
+            $find_user->save();
+
+        }elseif ($model == "User") {
+            $find_model = User::findorfail($request->id);
+
+            $role=$find_model->role_id;
+            $username= $find_model->username;
+
+            if($role == 1)
+            {
+                $find_admin = Admin::whereUsername($username)->first();
+                $find_admin->status = $request->status;
+                $find_admin->save();
+            }
+
+            if($role == 2)
+            {
+                $find_vendor = Vendor::whereUsername($username)->first();
+                $find_vendor->status = $request->status;
+                $find_vendor->save();
+            }
         }
 
         $find_model->status = $request->status;
