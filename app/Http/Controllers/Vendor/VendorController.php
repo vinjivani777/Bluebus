@@ -8,6 +8,7 @@ use App\Model\Agent;
 use App\Model\Route;
 use App\Model\Vendor;
 use App\Model\BusType;
+use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
@@ -25,7 +26,13 @@ class VendorController extends Controller
 {
    public function index()
    {
-       return view('vendor.index');
+    $nav=Array();
+    $nav['total_bus']=count(Bus::get());
+    $nav['total_route']=count(Route::get());
+    $nav['total_vendor']=count(Vendor::get());
+    $nav['ban_vendor']=count(Vendor::whereStatus(1)->get());
+    $nav['total_customer']=count(Customer::get());
+       return view('vendor.index',$nav);
    }
 
    public function register()

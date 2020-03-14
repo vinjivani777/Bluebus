@@ -23,7 +23,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'username'  => 'required|exists:vendor,username',
+            'username'  => 'required|exists:vendors,username',
             'password' => 'required',
         ]);
 
