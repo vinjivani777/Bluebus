@@ -336,6 +336,9 @@ Route::get('/', function () {
     // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
+    Route::post('/LoginVaiOTP','Web\HomeController@index')->name('mobileno.login');
+    Route::post('/OTPVarify','Web\HomeController@optvarify')->name('opt.varify');
+
 
 Auth::routes();
 
