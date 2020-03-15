@@ -72,8 +72,9 @@ class BusController extends Controller
 
             $newbus= new Bus;
             $amenities =  implode(',', $request->amenities);
+            $routes =  implode(',', $request->route);
             $newbus->bus_name= $request->bus_name;
-            $newbus->route_id=$request->route;
+            $newbus->route_id=$routes;
             $newbus->bus_type_id= $request->bus_type;
             $newbus->amenities_id= $amenities;
             $newbus->bus_reg_no= $request->bus_reg_no;
@@ -114,7 +115,7 @@ class BusController extends Controller
         $bus = array();
         $bus['amenities'] = Amenitie::whereStatus(true)->get();
         $bus['bus_type'] = Bustype::whereStatus(true)->get();
-        $bus['route'] = Route::with('Source','Destination')->whereStatus(true)->get();
+        $bus['routes'] = Route::with('Source','Destination')->whereStatus(true)->get();
         $bus['vendor'] = Vendor::whereStatus(true)->get();
         $bus['bus'] = Bus::whereId($id)->first();
 
@@ -134,7 +135,7 @@ class BusController extends Controller
             'bus_name'      => 'required|min:2',
             'bus_type'      => 'required',
             'bus_reg_no'    => 'required|min:5',
-            'route'         => 'required|exists:routes,id',
+            'route'         => 'required',
             'max_seats'     => 'required',
             'board_point'   => 'required',
             'drop_point'    => 'required',
@@ -152,8 +153,9 @@ class BusController extends Controller
 
             $newbus = Bus::findorfail($id);
             $amenities =  implode(',', $request->amenities);
+            $routes =  implode(',', $request->route);
             $newbus->bus_name= $request->bus_name;
-            $newbus->route_id=$request->route;
+            $newbus->route_id=$routes;
             $newbus->bus_type_id= $request->bus_type;
             $newbus->amenities_id= $amenities;
             $newbus->bus_reg_no= $request->bus_reg_no;
@@ -168,7 +170,7 @@ class BusController extends Controller
             $newbus->save();
 
             return redirect()->route('bus-detail');
-        
+
     }
 
     /**

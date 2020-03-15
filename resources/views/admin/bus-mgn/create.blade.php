@@ -85,7 +85,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select name="route" id="route" class="form-control" data-toggle="select2"  required>
+                                    <select name="route[]" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutipal Route" required>
                                         <option value="">Select Route</option>
                                         @foreach ($route as $route)
                                         <option value="{{$route->id}}">{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>

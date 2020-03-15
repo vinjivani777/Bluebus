@@ -83,20 +83,20 @@
                                             <label for="bustype">Bus Type</label>
                                             <select name="bus_type" id="bus_type" class="form-control">
                                                 @foreach ($bus_type as $type)
-                                            <option value="{{$type->id}}" @if(($type->id) == ($bus->bus_type_id))  {{ "selected" }} @endif >{{ $type->type_name }}</option>
+                                                <option value="{{$type->id}}" @if(($type->id) == ($bus->bus_type_id))  {{ "selected" }} @endif >{{ $type->type_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                         <div class="form-group">
-                                            <label for="route">Route</label>
-                                            <select name="route" id="route" class="form-control" data-toggle="select2"  required>
-                                                <option value="">Select Route</option>
-                                                @foreach ($route as $route)
-                                                <option value="{{$route->id}}" @if(($route->id) == ($bus->route_id))  {{ "selected" }} @endif>{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
-                                                @endforeach
-                                            </select>
+                                                <label for="route">Route</label>
+                                                <select name="route[]" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutipal Route" required>
+                                                    <?php $select_routes = explode(",", $bus->route_id); ?>
+                                                    @foreach ($routes as $route)
+                                                    <option value="{{$route->id}}" {{in_array($route->id, $select_routes)?"selected":""}}>{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">
@@ -120,13 +120,13 @@
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                         <div class="form-group">
                                             <label for="boardtime">Start Time</label>
-                                            <input type="text" class="form-control" id="board_time" name="board_time" value="{{ $bus->start_time }}" placeholder="Pick a time">
+                                            <input type="text" class="form-control" id="board_time" name="board_time" value="{{ date("g:i A",strtotime($bus->start_time))  }}" placeholder="Pick a time">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                         <div class="form-group">
                                             <label for="droptime">End Time</label>
-                                            <input type="text" class="form-control" id="drop_time" name="drop_time" value="{{ $bus->ending_time }}" placeholder="Drop Time">
+                                            <input type="text" class="form-control" id="drop_time" name="drop_time" value="{{ date("g:i A",strtotime($bus->ending_time)) }}" placeholder="Drop Time">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">
