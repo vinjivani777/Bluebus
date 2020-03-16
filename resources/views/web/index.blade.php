@@ -163,7 +163,6 @@
                                 <div class="dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
-
                                 <!-- item-->
                                 <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item">
                                     <i class="fe-user"></i>
@@ -175,7 +174,7 @@
                                     <span>Profile</span>
                                 </a>
                                 {{-- <div class="dropdown-divider"></div> --}}
-        
+
                                 <!-- item-->
                                 <a href="http://127.0.0.1:8000/admin/logout" class="dropdown-item notify-item">
                                     <i class="fe-log-out"></i>
@@ -1115,11 +1114,11 @@
                                             </div>
                                         </div>
                                     <div class="row mt-2 text-center">
-                                       
+
                                         <div class="col-12 pl-0 pr-0 mt-1">
                                             <span>OTP Valid FOR 10 Mins</span>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-12 text-center">
@@ -1135,7 +1134,7 @@
         </body>
 
 
-        
+
 
 <script src="{{ asset('web/js/vendor.min.js')}}"></script>
 
@@ -1162,9 +1161,9 @@
             var valid;
             if(mobileNo != "")
             {
-            
+
                 $('#mobileNo').css('border','1px solid #ced4da ')
-            
+
             }else{
 
                 $('#mobileNo').css('border','1px solid red')
@@ -1173,7 +1172,7 @@
             }
 
             $.ajax({
-                
+
                 url:'{{route('mobileno.login')}}',
                 data:{"mobileNo":mobileNo,"_token": "{{ csrf_token() }}" },
                 type:"POST",
@@ -1188,19 +1187,19 @@
                         $('#optLayout').hide();
                         $('#optLayout').css("display","");
 
-                    
+
                     }else{
 
                         $('#optLayout').hide();
                         $('#optLayout').css("display","none");
                     }
                 }
-                
+
             })
         });
 
 
-       
+
         $('#otpvarify').click(function(){
 
             var OTP=$('#OTP').val();
@@ -1219,7 +1218,7 @@
             var mobileNo=sessionStorage.getItem("mobileNo")
 
             $.ajax({
-                
+
                 url:'{{route('opt.varify')}}',
                 data:{"OTP":OTP,"mobileNo":mobileNo,"_token": "{{ csrf_token() }}" },
                 type:"POST",
@@ -1229,14 +1228,14 @@
                     {
                         sessionStorage.removeItem("mobileNo");
                         window.load();
-                    
+
                     }else{
 
                         $('#OTP').css('border','1px solid red')
 
                     }
                 }
-                
+
             })
         });
 

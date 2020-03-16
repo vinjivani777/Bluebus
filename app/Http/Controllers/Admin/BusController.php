@@ -62,6 +62,7 @@ class BusController extends Controller
             'board_time'    => 'required',
             'drop_time'     => 'required',
             'amenities'     => 'required',
+            'dates'         => 'required',
         ]);
 
 
@@ -86,14 +87,15 @@ class BusController extends Controller
             $newbus['max_seats']= $request->max_seats;
             $newbus['status']= "0";
             $newbus['vendor_id']= $request->vendor;
+            $newbus['dates']=$request->dates;
 
-            // return $newbus;
+            // return ($newbus);
             $Bus=Bus::create($newbus);
 
             $BusToRoute=Array();
 
             foreach ($request->route as $val) {
-                
+
                 $BusToRoute['bus_id']=$Bus->id;
                 $BusToRoute['route_id']=$val;
 

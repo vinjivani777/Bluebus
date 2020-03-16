@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bus extends Model
 {
     protected $table = "buses";
-    protected $fillable=['id', 'route_id', 'bus_type_id', 'amenities_id', 'bus_name', 'bus_reg_no', 'starting_point', 'start_time', 'ending_point', 'ending_time', 'max_seats', 'status', 'vendor_id'];
+    protected $fillable=['id', 'route_id', 'bus_type_id', 'amenities_id', 'bus_name', 'bus_reg_no', 'starting_point', 'start_time', 'ending_point', 'ending_time', 'max_seats', 'status', 'vendor_id','dates'];
     public $timestamps = true;
 
     public function Bus_Type()
