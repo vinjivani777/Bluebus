@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Model\Route;
+use App\Model\Bus;
 use App\Model\City;
+use App\Model\Route;
 use App\Model\Amenitie;
+use App\Model\Bustoroute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class SearchController extends Controller
@@ -51,7 +54,7 @@ class SearchController extends Controller
                 ->get();
 
         return response()->json($result);
-        
+
     //      $search=$request->get('Destnation');
 
 
@@ -80,8 +83,15 @@ class SearchController extends Controller
     {
         $source=$request->source_palace;
         $dest=$request->destination_palace;
-        $total_bus=Route::with('Bus_Name')->where(['status'=>'1','board_point'=>$source,'drop_point'=>$dest])->get();
+        $route_id=Route::select('id')->where(['status'=>'1','source_name'=>$source,'destination_name'=>$dest])->first();
+        // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('bus_id', DB::raw('count(*) as total'))
+        ->groupBy('bus_id')->whereRoute_id($route_id->id)
+        ->pluck('bus_id')->all();
 
+
+        $Total_bus=Bus::whereIn('id',$Total_route_id)->get();
         $aminaties=Amenitie::whereStatus(1)->get();
 
 
@@ -89,7 +99,7 @@ class SearchController extends Controller
         $params['source']=$source;
         $params['dest']=$dest;
         $params['aminaties']=$aminaties;
-        $params['total_bus']=$total_bus;
+        $params['total_bus']=$Total_bus;
         return view('web.search.search',$params);
     }
 }

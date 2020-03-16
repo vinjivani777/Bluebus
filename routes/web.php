@@ -313,9 +313,7 @@ Route::get('errors', function () {
 })->name('errors');
 
 
-Route::get('/', function () {
-    return view('web.index');
-})->name('web.index');
+Route::get('/','Web\HomeController@index')->name('web.index');
 
     Route::get('/offer','Web\OfferController@index')->name('offer');
     Route::get('/source','Web\SearchController@source')->name('source');
@@ -336,8 +334,9 @@ Route::get('/', function () {
     // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
-    Route::post('/LoginVaiOTP','Web\HomeController@index')->name('mobileno.login');
+    Route::post('/LoginVaiOTP','Web\HomeController@LoginVaiOTP')->name('mobileno.login');
     Route::post('/OTPVarify','Web\HomeController@optvarify')->name('opt.varify');
+    Route::get('/logout','Web\HomeController@logout')->name('user.logout');
 
 
 Auth::routes();
