@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-
+Admin|Add Bus
 @endsection
 
 @section('other-page-css')

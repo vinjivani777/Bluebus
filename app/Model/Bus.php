@@ -17,14 +17,26 @@ class Bus extends Model
 
     public function Source()
     {
-        return $this->belongsTo('App\Model\City', 'source_point');
+        return $this->belongsTo('App\Model\City', 'starting_point');
 
     }
 
     public function Destination()
     {
-        return $this->belongsTo('App\Model\City', 'destination_point');
+        return $this->belongsTo('App\Model\City', 'ending_point');
 
     }
+
+    // public function source()
+    // {
+    //     return $this->belongsTo('App\Model\City', 'source_point');
+
+    // }
+
+    // public function destination()
+    // {
+    //     return $this->belongsTo('App\Model\City', 'ending_point');
+
+    // }
 
 }

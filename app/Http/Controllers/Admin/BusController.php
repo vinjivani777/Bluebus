@@ -38,7 +38,7 @@ class BusController extends Controller
         $bus['bus_type'] = Bustype::whereStatus(true)->get();
         $bus['route'] = Route::with('Source','Destination')->whereStatus(true)->get();
         $bus['vendor'] = Vendor::whereStatus(true)->get();
-
+        // return $bus['route'];
         return view('admin.bus-mgn.create',$bus);
     }
 

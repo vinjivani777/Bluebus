@@ -56,7 +56,7 @@ class OtherAdminController extends Controller
             'lastName'      =>  'required|max:20',
             'email'         =>  'required|email|unique:users,email',
             'password'      =>  'required|max:20',
-            'phoneNumber'   =>  'required',
+            'phoneNumber'   =>  'required|min:10,max:10',
             'gender'        =>  'required',
             'status'        =>  'required|boolean',
             'userRole'      =>  'required|integer|exists:user_roles,id',
@@ -66,9 +66,12 @@ class OtherAdminController extends Controller
         if($validator->fails())
         {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
-
+            // dd($validator);
         }
-
+        if(($request->userRole) == 3 )
+        {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
         $user = new User;
 
         $user->role_id=$request->userRole;
@@ -203,8 +206,8 @@ class OtherAdminController extends Controller
         if($validator->fails())
         {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
-
         }
+
 
         $params_user = Array();
 
@@ -231,8 +234,10 @@ class OtherAdminController extends Controller
                 }
                 if($request->input('oldimg'))
                     {
-                        unlink(public_path().'/'.$request->oldimg);
-
+                        if(!(($request['oldimg']) == "admin/images/admin-profile/defaultimage.png"))
+                        {
+                            unlink(public_path().'/'.$request->oldimg);
+                        }
                     }else{
 
                         $avatar;

@@ -285,11 +285,11 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
 
     //Booking  Details
     Route::get('booking-detail','Vendor\BookingController@index')->name('vendor.booking-detail');
-    Route::get('booking-detail/show','Vendor\BookingController@show')->name('vendor.booking-detail.show');
-    // Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
-    // Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
-    // Route::put('booking-detail/update/{?id}','Vendor\BookingController@update')->name('vendor.booking-detail.update');
-    // Route::delete('booking-detail/destroy/{id}','Vendor\BookingController@destroy')->name('vendor.booking-detail.destroy');
+    Route::get('booking-detail/add','Vendor\BookingController@add')->name('vendor.booking-detail.add');
+    Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
+    Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
+    Route::put('booking-detail/update/{?id}','Vendor\BookingController@update')->name('vendor.booking-detail.update');
+    Route::delete('booking-detail/destroy/{id}','Vendor\BookingController@destroy')->name('vendor.booking-detail.destroy');
 
      //Cancellation
      Route::get('cancellation-detail','Vendor\CancellationController@index')->name('vendor.cancellation-detail');

@@ -77,7 +77,7 @@ class HomeController extends Controller
                     $User->email="User". $r . str_random(5) . "@happyjourney.com";
                     $User->mobile_no=$mobileNo;
                     $User->password= bcrypt("User". $r . str_random(5));
-                    $User->avatar="admin/image/admin.png";
+                    $User->avatar="admin/images/admin-profile/defaultimage.png";
                     $User->status=1;
                     $User->remember_token=md5($otp.$mobileNo);
                     $User->token='HappyJourny';
@@ -129,7 +129,7 @@ class HomeController extends Controller
             $Update=User::whereId($UserDetails->id)->update($User);
             // dd($Update);
             Auth::guard('user')->loginUsingId($Update);
-            
+
             return "Success";
 
 

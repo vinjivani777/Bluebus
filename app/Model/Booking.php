@@ -19,4 +19,9 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Model\Bus','bus_id');
     }
+
+    public function vendor()
+    {
+        return $this->belongsTo('App\Model\Vendor','vendor_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Model\Admin;
 use App\Model\Agent;
 use App\Model\Route;
 use App\Model\Vendor;
+use App\Model\Booking;
 use App\Model\BusType;
 use App\Model\Customer;
 use App\Model\DropPoint;
@@ -26,13 +27,16 @@ class VendorController extends Controller
 {
    public function index()
    {
+    $id = Auth::guard('vendor')->user()->id;
     $nav=Array();
-    $nav['total_bus']=count(Bus::get());
+    $nav['total_bus']=count(Bus::where('vendor_id',$id)->with('Bus_Type','Source','Destination')->get());
     $nav['total_route']=count(Route::get());
-    $nav['total_vendor']=count(Vendor::get());
-    $nav['ban_vendor']=count(Vendor::whereStatus(1)->get());
-    $nav['total_customer']=count(Customer::get());
-       return view('vendor.index',$nav);
+    $nav['total_bookings']=count(Booking::where('vendor_id',$id)->get());
+    $nav['bookings']=Booking::where('vendor_id',$id)->with('Bus','Customer','Vendor')->where('created_at','>=',date('Y-m-d'))->get();
+    $nav['buses']= Bus::where('vendor_id',$id)->with('Bus_Type')->get();
+    $nav['promos']= PromoCode::where('created_by','vendor')->get();
+    // dd($nav['promos']->all());
+    return view('vendor.index',$nav);
    }
 
    public function register()
