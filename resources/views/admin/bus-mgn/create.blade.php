@@ -147,6 +147,14 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                                <div class="form-group ">
+                                    <label>Routing multiple dates</label>
+                                    <input type="text" id="multiple-datepicker" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                 <input type="submit" class="btn btn-sm btn-primary" value="Submit">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                             </div>
