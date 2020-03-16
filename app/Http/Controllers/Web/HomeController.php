@@ -23,13 +23,13 @@ class HomeController extends Controller
         {
             return "Please Enter Valid Mobile number";
         }
-        
+
         $UserDetails=User::whereMobile_no($mobileNo)->first();
 
         if($UserDetails != " " && $UserDetails)
         {
 
-                $smsTemplate = "Your One Time Password is ".$otp."and it valid for the next  10 mins. Please do not share this 
+                $smsTemplate = "Your One Time Password is ".$otp."and it valid for the next  10 mins. Please do not share this
                 OTP with anyone. Thank you, Happy Journey Team.";
 
                 SMSController::LoginOtp($mobileNo,$smsTemplate,$otp);
@@ -39,7 +39,7 @@ class HomeController extends Controller
                 $r=count(User::get());
                 $User=Array();
 
-               
+
                 $User['remember_token']=md5($otp.$mobileNo);
                 $User['token']='HappyJourny';
                 $User['otp']=$otp;
@@ -56,14 +56,14 @@ class HomeController extends Controller
             if($mobileNo != "")
                 {
 
-            
 
 
-                    $smsTemplate = "Your One Time Password is ".$otp."and it valid for the next  10 mins. Please do not share this 
+
+                    $smsTemplate = "Your One Time Password is ".$otp."and it valid for the next  10 mins. Please do not share this
                                     OTP with anyone. Thank you, Happy Journey Team.";
-                    
+
                     SMSController::LoginOtp($mobileNo,$smsTemplate,$otp);
-                    
+
 
                     $forgot_token =  bcrypt($mobileNo.$otp);
                     $r=count(User::get());
@@ -88,17 +88,17 @@ class HomeController extends Controller
 
                     $User->save();
 
-                    
+
                     return "Success";
 
 
                 }else{
 
-                    return "Error"; 
+                    return "Error";
                 }
 
         }
-                
+
     }
 
 
@@ -120,16 +120,16 @@ class HomeController extends Controller
         if($OTP !="" && $mobileNo != "")
         {
 
-             $UserDetails=User::wheremobile_no($mobileNo)->first();
+            $UserDetails=User::wheremobile_no($mobileNo)->first();
 
             $User=Array();
 
-            $User['otp']=" "    ;
+            $User['otp']="";
 
             $Update=User::whereId($UserDetails->id)->update($User);
-
-            Auth::guard('user')->login($UserDetails);
-
+            // dd($Update);
+            Auth::guard('user')->loginUsingId($Update);
+            
             return "Success";
 
 
