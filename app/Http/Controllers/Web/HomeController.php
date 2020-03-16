@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Model\User;
+use App\Model\PromoCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,23 @@ use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    public function index(Request $request)
+
+    public function index()
+    {
+        $promoCode=PromoCode::wherestatus(1)->get();
+        $promoFirst=PromoCode::wherestatus(1)->first();
+
+        $nav=Array();
+
+        $nav['active']="active";
+        $nav['promoCode']=$promoCode;
+        $nav['promoFirst']=$promoFirst;
+        $nav['promoCount']=count($promoCode);
+
+        return view('web.index',$nav);
+    }
+
+    public function LoginVaiOTP(Request $request)
     {
         $mobileNo=$request->mobileNo;
         $otp= mt_rand(000000,999999);
@@ -137,5 +154,13 @@ class HomeController extends Controller
 
             return "Error";
         }
+    }
+
+
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+
+        return redirect()->route('web.index');
     }
 }

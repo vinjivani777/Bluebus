@@ -282,12 +282,15 @@
 
                               {{--  AMENITIES  --}}
                               <li class="menu-title mt-2" style="font-size:13px;font-weight:600;color:#3e3e52">AMENITIES</li>
-
+                                <?php $r=12; ?>
                               @foreach ($aminaties as $item)
                                 <li>
-                                    <a href="" style="color:#6c757d" class="m-0 p-1">
-                                        <i class="fe-user"></i>{{ $item->amenities }}
-                                    </a>
+                                    <div class="checkbox checkbox-danger mb-2 ml-3">
+                                        <input id="checkbox-{{  $r++ }}" type="checkbox">
+                                        <label for="checkbox-{{  $r++ }}" class="text-xs">
+                                            <img src="{{ asset('/'.$item->image_path) }}" style="width:15px;height:15px;" class="ml-2"> &nbsp; {{ $item->description }}
+                                        </label>
+                                    </div>
                                 </li>
                               @endforeach
 
@@ -335,7 +338,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:16px;font-weight: 700;">{{ $item->Bus_Name->bus_name }}</span>
+                                                        <span style="font-size:16px;font-weight: 700;">{{ $item->bus_name }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -354,7 +357,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:19px;font-weight:400">{{ $item->board_time }}</span>
+                                                        <span style="font-size:19px;font-weight:400">{{ date("g:i A",strtotime($item->start_time)) }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -363,14 +366,15 @@
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-4">
-                                                        <span style="font-size:12px;font-weight: 300;">Hirabaug Varachha</span>
+                                                        <span style="font-size:12px;font-weight: 300;">{{ $item->starting_point }}</span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
+
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:18px;font-weight:400">03h 40m</span>
+                                                        <span style="font-size:18px;font-weight:400">{{ date('G:i',strtotime($item->ending_time) -  strtotime($item->start_time)) }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -385,7 +389,7 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <span style="font-size:18px;font-weight:400">{{ $item->drop_time }}</span>
+                                                        <span style="font-size:18px;font-weight:400">{{date("g:i A",strtotime($item->ending_time)) }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
@@ -394,7 +398,7 @@
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-4">
-                                                        <span style="font-size:12px;font-weight: 300;">Rajkot Bypass</span>
+                                                        <span style="font-size:12px;font-weight: 300;">{{ $item->ending_point }}</span>
                                                     </div>
                                                 </div>
                                             </td>
@@ -450,15 +454,15 @@
                                         <tr class="amenities mb-2" style="background-color:#f8f9fa;display:none" >
                                             <td colspan="7" class="amenities_content">
                                                 <div class="row">
-                                                    <div class="col-12 mt-4 mb-3 ml-3 data">
-                                                        <span style="font-size:17px;font-weight: 300;"><i class="fe-tv"></i> Personal TV</span>
-                                                        <span style="font-size:17px;font-weight: 300;" class=" ml-5 mt-2"><i class="fe-droplet "></i> Water Bottal</span>
-                                                        <span style="font-size:17px;font-weight: 300;" class=" ml-5 mt-2"><i class="fe-droplet "></i> Water Bottal</span>
+                                                    <div class="col-12 mt-1 mb-1 ml-3 data">
+                                                       @foreach ($aminaties as $amt)
+                                                            <span style="font-size:14px;font-weight: 100;">  @if(($amt->id) == ($item->amenities_id)) {{ $amt->description }} @endif</span>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr style="background-color:#f8f9fa;">
+                                        {{-- <tr style="background-color:#f8f9fa;">
                                             <td colspan="7">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -469,7 +473,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         @endforeach
                                     </tbody>
                                 </table>
