@@ -8,7 +8,7 @@ class Cancellation extends Model
 {
     protected $table = "cancellations";
     protected $fillable=[ 'id', 'bus_id', 'advertisement_status', 'cancel_time', 'percentage', 'flat', 'type'];
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function bus()
     {

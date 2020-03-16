@@ -8,7 +8,7 @@ class Booking extends Model
 {
     protected $table = "booking_details";
     protected $fillable=['id','booking_id','amount', 'bus_id', 'rout_id', 'boarding_point_id', 'user_id', 'seat_no', 'payment_status', 'payment_option', 'booking_date', 'status'];
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function customer()
     {

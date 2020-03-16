@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Model\Route;
+use App\Model\City;
 use App\Model\Amenitie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,8 +13,8 @@ class SearchController extends Controller
     public function source(Request $request)
     {
 
-        $result = Route::select("board_point")
-                ->where("board_point","LIKE","%{$request->input('term')}%")
+        $result = City::select("city_name")
+                ->where("city_name","LIKE","%{$request->input('term')}%")
                 ->get();
 
         return response()->json($result);
@@ -44,26 +45,33 @@ class SearchController extends Controller
 
     public function dest(Request $request)
     {
-         $search=$request->get('Destnation');
+
+        $result = City::select("city_name")
+                ->where("city_name","LIKE","%{$request->input('term')}%")
+                ->get();
+
+        return response()->json($result);
+        
+    //      $search=$request->get('Destnation');
 
 
-       $result = Route::where('drop_point', 'LIKE', '%'. $search. '%')->get();
+    //    $result = Route::where('drop_point', 'LIKE', '%'. $search. '%')->get();
 
-         if($result == '')
-         {
-            $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
-            $output .= '<li><a href="#"> So Sorry !</a></li>';
-            $output .= '</ul>';
-            return  $output;
-         }else{
-            $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
-            foreach($result as $row)
-            {
-                $output .= '<li class="dest_select"><a>'.$row->drop_point.'</a></li>';
-            }
-            $output .= '</ul>';
-            return  $output;
-         }
+    //      if($result == '')
+    //      {
+    //         $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
+    //         $output .= '<li><a href="#"> So Sorry !</a></li>';
+    //         $output .= '</ul>';
+    //         return  $output;
+    //      }else{
+    //         $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
+    //         foreach($result as $row)
+    //         {
+    //             $output .= '<li class="dest_select"><a>'.$row->drop_point.'</a></li>';
+    //         }
+    //         $output .= '</ul>';
+    //         return  $output;
+    //      }
 
 
     }

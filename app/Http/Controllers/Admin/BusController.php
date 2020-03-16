@@ -6,6 +6,7 @@ use App\Model\Route;
 use App\Model\Vendor;
 use App\Model\Bustype;
 use App\Model\Amenitie;
+use App\Model\Bustoroute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -70,24 +71,35 @@ class BusController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-            $newbus= new Bus;
+            $newbus=Array();
             $amenities =  implode(',', $request->amenities);
             $routes =  implode(',', $request->route);
-            $newbus->bus_name= $request->bus_name;
-            $newbus->route_id=$routes;
-            $newbus->bus_type_id= $request->bus_type;
-            $newbus->amenities_id= $amenities;
-            $newbus->bus_reg_no= $request->bus_reg_no;
-            $newbus->starting_point= $request->board_point;
-            $newbus->ending_point= $request->drop_point;
-            $newbus->start_time= $request->board_time;
-            $newbus->ending_time= $request->drop_time;
-            $newbus->max_seats= $request->max_seats;
-            $newbus->status= "0";
-            $newbus->vendor_id= $request->vendor;
+            $newbus['bus_name']= $request->bus_name;
+            $newbus['route_id']=$routes;
+            $newbus['bus_type_id']= $request->bus_type;
+            $newbus['amenities_id']= $amenities;
+            $newbus['bus_reg_no']= $request->bus_reg_no;
+            $newbus['starting_point']= $request->board_point;
+            $newbus['ending_point']= $request->drop_point;
+            $newbus['start_time']= $request->board_time;
+            $newbus['ending_time']= $request->drop_time;
+            $newbus['max_seats']= $request->max_seats;
+            $newbus['status']= "0";
+            $newbus['vendor_id']= $request->vendor;
 
             // return $newbus;
-            $newbus->save();
+            $Bus=Bus::create($newbus);
+
+            $BusToRoute=Array();
+
+            foreach ($request->route as $val) {
+                
+                $BusToRoute['bus_id']=$Bus->id;
+                $BusToRoute['route_id']=$val;
+
+                $BTR=Bustoroute::create($BusToRoute);
+
+            }
 
             return redirect()->route('bus-detail');
 

@@ -1123,7 +1123,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-12 text-center">
-                                        <button class="btn bg-white btn-rounded width-sm pt-2 pb-2 " style="border:1px solid #ced4da:width:100%" ><span class=" font-weight-bold " style="color:#ff3d00">Onother Way To Login</span></button>
+                                        <button class="btn bg-white btn-rounded width-sm pt-2 pb-2 mr-2" style="border:1px solid #ced4da:width:100%" ><span class=" font-weight-bold " style="color:#ff3d00">Onother Way To Login</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -1135,10 +1135,10 @@
         </body>
 
 
+        
 
 <script src="{{ asset('web/js/vendor.min.js')}}"></script>
 
-<script src="{{ asset('web/js/pages/animation.init.js')}}"></script>
 
 <!-- Plugins js-->
 <script src="{{ asset('web/libs/flatpickr/flatpickr.min.js') }}"></script>
@@ -1153,8 +1153,8 @@
 
     <script>
 
-$('#optLayout').hide();
-$('#optLayout').css("display","none");
+        $('#optLayout').hide();
+        $('#optLayout').css("display","none");
 
         $('#continue').click(function(){
 
@@ -1247,64 +1247,95 @@ $('#optLayout').css("display","none");
 
 
 
-<script type="text/javascript">
-
-$('.search_bus_btn').click(function(){
-
-    if($('.source_palace').val()=="")
-    {
-        $(".source_palace").css("border", "1px solid #f1556c");
-    }
-
-    if($('.destination_palace').val()=="")
-    {
-        $(".destination_palace").css("border", "1px solid #f1556c");
-    }
-
-    if($('.basic-datepicker').val()=="")
-    {
-        $(".basic-datepicker").css("border", "1px solid #f1556c");
-    }
-});
-
-$('.source_palace').keyup(function(){
-    $(".source_palace").css("border", "1px solid #f1556c");
-
-});
-$('.destination_palace').keyup(function(){
-    $(".destination_palace").css("border", "1px solid #f1556c");
-
-});
-$('.basic-datepicker').click(function(){
-    $(".basic-datepicker").css("border", "1px solid #f1556c");
-
-});
+<script src="{{ asset('web/js/app.min.js')}}"></script>
 
 
-    var path = "{{ route('source') }}";
-    $(document).ready(function() {
-        $('.source_palace').autocomplete({
 
-            source: function(request, response) {
-                $.ajax({
-                url: path,
-                data: {
-                        term : request.term
-                 },
-                dataType: "json",
-                success: function(data){
-                   var resp = $.map(data,function(obj){
-                        //console.log(obj.board_point);
-                        return obj.board_point;
-                   });
 
-                   response(resp);
-                }
+    <script type="text/javascript">
+
+        // $('.search_bus_btn').click(function(){
+
+        //     if($('.source_palace').val()=="")
+        //     {
+        //         $(".source_palace").css("border", "1px solid #f1556c");
+        //     }
+
+        //     if($('.destination_palace').val()=="")
+        //     {
+        //         $(".destination_palace").css("border", "1px solid #f1556c");
+        //     }
+
+        //     if($('.basic-datepicker').val()=="")
+        //     {
+        //         $(".basic-datepicker").css("border", "1px solid #f1556c");
+        //     }
+        // });
+
+        // $('.source_palace').keyup(function(){
+        //     $(".source_palace").css("border", "1px solid #f1556c");
+
+        // });
+        // $('.destination_palace').keyup(function(){
+        //     $(".destination_palace").css("border", "1px solid #f1556c");
+
+        // });
+        // $('.basic-datepicker').click(function(){
+        //     $(".basic-datepicker").css("border", "1px solid #f1556c");
+
+        // });
+
+
+            var path = "{{ route('source') }}";
+            $(document).ready(function() {
+                $('.source_palace').autocomplete({
+
+                    source: function(request, response) {
+                        $.ajax({
+                        url: path,
+                        data: {
+                                term : request.term
+                        },
+                        dataType: "json",
+                        success: function(data){
+                        var resp = $.map(data,function(obj){
+                                //console.log(obj.board_point);
+                                return obj.city_name;
+                        });
+
+                        response(resp);
+                        }
+                    });
+                },
+                minLength: 1
             });
-        },
-        minLength: 1
-     });
-    });
+            });
+
+
+            var path = "{{ route('dest') }}";
+            $(document).ready(function() {
+                $('.destination_palace').autocomplete({
+
+                    source: function(request, response) {
+                        $.ajax({
+                        url: path,
+                        data: {
+                                term : request.term
+                        },
+                        dataType: "json",
+                        success: function(data){
+                        var resp = $.map(data,function(obj){
+                                //console.log(obj.board_point);
+                                return obj.city_name;
+                        });
+
+                        response(resp);
+                        }
+                    });
+                },
+                minLength: 1
+            });
+            });
 
 </script>
 
@@ -1369,11 +1400,9 @@ $('.basic-datepicker').click(function(){
 </script> --}}
 
 <!-- App js -->
-<script src="{{ asset('web/js/app.min.js')}}"></script>
+
 
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
 </html>

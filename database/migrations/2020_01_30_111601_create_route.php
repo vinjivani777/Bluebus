@@ -16,8 +16,10 @@ class CreateRoute extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('source_point');
+            $table->string('source_name');
             $table->time('source_time')->nullable();
             $table->string('destination_point');
+            $table->string('destination_name');
             $table->time('destination_time')->nullable();
             $table->integer('fare_price')->nullable();
             $table->boolean('status');

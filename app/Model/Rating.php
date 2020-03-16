@@ -8,7 +8,7 @@ class Rating extends Model
 {
     protected $table = "ratings";
     protected $fillable=[  'id', 'user_id', 'bus_id', 'bus_quality', 'punctuality', 'Staff_behaviour', 'average', 'comments'];
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function bus()
     {

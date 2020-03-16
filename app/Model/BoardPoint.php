@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BoardPoint extends Model
 {
     protected $table = "board_points";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Bus_Name()
     {

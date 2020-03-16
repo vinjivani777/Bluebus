@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DropPoint extends Model
 {
     protected $table = "drop_points";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Bus_Name()
     {

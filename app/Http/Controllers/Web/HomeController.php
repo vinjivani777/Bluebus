@@ -126,9 +126,9 @@ class HomeController extends Controller
 
             $User['otp']=" "    ;
 
-            // $Update=User::whereId($UserDetails->id)->update($User);
+            $Update=User::whereId($UserDetails->id)->update($User);
 
-            return Auth::guard('user')->login($UserDetails);
+            Auth::guard('user')->login($UserDetails);
 
             return "Success";
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     protected $table = "routes";
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function Bus_Name()
     {
