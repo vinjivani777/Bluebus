@@ -35,7 +35,10 @@
             <div class="card">
                 <div class="card-header bg-warning" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
                 </div>
-                <div class="card-body">
+                <div style="height:20px;width:120px;padding-top: 20px;padding-bottom: 2px;padding-left: 30px;">
+                    <a class="btn btn-primary " href="{{route('otheradmin-detail')}}" name="back">User-list</a>
+                </div>
+                <div class="card-body mt-4">
                     <form action="{{route('otheradmin-detail.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -118,7 +121,9 @@
                                     <select class="selectpicker" name="userRole" data-style="btn-light">
                                         <option value="">Select User Role</option>
                                         @foreach ($userRole as $item)
+                                            @if(($item->name) !== "Customer")
                                             <option value="{{ $item->id }}"> {{  $item->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     <span class="text-danger">@error('userRole') {{ $message }} @enderror</span>

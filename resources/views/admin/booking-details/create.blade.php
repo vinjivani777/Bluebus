@@ -42,6 +42,7 @@ booking
 
         </div>
     <!-- End Content-->
+    <form action="{{route('booking-detail.store')}}" method="post" id="myform">
 
     <div class="row">
         <div class="col-md-12">
@@ -49,16 +50,36 @@ booking
                 <div class="card-header bg-warning" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-md-12 ">
+                    <div class="row"> @csrf
+                        <div class="col-9 col-md-9">
                             <h4 class="card-title mt-0 mb-0">Add Booking</h4>
                         </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 col-md-3">
+                            <label for="customer_name">Customer Name</label>
+                            <select name="customer_name" class="form-control customer_name" id="customer_name" data-toggle="select2" >
+                                <option >Select Customer</option>
+                                @foreach ($customer_list as $customer)
+                                <option value="{{$customer->id}}">{{$customer->first_name .' '.$customer->last_name}}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger">@error('customer_name') {{ "Please select Bus Name" }} @enderror</span>
+                        </div>
+                        <div class="col-6 col-md-6">
+                        </div>
+                        <div class="col-3 col-md-3">
+                            {{-- <div class="form-group"> --}}
+                                <label for="start_date">Booking Date</label>
+                                <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required="" readonly="readonly">
+                                <span class="text-danger"></span>
+                            {{-- </div> --}}
+                    </div>
                         <div class="col-12 col-md-12 font-weight-bold  text-danger ">
                             <hr>
                         </div>
                     </div>
-                    <form action="{{route('booking-detail.store')}}" method="post" id="myform">
-                        @csrf
+
                         <div class="row">
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
@@ -192,29 +213,23 @@ booking
             $('#starting_point_landmark').val("");
             $('#stoping_point_address').val("");
             $('#stoping_point_landmark').val("");
-            bus_id = this.value;
-            if(bus_id != "" && bus_id != 0){
-                $.ajax({
-                    url:'{{route('booking-busroutes.get')}}',
-                    data:{
-                        bus_id : bus_id
-                    },
-                    type:'get',
-                    success:function(response)
-                    {
-                        if(response.length != ""){
-                            $('.route_id').append(`<option value="0" disabled selected>Select Route</option>`);
-                            for (var i = 0; i < response.length; i++) {
-                            var route_id = document.getElementById("route_id");
-                            var option = document.createElement("option");
-                            option.text = response[i].board_point+" - "+response[i].drop_point;
-                            option.value = response[i].id;
-                            route_id.add(option);
-                            }
+            $.ajax({
+                url:'{{route('booking-busroutes.get')}}',
+                type:'get',
+                success:function(response)
+                {
+                    if(response.length != ""){
+                        $('.route_id').append(`<option value="0" disabled selected>Select Route</option>`);
+                        for (var i = 0; i < response.length; i++) {
+                        var route_id = document.getElementById("route_id");
+                        var option = document.createElement("option");
+                        option.text = response[i].source_name+" - "+response[i].destination_name;
+                        option.value = response[i].id;
+                        route_id.add(option);
                         }
                     }
-                });
-            }
+                }
+            });
         });
 
         $(".route_id").on('change',function(){
@@ -241,7 +256,7 @@ booking
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("starting_point");
                             var option = document.createElement("option");
-                            option.text = response[i].pickup_point;
+                            option.text = response[i].board_point;
                             option.value = response[i].id;
                             route_id.add(option);
                             }
@@ -272,7 +287,7 @@ booking
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("stoping_point");
                             var option = document.createElement("option");
-                            option.text = response[i].stoping_point;
+                            option.text = response[i].drop_point;
                             option.value = response[i].id;
                             route_id.add(option);
                             }

@@ -154,7 +154,7 @@
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
-                            option.text = response[i].source_point+" - "+response[i].destination_point;
+                            option.text = response[i].source_name+" - "+response[i].destination_name;
                             option.value = response[i].id;
                             route_id.add(option);
                             }

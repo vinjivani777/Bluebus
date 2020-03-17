@@ -128,7 +128,7 @@ class OtherAdminController extends Controller
             $admin->status=$request->status;
 
             $admin->save();
-            return redirect()->route('admin');
+            return redirect()->route('otheradmin-detail');
 
         }
 
@@ -149,7 +149,7 @@ class OtherAdminController extends Controller
             $vendor->status=$request->status;
 
             $vendor->save();
-            return redirect()->route('vendor');
+            return redirect()->route('otheradmin-detail');
         }
 
         return redirect()->route('otheradmin-detail');
@@ -194,9 +194,8 @@ class OtherAdminController extends Controller
             'userName'      =>  'required|max:20',
             'firstName'     =>  'required|max:20',
             'lastName'      =>  'required|max:20',
-            'email'         =>  'required|email',
-            'password'      =>  'nullable|max:20',
-            'phoneNumber'   =>  'required',
+            // 'email'         =>  'required|email',
+            'phoneNumber'   =>  'required|min:10,max:10',
             'gender'        =>  'required',
             'status'        =>  'required|boolean',
             'userRole'      =>  'required|integer|exists:user_roles,id',
@@ -216,7 +215,7 @@ class OtherAdminController extends Controller
         $params_user['first_name'] = $request->firstName;
         $params_user['last_name'] = $request->lastName;
         $params_user['gender'] = $request->gender;
-        $params_user['email'] = $request->email;
+        // $params_user['email'] = $request->email;
         $params_user['mobile_no'] = $request->phoneNumber;
         $params_user['password'] = bcrypt($request->password);
 
@@ -274,7 +273,7 @@ class OtherAdminController extends Controller
             $params_admin['first_name'] = $request->firstName;
             $params_admin['last_name'] = $request->lastName;
             $params_admin['gender'] = $request->gender;
-            $params_admin['email'] = $request->email;
+            // $params_admin['email'] = $request->email;
             $params_admin['mobile_no'] = $request->phoneNumber;
             $params_admin['password'] = bcrypt($request->password);
             $params_admin['avatar'] = $avatar;
@@ -295,7 +294,7 @@ class OtherAdminController extends Controller
             $params_vendor['first_name'] = $request->firstName;
             $params_vendor['last_name'] = $request->lastName;
             $params_vendor['gender'] = $request->gender;
-            $params_vendor['email'] = $request->email;
+            // $params_vendor['email'] = $request->email;
             $params_vendor['mobile_no'] = $request->phoneNumber;
             $params_vendor['password'] = bcrypt($request->password);
             $params_vendor['avatar'] = $avatar;
@@ -317,13 +316,29 @@ class OtherAdminController extends Controller
      */
     public function destroy(request $request)
     {
-        $image=$request->profilepicture;
-        unlink(public_path().'/'.$image);
-        $removepromo =  Admin::findorfail($request->id);
+        if(!(($request->profilepicture) == "admin/images/admin-profile/defaultimage.png"))
+        {
+            $image=$request->profilepicture;
+            unlink(public_path().'/'.$image);
+        }
+
+        $removepromo =  User::findorfail($request->id);
+        // return $removepromo->username;
+        if(($removepromo->role_id) == 2 )
+        {
+            $removevendor =  Vendor::where('username',$removepromo->username)->where('email',$removepromo->email)->first();
+            $removevendor->delete();
+        }
+        if(($removepromo->role_id) == 1)
+        {
+            $removeadmin =  Admin::where('username',$removepromo->username)->where('email',$removepromo->email)->first();
+            $removeadmin->delete();
+        }
         $removepromo->delete();
 
         // return $delete;
-        if($removepromo){
+        if($removepromo)
+        {
             return "success";
         }else{
             return "error";

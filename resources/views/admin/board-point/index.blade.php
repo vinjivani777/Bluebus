@@ -60,7 +60,7 @@
                                     @foreach ($board_list as $board)
                                     <tr>
                                         <td>{{$board->Bus_Name->bus_name}} - {{$board->Bus_Name->bus_reg_no}}</td>
-                                        <td>{{$board->Route_name->source_point.'-'.$board->Route_name->destination_point}}</td>
+                                        <td>{{$board->Route_name->source_name.'-'.$board->Route_name->destination_name}}</td>
                                         <td>{{$board->board_point}}</td>
                                         <td>{{date("g:i A",strtotime($board->pickup_time))}}</td>
                                         <td>{{$board->landmark}}</td>

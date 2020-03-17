@@ -73,8 +73,10 @@
                                                 </td>
                                                 <td>
                                                     <a class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                                    <a href="{{ route('otheradmin-detail.edit',['id'=>$user->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
-                                                    <a name="{{$user->profile_picture}}" class="mr-1 text-danger remove_otheradmin" id="{{$user->id}}"  ><i  class=" fas fa-trash-alt"></i></a>
+                                                    @if(!(($user->role_id) == 3))
+                                                        <a href="{{ route('otheradmin-detail.edit',['id'=>$user->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                                        <a name="{{$user->avatar}}" class="mr-1 text-danger remove_otheradmin" id="{{$user->id}}"  ><i  class=" fas fa-trash-alt"></i></a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -190,7 +192,7 @@
                         type:'get',
                         success:function(response)
                         {
-                            // alert(response);
+                            alert(response);
                             if (response=="success") {
                             swal({
                                 title: "Deleted !",

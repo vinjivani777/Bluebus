@@ -71,7 +71,7 @@
                             <div class="col-12 col-md-4 col-lg-4 col-sm-12">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="text" required class="form-control" value="{{ $edit->email }}" name="email" id="email" placeholder="Email">
+                                    <input type="text" required class="form-control" value="{{ $edit->email }}" name="email" id="email" placeholder="Email" readonly disabled>
                                     <span class="text-danger">@error('email') {{ $message }} @enderror</span>
                                 </div>
                             </div>

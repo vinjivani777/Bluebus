@@ -19,7 +19,7 @@ class Customers extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->char('gender');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->bigInteger('mobile_no');
             $table->string('password');
             $table->longtext('avatar');
@@ -33,6 +33,8 @@ class Customers extends Migration
             $table->integer('otp')->nullable();
             $table->string('forget_token')->nullable();
             $table->string('referral_code')->nullable();
+            $table->boolean('email_verification_status')->default(0);
+            $table->boolean('mobileno_verification_status')->default(0);
             $table->timestamps();
         });
     }

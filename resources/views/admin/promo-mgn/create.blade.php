@@ -56,32 +56,37 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="promo_code">Promo Code</label>
-                                    <input type="text" class="form-control" style="text-transform:uppercase" name="promo_code" id="promo_code" placeholder="PROMOCODE" required>
+                                    <input type="text" class="form-control" style="text-transform:uppercase" value="{{old('promo_code')}}" name="promo_code" id="promo_code" placeholder="PROMOCODE" required>
+                                    <span class="text-danger">@error('promo_code') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="description">Promo Code Detail</label>
-                                    <input type="text" class="form-control" name="description" id="description" placeholder="Promo Code Detail" required>
+                                    <input type="text" class="form-control" value="{{old('description')}}" name="description" id="description" placeholder="Promo Code Detail" required>
+                                    <span class="text-danger">@error('description') {{ $message }} @enderror</span>
                                 </div>
                             </div>
 
                             <div class="col-3 col-md-3 col-lg-3 col-sm-3">
                                 <div class="form-group">
                                     <label for="usage_count">No Of Usage(Total)</label>
-                                    <input type="number" class="form-control" name="usage_count" id="usage_count" placeholder="No of Total Usage" min="1" step="1">
+                                    <input type="number" class="form-control" value="{{old('usage_count')}}" name="usage_count" id="usage_count" placeholder="No of Total Usage" min="1" step="1">
+                                    <span class="text-danger">@error('usage_count') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-3">
                                 <div class="form-group">
                                     <label for="indivisual_count">No Of Usage(Indivisual)</label>
-                                    <input type="number" class="form-control" name="indivisual_count" id="indivisual_count" placeholder="No of Indivisual Usage" min="1" step="1">
+                                    <input type="number" class="form-control" value="{{old('indivisual_count')}}" name="indivisual_count" id="indivisual_count" placeholder="No of Indivisual Usage" min="1" step="1">
+                                    <span class="text-danger">@error('indivisual_count') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                              <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="min_ticket_amount">Minimum Ticket Amount</label>
-                                    <input type="number" class="form-control" name="min_ticket_amount" id="min_ticket_amount" placeholder="Minimum Ticket Amount" min="1" step="1">
+                                    <input type="number" class="form-control" value="{{old('min_ticket_amount')}}" name="min_ticket_amount" id="min_ticket_amount" placeholder="Minimum Ticket Amount" min="1" step="1">
+                                    <span class="text-danger">@error('min_ticket_amount') {{ $message }} @enderror</span>
                                 </div>
                             </div>
 
@@ -91,44 +96,59 @@
                                     <div class="ml-1 radio radio-info form-check-inline mt-1">
                                         <input type="radio" class="type" id="flat" name="promo_type"  value="Flat" checked="true">
                                         <label for="flat"> Flat</label>
+                                        <span class="text-danger">@error('promo_type') {{ $message }} @enderror</span>
                                     </div>
                                     <div class="radio form-check-inline">
                                         <input type="radio" class="type" id="percentage" name="promo_type" value="Percentage">
                                         <label for="percentage"> Percentage </label>
-                                        <input type="number" class="form-control" id="percentage_pr" name="percentage_pr" step="1"  max="99" value="0" style="display:none;margin-left:50px" >
+                                        <span class="text-danger">@error('percentage') {{ $message }} @enderror</span>
+                                        <input type="number" class="form-control" value="{{old('percentage_pr')}}" id="percentage_pr" name="percentage_pr" step="1"  max="99" value="0" style="display:none;margin-left:50px" >
+                                        <span class="text-danger">@error('percentage_pr') {{ $message }} @enderror</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="max_discount_amount">Max Discount</label>
-                                    <input type="number" class="form-control" name="max_discount_amount" id="max_discount_amount" placeholder="Max Discount Amount" min="1" step="1">
+                                    <input type="number" class="form-control" value="{{old('max_discount_amount')}}" name="max_discount_amount" id="max_discount_amount" placeholder="Max Discount Amount" min="1" step="1">
+                                    <span class="text-danger">@error('max_discount_amount') {{ $message }} @enderror</span>
                                 </div>
                             </div>
 
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="start_date">Start Date</label>
-                                    <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Start Date" required>
+                                    <input type="text" class="form-control" value="{{old('start_date')}}" name="start_date" id="start_date" placeholder="Start Date" required>
+                                    <span class="text-danger">@error('start_date') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="expiry_date">Expiry Date</label>
-                                    <input type="text" class="form-control" name="expiry_date" id="expiry_date" placeholder="Expiry Date" required>
+                                    <input type="text" class="form-control" value="{{old('expiry_date')}}" name="expiry_date" id="expiry_date" placeholder="Expiry Date" required>
+                                    <span class="text-danger">@error('expiry_date') {{ $message }} @enderror</span>
                                 </div>
                             </div>
 
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-6">
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-3">
                                 <div class="form-group">
-                                    <label for="max_discount_amount">Promo Code Image</label>
+                                    <label for="thumbnail_image">Thumbnail Image</label>
+                                    <input type="file" class="dropify" name="thumbnail_image" data-default-file="thumbnail_image" />
+                                    <span class="text-danger">@error('thumbnail_image') {{ $message }} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-3">
+                                <div class="form-group">
+                                    <label for="promo_code_image">PromoCode Image</label>
                                     <input type="file" class="dropify" name="promo_code_image" data-default-file="promo_code_image" />
+                                    <span class="te t-danger">@error('promo_code_image') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="expiry_date">Terms & Conditions</label>
-                                    <textarea class="form-control" name="t_and_c" rows="7" placeholder="Terms & Conditionsn"></textarea>
+                                    <textarea class="form-control" value="{{old('t_and_c')}}" name="t_and_c" rows="7" placeholder="Terms & Conditionsn"></textarea>
+                                    <span class="text-danger">@error('t_and_c') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +183,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                                <div>
+                                {{-- <div>
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -173,7 +193,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                   </div>
+                                   </div> --}}
                                 <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Submit">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                             </div>

@@ -74,7 +74,7 @@
                                     <label for="drop_point">Route</label>
                                     <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
                                         @foreach ($route_list as $route)
-                                        <option value="{{$route->id}}" {{$route->id == $drop_point->route_id?"selected":""}}>{{$route->source_point}} | {{($route->destination_point)}}</option>
+                                        <option value="{{$route->id}}" {{$route->id == $drop_point->route_id?"selected":""}}>{{$route->source_name}} | {{($route->destination_name)}}</option>
                                         @endforeach
                                     </select>
                                 </div>

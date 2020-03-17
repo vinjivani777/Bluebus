@@ -50,13 +50,14 @@ class PromoController extends Controller
             'max_discount_amount'   => 'required',
             'start_date'  =>  'required',
             'expiry_date'  =>  'required',
-            'promo_code_image'  => 'image',
+            'thumbnail_image'  => 'image|dimensions:max_width=130,max_height=120',
+            'promo_code_image'  => 'image|dimensions:max_width=300,max_height=180',
             't_and_c'  =>  'required',
         ]);
             // dd($validator->fails());
         if($validator->fails())
         {
-           return redirect()->back()->withErrors($validator);
+           return redirect()->back()->withErrors($validator)->withInput();
         }
 
         if ($request->hasFile('promo_code_image')) {
@@ -79,7 +80,7 @@ class PromoController extends Controller
         $data->min_order_amount     = $request->min_ticket_amount;
         $data->max_amount           = $request->max_discount_amount;
         $data->discount_type        = $request->promo_type;
-        $data->amount           = $request->percentage_pr;
+        $data->amount               = $request->percentage_pr;
         $data->start_date           = date('Y-m-d', strtotime($request->start_date));
         $data->expiry_date          = date('Y-m-d', strtotime($request->expiry_date));
         $data->promocode_image      = $promo_image_name;
