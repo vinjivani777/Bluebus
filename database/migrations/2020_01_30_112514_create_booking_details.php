@@ -21,7 +21,7 @@ class CreateBookingDetails extends Migration
             $table->unsignedBiginteger('route_id');
             $table->unsignedBiginteger('board_point_id');
             $table->unsignedBiginteger('drop_point_id');
-            $table->string('ticket_no');
+            $table->string('ticket_no')->unique();
             $table->string('booking_date');
             $table->integer('seat_no');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
@@ -37,6 +37,7 @@ class CreateBookingDetails extends Migration
             $table->boolean('booking_status')->default(0);
             $table->boolean('payment_status')->default(0);
             $table->string('created_by')->nullable();
+            // $table->unique(['ticket_no']);
             $table->timestamps();
         });
     }

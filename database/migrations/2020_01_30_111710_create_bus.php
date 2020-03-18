@@ -17,7 +17,7 @@ class CreateBus extends Migration
             $table->bigIncrements('id');
             $table->longtext('route_id');
             $table->unsignedBiginteger('bus_type_id');
-            $table->longtext('amenities_id');
+            $table->longtext('amenities_id')->nullable();
             $table->string('bus_name');
             $table->string('bus_reg_no');
             $table->string('starting_point');
@@ -25,6 +25,7 @@ class CreateBus extends Migration
             $table->string('ending_point');
             $table->time('ending_time');
             $table->integer('max_seats');
+            $table->integer('total_fare');
             $table->boolean('status');
             $table->integer('vendor_id');
             $table->text('dates');

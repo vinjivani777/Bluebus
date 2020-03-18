@@ -74,7 +74,7 @@ booking
                                 <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required="" readonly="readonly">
                                 <span class="text-danger"></span>
                             {{-- </div> --}}
-                    </div>
+                        </div>
                         <div class="col-12 col-md-12 font-weight-bold  text-danger ">
                             <hr>
                         </div>

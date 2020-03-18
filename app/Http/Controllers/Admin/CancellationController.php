@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
+use App\Model\Route;
 use App\Model\Cancellation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,7 @@ class CancellationController extends Controller
      */
     public function index()
     {
-        $Cancellation=Cancellation::with('bus')->get();
+        $Cancellation=Cancellation::with('bus','route')->get();
         return view('admin.cancellation.index',['Cancellation'=> $Cancellation]);
     }
 
@@ -42,10 +43,10 @@ class CancellationController extends Controller
     {
         $validator=Validator::make($request->all(),[
             'bus_name'=>'required',
-            'cancel_time'=>'required',
-            'percentage'=>'required',
-            'flat'=>'required',
-            'type'=>'required'
+            'cancellation_time'=>'required',
+            'cancellation_date'=>'required',
+            'refund_amount'=>'required',
+            'route_name'=>'required',
         ]);
 
         if($validator->fails())
@@ -56,18 +57,17 @@ class CancellationController extends Controller
         $params=array();
 
         $params['bus_id']=$request->bus_name;
-        $params['advertisement_status']=1;
-        $params['cancel_time']=$request->cancel_time;
-        $params['percentage']=$request->percentage;
-        $params['flat']=$request->flat;
-        $params['type']=$request->type;
-
+        $params['route_id']=$request->route_name;
+        $params['cancellation_date']=(date('Y-m-d',(strtotime($request->cancellation_date))));
+        $params['cancellation_time']=(date('H:i:s',(strtotime($request->cancellation_time))));
+        $params['note']="";
+        $params['compensation_amount']=0;
+        $params['refund_amount']=$request->refund_amount;
         $Data_save=Cancellation::create($params);
 
         if($Data_save)
         {
-            $Cancellation=Cancellation::with('bus')->get();
-            return view('admin.cancellation.index',['Cancellation'=> $Cancellation]);
+           return redirect()->route('cancellation-detail');
         }
 
     }
@@ -92,8 +92,9 @@ class CancellationController extends Controller
     public function edit($id)
     {
         $bus=Bus::get();
+        $route=Route::get();
         $Cancellation=Cancellation::whereId($id)->first();
-        return view('admin.cancellation.edit',['Bus'=>$bus,'Cancellation'=>$Cancellation]);
+        return view('admin.cancellation.edit',['Bus'=>$bus,'Route'=>$route,'Cancellation'=>$Cancellation]);
     }
 
     /**
@@ -107,10 +108,10 @@ class CancellationController extends Controller
     {
         $validator=Validator::make($request->all(),[
             'bus_name'=>'required',
-            'cancel_time'=>'required',
-            'percentage'=>'required',
-            'flat'=>'required',
-            'type'=>'required'
+            'cancellation_time'=>'required',
+            'cancellation_date'=>'required',
+            'refund_amount'=>'required',
+            'route_name'=>'required',
         ]);
 
         if($validator->fails())
@@ -121,18 +122,17 @@ class CancellationController extends Controller
         $params=array();
 
         $params['bus_id']=$request->bus_name;
-        $params['advertisement_status']=1;
-        $params['cancel_time']=$request->cancel_time;
-        $params['percentage']=$request->percentage;
-        $params['flat']=$request->flat;
-        $params['type']=$request->type;
-
+        $params['route_id']=$request->route_name;
+        $params['cancellation_date']=(date('Y-m-d',(strtotime($request->cancellation_date))));
+        $params['cancellation_time']=(date('H:i:s',(strtotime($request->cancellation_time))));
+        $params['note']="";
+        $params['compensation_amount']=0;
+        $params['refund_amount']=$request->refund_amount;
         $Data_save=Cancellation::whereId($id)->update($params);
 
         if($Data_save)
         {
-            $Cancellation=Cancellation::with('bus')->get();
-            return view('admin.cancellation.index',['Cancellation'=> $Cancellation]);
+            return redirect()->route('cancellation-detail');
         }
 
     }

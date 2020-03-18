@@ -63,6 +63,7 @@ class BusController extends Controller
             'drop_time'     => 'required',
             'amenities'     => 'required',
             'dates'         => 'required',
+            'total_fare'         => 'required',
         ]);
 
 
@@ -79,7 +80,7 @@ class BusController extends Controller
             $newbus['route_id']=$routes;
             $newbus['bus_type_id']= $request->bus_type;
             $newbus['amenities_id']= $amenities;
-            $newbus['bus_reg_no']= $request->bus_reg_no;
+            $newbus['bus_reg_no']= strtoupper($request->bus_reg_no) ;
             $newbus['starting_point']= $request->board_point;
             $newbus['ending_point']= $request->drop_point;
             $newbus['start_time']= $request->board_time;
@@ -88,6 +89,7 @@ class BusController extends Controller
             $newbus['status']= "0";
             $newbus['vendor_id']= $request->vendor;
             $newbus['dates']=$request->dates;
+            $newbus['total_fare']=$request->total_fare;
 
             // return ($newbus);
             $Bus=Bus::create($newbus);

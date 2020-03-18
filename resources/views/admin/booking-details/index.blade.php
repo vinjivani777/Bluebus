@@ -53,10 +53,18 @@ Booking
                                         <td>{{ $item->ticket_no }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
                                         <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
-                                        <td>{{ $item->booking_date }}</td>
+                                        <td>{{  date('d-m-Y',strtotime($item->booking_date)) }}</td>
                                         <td>{{ $item->total_fare }}</td>
                                         <td>
-                                            <button class="btn status-change {{$item->booking_status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}">{{$item->booking_status==1?"Success":"Failed"}}</button>
+                                            <button class="btn  {{(($item->booking_status) && ($item->payment_status)) == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}" readonly>
+                                                @if(($item->booking_status) && ($item->payment_status))
+                                                    {{"Success"}}
+                                                @elseif(($item->booking_status) || ($item->payment_status))
+                                                        {{"Payment Unpaid"}}
+                                                @else
+                                                        {{"Transaction Failed"}}
+                                                @endif
+                                            </button>
                                         </td>
                                         {{-- <td>{{ $item->amount }}</td> --}}
                                         <td>
@@ -203,42 +211,6 @@ Booking
                 }
             });
     });
-
-    $('.status-change').click(function(){
-        var status= $(this).val()=="Success"?0:1;
-        var id=$(this).prop('id');
-        alert(id)
-        swal({
-                title: "Are you sure?",
-                text: "Update the status on bus board point.",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonClass: "btn btn-confirm mt-2",
-                cancelButtonClass: "btn btn-cancel ml-2 mt-2",
-                confirmButtonText: "Yes, Update it!"
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                    type:'POST',
-                    url:'{{route('status.change')}}',
-                    data:{'status':status,'id':id,'model':'Booking',"_token": "{{ csrf_token() }}"},
-                    success:function(response){
-                        alert(response)
-                        if (response=="success" && status==true) {
-                            $('#'+id).addClass("btn-outline-primary ");
-                            $('#'+id).removeClass("btn-outline-danger  ");
-                            $('#'+id).val('Success');
-                            $('#'+id).text('Success');
-                        } else {
-                            $('#'+id).removeClass("btn-outline-primary ");
-                            $('#'+id).addClass("btn-outline-danger  ");
-                            $('#'+id).val('Failed');
-                            $('#'+id).text('Failed');
-                        }
-                    }
-                });
-            }
-        });
-    });
+    
 </script>
 @endsection

@@ -147,6 +147,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('cancellation-detail/edit/{id}','Admin\CancellationController@edit')->name('cancellation-detail.edit');
     Route::post('cancellation-detail/update/{id}','Admin\CancellationController@update')->name('cancellation-detail.update');
     Route::get('cancellation-detail/destroy','Admin\CancellationController@destroy')->name('cancellation-detail.destroy');
+    Route::get('bus-routes/route','Admin\BookingController@bookingroutetocancel')->name('busroutestocancel.get');
+    Route::get('bus-routes/totalfare','Admin\BookingController@bustotalfare')->name('bustotalfare.get');
 
     //Setting
     Route::get('setting/generalsetting','Admin\SettingController@generalsetting')->name('generalsetting');

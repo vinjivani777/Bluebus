@@ -10,6 +10,7 @@ use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -23,7 +24,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $Booking=Booking::with('bus','customer','start','end','vendor','route')->get();
+        $Booking=Booking::with('bus','route')->where('status',1)->get();
         // dd($Booking);
         return view('admin.booking-details.index',['Booking'=>$Booking]);
     }
@@ -83,6 +84,7 @@ class BookingController extends Controller
         $newbus->payment_method= $request->paymentstatus;
         $newbus->booking_date= date('Y-m-d', strtotime($request->start_date));
         $newbus->booking_status= "1";
+        $newbus->status= "1";
         $newbus->created_by= "admin";
         // dd($newbus)->all();
         $data = $newbus->save();
@@ -155,8 +157,8 @@ class BookingController extends Controller
     public function destroy(request $request)
     {
         $removebooking =  Booking::findorfail($request->id);
-        $removebooking->delete();
-
+        $removebooking->status=0;
+        $removebooking->save();
         if($removebooking){
             return "success";
         }else{
@@ -167,6 +169,27 @@ class BookingController extends Controller
     public function bookingroute(Request $request)
     {
         return Route::whereStatus(true)->select('id','source_name','destination_name')->get();
+    }
+    public function bustotalfare(Request $request)
+    {
+        $data= (Bus::whereId($request->bus_id)->select('total_fare','start_time')->first());
+        return  $data;
+    }
+    public function bookingroutetocancel(Request $request)
+    {
+        // $routes= (Bus::where('id',$request->bus_id)->select('route_id')->first())->route_id;
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        // return $routes;
+        // foreach ($routes as $id) {
+        //     $data = Route::whereStatus(true)->where('id',$id)->select('id','source_name','destination_name')->get();
+        // }
+
+        return $data;
     }
 
     public function bookingboardpoint(Request $request)

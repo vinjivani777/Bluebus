@@ -43,6 +43,10 @@
             enableTime: 0,
             dateFormat: "d-m-Y"
         })
+        e("#cancel_booking_date").flatpickr({
+            enableTime: 0,
+            dateFormat: "d-m-Y"
+        })
         e("#start_date").flatpickr({
             enableTime: 0,
             dateFormat: "d-m-Y"
