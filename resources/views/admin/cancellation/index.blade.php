@@ -38,9 +38,11 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Bus Name</th>
-                                    <th>Cancel Time</th>
-                                    <th>Percentage</th>
-                                    <th>Flat</th>
+                                    <th>Route</th>
+                                    <th>Cancellation Date</th>
+                                    <th>Cancellation Time</th>
+                                    <th>Refund Amount</th>
+                                    {{-- <th>Flat</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -49,9 +51,10 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
-                                        <td>{{ $item->cancel_time }}</td>
-                                        <td>{{ $item->percentage }}</td>
-                                        <td>{{ $item->flat }}</td>
+                                        <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
+                                        <td>{{ $item->cancellation_date }}</td>
+                                        <td>{{ $item->cancellation_time }}</td>
+                                        <td>{{ $item->refund_amount }}</td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
                                             <a href="{{ route('cancellation-detail.edit',['id'=> $item->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>

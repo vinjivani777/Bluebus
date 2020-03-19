@@ -20,8 +20,9 @@ class CreateBusCancellation extends Migration
             $table->date('cancellation_date');
             $table->time('cancellation_time');
             $table->string('note');
-            $table->integer('compensation_amount');
-            $table->date('date_of_cancel');
+            $table->integer('compensation_amount')->default(0);
+            $table->integer('refund_amount');
+            // $table->date('date_of_cancel');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();

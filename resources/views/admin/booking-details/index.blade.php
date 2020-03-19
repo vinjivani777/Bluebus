@@ -39,13 +39,10 @@ Booking
                                         <th>ID</th>
                                         <th>Booking Id</th>
                                         <th>Bus Name</th>
-                                        <th>Pickup Point</th>
-                                        <th>Drop Point</th>
+                                        <th>Route</th>
                                         <th>Booking Date</th>
-                                        <th>Payment Status</th>
                                         <th>Amount</th>
-                                        <th>Board Time</th>
-                                        <th>Drop Time</th>
+                                        <th>Booking Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -53,15 +50,23 @@ Booking
                                     @foreach ($Booking as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->booking_id }}</td>
+                                        <td>{{ $item->ticket_no }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
-                                        <td>{{ $item->bus->board_point }}</td>
-                                        <td>{{ $item->bus->drop_point }}</td>
-                                        <td>{{ $item->booking_date }}</td>
-                                        <td>{{ $item->payment_status }}</td>
-                                        <td>{{ $item->amount }}</td>
-                                        <td>{{ $item->bus->board_time }}</td>
-                                        <td>{{ $item->bus->drop_time }}</td>
+                                        <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
+                                        <td>{{  date('d-m-Y',strtotime($item->booking_date)) }}</td>
+                                        <td>{{ $item->total_fare }}</td>
+                                        <td>
+                                            <button class="btn  {{(($item->booking_status) && ($item->payment_status)) == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}" readonly>
+                                                @if(($item->booking_status) && ($item->payment_status))
+                                                    {{"Success"}}
+                                                @elseif(($item->booking_status) || ($item->payment_status))
+                                                        {{"Payment Unpaid"}}
+                                                @else
+                                                        {{"Transaction Failed"}}
+                                                @endif
+                                            </button>
+                                        </td>
+                                        {{-- <td>{{ $item->amount }}</td> --}}
                                         <td>
                                             <a  class="mr-1 text-info booking_details" id="{{ $item->booking_id }}" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
                                             <a href="#"  class="mr-1 text-danger remove_booking" id="{{$item->id}}"><i class=" fas fa-trash-alt"></i></a>
@@ -194,18 +199,18 @@ Booking
 
     $('.booking_details').click(function(){
         var id= $(this).attr('id');
-                $.ajax({
-                    url:'{{route('booking-detail.show')}}',
-                    data:{
-                        id : id
-                    },
-                    type:'get',
-                    success:function(response)
-                    {
-                        $('#tbody').html(response);
-                    }
-                });
-
+            $.ajax({
+                url:'{{route('booking-detail.show')}}',
+                data:{
+                    id : id
+                },
+                type:'get',
+                success:function(response)
+                {
+                    $('#tbody').html(response);
+                }
             });
+    });
+    
 </script>
 @endsection

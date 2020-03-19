@@ -74,7 +74,7 @@
                                     <label for="board_point">Route</label>
                                     <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
                                         @foreach ($route_list as $route)
-                                        <option value="{{$route->id}}" {{$route->id == $board_point->route_id?"selected":""}}>{{$route->source_point}} | {{($route->destination_point)}}</option>
+                                        <option value="{{$route->id}}" {{$route->id == $board_point->route_id?"selected":""}}>{{$route->source_name}} | {{($route->destination_name)}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -160,7 +160,7 @@
         //                 for (var i = 0; i < response.length; i++) {
         //                 var opation_route_id = document.getElementById("route_id");
         //                 var option = document.createElement("option");
-        //                 option.text = response[i].source_point+" - "+response[i].destination_point;
+        //                 option.text = response[i].source_name+" - "+response[i].destination_name;
         //                 option.value = response[i].id;
         //                 opation_route_id.add(option);
         //                     if(route_id == response[i].id){

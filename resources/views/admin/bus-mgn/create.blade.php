@@ -68,8 +68,8 @@
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
-                                    <label for="busregno">Bus RegiNumber</label>
-                                    <input type="text" class="form-control" name="bus_reg_no" id="bus_reg_no" placeholder="Bus Regi No" required>
+                                    <label for="busregno">Bus Regi. Number</label>
+                                    <input type="text" class="form-control" name="bus_reg_no" style="text-transform:uppercase" id="bus_reg_no" placeholder="Bus Regi No" required>
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
@@ -146,10 +146,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-9 col-md-9 col-lg-9 col-sm-9">
                                 <div class="form-group ">
                                     <label>Routing multiple dates</label>
                                     <input type="text" id="multiple-datepicker" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-3 col-md-3 col-lg-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>Fare Amount</label>
+                                    <input type="number" name="total_fare" class="form-control" placeholder="Enter Fare Price">
                                 </div>
                             </div>
                         </div>

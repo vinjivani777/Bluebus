@@ -20,7 +20,7 @@ class CreatePromocode extends Migration
             $table->date('expiry_date')->nullable();
             $table->string('description')->nullable();
             $table->string('discount_type')->nullable();
-            $table->integer('amount')->default(0);
+            $table->integer('amount')->default(0)->nullable();
             $table->integer('max_amount')->nullable();//maximum amount of discount avail at one time
             $table->integer('usage_count')->nullable();//how many times we want to make this promocode use
             $table->integer('indivisual_use')->nullable();//how many times one user can avail this promocode

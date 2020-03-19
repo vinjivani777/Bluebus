@@ -8,6 +8,7 @@ use App\Model\User;
 use App\Model\Admin;
 use App\Model\Route;
 use App\Model\Vendor;
+use App\Model\Booking;
 use App\Model\BusType;
 use App\Model\Amenitie;
 use App\Model\Customer;
@@ -50,20 +51,34 @@ class AdminController extends Controller
 
         if($model == "BusType"){
             $find_model = BusType::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "Bus") {
             $find_model = Bus::findorfail($request->id);
         }elseif ($model == "Menu") {
             $find_model = Menu::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "Amenitie") {
             $find_model = Amenitie::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "Route") {
             $find_model = Route::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "BoardPoint") {
             $find_model = BoardPoint::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "DropPoint") {
             $find_model = DropPoint::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "PromoCode") {
             $find_model = PromoCode::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
         }elseif ($model == "Admin") {
             $find_model = Admin::findorfail($request->id);
 
@@ -105,8 +120,12 @@ class AdminController extends Controller
             }
         }
 
-        $find_model->status = $request->status;
-        $find_model->save();
+        if ($model == "Booking") {
+            $find_model = Booking::findorfail($request->id);
+            $find_model['booking_status']=$request->status;
+            $find_model->save();
+        }
+
 
         if($find_model){
             return "success";
