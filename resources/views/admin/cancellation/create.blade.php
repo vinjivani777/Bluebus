@@ -162,7 +162,7 @@
 <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
 <script>
     $(document).ready(function() {
-        // $(".flattext").hide();
+        // $(   ".flattext").hide();
         // $("#percentage").click(function() {
         //     $(".flattext").hide();
         //     $(".flattext").val('');

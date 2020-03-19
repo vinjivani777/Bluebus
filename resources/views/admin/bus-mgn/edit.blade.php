@@ -57,14 +57,14 @@
 
                             <form action="{{route('bus-detail.update',['id'=>$bus->id])}}" method="post">
                                 @csrf
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-12 col-md-12 ">
                                         <h4 class="card-title mt-0 mb-0">Add Bus Details</h4>
                                     </div>
                                     <div class="col-12 col-md-12 font-weight-bold  text-danger ">
                                         <hr>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                         <div class="form-group">
@@ -75,7 +75,7 @@
                                     <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                         <div class="form-group">
                                             <label for="busregno">Bus RegiNumber</label>
-                                            <input type="text" class="form-control" name="bus_reg_no" id="bus_reg_no" value="{{ $bus->bus_reg_no }}" placeholder="Bus Regi No" required>
+                                            <input type="text" class="form-control" name="bus_reg_no" style="text-transform:uppercase" id="bus_reg_no" value="{{ $bus->bus_reg_no }}" placeholder="Bus Regi No" required>
                                         </div>
                                     </div>
                                     <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
@@ -156,7 +156,7 @@
                                     <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                         <div class="form-group ">
                                             <label>Routing multiple dates</label>
-                                            <input type="text" id="multiple-datepicker" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
+                                            <input type="text" id="multiple-datepicker" value="{{$bus->dates}}" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Model\Bus;
-use App\Model\Route;
 use App\Model\City;
+use App\Model\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,21 +55,19 @@ class RouteController extends Controller
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator);
-        }else{
-            $newbus= new Route;
-            // $newbus->bus_id= $request->bus_name;
-            // $newbus->fare= $request->fare;
-            $newbus->source_point= $request->from_place;
-            $newbus->destination_point= $request->to_place;
-            // $newbus->board_time= $request->board_time;
-            // $newbus->drop_time= $request->drop_time;
-            $newbus->status=1;
-            // $newbus->created_by= "admin";
-            // return $newbus;
-            $newbus->save();
-
-            return redirect()->route('route-detail');
         }
+
+        $newbus= new Route;
+        $from_place=$request->from_place;
+        $to_place=$request->to_place;
+        $newbus->source_point=$from_place ;
+        $newbus->destination_point= $to_place;
+        $newbus->source_name= (City::whereId($from_place)->select('city_name')->first())->city_name;
+        $newbus->destination_name= (City::whereId($to_place)->select('city_name')->first())->city_name;
+        $newbus->status=1;
+        $newbus->save();
+
+        return redirect()->route('route-detail');
     }
 
     /**
@@ -152,6 +151,34 @@ class RouteController extends Controller
 
     public function busroute(Request $request)
     {
-        return Route::whereStatus(true)->select('id','source_name','destination_name')->get();
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
+    }
+
+    public function busrouteforboardpoint(Request $request)
+    {
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
+    }
+
+    public function busroutefordroppoint(Request $request)
+    {
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
     }
 }

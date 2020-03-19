@@ -92,6 +92,7 @@ class DropPointController extends Controller
         $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
         $data['drop_point'] = DropPoint::findorfail($id);
         $data['route_list'] = Route::get();
+        // return $data;
         return view('admin.drop-point.edit',$data);
     }
 

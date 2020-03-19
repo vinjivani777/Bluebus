@@ -64,12 +64,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($bus_list as $bus)
                                     <tr>
-                                        <td>{{$bus->id}}</td>
+                                        <td>{{ $no++}}</td>
                                         <td>{{$bus->bus_name}}</td>
                                         <td>{{$bus->bus_reg_no}}</td>
-                                        <td>{{$bus->Bus_Type->bus_type}}</td>
+                                        <td>{{$bus->Bus_Type->type_name}}</td>
                                         <td>{{$bus->max_seats}}</td>
                                         <td>{{$bus->starting_point}}</td>
                                         <td>{{date("g:i A",strtotime($bus->start_time))}}</td>
@@ -80,7 +81,7 @@
                                             <button class="btn status-change {{$bus->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$bus->status==1?"Active":"Disable"}}" id="{{$bus->id}}">{{$bus->status==1?"Active":"Disable"}}</button>
                                         </td>
                                         <td>
-                                            <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                            {{-- <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a> --}}
                                             <a href="{{ route('bus-detail.edit',['id'=>$bus->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
                                             <a class="mr-1 text-danger remove_bus" id="{{$bus->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>

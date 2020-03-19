@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
                                     <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
-                                        <option >Select Route</option>
+                                        <option >Select Bus</option>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label for="board_point">Route</label>
                                     <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
-
+                                        <option readonly>Select Route</option>
                                     </select>
                                 </div>
                             </div>
@@ -150,6 +150,7 @@
                     success:function(response)
                     {
                         $('#route_id').empty();
+                        $('#route_id').append(`<option value="0" disabled selected>Select Route</option>`);
                         if(response.length != ""){
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");

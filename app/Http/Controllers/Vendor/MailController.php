@@ -16,7 +16,7 @@ class MailController extends Controller
             'name'=> $b->name,
             'link' =>$z
         ];
-
-        Mail::to($_REQUEST['email'])->send(new SendRegisterMail($details));
+        
+        Mail::to('gggg@gmail.com')->send(new SendRegisterMail($details));
     }
 }

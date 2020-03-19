@@ -174,7 +174,7 @@ class BusController extends Controller
             $newbus->route_id=$routes;
             $newbus->bus_type_id= $request->bus_type;
             $newbus->amenities_id= $amenities;
-            $newbus->bus_reg_no= $request->bus_reg_no;
+            $newbus->bus_reg_no= strtoupper($request->bus_reg_no);
             $newbus->starting_point= $request->board_point;
             $newbus->ending_point= $request->drop_point;
             $newbus->start_time= $request->board_time;

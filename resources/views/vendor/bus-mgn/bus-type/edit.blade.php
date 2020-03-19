@@ -36,7 +36,7 @@
                 <div class="card-header bg-warning" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
                 </div>
                 <div class="card-body">
-                    <form action="{{route('bus-type.update',['id'=>$bustype->id])}}" method="post">
+                    <form action="{{route('vendor.bus-type.update',['id'=>$bustype->id])}}" method="post">
                         <div class="row">
                             @csrf
                             <div class="col-12 col-md-12 ">
@@ -50,7 +50,7 @@
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                 <div class="form-group">
                                     <label for="bustype">Bus Type</label>
-                                    <input type="text" class="form-control" name="bus_type" id="bus_type" value="{{$bustype->bus_type}}" placeholder="Bus Type" required>
+                                    <input type="text" class="form-control" name="bus_type" id="bus_type" value="{{$bustype->type_name}}" placeholder="Bus Type" required>
                                 </div>
                             </div>
                         </div>

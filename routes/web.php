@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('route-detail/destroy','Admin\RouteController@routedestroy')->name('route-detail.destroy');
 
     Route::get('bus-route-detail','Admin\RouteController@busroute')->name('bus-route-detail.get');
+    Route::get('bus-route-detail/forboardpoint','Admin\RouteController@busrouteforboardpoint')->name('bus-route-detailforboardpoint.get');
+    Route::get('bus-route-detail/fordropopoint','Admin\RouteController@busroutefordroppoint')->name('bus-route-detailfordroppoint.get');
 
 
     //Board point details

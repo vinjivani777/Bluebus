@@ -26,7 +26,7 @@ class LoginController extends Controller
             'username'  => 'required|exists:vendors,username',
             'password' => 'required',
         ]);
-
+        // dd($validator->fails());
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }

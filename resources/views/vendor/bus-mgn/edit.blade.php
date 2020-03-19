@@ -55,7 +55,7 @@
                                 </div>
                             </div>
 
-                            <form action="{{route('bus-detail.update',["id"=>$bus_detail->id])}}" method="post">
+                            <form action="{{route('vendor.bus-detail.update',["id"=>$bus_detail->id])}}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">

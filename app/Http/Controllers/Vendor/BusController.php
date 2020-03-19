@@ -20,7 +20,7 @@ class BusController extends Controller
     {
         $auth=Auth::guard('vendor')->user()->id;
         $data = array();
-        $data['bus_list'] = Bus::with('Bus_Type')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['bus_list'] = Bus::with('Bus_Type')->where('vendor_id',$auth)->get();
         return  view('vendor.bus-mgn.index',$data);
     }
 
@@ -183,10 +183,13 @@ class BusController extends Controller
         $validator= $request->validate([
             'bus_type' => 'required|min:2|max:20',
         ]);
-        $newtype= new Bustype;
-        $newtype->bus_type= $request->bus_type;
-        $newtype->save();
+        if($validator->fails()){
         return redirect()->back()->withErrors($validator);
+        }
+        $newtype= new Bustype;
+        $newtype->type_name= $request->bus_type;
+        $newtype->save();
+        return redirect()->back();
     }
 
     public function bustypeedit($id)
@@ -201,7 +204,7 @@ class BusController extends Controller
             'bus_type' => 'required|min:2|max:20',
         ]);
         $newtype =  Bustype::findorfail($id);
-        $newtype->bus_type= $request->bus_type;
+        $newtype->type_name= $request->bus_type;
         $newtype->save();
         return redirect()->route('vendor.bus-type');
     }

@@ -18,7 +18,7 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="{{ asset('admin/images/admin.png') }}" alt="user-image" class="rounded-circle">
+                <img src="{{asset('/'.Auth::guard('vendor')->user()->avatar) }}" alt="user-image" class="rounded-circle">
                 <span class="pro-user-name ml-1">
                   {{ Auth::guard('vendor')->user()->username }}<i class="mdi mdi-chevron-down"></i>
                 </span>

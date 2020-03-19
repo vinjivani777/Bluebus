@@ -78,7 +78,7 @@ class BoardPointController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
     }
 
     /**

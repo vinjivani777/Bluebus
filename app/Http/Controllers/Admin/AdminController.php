@@ -16,6 +16,7 @@ use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +56,16 @@ class AdminController extends Controller
             $find_model->save();
         }elseif ($model == "Bus") {
             $find_model = Bus::findorfail($request->id);
+            $board_point_id=(BoardPoint::whereBus_id($request->id)->select('id')->get());
+
+            foreach (($board_point_id) as $item) {
+                $record=BoardPoint::findorfail($item)->first();
+                $record->status=$request->status;
+                $record->save();
+            }
+            $find_model->status = $request->status;
+            $find_model->save();
+
         }elseif ($model == "Menu") {
             $find_model = Menu::findorfail($request->id);
             $find_model->status = $request->status;
@@ -81,9 +92,9 @@ class AdminController extends Controller
             $find_model->save();
         }elseif ($model == "Admin") {
             $find_model = Admin::findorfail($request->id);
-
+            $find_model->status = $request->status;
             $username= $find_model->username;
-
+            $find_model->save();
 
             $find_user = User::whereUsername($username)->first();
             $find_user->status = $request->status;
@@ -91,9 +102,9 @@ class AdminController extends Controller
 
         }elseif ($model == "Vendor") {
             $find_model = Vendor::findorfail($request->id);
-
+            $find_model->status = $request->status;
             $username= $find_model->username;
-
+            $find_model->save();
 
             $find_user = User::whereUsername($username)->first();
             $find_user->status = $request->status;
@@ -101,9 +112,10 @@ class AdminController extends Controller
 
         }elseif ($model == "User") {
             $find_model = User::findorfail($request->id);
-
+            $find_model->save();
             $role=$find_model->role_id;
             $username= $find_model->username;
+            $find_model->status = $request->status;
 
             if($role == 1)
             {
@@ -118,6 +130,8 @@ class AdminController extends Controller
                 $find_vendor->status = $request->status;
                 $find_vendor->save();
             }
+            $find_model->status = $request->status;
+            $find_model->save();
         }
 
         if ($model == "Booking") {

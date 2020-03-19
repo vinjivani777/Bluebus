@@ -18,7 +18,7 @@ use App\Mail\SendRegisterMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendVendorRegistrationMail;
+use App\Mail\SendVendorForgetpasswordMail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -76,7 +76,7 @@ class VendorController extends Controller
                 'link' =>$z
             ];
 
-            Mail::to('admin@bluebus.com')->send(new SendVendorRegistrationMail($details));
+            Mail::to('admin@bluebus.com')->send(new SendRegisterMail($details));
             return redirect()->route('vendor');
        }
        else{
@@ -108,8 +108,8 @@ class VendorController extends Controller
                 'name'=> Vendor::where('email',$b)->first()->first_name,
                 'link' =>$z
             ];
-
-            Mail::to($b)->send(new SendRegisterMail($details));
+            return $details;
+            Mail::to($b)->send(new SendVendorForgetpasswordMail($details));
             return redirect()->route('vendor');
         }
         // return view('vendor.forgetcodesuccess');

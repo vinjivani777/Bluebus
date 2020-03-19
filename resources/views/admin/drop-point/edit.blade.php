@@ -72,6 +72,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">Route</label>
+                                    <input type="hidden" id="selected_route_id" value="{{$drop_point->route_id}}">
                                     <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
                                         @foreach ($route_list as $route)
                                         <option value="{{$route->id}}" {{$route->id == $drop_point->route_id?"selected":""}}>{{$route->source_name}} | {{($route->destination_name)}}</option>
@@ -139,10 +140,85 @@
     <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
 
     <script>
-        $(function () {
-            var bus_id = '{{$drop_point->bus_id}}';
-            var route_id = '{{$drop_point->drop_point}}';
-            routeFunction(bus_id,route_id); //this calls it on load
+        $(document).ready(function() {
+            var selected_bus_id=$("#bus_name").val();
+            var selected_route_id=$("#selected_route_id").val();
+            // alert(selected_bus_id)
+            $.ajax({
+                    url:'{{route('bus-route-detailfordroppoint.get')}}',
+                    type:'get',
+                    data:{
+                        bus_id:selected_bus_id
+                    },
+                    success:function(response)
+                    {
+                        $("#route_id").empty();
+                        if(response.length != ""){
+                            $('#route_id').append(`<option value="0" disabled selected>Select Route</option>`);
+                            for (var i = 0; i < response.length; i++) {
+                            var route_id = document.getElementById("route_id");
+                            var option = document.createElement("option");
+                            option.text = response[i].source_name+" - "+response[i].destination_name;
+                            option.value = response[i].id;
+                            if((selected_route_id)==(response[i].id))
+                            {
+                                option.setAttribute('selected',true);
+                            }
+                            route_id.add(option);
+                            }
+                        }
+                    }
+            });
+
+            $("#route_id").on('change',function(){
+                var bus_id= $('#bus_name').val();
+                var route_id= $('#route_id').val();
+                $('#booking_amount').empty();
+                    $.ajax({
+                        url:'{{route('bustotalfare.get')}}',
+                        type:'get',
+                        data:{
+                            bus_id:bus_id,
+                            route_id:route_id,
+                        },
+                        success:function(response)
+                        {
+                            $('#refund_amount').val(response.total_fare);
+                            $("#cancel_time").val(response.start_time);
+                            // if(response !== ""){ $("#percentagetext").removeAttr("readonly"); }
+                            // if(response !== ""){ $("#flattext").removeAttr("readonly"); }
+                        }
+                    });
+            });
+
+            $("#bus_name").on('change',function(){
+                    var bus_id= $('#bus_name').val();
+                    $('#route_id').empty();
+                    $('#stoping_point').val('');
+                    $('#drop_time_edit').val('');
+                    $('#landmark').val('');
+                    $('#address').val('');
+                    $.ajax({
+                        url:'{{route('busroutestocancel.get')}}',
+                        type:'get',
+                        data:{
+                            bus_id:bus_id
+                        },
+                        success:function(response)
+                        {
+                            if(response.length != ""){
+                                $('.route_id').append(`<option value="0" disabled selected>Select Route</option>`);
+                                for (var i = 0; i < response.length; i++) {
+                                var route_id = document.getElementById("route_id");
+                                var option = document.createElement("option");
+                                option.text = response[i].source_name+" - "+response[i].destination_name;
+                                option.value = response[i].id;
+                                route_id.add(option);
+                                }
+                            }
+                        }
+                    });
+            });
         });
 
         // function routeFunction(bus_id,route_id)
@@ -160,7 +236,7 @@
         //                 for (var i = 0; i < response.length; i++) {
         //                 var opation_route_id = document.getElementById("route_id");
         //                 var option = document.createElement("option");
-        //                 option.text = response[i].board_point+" - "+response[i].drop_point;
+        //                 option.text = response[i].source_name+" - "+response[i].destination_name;
         //                 option.value = response[i].id;
         //                 opation_route_id.add(option);
         //                     if(route_id == response[i].id){
@@ -172,11 +248,30 @@
         //     });
         // }
 
-        //
-
-
-
-
-
+        // $("#bus_name").on('change',function(){
+        //     bus_id = this.value;
+        //     if(bus_id != "" && bus_id != 0){
+        //         $.ajax({
+        //             url:'{{route('bus-route-detail.get')}}',
+        //             data:{
+        //                 bus_id : bus_id
+        //             },
+        //             type:'get',
+        //             success:function(response)
+        //             {
+        //                 $('#route_id').empty();
+        //                 if(response.length != ""){
+        //                     for (var i = 0; i < response.length; i++) {
+        //                     var route_id = document.getElementById("route_id");
+        //                     var option = document.createElement("option");
+        //                     option.text = response[i].board_point+" - "+response[i].drop_point;
+        //                     option.value = response[i].id;
+        //                     route_id.add(option);
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
     </script>
 @endsection

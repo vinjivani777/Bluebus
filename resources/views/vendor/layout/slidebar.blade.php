@@ -36,55 +36,55 @@
 
                 {{-- route details --}}
                 <li>
-                    <a href="javascript: void(0);" aria-expanded="false">
+                    <a href="{{ route('vendor.route-detail') }}" aria-expanded="false">
                         <i class="fa fa-road"></i>
                         <span> Route Details </span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('vendor.route-detail') }}">View All Route</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 {{-- board point details --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('vendor.board-point') }}">
                         <i class="fas fa-level-up-alt"></i>
                         <span> Board Point Details </span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('vendor.board-point') }}">View All</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
 
                 {{-- drop point details --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('vendor.drop-point') }}">
                         <i class=" icon-drop"></i>
                         <span> Drop Point Details </span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('vendor.drop-point') }}">View All</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 {{-- promo management --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('vendor.promo-detail') }}">
                         <i class=" icon-tag"></i>
                         <span> Promo Management </span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    {{-- <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('vendor.promo-detail') }}">View All</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 {{-- bus gallery management --}}
@@ -141,7 +141,7 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="{{ route('seat-layout') }}">View All</a>
+                            <a href="{{ route('vendor.seat-layout') }}">View All</a>
                         </li> --}}
                         {{-- <li>
                             <a href="index.html">Add Bus Gallery </a>

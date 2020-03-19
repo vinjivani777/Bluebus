@@ -57,7 +57,7 @@ booking
                             <hr>
                         </div>
                     </div>
-                    <form action="{{route('booking-detail.store')}}" method="post" id="myform">
+                    <form action="{{route('vendor.booking-detail.store')}}" method="post" id="myform">
                         @csrf
                         <div class="row">
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
@@ -195,7 +195,7 @@ booking
             bus_id = this.value;
             if(bus_id != "" && bus_id != 0){
                 $.ajax({
-                    url:'{{route('booking-busroutes.get')}}',
+                    url:'{{route('vendor.booking-busroutes.get')}}',
                     data:{
                         bus_id : bus_id
                     },
@@ -226,7 +226,7 @@ booking
             bus_id = $("#bus_name option:selected").val();
             if(route_id != "" && route_id != 0){
                 $.ajax({
-                    url:'{{route('booking-bookingboardpoint.get')}}',
+                    url:'{{route('vendor.booking-bookingboardpoint.get')}}',
                     data:{
                         route_id : route_id,
                         bus_id : bus_id
@@ -256,7 +256,7 @@ booking
             bus_id = $("#bus_name :selected").val();
             if(route_id != "" && route_id != 0){
                 $.ajax({
-                    url:'{{route('booking-bookingdroppoint.get')}}',
+                    url:'{{route('vendor.booking-bookingdroppoint.get')}}',
                     data:{
                         route_id : route_id,
                         bus_id : bus_id
@@ -288,7 +288,7 @@ booking
             starting_point_id = this.value;
             if(route_id != "" && route_id != 0){
                 $.ajax({
-                    url:'{{route('booking-bookingboardpointdetails.get')}}',
+                    url:'{{route('vendor.booking-bookingboardpointdetails.get')}}',
                     data:{
                         starting_point_id : starting_point_id
                     },
@@ -312,7 +312,7 @@ booking
             stoping_point_id = this.value;
             if(route_id != "" && route_id != 0){
                 $.ajax({
-                    url:'{{route('booking-bookingdroppointdetails.get')}}',
+                    url:'{{route('vendor.booking-bookingdroppointdetails.get')}}',
                     data:{
                         stoping_point_id : stoping_point_id
                     },

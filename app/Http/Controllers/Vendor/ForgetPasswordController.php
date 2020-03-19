@@ -25,12 +25,16 @@ class ForgetPasswordController extends Controller
    {
        $otp= mt_rand(000000,999999);
        $b=$request->emailphone;
-       $forgettoken= str_random(60);
+       $forget_token= str_random(60);
         b:if(is_numeric($b))
         {
-            $record= Vendor::where('phone_number',$b)->get();
+            $record= Vendor::where('mobile_no',$b)->get();
             if(count($record))
             {
+                $data=$record->first()->id;
+                $data=Vendor::findorfail($data);
+                $data->otp=$otp;
+                $data->save();
                 $responce=SMSController::sendSMS($b,$otp);
 
                 if($responce->Status=="Success")
@@ -54,18 +58,18 @@ class ForgetPasswordController extends Controller
             {
                 // return $record;
                 $tokendata = Vendor::findorfail($record->first()->id);
-                $tokendata->forgettoken=$forgettoken;
+                $tokendata->forget_token=$forget_token;
                 $tokendata->token_time=  Carbon::now();
                 // return $tokendata;
                 $tokendata->save();
-                $z= "127.0.0.1:8000/vendor/resetpassword/email/".Vendor::where('email',$b)->first()->forgettoken;
+                $z= "127.0.0.1:8000/vendor/resetpassword/email/".Vendor::where('email',$b)->first()->forget_token;
                 $details = [
                     'email' => $b,
                     'name'=> Vendor::where('email',$b)->first()->first_name,
                     'link' =>$z
                 ];
-
-                Mail::to($b)->send(new SendRegisterMail($details));
+                // return $details;
+                Mail::to(($b))->send(new SendRegisterMail($details));
                 return redirect()->route('vendor.showforgetpage')->with(['status' => 'Mail Sent.']);
             }
             else{
@@ -76,7 +80,7 @@ class ForgetPasswordController extends Controller
 
    public function updatepasswordmail($token)
    {
-        $record = Vendor::where('forgettoken',$token)->get();
+        $record = Vendor::where('forget_token',$token)->get();
         if(count($record))
         {
             $start_time=strtotime($record->first()->token_time);
@@ -84,13 +88,13 @@ class ForgetPasswordController extends Controller
             if(($end_time - $start_time)>600)
             {
                 $update=Vendor::findorfail($record->first()->id);
-                $update->forgettoken="";
+                $update->forget_token="";
                 $update->token_time= Carbon::now();
                 $update->save();
                 return redirect()->route('vendor.showforgetpage')->with(['status' => 'Sorry,The Link is Expired']);
             }
             else{
-                return view('vendor.updatepasswordmail')->with(['firstname' =>$record->first()->first_name])->with(['token'=>$record->first()->forgettoken]);
+                return view('vendor.updatepasswordmail')->with(['firstname' =>$record->first()->first_name])->with(['token'=>$record->first()->forget_token]);
             }
         }
         else
@@ -110,10 +114,10 @@ class ForgetPasswordController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all())->with(['status' => 'Something Went Wrong']);
         }
-        $id=Vendor::where('forgettoken',$request->token)->get()->first()->id;
+        $id=Vendor::where('forget_token',$request->token)->get()->first()->id;
         $update=Vendor::findorfail($id);
         $update->password=bcrypt($request->password);
-        $update->forgettoken="";
+        $update->forget_token="";
         $update->token_time= Carbon::now();
         $update->save();
         return redirect()->route('vendor')->with(['status' => 'Password Changed Successfully']);
@@ -121,7 +125,6 @@ class ForgetPasswordController extends Controller
 
    public function updatepasswordsms($phone)
    {
-
         return view('vendor.updatepasswordsms',['phone'=>$phone]);
    }
 
@@ -138,13 +141,13 @@ class ForgetPasswordController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
-        $id=Vendor::where('phone_number',$request->MobileNo)->where('otp',$request->OTP)->get()->first()->id;
+        $id=(Vendor::where('mobile_no',$request->MobileNo)->where('otp',$request->OTP)->get()->first())->id;
         if(!($id))
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all())->with(['status' => 'MobileNo/OTP is Invalid.']);
         }
         $update=Vendor::findorfail($id);
-        $update->password=bcrypt($request->password);
+        $update->password=bcrypt($request->Password);
         $update->otp="";
         // return $update;
         $update->save();

@@ -5,7 +5,6 @@
 
 @endsection
 
-
 @section('other-page-css')
     <!-- Plugins css -->
     <link href="{{asset('admin/libs/jquery-nice-select/nice-select.css')}}" rel="stylesheet" type="text/css">
@@ -18,7 +17,6 @@
     <link href="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
-
 
 @section('content')
 
@@ -33,10 +31,10 @@
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Route Detail</a></li>
-                                <li class="breadcrumb-item active">Route Add</li>
+                                <li class="breadcrumb-item active">Route Details Edit</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Add Route Details</h4>
+                        <h4 class="page-title">Edit Route Details</h4>
                     </div>
                 </div>
             </div>
@@ -53,39 +51,23 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-12 ">
-                            <h4 class="card-title mt-0 mb-0">Add Route Details</h4>
+                            <h4 class="card-title mt-0 mb-0">Edit Route Details</h4>
                         </div>
                         <div class="col-12 col-md-12 font-weight-bold  text-danger ">
                             <hr>
                         </div>
                     </div>
 
-                    <form action="{{route('route-detail.store')}}" method="post">
+                    <form action="{{route('route-detail.update',["id"=>$route_detail->id])}}" method="post">
                         @csrf
                         <div class="row">
-                            {{-- <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
-                                        @foreach ($bus_list as $bus)
-                                        <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="price">Price</label>
-                                    <input type="number" value="100" class="form-control" name="fare" id="fare" step="1" min="1" placeholder="Price" required>
-                                </div>
-                            </div> --}}
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="from_place">From Place</label>
                                     <select name="from_place" class="form-control" id="from_place" data-toggle="select2" required>
-                                        <option value="">Select City</option>
+                                        <option value="0" >Select City</option>
                                         @foreach ($cities as $city)
-                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        <option value="{{$city->id}}" @if(($city->id)== ($route_detail->source_point)){{"selected"}} @endif>{{$city->city_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -96,27 +78,15 @@
                                     <select name="to_place" class="form-control" id="to_place" data-toggle="select2" required>
                                         <option value="">Select City</option>
                                         @foreach ($cities as $city)
-                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        <option value="{{$city->id}}"  @if(($city->id)== ($route_detail->destination_point)){{"selected"}} @endif>{{$city->city_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="start_time">Board Time</label>
-                                    <input type="text" class="form-control" name="board_time" id="board_time" placeholder="Start Time" required>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="arrival_time">Drop Time</label>
-                                    <input type="text" class="form-control" name="drop_time" id="drop_time" placeholder="Arrival Time" required>
-                                </div>
-                            </div>
-                        </div> --}}
+                        </div>
                         <div class="row">
-                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 ml-2">
-                                <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Submit">
+                            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                                <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Update">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                             </div>
                         </div>
@@ -127,6 +97,7 @@
     </div>
 
 @endsection
+
 
 @section('other-page-js')
     <script src="{{asset('admin/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
@@ -139,7 +110,7 @@
     <!-- Init js-->
     <script src="{{asset('admin/js/pages/form-advanced.init.js')}}"></script>
 
-    <!-- Plugins js-->
+     <!-- Plugins js-->
     <script src="{{asset('admin/libs/flatpickr/flatpickr.min.js')}}"></script>
     <script src="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>

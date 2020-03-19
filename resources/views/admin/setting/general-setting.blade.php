@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-
+"BlueBus|General Setting"
 @endsection
 
 @section('content')
@@ -105,6 +105,7 @@
                                 </div>
                             </div>
                             <div class="row">
+                            {{-- <div class="col-sm-9 col-md-9 col-lg-9 col-9"> --}}
                                 <div class="col-sm-2 col-md-2 col-lg-2 col-2">
                                     <div class="form-group mb-3">
                                         <label>Email Verification</label>
@@ -140,7 +141,15 @@
                                         <button type="button" class="btn btn-outline-danger btn-sm btn-rounded waves-effect waves-light">OFF</button>
                                     </div>
                                 </div>
+                                <div class="col-2 col-md-2 col-lg-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label for="thumbnail_image">Website Logo</label>
+                                        <input type="file" class="dropify" name="logo" data-default-file="logo" />
+                                        <span class="text-danger">@error('logo') {{ $message }} @enderror</span>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <hr>
@@ -167,9 +176,14 @@
 
 
 @section('other-page-css')
-
+  <!-- Plugins css -->
+  <link href="{{asset('admin/libs/dropzone/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('admin/libs/dropify/dropify.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('other-page-js')
-
+ <!-- Plugins js -->
+ <script src="{{asset('admin/libs/dropzone/dropzone.min.js')}}"></script>
+ <script src="{{asset('admin/libs/dropify/dropify.min.js')}}"></script>
+ <script src="{{asset('admin/js/pages/form-fileuploads.init.js')}}"></script>
 @endsection

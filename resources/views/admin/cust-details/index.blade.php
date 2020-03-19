@@ -43,19 +43,32 @@
                     <table id="basic-datatable" class="table  table-striped">
                         <thead class="thead-light">
                             <tr>
-                                <th style="width: 20px;">#</th>
-                                <th>Customer Name</th>
+                                <th>#</th>
+                                <th>Avatar</th>
+                                <th>Username</th>
                                 <th>Email</th>
-                                <th>Mobile</th>
+                                <th>Phone </th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no=1?>
                             @foreach ($Customer as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->customer_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->mobile }}</td>
+                                <td>{{$no++}}</td>
+                                <td> <img src="{{ asset('/'. $item->avatar)}}" class="rounded-circle avatar-md img-thumbnail" alt="profile-image"> </td>
+                                        <td>{{$item->first_name .' '. $item->last_name}}</td>
+                                        <td>{{$item->email}}</td>
+                                        <td>{{$item->mobile_no}}</td>
+                                        <td>
+                                            <button class="btn status-change {{$item->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->status==1?"Active":"Disable"}}" id="{{$item->id}}">{{$item->status==1?"Active":"Disable"}}</button>
+                                        </td>
+                                        <td>
+                                            <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                            {{-- <a href="{{ route('item-detail.edit',['id'=>$item->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a> --}}
+                                            {{-- <a href="#"  class="mr-1 text-danger remove_item" id="{{$item->id}}"><i class=" fas fa-trash-alt"></i></a> --}}
+                                        </td>
                             </tr>
                             @endforeach
                         </tbody>
