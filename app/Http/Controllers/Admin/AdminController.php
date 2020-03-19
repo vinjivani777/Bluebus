@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Bus;
+use App\Model\Menu;
 use App\Model\User;
 use App\Model\Admin;
 use App\Model\Route;
@@ -51,6 +52,8 @@ class AdminController extends Controller
             $find_model = BusType::findorfail($request->id);
         }elseif ($model == "Bus") {
             $find_model = Bus::findorfail($request->id);
+        }elseif ($model == "Menu") {
+            $find_model = Menu::findorfail($request->id);
         }elseif ($model == "Amenitie") {
             $find_model = Amenitie::findorfail($request->id);
         }elseif ($model == "Route") {

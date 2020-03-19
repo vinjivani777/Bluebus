@@ -20,13 +20,59 @@
         <link href="{{ asset('web/css/app.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('web/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('web/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('web/css/responsive.css') }}" rel="stylesheet" type="text/css" />
 
 
         @yield('page-css')
 
+        <style>
+
+
+            .sidenav {
+              height: 100%;
+              width: 0;
+              position: fixed;
+              z-index: 500;
+              top: 10;
+              left: 0;
+              background-color: white;
+              overflow-x: hidden;
+              overflow-y: inherit;
+              transition: 0.5s;
+              padding-top: 20px;
+            }
+
+            .sidenav a {
+              padding: 8px 8px 8px 32px;
+              text-decoration: none;
+              font-size: 15px;
+              color: #818181;
+              display: block;
+              transition: 0.3s;
+            }
+
+            .sidenav a:hover {
+              color: #d84f57;
+            }
+
+            .sidenav .closebtn {
+              position: absolute;
+              top: 0;
+              right: 25px;
+              font-size: 36px;
+              margin-left: 50px;
+            }
+
+
+
+            @media screen and (max-height: 450px) {
+              .sidenav {padding-top: 15px;}
+              .sidenav a {font-size: 15px;}
+            }
+        </style>
     </head>
 
-    <body class="bg-white" style="padding-bottom: 0px;">
+    <body class="bg-light" style="padding-bottom: 0px;">
 
         <!-- Topbar Start -->
 
@@ -37,10 +83,11 @@
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
         <!-- ============================================================== -->
+        {{-- <div class="main" id="main"> --}}
 
 
-            {{-- @yield('content') --}}
-
+            @yield('content')
+        {{-- </div> --}}
             <!-- Footer Start -->
 
                 {{-- @include('web.layout.footer.footer') --}}
@@ -187,7 +234,24 @@
         @yield('after-js')
 
 
+        <script>
+                            $('.closebtn').hide();
 
+            function openNav() {
+              $("#mySidenav").css("width","200px");
+              $('.openbtn').hide();
+              $('.closebtn').show();
+            //   $(body).css('background-color','red');
+            }
+
+            function closeNav() {
+                $("#mySidenav").css("width","0");
+                $('.openbtn').show();
+                $('.closebtn').hide();
+                // $(body).css('background-color','red');
+
+            }
+            </script>
 </html>
 
 

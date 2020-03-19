@@ -167,6 +167,15 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     //  Route::delete('seat-layout/destroy/{id}','Admin\SeatLayoutController@destroy')->name('seat-layout.destroy');
 
 
+        //  Menus Setting
+        Route::get('menus','Admin\MenuController@index')->name('menus');
+        Route::get('menus/create','Admin\MenuController@create')->name('menus.add');
+        Route::post('menus/store','Admin\MenuController@store')->name('menus.store');
+        Route::get('menus/edit/{id}','Admin\MenuController@edit')->name('menus.edit');
+        Route::post('menus/update/{id}','Admin\MenuController@update')->name('menus.update');
+        Route::get('menus/destroy','Admin\MenuController@destroy')->name('menus.destroy');
+
+
      //Rating
      Route::get('rating','Admin\RatingController@index')->name('rating');
 
@@ -298,6 +307,8 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
      Route::get('cancellation-detail/edit/{id}','Vendor\CancellationController@edit')->name('vendor.cancellation-detail.edit');
      Route::post('cancellation-detail/update/{id}','Vendor\CancellationController@update')->name('vendor.cancellation-detail.update');
      Route::get('cancellation-detail/destroy','Vendor\CancellationController@destroy')->name('vendor.cancellation-detail.destroy');
+
+
 
     //Rating
     Route::get('rating','Vendor\RatingController@index')->name('vendor.rating');

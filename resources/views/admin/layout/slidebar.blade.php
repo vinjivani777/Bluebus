@@ -205,12 +205,15 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i class="fas fa-cogs"></i>
-                        <span>Settings</span>
+                        <span>Web Settings</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="{{ route('generalsetting') }}">Genaral Setting</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('menus') }}">Menus Setting</a>
                         </li>
                         <li>
                             <a href="{{ route('emailsetting') }}">Email Setting</a>

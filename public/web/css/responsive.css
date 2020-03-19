@@ -1,0 +1,143 @@
+@media (min-width: 1281px) {
+  
+    .mini-print{
+        display:none;
+    }
+   
+    .sidenav{
+      display:none;
+    }
+    .mini-nav{
+      display:none;
+    }
+    .mini{
+      display:none;
+    }
+  }
+  
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    
+    .mini-print{
+        display:none;
+    }
+    .sidenav{
+      display:none;
+    }
+    .mini-nav{
+      display:none;
+    }
+    .mini{
+      display:none;
+    }
+   
+    
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    
+    .mini-print{
+        display:none;
+    }
+    .nav-big{
+      display:none;
+    }
+    .big{
+      display:none;
+    }
+    
+    
+  }
+  
+  /* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    
+    .mini-print{
+        display:none;
+    }
+    .nav-big{
+      display:none;
+    }
+    .big{
+      display:none;
+    }
+   
+    
+  }
+  
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+  
+  @media (min-width: 481px) and (max-width: 767px) {
+    
+
+    .cancelltion{
+        display:none;
+    }
+    .nav-big{
+      display:none;
+    }
+    .big{
+      display:none;
+    }
+    .head-banner{
+      display:none;
+    }
+    .search-bar{
+      display:none;
+    }.offerforu{
+      display:none;
+    }
+    
+  }
+  
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    
+   
+    .cancelltion{
+        display:none;
+    }
+    .nav-big{
+      display:none;
+    }
+    .big{
+      display:none;
+    }
+    
+  }
+
+
+  @media (min-width: 0px) and (max-width: 319px) {
+    
+   
+    .cancelltion{
+        display:none;
+    }
+    .nav-big{
+      display:none;
+    }
+    .big{
+      display:none;
+    }
+    
+  }

@@ -1,8 +1,6 @@
-<nav class="navbar navbar-expand-xl sticky-top  navbar-light  " style="background-color:#d84f57">
+<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big" style="background-color:#d84f57">
     <a class="navbar-brand text-white" href="{{ route('web.index')}}">BlueBus</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
+   
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -108,3 +106,17 @@
     </div>
     </div>
 </nav>
+
+<nav class="navbar navbar-expand-xl sticky-top  navbar-light  mini-nav" style="background-color:#d84f57">
+    <span style="font-size:30px;cursor:pointer" class="openbtn text-white" onclick="openNav()">&#9776;</span>
+    <span  style="font-size:30px;cursor:pointer" class="closebtn text-white"  onclick="closeNav()">&times;</span>
+
+    <a class="navbar-brand ml-3 text-white" style="f" href="{{ route('web.index')}}">BlueBus</a>
+
+</nav>
+
+<div id="mySidenav" class="sidenav" >
+   @foreach ($Menus as $menu)
+        <a href="@if($menu->link == "#") {{ "#" }} @else {{ route(''. $menu->link) }} @endif" >{{ $menu->name }}</a>
+   @endforeach
+</div>
