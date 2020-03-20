@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Model\PromoCode;
 use App\Model\Bus;
+use App\Model\PromoCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PromoController extends Controller
@@ -85,6 +86,7 @@ class PromoController extends Controller
         $data->expiry_date          = date('Y-m-d', strtotime($request->expiry_date));
         $data->promocode_image      = $promo_image_name;
         $data->created_by           = 'admin' ;
+        $data->created_id           = (Auth::guard('admin')->user()->id) ;
         $data->t_and_c              = $request->t_and_c;
         // $data->include_bus_id       = implode('|',$request->include_bus_id);
         // $data->exclude_bus_id       = implode('|',$request->exclude_bus_id);

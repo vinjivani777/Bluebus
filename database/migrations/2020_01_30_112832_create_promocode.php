@@ -26,12 +26,14 @@ class CreatePromocode extends Migration
             $table->integer('indivisual_use')->nullable();//how many times one user can avail this promocode
             $table->text('exclude_bus_id')->nullable();
             $table->text('include_bus_id')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->string('promocode_image')->nullable();
             $table->string('t_and_c')->nullable();
             $table->integer('min_order_amount')->nullable();
             // $table->unsignedBiginteger('include_bus_id')->nullable();
             // $table->unsignedBiginteger('exclude_bus_id')->nullable();
             $table->string('created_by')->nullable();
+            $table->string('created_id')->nullable();
             $table->boolean('status')->default(1);
             // $table->foreign('exclude_bus_id')->references('id')->on('buses')->onDelete('cascade');
             // $table->foreign('include_bus_id')->references('id')->on('buses')->onDelete('cascade');

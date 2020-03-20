@@ -65,15 +65,28 @@
                         <div class="row">
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
-                                    <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
-                                        @foreach ($bus_list as $bus)
-                                        <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
+                                    <label for="from_place">From Place</label>
+                                    <select name="from_place" class="form-control" id="from_place" data-toggle="select2" required>
+                                        <option value="">Select City</option>
+                                        @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                <div class="form-group">
+                                    <label for="to_place">To Place</label>
+                                    <select name="to_place" class="form-control" id="to_place" data-toggle="select2" required>
+                                        <option value="">Select City</option>
+                                        @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                            {{-- <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="price">Price</label>
                                     <input type="number" value="100" class="form-control" name="fare" id="fare" step="1" min="1" placeholder="Price" required>
@@ -103,7 +116,7 @@
                                     <input type="text" class="form-control" name="drop_time" id="drop_time" placeholder="Arrival Time" required>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                 <input type="submit" class="btn btn-sm btn-primary" value="Submit">
@@ -119,21 +132,57 @@
 @endsection
 
 @section('other-page-js')
-    <script src="{{asset('admin/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
-    <script src="{{asset('admin/libs/switchery/switchery.min.js')}}"></script>
-    <script src="{{asset('admin/libs/select2/select2.min.js')}}"></script>
-    <script src="{{asset('admin/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
-    <script src="{{asset('admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
-    <script src="{{asset('admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+<script src="{{asset('admin/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('admin/libs/switchery/switchery.min.js')}}"></script>
+<script src="{{asset('admin/libs/select2/select2.min.js')}}"></script>
+<script src="{{asset('admin/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('admin/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+<script src="{{asset('admin/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
 
-    <!-- Init js-->
-    <script src="{{asset('admin/js/pages/form-advanced.init.js')}}"></script>
+<!-- Init js-->
+<script src="{{asset('admin/js/pages/form-advanced.init.js')}}"></script>
 
-    <!-- Plugins js-->
-    <script src="{{asset('admin/libs/flatpickr/flatpickr.min.js')}}"></script>
-    <script src="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
-    <script src="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+<!-- Plugins js-->
+<script src="{{asset('admin/libs/flatpickr/flatpickr.min.js')}}"></script>
+<script src="{{asset('admin/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+<script src="{{asset('admin/libs/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
 
-    <!-- Init js-->
-    <script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
+<!-- Init js-->
+<script src="{{asset('admin/js/pages/form-pickers.init.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            var old_from_place = $("#from_place").val();
+            var old_to_place = $("#to_place").val();
+
+            $("#from_place").on('change',function(){
+                var from_place = $(this).val();
+                var to_place = $("#to_place").val();
+                if((from_place)==(to_place))
+                {
+                    alert('From & To Places Cannot Be Same');
+                    $('#from_place').val(old_from_place).change();
+                }
+            });
+            $("#to_place").on('change',function(){
+                var to_place = $(this).val();
+                var from_place = $("#from_place").val();
+                if((to_place)==(from_place))
+                {
+                    alert('From & To Places Cannot Be Same');
+                    $('#to_place').val(old_to_place).change();
+                }
+            });
+
+            $("#submit").on('change',function(){
+                var from_place = $("#from_place").val();
+                var to_place = $("#to_place").val();
+                if((to_place)==(from_place))
+                {
+                    alert('From & To Places Cannot Be Same');
+                    $('#from_place').val(old_from_place).change();
+                    $('#to_place').val(old_to_place).change();
+                }
+            });
+        });
+    </script>
 @endsection

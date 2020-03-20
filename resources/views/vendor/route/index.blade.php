@@ -46,12 +46,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="hidden">#</th>
-                                        <th>Bus Name</th>
                                         <th>Board Point</th>
-                                        <th>Bus Time</th>
                                         <th>Drop Point</th>
-                                        <th>Drop Time</th>
-                                        <th>Fare</th>
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>
@@ -61,12 +57,8 @@
                                     @foreach ($route_list as $route)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$route->Bus_Name->bus_name}}</td>
-                                        <td>{{$route->board_point}}</td>
-                                        <td>{{date("g:i A",strtotime($route->board_time))}}</td>
-                                        <td>{{$route->drop_point}}</td>
-                                        <td>{{date("g:i A",strtotime($route->drop_time))}}</td>
-                                        <td>{{$route->fare}}</td>
+                                        <td>{{$route->source_name}}</td>
+                                        <td>{{$route->destination_name}}</td>
                                         <td>
                                             <button class="btn status-change {{$route->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$route->status==1?"Active":"Disable"}}" id="{{$route->id}}">{{$route->status==1?"Active":"Disable"}}</button>
                                         </td>

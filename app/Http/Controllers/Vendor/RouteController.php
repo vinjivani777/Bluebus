@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Model\Bus;
+use App\Model\City;
 use App\Model\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,7 +21,7 @@ class RouteController extends Controller
     {
         $auth=Auth::guard('vendor')->user()->id;
         $data = array();
-        $data['route_list'] = Route::with('Bus_Name')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['route_list'] = Route::get();
         return view('vendor.route.index',$data);
     }
 
@@ -31,9 +32,9 @@ class RouteController extends Controller
      */
     public function create()
     {
-        $auth=Auth::guard('vendor')->user()->id;
+        // $auth=Auth::guard('vendor')->user()->id;
         $data = array();
-        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['cities'] = City::whereStatus(true)->select('id','city_name')->get();
         return view('vendor.route.create',$data);
     }
 
@@ -46,31 +47,25 @@ class RouteController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'bus_name' => 'required|numeric|min:0|not_in:0',
-            'fare' => 'required|numeric|min:0|not_in:0',
-            'board_point' => 'required|min:3',
-            'drop_point' => 'required|min:3',
-            'board_time' => 'required',
-            'drop_time' => 'required'
+            'from_place' => 'required',
+            'to_place' => 'required',
         ]);
 
         if($validator->fails())
         {
-            dd($validator);
-        }else{
-            $newbus= new Route;
-            $newbus->bus_id= $request->bus_name;
-            $newbus->fare= $request->fare;
-            $newbus->board_point= $request->board_point;
-            $newbus->drop_point= $request->drop_point;
-            $newbus->board_time= $request->board_time;
-            $newbus->drop_time= $request->drop_time;
-            $newbus->created_id= Auth::guard('vendor')->user()->id;
-            $newbus->created_by= "vendor";
-            $newbus->save();
-
-            return redirect()->route('vendor.route-detail');
+            return redirect()->back()->withErrors($validator);
         }
+        $newbus= new Route;
+        $from_place=$request->from_place;
+        $to_place=$request->to_place;
+        $newbus->source_point=$from_place ;
+        $newbus->destination_point= $to_place;
+        $newbus->source_name= (City::whereId($from_place)->select('city_name')->first())->city_name;
+        $newbus->destination_name= (City::whereId($to_place)->select('city_name')->first())->city_name;
+        $newbus->status=1;
+        $newbus->save();
+
+        return redirect()->route('vendor.route-detail');
     }
 
     /**
@@ -92,9 +87,9 @@ class RouteController extends Controller
      */
     public function edit($id)
     {
-        $auth=Auth::guard('vendor')->user()->id;
+        // $auth=Auth::guard('vendor')->user()->id;
         $route = array();
-        $route['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $route['cities'] = City::whereStatus(true)->select('id','city_name')->get();
         $route['route_detail'] = Route::find($id);
         return view('vendor.route.edit',$route);
     }
@@ -109,31 +104,24 @@ class RouteController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
-            'bus_name' => 'required|numeric|min:0|not_in:0',
-            'fare' => 'required|numeric|min:0|not_in:0',
-            'board_point' => 'required|min:3',
-            'drop_point' => 'required|min:3',
-            'board_time' => 'required',
-            'drop_time' => 'required'
+            'from_place' => 'required',
+            'to_place' => 'required',
         ]);
 
         if($validator->fails())
         {
             return "error in validtion";
-        }else{
-            $newbus= Route::findorfail($id);
-            $newbus->bus_id= $request->bus_name;
-            $newbus->fare= $request->fare;
-            $newbus->board_point= $request->board_point;
-            $newbus->drop_point= $request->drop_point;
-            $newbus->board_time= $request->board_time;
-            $newbus->drop_time= $request->drop_time;
-            $newbus->created_id= Auth::guard('vendor')->user()->id;
-            $newbus->created_by= "vendor";
-            $newbus->save();
-
-            return redirect()->route('vendor.route-detail');
         }
+        $newbus= Route::findorfail($id);
+        $from_place=$request->from_place;
+        $to_place=$request->to_place;
+        $newbus->source_point=$from_place ;
+        $newbus->destination_point= $to_place;
+        $newbus->source_name= (City::whereId($from_place)->select('city_name')->first())->city_name;
+        $newbus->destination_name= (City::whereId($to_place)->select('city_name')->first())->city_name;
+        $newbus->status=1;
+        $newbus->save();
+        return redirect()->route('vendor.route-detail');
     }
 
     /**
@@ -157,6 +145,6 @@ class RouteController extends Controller
     public function busroute(Request $request)
     {
         $auth=Auth::guard('vendor')->user()->id;
-       return  Route::select('id','board_point','drop_point')->where(['created_id'=>$auth,'created_by'=>'vendor','status'=>true])->get();
+        return  Route::select('id','board_point','drop_point')->where(['created_id'=>$auth,'created_by'=>'vendor','status'=>true])->get();
     }
 }

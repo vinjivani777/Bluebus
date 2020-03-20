@@ -63,12 +63,8 @@
                                     @foreach ($record as $route)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        {{-- <td>{{$route->Bus_Name->bus_name}}</td> --}}
                                         <td>{{$route->Source->city_name}}</td>
-                                        {{-- <td>{{date("g:i A",strtotime($route->board_time))}}</td> --}}
                                         <td>{{$route->Destination->city_name}}</td>
-                                        {{-- <td>{{date("g:i A",strtotime($route->drop_time))}}</td> --}}
-                                        {{-- <td>{{$route->fare}}</td> --}}
                                         <td>
                                             <button class="btn status-change {{$route->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$route->status==1?"Active":"Disable"}}" id="{{$route->id}}">{{$route->status==1?"Active":"Disable"}}</button>
                                         </td>

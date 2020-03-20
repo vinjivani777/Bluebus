@@ -8,6 +8,7 @@ use App\Model\Amenitie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class BusController extends Controller
 {
@@ -183,8 +184,10 @@ class BusController extends Controller
         $validator= $request->validate([
             'bus_type' => 'required|min:2|max:20',
         ]);
-        if($validator->fails()){
-        return redirect()->back()->withErrors($validator);
+        // dd($validator);
+        if(!($validator))
+        {
+            return redirect()->back()->withErrors($validator);
         }
         $newtype= new Bustype;
         $newtype->type_name= $request->bus_type;

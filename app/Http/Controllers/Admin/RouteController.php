@@ -116,16 +116,14 @@ class RouteController extends Controller
         }
 
            $newbus= Route::findorfail($id);
-            // $newbus->bus_id= $request->bus_name;
-            // $newbus->fare= $request->fare;
-            $newbus->source_point= $request->from_place;
-            $newbus->destination_point= $request->to_place;
-            // $newbus->board_time= $request->board_time;
-            // $newbus->drop_time= $request->drop_time;
-            $newbus->status=1;
-            // $newbus->created_by= "admin";
-            // return $newbus;
-            $newbus->save();
+           $from_place=$request->from_place;
+           $to_place=$request->to_place;
+           $newbus->source_point=$from_place ;
+           $newbus->destination_point= $to_place;
+           $newbus->source_name= (City::whereId($from_place)->select('city_name')->first())->city_name;
+           $newbus->destination_name= (City::whereId($to_place)->select('city_name')->first())->city_name;
+           $newbus->status=1;
+           $newbus->save();
 
             return redirect()->route('route-detail');
 
