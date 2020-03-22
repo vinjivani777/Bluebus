@@ -43,15 +43,18 @@ class DropPointController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validator = Validator::make($request->all(),[
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
-            'stoping_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
-            'drop_time' => 'required',
+            'drop_point' => 'required|min:3',
+            'drop_point_position' => 'required',
+            'next_time' => 'required',
+            'drop_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
+        // dd($validator->fails());
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
@@ -59,11 +62,13 @@ class DropPointController extends Controller
         $droppoint= new DropPoint;
         $droppoint->bus_id= $request->bus_name;
         $droppoint->route_id= $request->route_id;
-        $droppoint->drop_point= $request->stoping_point;
+        $droppoint->drop_point= $request->drop_point;
+        $droppoint->drop_point_position= (1+($request->drop_point_position));
         $droppoint->drop_time= $request->drop_time;
         $droppoint->landmark= $request->landmark;
         $droppoint->address= $request->address;
         $droppoint->status= 1;
+        // return $droppoint;
         $droppoint->save();
 
         return redirect()->route('drop-point');
@@ -105,11 +110,14 @@ class DropPointController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         $validator = Validator::make($request->all(),[
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
-            'stoping_point' => 'required|min:3',
-            'drop_time' => 'required',
+            'drop_point' => 'required|min:3',
+            'drop_point_position' => 'required',
+            // 'next_time' => 'required',
+            'drop_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
@@ -121,11 +129,13 @@ class DropPointController extends Controller
         $droppoint= DropPoint::findorfail($id);
         $droppoint->bus_id= $request->bus_name;
         $droppoint->route_id= $request->route_id;
-        $droppoint->drop_point= $request->stoping_point;
+        $droppoint->drop_point= $request->drop_point;
+        $droppoint->drop_point_position= (1+($request->drop_point_position));
         $droppoint->drop_time= $request->drop_time;
         $droppoint->landmark= $request->landmark;
         $droppoint->address= $request->address;
         $droppoint->status= 1;
+        // return $droppoint;
         $droppoint->save();
         // dd($droppoint);
         return redirect()->route('drop-point');
@@ -141,6 +151,30 @@ class DropPointController extends Controller
     {
         $newdrop =  DropPoint::findorfail($request->id);
         $newdrop->delete();
+
+        if($newdrop){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    public function turndetail(Request $request)
+    {
+        return $newdrop =  DropPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->orderBy('drop_time', 'DESC')->first();
+        // $newdrop->delete();
+
+        if($newdrop){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    public function oldturndetail(Request $request)
+    {
+        return $newdrop =  DropPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->wheredrop_point_position((--$request->position))->first();
+        // $newdrop->delete();
 
         if($newdrop){
             return "success";

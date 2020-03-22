@@ -46,10 +46,11 @@
                             <table id="basic-datatable" class="table dt-responsive table-striped">
                                 <thead class="thead-light">
                                     <tr>
+                                        <th>#</th>
                                         <th>Bus Name</th>
                                         <th>Route</th>
-                                        <th>New Droping Point</th>
-                                        <th>Start Time</th>
+                                        <th>Droping Point</th>
+                                        <th>Droping Time</th>
                                         <th>Landmark</th>
                                         <th>Address</th>
                                         <th>Status</th>
@@ -57,8 +58,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($drop_list as $drop)
                                     <tr>
+                                        <td>{{$no++}}</td>
                                         <td>{{$drop->Bus_Name->bus_name}} - {{$drop->Bus_Name->bus_reg_no}}</td>
                                         <td>{{$drop->Route_name->source_name.'-'.$drop->Route_name->destination_name}}</td>
                                         <td>{{$drop->drop_point}}</td>

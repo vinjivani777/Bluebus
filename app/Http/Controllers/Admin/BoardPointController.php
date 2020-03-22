@@ -43,29 +43,34 @@ class BoardPointController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validator = Validator::make($request->all(),[
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'board_point' => 'required|min:3',
-            'board_time' => 'required',
+            'board_point_position' => 'required',
+            'next_time' => 'required',
+            'board_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
-
+            // dd($validator->fails());
         if($validator->fails())
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        $droppoint= new BoardPoint;
-        $droppoint->bus_id= $request->bus_name;
-        $droppoint->route_id= $request->route_id;
-        $droppoint->board_point= $request->board_point;
-        $droppoint->pickup_time= $request->board_time;
-        $droppoint->landmark= $request->landmark;
-        $droppoint->address= $request->address;
-        $droppoint->status= 1;
-        $droppoint->save();
+        $boardpoint= new BoardPoint;
+        $boardpoint->bus_id= $request->bus_name;
+        $boardpoint->route_id= $request->route_id;
+        $boardpoint->board_point= $request->board_point;
+        $boardpoint->board_point_position= (1+($request->board_point_position));
+        $boardpoint->pickup_time= $request->board_time;
+        $boardpoint->landmark= $request->landmark;
+        $boardpoint->address= $request->address;
+        $boardpoint->status= 1;
+        // return $boardpoint;
+        $boardpoint->save();
         return redirect()->route('board-point');
 
     }
@@ -78,7 +83,7 @@ class BoardPointController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
@@ -110,8 +115,9 @@ class BoardPointController extends Controller
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'board_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
-            'board_time' => 'required',
+            'board_point_position' => 'required',
+            // 'next_time' => 'required',
+            'board_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
@@ -124,10 +130,12 @@ class BoardPointController extends Controller
         $boardpoint->bus_id= $request->bus_name;
         $boardpoint->route_id= $request->route_id;
         $boardpoint->board_point= $request->board_point;
+        $boardpoint->board_point_position= (1+($request->board_point_position));
         $boardpoint->pickup_time= $request->board_time;
         $boardpoint->landmark= $request->landmark;
         $boardpoint->address= $request->address;
         $boardpoint->status= 1;
+        // return $boardpoint;
         $boardpoint->save();
 
         return redirect()->route('board-point');
@@ -151,4 +159,29 @@ class BoardPointController extends Controller
             return "error";
         }
     }
+
+    public function turndetail(Request $request)
+    {
+        return $newboard =  BoardPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->orderBy('pickup_time', 'DESC')->first();
+        // $newboard->delete();
+
+        if($newboard){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    public function oldturndetail(Request $request)
+    {
+        return $newboard =  BoardPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->whereBoard_point_position((--$request->position))->first();
+        // $newboard->delete();
+
+        if($newboard){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
 }

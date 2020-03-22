@@ -10,6 +10,7 @@ use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -164,7 +165,29 @@ class BookingController extends Controller
 
     public function bookingroute(Request $request)
     {
-        return Route::whereStatus(true)->whereBus_id($request->bus_id)->select('id','bus_id','board_point','drop_point')->get();
+        return Route::whereStatus(true)->select('id','source_name','destination_name')->get();
+    }
+    public function bustotalfare(Request $request)
+    {
+        $data= (Bus::whereId($request->bus_id)->select('total_fare','start_time')->first());
+        return  $data;
+    }
+    public function bookingroutetocancel(Request $request)
+    {
+        // $routes= (Bus::where('id',$request->bus_id)->select('route_id')->first())->route_id;
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        //  $Total_route_id= Bus::whereId($request->bus_id)->select('route_id')->get();
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        // return $routes;
+        // foreach ($routes as $id) {
+        //     $data = Route::whereStatus(true)->where('id',$id)->select('id','source_name','destination_name')->get();
+        // }
+
+        return $data;
     }
 
     public function bookingboardpoint(Request $request)

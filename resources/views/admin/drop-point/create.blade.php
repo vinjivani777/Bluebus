@@ -30,7 +30,7 @@
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Bluebus</a></li>
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Drop Point</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('drop-point')}}">Drop Point</a></li>
                                 <li class="breadcrumb-item active">Add Drop Point</li>
                             </ol>
                         </div>
@@ -63,32 +63,46 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
-                                        <option >Select Route</option>
+                                    <select name="bus_name" class="form-control" id="bus_name"  data-toggle="select2" required>
+                                        <option >Select Bus</option>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text-danger">@error('bus_name') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">Route</label>
-                                    <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
-
+                                    <select  class="form-control" name="route_id" id="route_id"  data-toggle="select2" required>
+                                        <option readonly>Select Route</option>
                                     </select>
+                                    <span class="text-danger">@error('route_id') {{ $message }} @enderror</span>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
+                                <div class="form-group">
+                                    <label for="drop_point_position">DropPoint Position</label>
+                                    <input type="text" readonly class="form-control" id="drop_point_position" placeholder="Select Position" required>
+                                    <input type="text" hidden name="drop_point_position"  class="form-control" value="{{old('drop_point_position')}}" id="next_position"  required>
+                                    <input type="text" hidden  name="next_time" class="form-control" value="{{old('next_time')}}" id="next_time"  required>
+                                    <span class="text-danger">@error('drop_point_position') {{ $message }} @enderror</span>
+                                    <span class="text-danger">@error('next_time') {{$message}} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">New Droping Point</label>
-                                    <input type="text" class="form-control" name="stoping_point" id="stoping_point" placeholder="New Droping Point" required>
+                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="New Droping Point" required>
+                                    <span class="text-danger">@error('drop_point') {{ $message }} @enderror</span>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
-                                    <label for="start_time">End Time</label>
+                                    <label for="end_time">End Time</label>
                                     <input type="text" class="form-control" name="drop_time" id="drop_time" placeholder="End Time" required>
+                                    <span class="text-danger">@error('drop_time') {{ "Droping-Time should be greater than Previous Point Time" }}  @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
@@ -101,6 +115,7 @@
                                 <div class="form-group">
                                     <label for="address">Address</label>
                                     <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
+                                    <span class="text-danger">@error('landmark') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                         </div>
@@ -108,8 +123,10 @@
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
                                 <input type="submit" class="btn btn-sm btn-primary" value="Submit">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
+                                <span class="text-danger">@error('address') {{ $message }} @enderror</span>
                             </div>
                         </div>
+                    </div>
                     </form>
                 </div>
             </div> <!-- end card-box-->
@@ -150,6 +167,7 @@
                     success:function(response)
                     {
                         $('#route_id').empty();
+                        $('#route_id').append(`<option value="0" disabled selected>Select Route</option>`);
                         if(response.length != ""){
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
@@ -158,6 +176,36 @@
                             option.value = response[i].id;
                             route_id.add(option);
                             }
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#route_id").on('change',function(){
+            route_id = this.value;
+            bus_id = $("#bus_name").val();
+            if(route_id != "" && route_id != 0){
+                $.ajax({
+                    url:'{{route('droppoint-turn-detail.get')}}',
+                    data:{
+                        route_id : route_id,
+                        bus_id : bus_id
+                    },
+                    type:'get',
+                    success:function(response)
+                    {
+                        // alert(response.length);
+                        $('#drop_point_position').empty();
+                        if(response.length != ""){
+                            $("#drop_point_position").val("After "+response.drop_time+" - "+response.drop_point);
+                            $("#next_time").val(response.drop_time);
+                            $("#next_position").val(response.drop_point_position);
+                        }
+                        else{
+                            $("#drop_point_position").val("First Drop Point");
+                            $("#next_position").val("0");
+                            $("#next_time").val('0');
                         }
                     }
                 });

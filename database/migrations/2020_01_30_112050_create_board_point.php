@@ -18,10 +18,11 @@ class CreateBoardPoint extends Migration
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('route_id');
             $table->string('board_point');
+            $table->integer('board_point_position');
             $table->time('pickup_time');
             $table->string('address');
             $table->string('landmark');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();

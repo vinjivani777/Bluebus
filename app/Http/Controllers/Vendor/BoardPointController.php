@@ -3,24 +3,27 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Model\Bus;
+use App\Model\Route;
 use App\Model\BoardPoint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class BoardPointController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $auth=Auth::guard('vendor')->user()->id;
+        $Total_bus_id=(Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->select('id')->get());
+        // return $Total_bus_id;
         $data = array();
-        $data['board_list'] = BoardPoint::with('Bus_Name','Route_Name')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['board_list'] = BoardPoint::with('Bus_Name','Route_Name')->whereStatus(true)->whereIn('id',$Total_bus_id)->get();
         return view('vendor.board-point.index',$data);
     }
 
@@ -31,10 +34,8 @@ class BoardPointController extends Controller
      */
     public function create()
     {
-        $auth=Auth::guard('vendor')->user()->id;
-
         $data = array();
-        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->whereVendor_id((Auth::guard('vendor')->user()->id))->get();
         return view('vendor.board-point.create',$data);
     }
 
@@ -46,33 +47,36 @@ class BoardPointController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validator = Validator::make($request->all(),[
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'board_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
-            'board_time' => 'required',
+            'board_point_position' => 'required',
+            'next_time' => 'required',
+            'board_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
-
+            // dd($validator->fails());
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= new BoardPoint;
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->board_point= $request->route_id;
-            $droppoint->pickup_point= $request->board_point;
-            $droppoint->pickup_time= $request->board_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->created_id=Auth::guard('vendor')->user()->id;
-            $droppoint->created_by="vendor";
-            $droppoint->save();
-
-            return redirect()->route('vendor.board-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+
+        $boardpoint= new BoardPoint;
+        $boardpoint->bus_id= $request->bus_name;
+        $boardpoint->route_id= $request->route_id;
+        $boardpoint->board_point= $request->board_point;
+        $boardpoint->board_point_position= (1+($request->board_point_position));
+        $boardpoint->pickup_time= $request->board_time;
+        $boardpoint->landmark= $request->landmark;
+        $boardpoint->address= $request->address;
+        $boardpoint->status= 1;
+        // return $boardpoint;
+        $boardpoint->save();
+        return redirect()->route('vendor.board-point');
+
     }
 
     /**
@@ -94,10 +98,11 @@ class BoardPointController extends Controller
      */
     public function edit($id)
     {
-        $auth=Auth::guard('vendor')->user()->id;
         $data = array();
-        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $data['bus_list'] = Bus::whereStatus(true)->select('id','bus_name', 'bus_reg_no')->get();
         $data['board_point'] = BoardPoint::findorfail($id);
+        $data['route_list'] = Route::get();
+        // return $data;
         return view('vendor.board-point.edit',$data);
     }
 
@@ -114,29 +119,31 @@ class BoardPointController extends Controller
             'bus_name' => 'required|numeric|min:0|not_in:0',
             'route_id' => 'required|numeric|min:0|not_in:0',
             'board_point' => 'required|min:3',
-            'landmark' => 'required|min:3',
-            'board_time' => 'required',
+            'board_point_position' => 'required',
+            // 'next_time' => 'required',
+            'board_time' => 'required|after:next_time',
             'landmark' => 'required|min:3',
             'address' => 'required|min:3'
         ]);
 
         if($validator->fails())
         {
-            return "error in validtion";
-        }else{
-            $droppoint= BoardPoint::findorfail($id);
-            $droppoint->bus_id= $request->bus_name;
-            $droppoint->board_point= $request->route_id;
-            $droppoint->pickup_point= $request->board_point;
-            $droppoint->pickup_time= $request->board_time;
-            $droppoint->landmark= $request->landmark;
-            $droppoint->address= $request->address;
-            $droppoint->created_id=Auth::guard('vendor')->user()->id;
-            $droppoint->created_by="vendor";
-            $droppoint->save();
-
-            return redirect()->route('vendor.board-point');
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
+        $boardpoint= BoardPoint::findorfail($id);
+        $boardpoint->bus_id= $request->bus_name;
+        $boardpoint->route_id= $request->route_id;
+        $boardpoint->board_point= $request->board_point;
+        $boardpoint->board_point_position= (1+($request->board_point_position));
+        $boardpoint->pickup_time= $request->board_time;
+        $boardpoint->landmark= $request->landmark;
+        $boardpoint->address= $request->address;
+        $boardpoint->status= 1;
+        // return $boardpoint;
+        $boardpoint->save();
+
+        return redirect()->route('vendor.board-point');
+
     }
 
     /**
@@ -156,4 +163,27 @@ class BoardPointController extends Controller
             return "error";
         }
     }
+
+    public function turndetail(Request $request)
+    {
+        return $newboard =  BoardPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->orderBy('pickup_time', 'DESC')->first();
+
+        if($newboard){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    public function oldturndetail(Request $request)
+    {
+        return $newboard =  BoardPoint::whereBus_id($request->bus_id)->whereRoute_id($request->route_id)->whereBoard_point_position((--$request->position))->first();
+
+        if($newboard){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
 }

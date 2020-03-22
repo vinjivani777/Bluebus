@@ -6,6 +6,7 @@ use App\Model\Bus;
 use App\Model\City;
 use App\Model\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -144,7 +145,34 @@ class RouteController extends Controller
 
     public function busroute(Request $request)
     {
-        $auth=Auth::guard('vendor')->user()->id;
-        return  Route::select('id','board_point','drop_point')->where(['created_id'=>$auth,'created_by'=>'vendor','status'=>true])->get();
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
+    }
+
+    public function busrouteforboardpoint(Request $request)
+    {
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
+    }
+
+    public function busroutefordroppoint(Request $request)
+    {
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+
+        $data = Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
+        return $data;
     }
 }

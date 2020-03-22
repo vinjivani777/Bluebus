@@ -63,85 +63,97 @@
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="busname">Bus Name</label>
-                                    <input type="text" class="form-control" name="bus_name" id="bus_name" placeholder="Bus Name" required autofocus="">
+                                    <input type="text" class="form-control" name="bus_name" value="{{old('bus_name')}}" id="bus_name" placeholder="Bus Name" required autofocus="">
+                                    <span>@error("bus_name"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="busregno">Bus Regi. Number</label>
-                                    <input type="text" class="form-control" name="bus_reg_no" style="text-transform:uppercase" id="bus_reg_no" placeholder="Bus Regi No" required>
+                                    <input type="text" class="form-control" name="bus_reg_no" value="{{old('bus_reg_no')}}" style="text-transform:uppercase" id="bus_reg_no" placeholder="Bus Regi No" required>
+                                    <span>@error("bus_reg_no"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="bustype">Bus Type</label>
-                                    <select name="bus_type" id="bus_type" class="form-control">
+                                    <select name="bus_type" value="{{old('bus_type')}}" id="bus_type" class="form-control" data-toggle="select2">
+                                        <option selected disabled>Select BusType</option>
                                         @foreach ($bus_type as $type)
                                         <option value="{{$type->id}}">{{$type->type_name}}</option>
                                         @endforeach
                                     </select>
+                                    <span>@error("bus_type"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select name="route[]" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutipal Route" required>
-                                        <option value="">Select Route</option>
+                                    <select name="route[ value="{{old('route')}}"]" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutiple Route" required>
+                                        <option value="" >Select Route</option>
                                         @foreach ($route as $route)
                                         <option value="{{$route->id}}">{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
                                         @endforeach
                                     </select>
+                                    <span>@error("route"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="maxiseats">Maximum seats</label>
-                                    <input type="number" min="1" step="1" class="form-control" name="max_seats" id="max_seats" placeholder="Maximum seats" required>
+                                    <input type="number" min="1" step="1" class="form-control" name="max_seats" value="{{old('max_seats')}}" id="max_seats" placeholder="Maximum seats" required>
+                                    <span>@error("max_seats"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="board_point">Start Point</label>
-                                    <input type="text" class="form-control" name="board_point" id="board_point" placeholder="Board Point" required>
+                                    <input type="text" class="form-control" name="board_point" value="{{old('board_point')}}" id="board_point" placeholder="Starting Point" required>
+                                    <span>@error("board_point"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="droppoint">End Point</label>
-                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="Drop Point" required>
+                                    <input type="text" class="form-control" name="drop_point" value="{{old('drop_point')}}" id="drop_point" placeholder="Ending Point" required>
+                                    <span>@error("drop_point"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="boardtime">Start Time</label>
-                                    <input type="text" class="form-control" id="board_time" name="board_time" placeholder="Pick a time">
+                                    <input type="text" class="form-control" id="board_time" name="board_time" value="{{old('board_time')}}" placeholder="Pick a time">
+                                    <span>@error("board_time"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="droptime">End Time</label>
-                                    <input type="text" class="form-control" id="drop_time" name="drop_time" placeholder="Drop Time">
+                                    <input type="text" class="form-control" id="drop_time" name="drop_time" value="{{old('drop_time')}}" placeholder="Drop Time">
+                                    <span>@error("drop_time"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="amenities">Amenities</label>
-                                    <select name="amenities[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
+                                    <select name="amenities[ value="{{old('amenities')}}"]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
                                         @foreach ($amenities as $type)
                                         <option value="{{$type->id}}">{{$type->description}}</option>
                                         @endforeach
                                     </select>
+                                    <span>@error("amenities"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="vendor">Vendor</label>
-                                    <select name="vendor" id="vendor" class="form-control" data-toggle="select2"  required>
+                                    <select name="vendor" value="{{old('vendor')}}" id="vendor" class="form-control" data-toggle="select2"  required>
                                         <option value="">Select Vendor</option>
                                         @foreach ($vendor as $vendor)
                                         <option value="{{$vendor->id}}">{{$vendor->first_name . ' ' . $vendor->last_name  }}</option>
                                         @endforeach
                                     </select>
+                                    <span>@error("vendor"){{$message}}@enderror</span>
                                 </div>
                             </div>
                         </div>
@@ -149,13 +161,15 @@
                             <div class="col-9 col-md-9 col-lg-9 col-sm-9">
                                 <div class="form-group ">
                                     <label>Routing multiple dates</label>
-                                    <input type="text" id="multiple-datepicker" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
+                                    <input type="text" id="multiple-datepicker" class="form-control flatpickr-input active" name="dates" value="{{old('dates')}}" placeholder="Multiple dates" readonly="readonly">
+                                    <span>@error("dates"){{$message}}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-3 col-md-3 col-lg-3 col-sm-3">
                                 <div class="form-group">
                                     <label>Fare Amount</label>
-                                    <input type="number" name="total_fare" class="form-control" placeholder="Enter Fare Price">
+                                    <input type="number" name="total_fare" value="{{old('total_fare')}}" class="form-control" placeholder="Enter Fare Price">
+                                    <span>@error("total_fare"){{$message}}@enderror</span>
                                 </div>
                             </div>
                         </div>

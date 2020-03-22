@@ -58,7 +58,7 @@ class PromoController extends Controller
 
         if($validator->fails())
         {
-           return redirect()->back()->withErrors($validator);
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
         if ($request->hasFile('promo_code_image')) {

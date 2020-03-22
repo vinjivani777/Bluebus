@@ -63,43 +63,60 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control" id="bus_name" data-toggle="select2" required>
+                                    <select name="bus_name" class="form-control" id="bus_name" value="{{old('bus_name')}}" data-toggle="select2" required>
+                                        <option >Select Bus</option>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text-danger">@error('bus_name') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="board_point">Route</label>
-                                    <select  class="form-control" name="route_id" id="route_id" data-toggle="select2" required>
-
+                                    <select  class="form-control" name="route_id" id="route_id" value="{{old('route_id')}}" data-toggle="select2" required>
+                                        <option readonly>Select Route</option>
                                     </select>
+                                    <span class="text-danger">@error('route_id') {{ $message }} @enderror</span>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
+                                <div class="form-group">
+                                    <label for="board_point_position">BoardPoint Position</label>
+                                    <input type="text" readonly class="form-control" id="board_point_position" placeholder="Select Position" required>
+                                    <input type="text" hidden name="board_point_position"  class="form-control" value="{{old('board_point_position')}}" id="next_position"  required>
+                                    <input type="text" hidden  name="next_time" class="form-control" value="{{old('next_time')}}" id="next_time"  required>
+                                    <span class="text-danger">@error('board_point_position') {{ $message }} @enderror</span>
+                                    <span class="text-danger">@error('next_time') {{$message}} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="board_point">New Boarding Point</label>
-                                    <input type="text" class="form-control" name="board_point" id="board_point" placeholder="New Broding Point" required>
+                                    <input type="text" class="form-control" name="board_point" value="{{old('board_point')}}" id="board_point" placeholder="New Broding Point" required>
+                                    <span class="text-danger">@error('board_point') {{ $message }} @enderror</span>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                            <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
-                                    <label for="start_time">Start Time</label>
-                                    <input type="text" class="form-control" name="board_time" id="board_time" placeholder="Start Time" required>
+                                    <label for="start_time">Boarding Time</label>
+                                    <input type="text" class="form-control" name="board_time" value="{{old('board_time')}}" id="board_time" placeholder="Start Time" required>
+                                    <span class="text-danger">@error('board_time') {{ "Boarding-Time should be greater than Selected Time" }}  @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" name="landmark" id="landmark" placeholder="Land Mark" required>
+                                    <input type="text" class="form-control" name="landmark" value="{{old('landmark')}}" id="landmark" placeholder="Land Mark" required>
+                                    <span class="text-danger">@error('landmark') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Address" required>
+                                    <input type="text" class="form-control" name="address" value="{{old('address')}}" id="address" placeholder="Address" required>
+                                    <span class="text-danger">@error('address') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                         </div>
@@ -150,14 +167,44 @@
                     success:function(response)
                     {
                         $('#route_id').empty();
+                        $('#route_id').append(`<option value="0" disabled selected>Select Route</option>`);
                         if(response.length != ""){
                             for (var i = 0; i < response.length; i++) {
                             var route_id = document.getElementById("route_id");
                             var option = document.createElement("option");
-                            option.text = response[i].board_point+" - "+response[i].drop_point;
+                            option.text = response[i].source_name+" - "+response[i].destination_name;
                             option.value = response[i].id;
                             route_id.add(option);
                             }
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#route_id").on('change',function(){
+            route_id = this.value;
+            bus_id = $("#bus_name").val();
+            if(route_id != "" && route_id != 0){
+                $.ajax({
+                    url:'{{route('vendor.boardpoint-turn-detail.get')}}',
+                    data:{
+                        route_id : route_id,
+                        bus_id : bus_id
+                    },
+                    type:'get',
+                    success:function(response)
+                    {
+                        $('#board_point_position').empty();
+                        if(response.length != ""){
+                            $("#board_point_position").val("After "+response.pickup_time+" - "+response.board_point);
+                            $("#next_time").val(response.pickup_time);
+                            $("#next_position").val(response.board_point_position);
+                        }
+                        else{
+                            $("#board_point_position").val("First Board Point");
+                            $("#next_position").val("0");
+                            $("#next_time").val('0');
                         }
                     }
                 });
