@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big" style="background-color:#d84f57">
     <a class="navbar-brand text-white" href="{{ route('web.index')}}">BlueBus</a>
-   
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -115,7 +115,7 @@
 
 </nav>
 
-<div id="mySidenav" class="sidenav" >
+<div id="mySidenav" class="sidenav">
    @foreach ($Menus as $menu)
         <a href="@if($menu->link == "#") {{ "#" }} @else {{ route(''. $menu->link) }} @endif" >{{ $menu->name }}</a>
    @endforeach

@@ -1,4 +1,4 @@
-@extends('web.layout')
+{{-- @extends('web.layout')
 
 
 @section('page-title')
@@ -72,21 +72,13 @@
                 min-width: 50px;
                 text-align: center;
             }
-            .form-control{
-                border-style:solid;
-                border-width: 0px 0px 0px 0px;
-            }
-            .return{
-                transform:rotate(180deg);
-            }
+
         </style>
 
 @endsection
 
-@section('content')
+@section('content') --}}
 
-        <div class="main-content">
-            <div class="row ml-2 mr-2 mt-3">
                 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xs-12">
                     <div class="card p-2 " style="position:relative;box-shadow: 0 0 4px 0 rgba(0,0,0,.30)">
                         {{-- <label for="">From</label> --}}
@@ -118,7 +110,7 @@
                             <h5 class="">OFFERS FOR YOU</h5>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-12 col-sm-12 col-lg-4 col-md-6">
                             <div class="card card-body p-2">
@@ -172,12 +164,11 @@
                             <p class="text-justify">redBus is the world’s largest online bus ticket booking platform trusted by millions of happy customers globally. redBus comprises of a wide array of noteworthy bus companies in India offering fast, effortless, and secure booking experiences. redBus enables you to choose the destination, select your preferred seat, and book your bus ticket with just a few clicks. Avail exciting redBus offers and experience an unforgettable journey!redBus is the world's leading bus ticket booking company. It operates in 6 countries (India, Malaysia, Singapore, Indonesia, Peru, and Colombia). redBus has sold over 180 million bus tickets worldwide through the redBus website and app. With over 17 million satisfied customers, redBus has set the bar quite high. There is no shortage of buses on remote and unpopular routes as redBus has on-boarded over 2,300 bus operators to meet every traveler’s needs and requirements Buying a bus ticket on the redBus app or website is really simple. You can download the app or you can go directly to redbus.in. In the search box, enter the point of origin and destination. Compare the prices, schedules, and services of every bus operator providing their services on the route of your choice, select a seat and proceed to the payment page to complete the booking process. You can utilize any of the payment portals that are available on the payment page to complete your transaction. Once your payment has been confirmed, all you have to do is pack your bags and get ready to travel. It's that simple!</p>
                         </div>
                     </div>
-                    
-                    
-                </div>
-            </div>
-        </div>
 
+
+                </div>
+
+{{--
 @endsection
 
 
@@ -359,4 +350,4 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-@endsection
+@endsection --}}
