@@ -44,10 +44,11 @@
                             <table id="basic-datatable" class="table dt-responsive table-striped">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Bua Name</th>
+                                        <th>#</th>
+                                        <th>Bus Name</th>
                                         <th>Route</th>
-                                        <th>New Droping Point</th>
-                                        <th>Start Time</th>
+                                        <th>Droping Point</th>
+                                        <th>Droping Time</th>
                                         <th>Landmark</th>
                                         <th>Address</th>
                                         <th>Status</th>
@@ -55,11 +56,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($drop_list as $drop)
                                     <tr>
+                                        <td>{{$no++}}</td>
                                         <td>{{$drop->Bus_Name->bus_name}} - {{$drop->Bus_Name->bus_reg_no}}</td>
-                                        <td>{{$drop->Route_Name->drop_point}}</td>
-                                        <td>{{$drop->stoping_point}}</td>
+                                        <td>{{$drop->Route_name->source_name.'-'.$drop->Route_name->destination_name}}</td>
+                                        <td>{{$drop->drop_point}}</td>
                                         <td>{{date("g:i A",strtotime($drop->drop_time))}}</td>
                                         <td>{{$drop->landmark}}</td>
                                         <td>{{$drop->address}}</td>
@@ -68,7 +71,7 @@
                                         </td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('drop-point.edit',['id'=>$drop->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                            <a href="{{ route('vendor.drop-point.edit',['id'=>$drop->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
                                             <a href="#"  class="mr-1 text-danger remove_drop_point" id="{{$drop->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

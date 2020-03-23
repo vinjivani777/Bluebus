@@ -62,11 +62,12 @@
                                 <div class="form-group">
                                     <label for="bus_img">Bus Image</label>
                                     <input type="file" name="bus_img" id="bus_img" >
-                                    <input type="hidden" name="old_img"  value="{{ $img->image }}">
+                                    <input type="hidden" name="old_img"  value="{{ $img->image_path }}">
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4">
-                                <img src="{{ asset($img->image) }}" name="oldimg" style="width:150px;height:100px" alt="" >
+                                <input type="hidden" name="created_by"  value="{{ $img->created_by }}">
+                                <img src="{{ asset($img->image_path) }}" name="oldimg" style="width:150px;height:100px" alt="" >
                             </div>
                             <span class="text-danger">@error('oldimg') {{ $message }} @enderror</span>
                         </div>

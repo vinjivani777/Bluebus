@@ -44,18 +44,21 @@
                         <thead class="thead-light">
                             <tr>
                                 <th style="width: 20px;">#</th>
+                                <th>Avatar</th>
                                 <th>Customer Name</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no=1;?>
                             @foreach ($Customer as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->customer_name }}</td>
-                                <td>{{ $item->email }}</td>
-                                <td>{{ $item->mobile }}</td>
+                                <td>{{$no++}}</td>
+                                <td> <img src="{{ asset('/'. $item->avatar)}}" class="rounded-circle avatar-md img-thumbnail" alt="profile-image"> </td>
+                                <td>{{$item->first_name .' '. $item->last_name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->mobile_no}}</td>
                             </tr>
                             @endforeach
                         </tbody>

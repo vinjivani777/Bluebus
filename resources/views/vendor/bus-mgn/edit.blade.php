@@ -34,7 +34,7 @@
                                 <li class="breadcrumb-item active">Bus Detais Edit</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Bus Detais Edit</h4>
+                        <h4 class="page-title">Bus Details Edit</h4>
                     </div>
                 </div>
             </div>
@@ -55,76 +55,101 @@
                                 </div>
                             </div>
 
-                            <form action="{{route('vendor.bus-detail.update',["id"=>$bus_detail->id])}}" method="post">
+                            <form action="{{route('vendor.bus-detail.update',["id"=>$bus->id])}}" method="post">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                         <div class="form-group">
                                             <label for="busname">Bus Name</label>
-                                            <input type="text" class="form-control" name="bus_name" id="bus_name" value="{{$bus_detail->bus_name}}" placeholder="Bus Name" required>
+                                        <input type="text" class="form-control" name="bus_name" id="bus_name" value="{{ $bus->bus_name }}" placeholder="Bus Name" required autofocus="">
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                         <div class="form-group">
                                             <label for="busregno">Bus RegiNumber</label>
-                                            <input type="text" class="form-control" name="bus_reg_no" id="bus_reg_no" value="{{$bus_detail->bus_reg_no}}" placeholder="Bus Regi No" required>
+                                            <input type="text" class="form-control" name="bus_reg_no" style="text-transform:uppercase" id="bus_reg_no" value="{{ $bus->bus_reg_no }}" placeholder="Bus Regi No" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
+                                        <div class="form-group">
+                                            <label for="bustype">Bus Type</label>
+                                            <select name="bus_type" id="bus_type" class="form-control" data-toggle="select2">
+                                                @foreach ($bus_type as $type)
+                                                <option value="{{$type->id}}" @if(($type->id) == ($bus->bus_type_id))  {{ "selected" }} @endif >{{ $type->type_name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                         <div class="form-group">
-                                            <label for="bustype">Bus Type</label>
-                                            <select name="bus_type" id="bus_type" class="form-control" required>
-                                            @foreach ($bus_type as $type)
-                                                <option value="{{$type->id}}" {{$type->id == $bus_detail->bus_type_id?"selected":""}}>{{$type->bus_type}}</option>
-                                            @endforeach
-                                            </select>
+                                                <label for="route">Route</label>
+                                                <select name="route[]" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutipal Route" required>
+                                                    <?php $select_routes = explode(",", $bus->route_id); ?>
+                                                    @foreach ($routes as $route)
+                                                    <option value="{{$route->id}}" {{in_array($route->id, $select_routes)?"selected":""}}>{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
+                                                    @endforeach
+                                                </select>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                         <div class="form-group">
-                                            <label for="max_seats">Maximum seats</label>
-                                            <input type="text" class="form-control" min="1" step="1" name="max_seats" id="max_seats" value="{{$bus_detail->max_seats}}" placeholder="Maximum seats" required>
+                                            <label for="maxiseats">Maximum seats</label>
+                                            <input type="number" min="1" step="1" class="form-control" name="max_seats" value="{{ $bus->max_seats }}" id="max_seats" placeholder="Maximum seats" required>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                         <div class="form-group">
-                                            <label for="board_point">Board Point</label>
-                                            <input type="text" class="form-control" name="board_point" id="board_point" value="{{$bus_detail->board_point}}" placeholder="Board Point" required>
+                                            <label for="maxiseats">Total Fare</label>
+                                            <input type="number" min="1" step="1" class="form-control" name="total_fare" value="{{ $bus->total_fare }}" id="total_fare" placeholder="Fare Price" required>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                         <div class="form-group">
-                                            <label for="droppoint">Drop seats</label>
-                                            <input type="text" class="form-control" name="drop_point" id="drop_point" value="{{$bus_detail->drop_point}}" placeholder="Drop Point" required>
+                                            <label for="board_point">Start Point</label>
+                                            <input type="text" class="form-control" name="board_point" id="board_point" value="{{ $bus->starting_point }}" placeholder="Board Point" required>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                         <div class="form-group">
-                                            <label for="boardtime">Board Time</label>
-                                            <input type="text" class="form-control" name="board_time" id="board_time_edit" value="{{$bus_detail->board_time}}" placeholder="Board Time" required>
+                                            <label for="boardtime">Start Time</label>
+                                            <input type="text" class="form-control" id="board_time" name="board_time" value="{{ date("g:i A",strtotime($bus->start_time))  }}" placeholder="Pick a time">
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
                                         <div class="form-group">
-                                            <label for="droptime">Drop Time</label>
-                                            <input type="text" class="form-control" name="drop_time" id="drop_time_edit" value="{{$bus_detail->drop_time}}" placeholder="Drop Time" required>
+                                            <label for="droppoint">End Point</label>
+                                            <input type="text" class="form-control" name="drop_point" id="drop_point" value="{{ $bus->ending_point }}" placeholder="Drop Point" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                        <div class="form-group">
+                                            <label for="droptime">End Time</label>
+                                            <input type="text" class="form-control" id="drop_time" name="drop_time" value="{{ date("g:i A",strtotime($bus->ending_time)) }}" placeholder="Drop Time">
                                         </div>
                                     </div>
                                     <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                         <div class="form-group">
                                             <label for="amenities">Amenities</label>
                                             <select name="amenities[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities" required>
-                                                <?php $select_amenities = explode(",", $bus_detail->amenities_id); ?>
+                                                <?php $select_amenities = explode(",", $bus->amenities_id); ?>
                                                 @foreach ($amenities as $type)
-                                                <option value="{{$type->id}}" {{in_array($type->id, $select_amenities)?"selected":""}}>{{$type->amenities}}</option>
+                                                <option value="{{$type->id}}" {{in_array($type->id, $select_amenities)?"selected":""}}>{{$type->description}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                {{-- </div>
+                                <div class="row"> --}}
+                                    <div class="col-6 col-md-6 col-lg-6 col-sm-6">
+                                        <div class="form-group ">
+                                            <label>Routing multiple dates</label>
+                                            <input type="text" id="multiple-datepicker" value="{{$bus->dates}}" class="form-control flatpickr-input active" name="dates" placeholder="Multiple dates" readonly="readonly">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Submit">
+                                        <input type="submit" class="btn btn-sm btn-primary" value="Update">
                                         <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                                     </div>
                                 </div>

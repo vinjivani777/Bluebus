@@ -50,27 +50,30 @@
                                         <th>Bus Name</th>
                                         <th>Bus RegiNumber</th>
                                         <th>Bus Type</th>
-                                        <th>Maximum Seats</th>
+                                        {{-- <th>Maximum Seats</th> --}}
                                         <th>Board Point</th>
                                         <th>Board Time</th>
                                         <th>Drop Point</th>
                                         <th>Drop Time</th>
+                                        <th>Journey Duration</th>
                                         <th>Status</th>
                                         <th style="width: 70px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($bus_list as $bus)
                                     <tr>
-                                        <td>{{$bus->id}}</td>
+                                        <td>{{ $no++}} </td>
                                         <td>{{$bus->bus_name}}</td>
                                         <td>{{$bus->bus_reg_no}}</td>
-                                        <td>{{$bus->Bus_Type->bus_type}}</td>
-                                        <td>{{$bus->max_seats}}</td>
-                                        <td>{{$bus->board_point}}</td>
-                                        <td>{{date("g:i A",strtotime($bus->board_time))}}</td>
-                                        <td>{{$bus->drop_point}}</td>
-                                        <td>{{date("g:i A",strtotime($bus->drop_time))}}</td>
+                                        <td>{{$bus->Bus_Type->type_name}}</td>
+                                        {{-- <td>{{$bus->max_seats}}</td> --}}
+                                        <td>{{$bus->starting_point}}</td>
+                                        <td>{{date("g:i A",strtotime($bus->start_time))}}</td>
+                                        <td>{{$bus->ending_point}}</td>
+                                        <td>{{date("g:i A",strtotime($bus->ending_time))}}</td>
+                                        <td>{{ date('G:i', strtotime($bus->ending_time) - strtotime($bus->start_time)) }}</td>
                                         <td>
                                             <button class="btn status-change {{$bus->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$bus->status==1?"Active":"Disable"}}" id="{{$bus->id}}">{{$bus->status==1?"Active":"Disable"}}</button>
                                         </td>

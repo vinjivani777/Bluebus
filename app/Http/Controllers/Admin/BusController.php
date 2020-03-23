@@ -22,8 +22,7 @@ class BusController extends Controller
     {
         $data = array();
         $data['bus_list'] = Bus::with('Bus_Type','Source','Destination')->get();
-
-        return  view('admin.bus-mgn.index',$data);
+        return  view('admin.bus-mgn.index',$data );
     }
 
     /**
@@ -73,39 +72,40 @@ class BusController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-            $newbus=Array();
-            $amenities =  implode(',', $request->amenities);
-            $routes =  implode(',', $request->route);
-            $newbus['bus_name']= $request->bus_name;
-            $newbus['route_id']=$routes;
-            $newbus['bus_type_id']= $request->bus_type;
-            $newbus['amenities_id']= $amenities;
-            $newbus['bus_reg_no']= strtoupper($request->bus_reg_no) ;
-            $newbus['starting_point']= $request->board_point;
-            $newbus['ending_point']= $request->drop_point;
-            $newbus['start_time']= $request->board_time;
-            $newbus['ending_time']= $request->drop_time;
-            $newbus['max_seats']= $request->max_seats;
-            $newbus['status']= "0";
-            $newbus['vendor_id']= $request->vendor;
-            $newbus['dates']=$request->dates;
-            $newbus['total_fare']=$request->total_fare;
+        $newbus=Array();
+        $amenities =  implode(',', $request->amenities);
+        $routes =  implode(',', $request->route);
+        $newbus['bus_name']= $request->bus_name;
+        $newbus['route_id']=$routes;
+        $newbus['bus_type_id']= $request->bus_type;
+        $newbus['amenities_id']= $amenities;
+        $newbus['bus_reg_no']= strtoupper($request->bus_reg_no) ;
+        $newbus['starting_point']= $request->board_point;
+        $newbus['ending_point']= $request->drop_point;
+        $newbus['start_time']= $request->board_time;
+        $newbus['ending_time']= $request->drop_time;
+        $newbus['max_seats']= $request->max_seats;
+        $newbus['status']= "0";
+        $newbus['vendor_id']= $request->vendor;
+        $newbus['dates']=$request->dates;
+        $newbus['total_fare']=$request->total_fare;
+        $request['created_by']="admin";
+        $request['created_id']=Auth::guard('vendor')->user()->id;
+        // return ($newbus);
+        $Bus=Bus::create($newbus);
 
-            // return ($newbus);
-            $Bus=Bus::create($newbus);
+        $BusToRoute=Array();
 
-            $BusToRoute=Array();
+        foreach ($request->route as $val) {
 
-            foreach ($request->route as $val) {
+            $BusToRoute['bus_id']=$Bus->id;
+            $BusToRoute['route_id']=$val;
 
-                $BusToRoute['bus_id']=$Bus->id;
-                $BusToRoute['route_id']=$val;
+            $BTR=Bustoroute::create($BusToRoute);
 
-                $BTR=Bustoroute::create($BusToRoute);
+        }
 
-            }
-
-            return redirect()->route('bus-detail');
+        return redirect()->route('bus-detail');
 
     }
 
@@ -151,13 +151,15 @@ class BusController extends Controller
             'bus_name'      => 'required|min:2',
             'bus_type'      => 'required',
             'bus_reg_no'    => 'required|min:5',
-            'route'         => 'required',
+            'route'         => 'required|exists:routes,id',
             'max_seats'     => 'required',
             'board_point'   => 'required',
             'drop_point'    => 'required',
             'board_time'    => 'required',
             'drop_time'     => 'required',
             'amenities'     => 'required',
+            'dates'         => 'required',
+            'total_fare'         => 'required',
         ]);
 
 
@@ -167,25 +169,25 @@ class BusController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-            $newbus = Bus::findorfail($id);
-            $amenities =  implode(',', $request->amenities);
-            $routes =  implode(',', $request->route);
-            $newbus->bus_name= $request->bus_name;
-            $newbus->route_id=$routes;
-            $newbus->bus_type_id= $request->bus_type;
-            $newbus->amenities_id= $amenities;
-            $newbus->bus_reg_no= strtoupper($request->bus_reg_no);
-            $newbus->starting_point= $request->board_point;
-            $newbus->ending_point= $request->drop_point;
-            $newbus->start_time= $request->board_time;
-            $newbus->ending_time= $request->drop_time;
-            $newbus->max_seats= $request->max_seats;
-            $newbus->status= "0";
-            $newbus->vendor_id= $request->vendor;
+        $newbus = Bus::findorfail($id);
+        $amenities =  implode(',', $request->amenities);
+        $routes =  implode(',', $request->route);
+        $newbus->bus_name= $request->bus_name;
+        $newbus->route_id=$routes;
+        $newbus->bus_type_id= $request->bus_type;
+        $newbus->amenities_id= $amenities;
+        $newbus->bus_reg_no= strtoupper($request->bus_reg_no);
+        $newbus->starting_point= $request->board_point;
+        $newbus->ending_point= $request->drop_point;
+        $newbus->start_time= $request->board_time;
+        $newbus->ending_time= $request->drop_time;
+        $newbus->max_seats= $request->max_seats;
+        $newbus->status= "0";
+        $newbus->vendor_id= $request->vendor;
 
-            $newbus->save();
+        $newbus->save();
 
-            return redirect()->route('bus-detail');
+        return redirect()->route('bus-detail');
 
     }
 

@@ -81,7 +81,7 @@
                                     <div class="col-4 col-md-4 col-lg-4 col-sm-4 ">
                                         <div class="form-group">
                                             <label for="bustype">Bus Type</label>
-                                            <select name="bus_type" id="bus_type" class="form-control">
+                                            <select name="bus_type" id="bus_type" class="form-control" data-toggle="select2">
                                                 @foreach ($bus_type as $type)
                                                 <option value="{{$type->id}}" @if(($type->id) == ($bus->bus_type_id))  {{ "selected" }} @endif >{{ $type->type_name }}</option>
                                                 @endforeach

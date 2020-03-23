@@ -29,6 +29,8 @@ class CreateBus extends Migration
             $table->boolean('status');
             $table->integer('vendor_id');
             $table->text('dates');
+            $table->integer('created_by');
+            $table->integer('created_id');
             // $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->foreign('bus_type_id')->references('id')->on('bus_types')->onDelete('cascade');
             $table->timestamps();

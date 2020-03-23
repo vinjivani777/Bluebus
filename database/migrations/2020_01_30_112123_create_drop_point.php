@@ -18,10 +18,11 @@ class CreateDropPoint extends Migration
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('route_id');
             $table->string('drop_point');
+            $table->integer('drop_point_position');
             $table->time('drop_time');
             $table->string('address');
             $table->string('landmark');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->timestamps();

@@ -36,6 +36,7 @@ class CreateBookingDetails extends Migration
             $table->boolean('insurance_policy')->default(0);;
             $table->boolean('booking_status')->default(0);
             $table->boolean('payment_status')->default(0);
+            $table->boolean('operator_confirmation_status')->default(0);
             $table->string('created_by')->nullable();
             // $table->unique(['ticket_no']);
             $table->timestamps();

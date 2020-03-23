@@ -75,6 +75,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('board-point/edit/{id}','Admin\BoardPointController@edit')->name('board-point.edit');
     Route::post('board-point/update/{id}','Admin\BoardPointController@update')->name('board-point.update');
     Route::get('board-point/destroy','Admin\BoardPointController@boarddestroy')->name('board-point.destroy');
+    Route::get('board-point/turndetail','Admin\BoardPointController@turndetail')->name('boardpoint-turn-detail.get');
+    Route::get('board-point/oldturndetail','Admin\BoardPointController@oldturndetail')->name('boardpoint-oldturn-detail.get');
 
     //Drop point details
     Route::get('drop-point','Admin\DropPointController@index')->name('drop-point');
@@ -83,6 +85,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('drop-point/edit/{id}','Admin\DropPointController@edit')->name('drop-point.edit');
     Route::post('drop-point/update/{id}','Admin\DropPointController@update')->name('drop-point.update');
     Route::get('drop-point/destroy','Admin\DropPointController@dropdestroy')->name('drop-point.destroy');
+    Route::get('drop-point/turndetail','Admin\DropPointController@turndetail')->name('droppoint-turn-detail.get');
+    Route::get('drop-point/oldturndetail','Admin\DropPointController@oldturndetail')->name('droppoint-oldturn-detail.get');
 
     //Promo Management details
     Route::get('promo-detail','Admin\PromoController@index')->name('promo-detail');
@@ -254,6 +258,8 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::get('route-detail/destroy','Vendor\RouteController@routedestroy')->name('vendor.route-detail.destroy');
 
     Route::get('bus-route-detail','Vendor\RouteController@busroute')->name('vendor.bus-route-detail.get');
+    Route::get('bus-route-detail/forboardpoint','Vendor\RouteController@busrouteforboardpoint')->name('vendor.bus-route-detailforboardpoint.get');
+    Route::get('bus-route-detail/fordropopoint','Vendor\RouteController@busroutefordroppoint')->name('vendor.bus-route-detailfordroppoint.get');
 
     //Board point details
     Route::get('board-point','Vendor\BoardPointController@index')->name('vendor.board-point');
@@ -262,6 +268,8 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::get('board-point/edit/{id}','Vendor\BoardPointController@edit')->name('vendor.board-point.edit');
     Route::post('board-point/update/{id}','Vendor\BoardPointController@update')->name('vendor.board-point.update');
     Route::get('board-point/destroy','Vendor\BoardPointController@boarddestroy')->name('vendor.board-point.destroy');
+    Route::get('board-point/turndetail','Vendor\BoardPointController@turndetail')->name('vendor.boardpoint-turn-detail.get');
+    Route::get('board-point/oldturndetail','Vendor\BoardPointController@oldturndetail')->name('vendor.boardpoint-oldturn-detail.get');
 
     //Drop point details
     Route::get('drop-point','Vendor\DropPointController@index')->name('vendor.drop-point');
@@ -270,6 +278,8 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::get('drop-point/edit/{id}','Vendor\DropPointController@edit')->name('vendor.drop-point.edit');
     Route::post('drop-point/update/{id}','Vendor\DropPointController@update')->name('vendor.drop-point.update');
     Route::get('drop-point/destroy','Vendor\DropPointController@dropdestroy')->name('vendor.drop-point.destroy');
+    Route::get('drop-point/turndetail','Vendor\DropPointController@turndetail')->name('vendor.droppoint-turn-detail.get');
+    Route::get('drop-point/oldturndetail','Vendor\DropPointController@oldturndetail')->name('vendor.droppoint-oldturn-detail.get');
 
     //Promo Management details
     Route::get('promo-detail','Vendor\PromoController@index')->name('vendor.promo-detail');
@@ -298,6 +308,8 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
 
     //Booking  Details
     Route::get('booking-detail','Vendor\BookingController@index')->name('vendor.booking-detail');
+    Route::get('booking-detail/show','Vendor\BookingController@show')->name('vendor.booking-detail.show');
+    Route::get('booking-detail/confirm','Vendor\BookingController@confirmbooking')->name('vendor.booking.confirm');
     Route::get('booking-detail/add','Vendor\BookingController@add')->name('vendor.booking-detail.add');
     Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
     Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
@@ -311,6 +323,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
      Route::get('cancellation-detail/edit/{id}','Vendor\CancellationController@edit')->name('vendor.cancellation-detail.edit');
      Route::post('cancellation-detail/update/{id}','Vendor\CancellationController@update')->name('vendor.cancellation-detail.update');
      Route::get('cancellation-detail/destroy','Vendor\CancellationController@destroy')->name('vendor.cancellation-detail.destroy');
+     Route::get('bus-routes/route','Vendor\BookingController@bookingroutetocancel')->name('vendor.busroutestocancel.get');
 
 
 
