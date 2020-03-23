@@ -68,7 +68,8 @@ class ImageGalleryController extends Controller
         $params['slug'] = $banner;
         $params['bus_id'] = $request->bus_name;
         $params['image_path']=$banner;
-        $params['created_by']= Auth::guard('admin')->user()->username;
+        $params['created_by']="admin";
+        $params['created_id']= Auth::guard('admin')->user()->id;
 
 
             $bus_gallary = Gallery::create($params);
@@ -133,8 +134,13 @@ class ImageGalleryController extends Controller
             if(strpos($type, 'image/') !== false){
                 $banner = substr(str_slug($request->input('bus_name')),0,20).'_'.str_random(10).'.'.$request->bus_img->getClientOriginalExtension();
 
-                $request->bus_img->move(public_path('admin/images/bus-image/'),$banner);
-                $banner = 'admin/images/bus-image/'.$banner;
+                if(($request->created_by)=="admin"){
+                    $request->bus_img->move(public_path('admin/images/bus-image/'),$banner);
+                    $banner = 'admin/images/bus-image/'.$banner;
+                }else{
+                    $request->bus_img->move(public_path('vendor/images/bus-image/'),$banner);
+                    $banner = 'vendor/images/bus-image/'.$banner;
+                }
             }
             if($request->input('old_img'))
                 {
@@ -148,7 +154,8 @@ class ImageGalleryController extends Controller
 
         $params['bus_id'] = $request->bus_name;
         $params['image_path']=$banner;
-        $params['created_by']= Auth::guard('admin')->user()->username;
+        // $params['created_by']= 'admin';
+        // $params['created_id']= Auth::guard('admin')->user()->id;
 
         // dd($params);
 

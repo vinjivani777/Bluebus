@@ -64,7 +64,6 @@ booking
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
                                     <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" >
-
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -76,7 +75,7 @@ booking
                                 <div class="form-group">
                                     <label for="route">Route</label>
                                     <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" >
-
+                                        <option selected disabled>Select Route</option>
                                     </select>
                                     <span class="text-danger">@error('route_name') {{ "Please select Route" }} @enderror</span>
                                 </div>
@@ -85,7 +84,7 @@ booking
                                 <div class="form-group">
                                     <label for="starting_point">New Pick-Up Point</label>
                                     <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" >
-
+                                        <option selected disabled>Select PickUp Point</option>
                                     </select>
                                     <span class="text-danger">@error('starting_point') {{ "The Starting Point Field is required" }} @enderror</span>
                                 </div>
@@ -94,7 +93,7 @@ booking
                                 <div class="form-group">
                                     <label for="drop_point">New Droping Point</label>
                                     <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" >
-
+                                        <option selected disabled>Select Drop Point</option>
                                     </select>
                                     <span class="text-danger">@error('stoping_point') {{ "The Stoping Point Field is required" }} @enderror</span>
                                 </div>

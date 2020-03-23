@@ -19,6 +19,7 @@ class CreateBusGallary extends Migration
             $table->string('slug')->nullable();
             $table->string('image_path');
             $table->string('created_by');
+            $table->string('created_id');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });

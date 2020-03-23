@@ -50,7 +50,8 @@
                             <div class="col-12 col-md-12 col-lg-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="bustype">Bus Name</label>
-                                    <select class="form-control" name="bus_name" id="bus_name">
+                                    <select class="form-control" name="bus_name" id="bus_name" data-toggle="select2">
+                                        <option selected disabled>Select Bus</option>
                                         @foreach ($Bus as $item)
                                             <option value="{{ $item->id }}">{{ $item->bus_name}} | {{$item->bus_reg_no }}</option>
                                         @endforeach
@@ -102,11 +103,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no=1; ?>
                             @foreach ($Gallery as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $item->bus->bus_name }}</td>
-                                <td><img src="{{ asset($item->image) }}" alt="" width="50px" height="50px" ></td>
+                                <td><img src="{{ asset($item->image_path) }}" alt="" width="50px" height="50px" ></td>
                                 <td>
                                     <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
                                     <a href="{{ route('vendor.img_gallery.edit',['id'=>$item->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>

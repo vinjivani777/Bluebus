@@ -37,7 +37,8 @@ Booking
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Booking Id</th>
+                                        <th>Booking ID</th>
+                                        <th>TicketNo</th>
                                         <th>Bus Name</th>
                                         <th>Route</th>
                                         <th>Booking Date</th>
@@ -47,8 +48,10 @@ Booking
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($Booking as $item)
                                     <tr>
+                                        <td>{{$no++}}</td>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->ticket_no }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
@@ -56,9 +59,13 @@ Booking
                                         <td>{{  date('d-m-Y',strtotime($item->booking_date)) }}</td>
                                         <td>{{ $item->total_fare }}</td>
                                         <td>
-                                            <button class="btn  {{(($item->booking_status) && ($item->payment_status)) == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}" readonly>
+                                            <button class="btn  {{(($item->booking_status) && ($item->payment_status) && ($item->operator_confirmation_status)) == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}" readonly>
                                                 @if(($item->booking_status) && ($item->payment_status))
-                                                    {{"Success"}}
+                                                    @if(!($item->operator_confirmation_status))
+                                                        {{"Operator Confirmation Awaiting"}}
+                                                    @else
+                                                        {{"Success"}}
+                                                    @endif
                                                 @elseif(($item->booking_status) || ($item->payment_status))
                                                         {{"Payment Unpaid"}}
                                                 @else
@@ -211,6 +218,6 @@ Booking
                 }
             });
     });
-    
+
 </script>
 @endsection

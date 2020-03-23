@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Model\Menu;
 use App\Model\User;
+use App\Model\Customer;
 use App\Model\PromoCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -74,10 +75,6 @@ class HomeController extends Controller
 
             if($mobileNo != "")
                 {
-
-
-
-
                     $smsTemplate = "Your One Time Password is ".$otp."and it valid for the next  10 mins. Please do not share this
                                     OTP with anyone. Thank you, Happy Journey Team.";
 
@@ -86,7 +83,7 @@ class HomeController extends Controller
 
                     $forgot_token =  bcrypt($mobileNo.$otp);
                     $r=count(User::get());
-                    $User=New  User;
+                    $User=New User;
 
                     $User->role_id=3;
                     $User->username="User". $r . str_random(5);
@@ -105,8 +102,26 @@ class HomeController extends Controller
                     $User->referral_code=str_random(5);
                     $User->parent_id=0;
 
-                    $User->save();
+                    //register in customertable
+                    $Customer=new Customer;
+                    $Customer->username="User". $r . str_random(5);
+                    $Customer->first_name="User". $r . str_random(5);;
+                    $Customer->last_name="User". $r . str_random(5);;
+                    $Customer->gender="m";
+                    $Customer->email="User". $r . str_random(5) . "@happyjourney.com";
+                    $Customer->mobile_no=$mobileNo;
+                    $Customer->password= bcrypt("User". $r . str_random(5));
+                    $Customer->avatar="admin/images/admin-profile/defaultimage.png";
+                    $Customer->status=1;
+                    $Customer->remember_token=md5($otp.$mobileNo);
+                    $Customer->token='HappyJourny';
+                    $Customer->otp=$otp;
+                    $Customer->forget_token= $forgot_token;
+                    $Customer->referral_code=str_random(5);
+                    // $Customer->parent_id=0;
 
+                    $User->save();
+                    $Customer->save();
 
                     return "Success";
 
@@ -140,12 +155,17 @@ class HomeController extends Controller
         {
 
             $UserDetails=User::wheremobile_no($mobileNo)->first();
+            $CustomerDetails=Customer::wheremobile_no($mobileNo)->first();
 
             $User=Array();
 
             $User['otp']="";
 
             $Update=User::whereId($UserDetails->id)->update($User);
+            $Customer=Array();
+            $Customer['otp']="";
+            $Customer['mobile_verification_status']=1;
+            $Customer=Customer::whereId($CustomerDetails->id)->update($User);
             // dd($Update);
             Auth::guard('user')->loginUsingId($Update);
 

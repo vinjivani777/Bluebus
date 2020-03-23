@@ -23,7 +23,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $Booking=Booking::with('bus')->get();
+        $total_bus_id=Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->select('id')->get();
+        $Booking=Booking::whereIn('bus_id',$total_bus_id)->with('bus')->get();
         // dd($Booking);
         return view('vendor.booking-details.index',['Booking'=>$Booking]);
     }
@@ -161,6 +162,21 @@ class BookingController extends Controller
         }else{
             return "error";
         }
+    }
+
+    public function confirmbooking(Request $request)
+    {
+        // return $request->id;
+       $data= Booking::findorfail($request->id);
+       $data->operator_confirmation_status=1;
+       $data->booking_status=1;
+       $data->payment_status=1;
+       $data->save();
+       if($data){
+        return "success";
+        }else{
+            return "error";
+        }   
     }
 
     public function bookingroute(Request $request)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Customer;
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $Customer=Customer::get();
+        $Customer=User::whereRole_id(3)->get();
         return view('admin.cust-details.index',['Customer'=>$Customer]);
     }
 

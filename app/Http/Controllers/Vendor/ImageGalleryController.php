@@ -19,8 +19,9 @@ class ImageGalleryController extends Controller
     public function index()
     {
         $auth=Auth::guard('vendor')->user()->id;
+        $bus_id=Bus::where(['created_id'=>$auth,'created_by'=>'vendor'])->select('id')->get();
         $bus=Bus::where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
-        $gallery=Gallery::with('bus')->where(['created_id'=>$auth,'created_by'=>'vendor'])->get();
+        $gallery=Gallery::with('bus')->whereIn('bus_id',$bus_id)->get();
         return view('vendor.img-gallery.index',['Bus'=>$bus,'Gallery'=>$gallery]);
     }
 
@@ -42,11 +43,12 @@ class ImageGalleryController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validator=Validator::make($request->all(),[
             'bus_name'  => 'required',
             'bus_img'  => 'required|image',
         ]);
-
+// dd(($validator->fails()));
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
@@ -66,14 +68,12 @@ class ImageGalleryController extends Controller
             }
         }
 
-        $params['image']=$banner;
-        $params['user_id']=1;
+        $params['slug'] = $banner;
         $params['bus_id'] = $request->bus_name;
-        $params['created_id']=Auth::guard('vendor')->user()->id;
-        $params['created_by']="vendor";
-
-
-            $bus_gallary = Gallery::create($params);
+        $params['image_path']=$banner;
+        $params['created_by']= 'vendor';
+        $params['created_id']= Auth::guard('vendor')->user()->id;
+        $bus_gallary = Gallery::create($params);
            if ($bus_gallary) {
                 return redirect()->route('vendor.img_gallery');
            }
@@ -117,6 +117,7 @@ class ImageGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         $validator=Validator::make($request->all(),[
             'bus_name'  => 'required',
             'old_img'  => 'required',
@@ -136,8 +137,13 @@ class ImageGalleryController extends Controller
             if(strpos($type, 'image/') !== false){
                 $banner = substr(str_slug($request->input('bus_name')),0,20).'_'.str_random(10).'.'.$request->bus_img->getClientOriginalExtension();
 
-                $request->bus_img->move(public_path('vendor/images/bus-image/'),$banner);
-                $banner = 'vendor/images/bus-image/'.$banner;
+                if(($request->created_by)=="admin"){
+                    $request->bus_img->move(public_path('admin/images/bus-image/'),$banner);
+                    $banner = 'admin/images/bus-image/'.$banner;
+                }else{
+                    $request->bus_img->move(public_path('vendor/images/bus-image/'),$banner);
+                    $banner = 'vendor/images/bus-image/'.$banner;
+                }
             }
             if($request->input('old_img'))
                 {
@@ -149,12 +155,12 @@ class ImageGalleryController extends Controller
             $banner= $request->input('old_img');
         }
 
-        $params['image']=$banner;
-        $params['user_id']=1;
+        $params['image_path']=$banner;
+        // $params['user_id']=1;
         $params['bus_id'] = $request->bus_name;
-        $params['created_id']=Auth::guard('vendor')->user()->id;
-        $params['created_by']="vendor";
-
+        // $params['created_id']=Auth::guard('vendor')->user()->id;
+        // $params['created_by']="vendor";
+        // return $params;
          $bus_gallary = Gallery::where('id',$id)->update($params);
 
         if ($bus_gallary) {

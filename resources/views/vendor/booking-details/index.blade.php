@@ -35,33 +35,44 @@ Booking
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Booking Id</th>
+                                        <th>Booking ID</th>
+                                        <th>TicketNo</th>
                                         <th>Bus Name</th>
-                                        <th>Pickup Point</th>
-                                        <th>Drop Point</th>
+                                        <th>Route</th>
                                         <th>Booking Date</th>
-                                        <th>Payment Status</th>
                                         <th>Amount</th>
-                                        <th>Board Time</th>
-                                        <th>Drop Time</th>
+                                        <th>Booking Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $no=1;?>
                                     @foreach ($Booking as $item)
                                     <tr>
+                                        <td>{{$no++}}</td>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->booking_id }}</td>
+                                        <td>{{ $item->ticket_no }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
-                                        <td>{{ $item->bus->board_point }}</td>
-                                        <td>{{ $item->bus->drop_point }}</td>
-                                        <td>{{ $item->booking_date }}</td>
-                                        <td>{{ $item->payment_status }}</td>
-                                        <td>{{ $item->amount }}</td>
-                                        <td>{{ $item->bus->board_time }}</td>
-                                        <td>{{ $item->bus->drop_time }}</td>
+                                        <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
+                                        <td>{{  date('d-m-Y',strtotime($item->booking_date)) }}</td>
+                                        <td>{{ $item->total_fare }}</td>
                                         <td>
-                                            <a  class="mr-1 text-info booking_details" id="{{ $item->booking_id }}" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                            <button class="btn {{(($item->booking_status) && ($item->payment_status) && ($item->operator_confirmation_status) ) == 1?"btn-outline-primary successbooking":"btn-outline-danger confirm_booking"}} btn-rounded waves-effect waves-light btn-sm" value="{{$item->booking_status==1?"Success":"Failed"}}" id="{{$item->id}}" readonly>
+                                                @if(($item->booking_status) && ($item->payment_status))
+                                                    @if(!($item->operator_confirmation_status))
+                                                        {{"Confirmation Awaiting"}}
+                                                    @else
+                                                        {{"Success"}}
+                                                    @endif
+                                                    @elseif(($item->booking_status) || ($item->payment_status))
+                                                        {{"Payment Unpaid"}}
+                                                @else
+                                                        {{"Transaction Failed"}}
+                                                @endif
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <a  class="mr-1 text-info booking_details" id="{{ $item->id }}" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
                                             <a href="#"  class="mr-1 text-danger remove_booking" id="{{$item->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
 
@@ -132,7 +143,7 @@ Booking
 <link href="{{ asset('vendor/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
 
 {{-- sweetalert --}}
-<link href="{{asset('vendor/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('admin/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('other-page-js')
@@ -141,24 +152,31 @@ Booking
 <script src="{{asset('vendor/libs/datatables/dataTables.bootstrap4.js')}}"></script>
 <!-- Datatables init -->
 <script src="{{ asset('vendor/js/pages/datatables.init.js')}}"></script>
-<script src="{{asset('vendor/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <script>
-    $('.remove_booking').click(function(){
-        var c_id= $(this).attr('id');
-        // alert(c_id);
+    $(document).ready(function(){
+        var status=$('.successbooking').text()
+        if((status)=="Success")
+        {
+            $(".confirm_booking").attr("disabled", true)
+        }
+    });
+    $('.confirm_booking').click(function(){
+        var c_id= $(this).attr('id')
+        alert(c_id);
         swal({
-            title: "Are you sure?",
+            title: "Do you want to confirm this booking?",
             text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: !0,
             confirmButtonClass: "btn btn-confirm mt-2",
             cancelButtonClass: "btn btn-cancel ml-2 mt-2",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Confirm it!"
         }).then((result) => {
             if (result.value) {
                     $.ajax({
-                            url:'{{route('booking.destroy')}}',
+                            url:'{{route('vendor.booking.confirm')}}',
                         data:{
                             id : c_id
                         },
@@ -166,14 +184,18 @@ Booking
                         success:function(response)
                         {
                             if (response=="success") {
+                                $('.confirm_booking').text('Success')
+                                $('.confirm_booking').removeClass('btn-outline-danger')
+                                $('.confirm_booking').addClass('btn-outline-primary')
+                                $(".confirm_booking").attr("disabled", true)
                             swal({
-                                title: "Deleted !",
-                                text: "Successfull deleted board point.",
+                                title: "Booking Confirmed !",
+                                text: "Successfull Confirmed Booking.",
                                 type: "success",
                                 timer: 500,
                                 showConfirmButton: false
                             })
-                            $("#"+c_id).closest("tr").fadeOut(1000);
+                            // $("#"+c_id).closest("tr").fadeOut(1000);
                             } else {
                                 new PNotify({
                                     title: 'Warning Notification',
@@ -193,7 +215,7 @@ Booking
     $('.booking_details').click(function(){
         var id= $(this).attr('id');
                 $.ajax({
-                    url:'{{route('booking-detail.show')}}',
+                    url:'{{route('vendor.booking-detail.show')}}',
                     data:{
                         id : id
                     },

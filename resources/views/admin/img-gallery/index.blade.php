@@ -50,8 +50,8 @@
                             <div class="col-12 col-md-12 col-lg-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="bustype">Bus Name</label>
-                                    <select class="form-control" name="bus_name" id="bus_name">
-                                        <option>Select Bus</option>
+                                    <select class="form-control" name="bus_name" id="bus_name" data-toggle="select2">
+                                        <option selected disabled>Select Bus</option>
                                         @foreach ($Bus as $item)
                                             <option value="{{ $item->id }}">{{ $item->bus_name}} | {{$item->bus_reg_no }}</option>
                                         @endforeach
@@ -131,7 +131,8 @@
     <link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset('admin/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
+    {{-- <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" /> --}}
     {{-- sweetalert --}}
     <link href="{{asset('admin/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
 @endsection
@@ -142,8 +143,8 @@
 <!-- Datatables init -->
 <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script>
 <script src="{{asset('admin/libs/sweetalert2/sweetalert2.min.js')}}"></script>
-
-
+<script src="{{asset('admin/libs/select2/select2.min.js')}}"></script>
+<script src="{{asset('admin/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
 <script>
     $('.remove_bus_image').click(function(){
         var c_id= $(this).attr('id');
