@@ -50,7 +50,10 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $validator= $request->validate([
+            'customer_name' => 'required',
+            'start_date' => 'required|before:today',
             'bus_name' => 'required',
             'route_name' => 'required',
             'starting_point' => 'required',
@@ -60,7 +63,7 @@ class BookingController extends Controller
             'seatno' => 'required|numeric',
         ]);
 
-        // dd($validator->fails());
+        // return ($validator->fails());
         // return $request;
 
         if($validator == false)
@@ -168,7 +171,11 @@ class BookingController extends Controller
 
     public function bookingroute(Request $request)
     {
-        return Route::whereStatus(true)->select('id','source_name','destination_name')->get();
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+        return Route::whereIn('Id',$Total_route_id)->whereStatus(true)->select('id','source_name','destination_name')->get();
     }
     public function bustotalfare(Request $request)
     {

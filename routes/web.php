@@ -310,11 +310,18 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
     Route::get('booking-detail','Vendor\BookingController@index')->name('vendor.booking-detail');
     Route::get('booking-detail/show','Vendor\BookingController@show')->name('vendor.booking-detail.show');
     Route::get('booking-detail/confirm','Vendor\BookingController@confirmbooking')->name('vendor.booking.confirm');
-    Route::get('booking-detail/add','Vendor\BookingController@add')->name('vendor.booking-detail.add');
+    Route::get('booking-detail/add','Vendor\BookingController@create')->name('vendor.booking-detail.add');
     Route::post('booking-detail/store','Vendor\BookingController@store')->name('vendor.booking-detail.store');
     Route::get('booking-detail/edit/{id}','Vendor\BookingController@edit')->name('vendor.booking-detail.edit');
     Route::put('booking-detail/update/{?id}','Vendor\BookingController@update')->name('vendor.booking-detail.update');
     Route::delete('booking-detail/destroy/{id}','Vendor\BookingController@destroy')->name('vendor.booking-detail.destroy');
+
+    Route::get('bus-routes','Vendor\BookingController@bookingroute')->name('vendor.booking-busroutes.get');
+    Route::get('bus-boardpoint','Vendor\BookingController@bookingboardpoint')->name('vendor.booking-bookingboardpoint.get');
+    Route::get('bus-droppoint','Vendor\BookingController@bookingdroppoint')->name('vendor.booking-bookingdroppoint.get');
+    Route::get('bus-boardpointdetails','Vendor\BookingController@bookingboardpointdetails')->name('vendor.booking-bookingboardpointdetails.get');
+    Route::get('bus-droppointdetails','Vendor\BookingController@bookingdroppointdetails')->name('vendor.booking-bookingdroppointdetails.get');
+    Route::get('booking/destroy','Vendor\BookingController@destroy')->name('vendor.booking.destroy');
 
      //Cancellation
      Route::get('cancellation-detail','Vendor\CancellationController@index')->name('vendor.cancellation-detail');

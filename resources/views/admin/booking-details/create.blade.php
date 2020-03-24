@@ -58,22 +58,22 @@ booking
                     <div class="row mt-2">
                         <div class="col-3 col-md-3">
                             <label for="customer_name">Customer Name</label>
-                            <select name="customer_name" class="form-control customer_name" id="customer_name" data-toggle="select2" >
-                                <option >Select Customer</option>
+                            <select name="customer_name" class="form-control customer_name" id="customer_name" data-toggle="select2" required>
+                                <option value="0" selected disabled>Select Customer</option>
                                 @foreach ($customer_list as $customer)
                                 <option value="{{$customer->id}}">{{$customer->first_name .' '.$customer->last_name}}</option>
                                 @endforeach
                             </select>
-                            <span class="text-danger">@error('customer_name') {{ "Please select Bus Name" }} @enderror</span>
+                            <span class="text-danger">@error('customer_name') {{ "Please select Customer" }} @enderror</span>
                         </div>
                         <div class="col-6 col-md-6">
                         </div>
                         <div class="col-3 col-md-3">
                             {{-- <div class="form-group"> --}}
                                 <label for="start_date">Booking Date</label>
-                                <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required="" readonly="readonly">
-                                <span class="text-danger"></span>
-                            {{-- </div> --}}
+                                <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required readonly="readonly">
+                                <span class="text-danger">@error('start_date') {{ "Please select BookingDate" }} @enderror</span>
+                                {{-- </div> --}}
                         </div>
                         <div class="col-12 col-md-12 font-weight-bold  text-danger ">
                             <hr>
@@ -85,7 +85,7 @@ booking
                                 <div class="form-group">
                                     <label for="bus_name">Bus Name</label>
                                     <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" >
-
+                                        <option disabled selected value="0" >Select Bus</option>
                                         @foreach ($bus_list as $bus)
                                         <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
                                         @endforeach
@@ -114,7 +114,7 @@ booking
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="drop_point">New Droping Point</label>
-                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" >
+                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" required>
                                         <option selected disabled>Select Drop Point</option>
                                     </select>
                                     <span class="text-danger">@error('stoping_point') {{ "The Stoping Point Field is required" }} @enderror</span>
@@ -147,14 +147,14 @@ booking
                             <div class="col-4 col-md-4 col-lg-4 col-sm-2">
                                 <div class="form-group">
                                     <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" >
+                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" required>
                                     <span class="text-danger">@error('amount') {{ $message }} @enderror</span>
                                 </div>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 col-sm-2">
                                 <div class="form-group">
                                     <label for="seatno">Seat No</label>
-                                    <input type="text" class="form-control" name="seatno" id="seatno" placeholder="Seat No" >
+                                    <input type="text" class="form-control" name="seatno" id="seatno" placeholder="Seat No" required>
                                     <span class="text-danger">@error('seatno') {{ $message }} @enderror</span>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ booking
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                                <input type="submit" class="btn btn-sm btn-primary" value="Submit">
+                                <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Submit">
                                 <input type="reset" class="btn btn-sm btn-danger " value="Reset">
                             </div>
                         </div>
@@ -202,10 +202,58 @@ booking
     <script>
         $(document).ready(function(){
             document.getElementById("myform").reset();
-            $('.bus_name').append(`<option value="0" disabled selected >Select Bus</option>`);
+            $('#bus_name').prop('disabled', 'disabled');
+            $("#start_date").on('change',function(){
+                var cust_name=$("#customer_name").val();
+                if((cust_name==null)){
+                    // alert("Please select Customer First");
+                    $("#customer_name").focus();
+                }else{
+                    $('#bus_name').prop('disabled', false);
+                }
+            });
+            $("#customer_name").on('change',function(){
+                var start_date=$("#start_date").val();
+                if((start_date=="")){
+                    // alert("Please select Date First");
+                    $("#start_date").focus();
+                }else{
+                    $('#bus_name').prop('disabled', false);
+                }
+            });
+
+            $("#submit").on('click',function(e){
+                var start_date=$("#start_date").val();
+                var cust_name=$("#customer_name").val();
+                var date = new Date();
+                var userDate = start_date;
+                var from = userDate.split("-");
+                var f = new Date(from[2], from[1]-1, from[0]);
+
+                // var startDate = new Date(jQuery('#startdate').val().replace(/-/g, '/')).getTime();
+                if((start_date=="")&&(cust_name==null)){
+                    e.preventDefault();
+                    alert("Please Select Customer Name & Booking Date.");
+                }else if((start_date=="")&&(!(cust_name==null))){
+                    e.preventDefault();
+                    alert("Please Select Date of Booking");
+                }else if((!(start_date==""))&&((cust_name==null))){
+                    e.preventDefault();
+                    alert("Please Select Customer Name");
+                }else{
+                    // alert(f);
+                    // alert(date);
+                    var dt=(f-date) / (1000 * 60 * 60 * 24);
+                    alert(dt);
+                    e.preventDefault();
+                }
+            });
+
         });
 
         $(".bus_name").on('change',function(){
+            // var cust_name=$("#customer_name").val();
+            // alert(cust_name)
             $('#stoping_point').empty();
             $('#starting_point').empty();
             $('#route_id').empty();
@@ -213,9 +261,14 @@ booking
             $('#starting_point_landmark').val("");
             $('#stoping_point_address').val("");
             $('#stoping_point_landmark').val("");
+            bus_id=$(this).val()
+            // alert(bus_id)
             $.ajax({
                 url:'{{route('booking-busroutes.get')}}',
                 type:'get',
+                data:{
+                    bus_id:bus_id
+                },
                 success:function(response)
                 {
                     if(response.length != ""){

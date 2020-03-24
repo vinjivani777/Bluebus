@@ -36,7 +36,11 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $data=array();
+        $total_bus_id=Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->select('id')->get();
+        $data['bus_list']=Bus::whereIn('id',$total_bus_id)->select('id','bus_name','bus_reg_no')->get();
+        $data['customer_list']=Customer::select('id','first_name','last_name')->get();
+        return view('vendor.booking-details.create',$data);
     }
 
     /**
@@ -58,35 +62,40 @@ class BookingController extends Controller
             'seatno' => 'required|numeric',
         ]);
 
-            // return $validator;
+        // dd($validator->fails());
+        // return $request;
 
         if($validator == false)
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
-        }else{
-            $newbus= new Booking;
-            $newbus->booking_id= '#'.rand(10000,99999);
-            $newbus->amount= $request->amount;
-            $newbus->bus_id= $request->bus_name;
-            $newbus->route_id= $request->route_name;
-            $newbus->boarding_point_id= $request->starting_point;
-            $newbus->drop_point_id= $request->stoping_point;
-            $newbus->user_id= Auth::guard('vendor')->user()->id;
-            $newbus->seat_no= $request->seatno;
-            $newbus->payment_status= 1;
-            $newbus->payment_option= $request->paymentstatus;
-            $newbus->booking_date= date("d-m-Y");
-            $newbus->status= "1";
-            $newbus->created_by= "vendor";
-            // return $newbus;
-            $data = $newbus->save();
-            if($data)
-            {
-                return redirect()->route('booking-detail');
-            }
-            else{
-                return redirect()->back()->withErrors($validator)->withInput($request->all())->withStatus('Something Went Wrong.');
-            }
+        }
+        // return $request->customer_name;
+        $newbus= new Booking;
+        $newbus->ticket_no= '#'.rand(10000,99999);
+        $newbus->total_fare= $request->amount;
+        $newbus->bus_id= $request->bus_name;
+        $newbus->route_id= $request->route_name;
+        $newbus->board_point_id= $request->starting_point;
+        $newbus->drop_point_id= $request->stoping_point;
+        $newbus->vendor_id= (Auth::guard('vendor')->user()->id);
+        $newbus->customer_id= $request->customer_name;
+        $newbus->seat_no= $request->seatno;
+        $newbus->payment_status= 1;
+        $newbus->note= " ";
+        $newbus->insurance_policy= 0;
+        $newbus->payment_method= $request->paymentstatus;
+        $newbus->booking_date= date('Y-m-d', strtotime($request->start_date));
+        $newbus->booking_status= "1";
+        $newbus->status= "1";
+        $newbus->created_by= "vendor";
+        // dd($newbus)->all();
+        $data = $newbus->save();
+        if($data)
+        {
+            return redirect()->route('vendor.booking-detail');
+        }
+        else{
+            return redirect()->back()->withErrors($validator)->withInput($request->all())->withStatus('Something Went Wrong.');
         }
     }
 
@@ -155,8 +164,8 @@ class BookingController extends Controller
     public function destroy(request $request)
     {
         $removebooking =  Booking::findorfail($request->id);
-        $removebooking->delete();
-
+        $removebooking->status=0;
+        $removebooking->save();
         if($removebooking){
             return "success";
         }else{
@@ -176,7 +185,7 @@ class BookingController extends Controller
         return "success";
         }else{
             return "error";
-        }   
+        }
     }
 
     public function bookingroute(Request $request)
