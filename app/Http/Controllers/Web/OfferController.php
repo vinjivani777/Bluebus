@@ -22,6 +22,7 @@ class OfferController extends Controller
         $nav['promoFirst']=$promoFirst;
         $nav['promoCount']=count($promoCode);
         $nav['Menus']=$Menus;
-        return view('web.offers.offer',$nav);
+
+        return view('web.offer',$nav);
     }
 }

@@ -27,6 +27,8 @@
 
         <style>
 
+            /* customet animation */
+
 
             .sidenav {
               height: 100%;
@@ -68,6 +70,22 @@
             @media screen and (max-height: 450px) {
               .sidenav {padding-top: 15px;}
               .sidenav a {font-size: 15px;}
+            }
+
+
+            .offer-main-div{
+                transition: all 1s ;
+            }
+
+            .offer-main-div:hover {
+                transform: translateY(-5px);}
+
+                display: inline-block;
+                zoom: 1;
+                margin: 1em .5em;
+                cursor: pointer;
+                box-shadow: 0 0 5px 0 rgba(0,0,0,.75);
+
             }
         </style>
     </head>
@@ -235,7 +253,7 @@
 
 
         <script>
-                            $('.closebtn').hide();
+                $('.closebtn').hide();
 
             function openNav() {
               $("#mySidenav").css("width","200px");

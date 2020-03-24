@@ -27,7 +27,7 @@ class HomeController extends Controller
         $nav['promoCount']=count($promoCode);
         $nav['Menus']=$Menus;
 
-        return view('web.homepage.minindex',$nav);
+        return view('web.index',$nav);
     }
 
     public function LoginVaiOTP(Request $request)
