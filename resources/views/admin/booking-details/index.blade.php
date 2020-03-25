@@ -182,7 +182,7 @@ Booking
                             if (response=="success") {
                             swal({
                                 title: "Deleted !",
-                                text: "Successfull deleted board point.",
+                                text: "Successfull deleted Booking.",
                                 type: "success",
                                 timer: 500,
                                 showConfirmButton: false

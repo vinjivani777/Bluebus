@@ -42,137 +42,141 @@ booking
 
         </div>
     <!-- End Content-->
-    <form action="{{route('booking-detail.store')}}" method="post" id="myform">
+            <form action="{{route('booking-detail.store')}}" method="post" id="myform">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-warning" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
-                </div>
-                <div class="card-body">
-                    <div class="row"> @csrf
-                        <div class="col-9 col-md-9">
-                            <h4 class="card-title mt-0 mb-0">Add Booking</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-warning" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
+                            </div>
+                            <div class="card-body">
+                                <div class="row"> @csrf
+                                    <div class="col-9 col-md-9">
+                                        <h4 class="card-title mt-0 mb-0">Add Booking</h4>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-3 col-md-3">
+                                        <label for="customer_name">Customer Name</label>
+                                        <select name="customer_name" class="form-control customer_name" id="customer_name" data-toggle="select2" required>
+                                            <option value="0" selected disabled>Select Customer</option>
+                                            @foreach ($customer_list as $customer)
+                                            <option value="{{$customer->id}}">{{$customer->first_name .' '.$customer->last_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-danger">@error('customer_name') {{ "Please select Customer" }} @enderror</span>
+                                    </div>
+                                    <div class="col-6 col-md-6">
+                                    </div>
+                                    <div class="col-3 col-md-3">
+                                        {{-- <div class="form-group"> --}}
+                                            <label for="start_date">Booking Date</label>
+                                            <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required readonly="readonly">
+                                            <span class="text-danger">@error('start_date') {{ "Please select BookingDate" }} @enderror</span>
+                                            {{-- </div> --}}
+                                    </div>
+                                    <div class="col-12 col-md-12 font-weight-bold  text-danger ">
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                    <div class="row">
+                                        <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="bus_name">Bus Name</label>
+                                                <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" >
+                                                    <option disabled selected value="0" >Select Bus</option>
+                                                    @foreach ($bus_list as $bus)
+                                                    <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}} | [ {{ date("g:i A",strtotime($bus->start_time))}}-{{ date("g:i A",strtotime($bus->ending_time)) }} ]</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="text-danger">@error('bus_name') {{ "Please select Bus Name" }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="route">Route</label>
+                                                <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" >
+                                                    <option selected disabled>Select Route</option>
+                                                </select>
+                                                <span class="text-danger">@error('route_name') {{ "Please select Route" }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="starting_point">New Pick-Up Point</label>
+                                                <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" >
+                                                    <option selected disabled>Select PickUp Point</option>
+                                                </select>
+                                                <span class="text-danger">@error('starting_point') {{ "The Starting Point Field is required" }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-6 col-lg-6 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="drop_point">New Droping Point</label>
+                                                <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" required>
+                                                    <option selected disabled>Select Drop Point</option>
+                                                </select>
+                                                <span class="text-danger">@error('stoping_point') {{ "The Stoping Point Field is required" }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="landmark">Land Mark</label>
+                                                <input type="text" class="form-control" readonly name="starting_point_landmark" id="starting_point_landmark" placeholder="Pick-Up Land Mark" >
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" readonly name="starting_point_address" id="starting_point_address" placeholder="Pick-Up Address" >
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="landmark">Land Mark</label>
+                                                <input type="text" class="form-control" readonly name="stoping_point_landmark" id="stoping_point_landmark" placeholder="Drop Land Mark" >
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-3 col-lg-3 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input type="text" class="form-control" readonly name="stoping_point_address" id="stoping_point_address" placeholder="Drop Address" >
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-4 col-lg-4 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="amount">Amount</label>
+                                                <input type="number" class="form-control" name="amount" id="amount" placeholder="Booking Amount" required>
+                                                <span class="text-danger">@error('amount') {{ $message }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-4 col-lg-4 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="seatno">Seat No</label>
+                                                <input type="number" class="form-control" name="seatno" id="seatno" placeholder="Seat No" required>
+                                                <span class="text-danger">@error('seatno') {{ $message }} @enderror</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-md-4 col-lg-4 col-sm-2">
+                                            <div class="form-group">
+                                                <label for="paymentstatus">Payment Method</label>
+                                                <input type="text" class="form-control" name="paymentstatus" id="paymentstatus" placeholder="COD" value="COD" readonly >
+                                                <span class="text-danger">@error('paymentstatus') {{ $message }} @enderror</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                                            <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Submit">
+                                            <input type="reset" class="btn btn-sm btn-danger " value="Reset">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-3 col-md-3">
-                            <label for="customer_name">Customer Name</label>
-                            <select name="customer_name" class="form-control customer_name" id="customer_name" data-toggle="select2" required>
-                                <option value="0" selected disabled>Select Customer</option>
-                                @foreach ($customer_list as $customer)
-                                <option value="{{$customer->id}}">{{$customer->first_name .' '.$customer->last_name}}</option>
-                                @endforeach
-                            </select>
-                            <span class="text-danger">@error('customer_name') {{ "Please select Customer" }} @enderror</span>
-                        </div>
-                        <div class="col-6 col-md-6">
-                        </div>
-                        <div class="col-3 col-md-3">
-                            {{-- <div class="form-group"> --}}
-                                <label for="start_date">Booking Date</label>
-                                <input type="date" class="form-control flatpickr-input active" value="" name="start_date" id="start_date" placeholder="Booking Date" required readonly="readonly">
-                                <span class="text-danger">@error('start_date') {{ "Please select BookingDate" }} @enderror</span>
-                                {{-- </div> --}}
-                        </div>
-                        <div class="col-12 col-md-12 font-weight-bold  text-danger ">
-                            <hr>
-                        </div>
-                    </div>
-
-                        <div class="row">
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="bus_name">Bus Name</label>
-                                    <select name="bus_name" class="form-control bus_name" id="bus_name" data-toggle="select2" >
-                                        <option disabled selected value="0" >Select Bus</option>
-                                        @foreach ($bus_list as $bus)
-                                        <option value="{{$bus->id}}">{{$bus->bus_name}} | {{strtoupper($bus->bus_reg_no)}}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger">@error('bus_name') {{ "Please select Bus Name" }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="route">Route</label>
-                                    <select  class="form-control route_id" name="route_name" id="route_id" data-toggle="select2" >
-                                        <option selected disabled>Select Route</option>
-                                    </select>
-                                    <span class="text-danger">@error('route_name') {{ "Please select Route" }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="starting_point">New Pick-Up Point</label>
-                                    <select  class="form-control starting_point" name="starting_point" id="starting_point" data-toggle="select2" >
-                                        <option selected disabled>Select PickUp Point</option>
-                                    </select>
-                                    <span class="text-danger">@error('starting_point') {{ "The Starting Point Field is required" }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-6 col-lg-6 col-sm-4">
-                                <div class="form-group">
-                                    <label for="drop_point">New Droping Point</label>
-                                    <select  class="form-control stoping_point" name="stoping_point" id="stoping_point" data-toggle="select2" required>
-                                        <option selected disabled>Select Drop Point</option>
-                                    </select>
-                                    <span class="text-danger">@error('stoping_point') {{ "The Stoping Point Field is required" }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
-                                <div class="form-group">
-                                    <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" readonly name="starting_point_landmark" id="starting_point_landmark" placeholder="Pick-Up Land Mark" >
-                                </div>
-                            </div>
-                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" readonly name="starting_point_address" id="starting_point_address" placeholder="Pick-Up Address" >
-                                </div>
-                            </div>
-                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
-                                <div class="form-group">
-                                    <label for="landmark">Land Mark</label>
-                                    <input type="text" class="form-control" readonly name="stoping_point_landmark" id="stoping_point_landmark" placeholder="Drop Land Mark" >
-                                </div>
-                            </div>
-                            <div class="col-3 col-md-3 col-lg-3 col-sm-2">
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" readonly name="stoping_point_address" id="stoping_point_address" placeholder="Drop Address" >
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
-                                <div class="form-group">
-                                    <label for="amount">Amount</label>
-                                    <input type="text" class="form-control" name="amount" id="amount" placeholder="Booking Amount" required>
-                                    <span class="text-danger">@error('amount') {{ $message }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
-                                <div class="form-group">
-                                    <label for="seatno">Seat No</label>
-                                    <input type="text" class="form-control" name="seatno" id="seatno" placeholder="Seat No" required>
-                                    <span class="text-danger">@error('seatno') {{ $message }} @enderror</span>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-4 col-lg-4 col-sm-2">
-                                <div class="form-group">
-                                    <label for="paymentstatus">Payment Method</label>
-                                    <input type="text" class="form-control" name="paymentstatus" id="paymentstatus" placeholder="COD" value="COD" readonly >
-                                    <span class="text-danger">@error('paymentstatus') {{ $message }} @enderror</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                                <input type="submit" class="btn btn-sm btn-primary" id="submit" value="Submit">
-                                <input type="reset" class="btn btn-sm btn-danger " value="Reset">
-                            </div>
-                        </div>
-                    </form>
+                </form>
                 </div>
             </div> <!-- end card-box-->
         </div> <!-- end col -->
@@ -201,6 +205,7 @@ booking
 
     <script>
         $(document).ready(function(){
+
             document.getElementById("myform").reset();
             $('#bus_name').prop('disabled', 'disabled');
             $("#start_date").on('change',function(){
@@ -212,6 +217,13 @@ booking
                     $('#bus_name').prop('disabled', false);
                 }
             });
+
+            //date set min as today date
+            $("#start_date").flatpickr({
+                minDate: "today",
+                dateFormat: "d-m-Y",
+            } );
+
             $("#customer_name").on('change',function(){
                 var start_date=$("#start_date").val();
                 if((start_date=="")){
@@ -222,15 +234,17 @@ booking
                 }
             });
 
+
             $("#submit").on('click',function(e){
                 var start_date=$("#start_date").val();
                 var cust_name=$("#customer_name").val();
-                var date = new Date();
-                var userDate = start_date;
-                var from = userDate.split("-");
-                var f = new Date(from[2], from[1]-1, from[0]);
-
-                // var startDate = new Date(jQuery('#startdate').val().replace(/-/g, '/')).getTime();
+                // var date = new Date();
+                // var userDate = start_date;
+                // var from = userDate.split("-");
+                // // var time = date.split("-");
+                // var dt = new Date();
+                // var time = dt.getHours();
+                // var f = new Date(from[2], from[1]-1, from[0],time);
                 if((start_date=="")&&(cust_name==null)){
                     e.preventDefault();
                     alert("Please Select Customer Name & Booking Date.");
@@ -240,13 +254,24 @@ booking
                 }else if((!(start_date==""))&&((cust_name==null))){
                     e.preventDefault();
                     alert("Please Select Customer Name");
-                }else{
-                    // alert(f);
-                    // alert(date);
-                    var dt=(f-date) / (1000 * 60 * 60 * 24);
-                    alert(dt);
+                }else if($("#bus_name").val()==null)
+                {
                     e.preventDefault();
+                    alert("Please Select Bus");
+                }else if($("#route_id").val()==null)
+                {
+                    e.preventDefault();
+                    alert("Please Select Route");
+                }else if($("#starting_point").val()==null)
+                {
+                    e.preventDefault();
+                    alert("Please Select PickUpPoint");
+                }else if($("#stoping_point").val()==null)
+                {
+                    e.preventDefault();
+                    alert("Please Select DropPoint");
                 }
+
             });
 
         });

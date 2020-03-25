@@ -39,28 +39,29 @@
                                     <th>#</th>
                                     <th>Bus Name</th>
                                     <th>Route</th>
-                                    <th>Cancellation Date</th>
-                                    <th>Cancellation Time</th>
+                                    <th>Cancel Date </th>
+                                    <th>Board Time</th>
+                                    <th>Compensation</th>
                                     <th>Refund Amount</th>
-                                    {{-- <th>Flat</th> --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($Cancellation as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->bus->bus_name }}</td>
-                                        <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
-                                        <td>{{ $item->cancellation_date }}</td>
-                                        <td>{{ $item->cancellation_time }}</td>
-                                        <td>{{ $item->refund_amount }}</td>
-                                        <td>
-                                            <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('cancellation-detail.edit',['id'=> $item->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
-                                            <a   class="mr-1 text-danger remove" id="{{ $item->id }}" ><i class=" fas fa-trash-alt"></i></a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->bus['bus_name'] }}</td>
+                                    <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
+                                    <td>{{ date('d-m-Y',strtoTime($item->cancellation_date)) }}</td>
+                                    <td>{{ $item->cancellation_time }}</td>
+                                    <td>{{ $item->compensation_amount }}</td>
+                                    <td>{{ $item->refund_amount }}</td>
+                                    <td>
+                                        <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                        <a href="{{ route('cancellation-detail.edit',['id'=> $item->id ]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                        <a   class="mr-1 text-danger remove" id="{{ $item->id }}" ><i class=" fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

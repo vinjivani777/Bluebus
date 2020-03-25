@@ -145,7 +145,6 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('bus-boardpointdetails','Admin\BookingController@bookingboardpointdetails')->name('booking-bookingboardpointdetails.get');
     Route::get('bus-droppointdetails','Admin\BookingController@bookingdroppointdetails')->name('booking-bookingdroppointdetails.get');
     Route::get('booking/destroy','Admin\BookingController@destroy')->name('booking.destroy');
-
     //Cancellation
     Route::get('cancellation-detail','Admin\CancellationController@index')->name('cancellation-detail');
     Route::get('cancellation-detail/add','Admin\CancellationController@create')->name('cancellation-detail.add');
@@ -155,6 +154,8 @@ Route::group(['prefix' => 'admin','middleware' =>'adminauth'], function() {
     Route::get('cancellation-detail/destroy','Admin\CancellationController@destroy')->name('cancellation-detail.destroy');
     Route::get('bus-routes/route','Admin\BookingController@bookingroutetocancel')->name('busroutestocancel.get');
     Route::get('bus-routes/totalfare','Admin\BookingController@bustotalfare')->name('bustotalfare.get');
+    Route::get('bus-routes/busdates','Admin\CancellationController@busdates')->name('busdates.get');
+
 
     //Setting
     Route::get('setting/generalsetting','Admin\SettingController@generalsetting')->name('generalsetting');
@@ -331,7 +332,7 @@ Route::group(['prefix' => 'vendor','middleware'=>'vendorauth'], function () {
      Route::post('cancellation-detail/update/{id}','Vendor\CancellationController@update')->name('vendor.cancellation-detail.update');
      Route::get('cancellation-detail/destroy','Vendor\CancellationController@destroy')->name('vendor.cancellation-detail.destroy');
      Route::get('bus-routes/route','Vendor\BookingController@bookingroutetocancel')->name('vendor.busroutestocancel.get');
-
+     Route::get('bus-routes/busdates','Vendor\CancellationController@busdates')->name('vendor.busdates.get');
 
 
     //Rating

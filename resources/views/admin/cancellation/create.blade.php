@@ -174,7 +174,7 @@
         //     $(".percentagetext").val('');
         // });
 
-    $("#route_name").on('change',function(){
+      $("#route_name").on('change',function(){
         var bus_id= $('#bus_name').val();
         var route_id= $('#route_name').val();
         $('#booking_amount').empty();
@@ -189,6 +189,30 @@
                 {
                     $('#refund_amount').val(response.total_fare);
                     $("#cancel_time").val(response.start_time);
+                    // $("#cancel_booking_date").flatpickr({
+                    //     enable: ["2020-03-30"]
+                    // } );
+                    // if(response !== ""){ $("#percentagetext").removeAttr("readonly"); }
+                    // if(response !== ""){ $("#flattext").removeAttr("readonly"); }
+                }
+            });
+            $.ajax({
+                url:'{{route('vendor.busdates.get')}}',
+                type:'get',
+                data:{
+                    bus_id:bus_id,
+                },
+                success:function(response)
+                {
+                    var ind=response.split(',');
+                    var dates="";
+                    $.each(ind, function(index,value){
+                                dates=dates+'"'+value+'",' ;
+                    });
+                    alert(dates);
+                    // $("#cancel_booking_date").flatpickr({
+                    //     enable: [dates]
+                    // } );
                     // if(response !== ""){ $("#percentagetext").removeAttr("readonly"); }
                     // if(response !== ""){ $("#flattext").removeAttr("readonly"); }
                 }

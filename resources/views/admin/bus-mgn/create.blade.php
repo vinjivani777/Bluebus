@@ -89,7 +89,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select name="route"value="{{old('route')}}" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutiple Route" required>
+                                    <select name="route[]"value="{{old('route')}}" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutiple Route" required>
                                         <option value="" >Select Route</option>
                                         @foreach ($route as $route)
                                         <option value="{{$route->id}}">{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
@@ -136,7 +136,7 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="amenities">Amenities</label>
-                                    <select name="amenities" value="{{old('amenities')}}" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
+                                    <select name="amenities[]" value="{{old('amenities')}}" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
                                         @foreach ($amenities as $type)
                                         <option value="{{$type->id}}">{{$type->description}}</option>
                                         @endforeach

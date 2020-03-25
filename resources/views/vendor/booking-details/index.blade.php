@@ -226,6 +226,52 @@ Booking
                     }
                 });
 
+    });
+
+    $('.remove_booking').click(function(){
+        var c_id= $(this).attr('id');
+        // alert(c_id);
+        swal({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonClass: "btn btn-confirm mt-2",
+            cancelButtonClass: "btn btn-cancel ml-2 mt-2",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.value) {
+                    $.ajax({
+                            url:'{{route('vendor.booking.destroy')}}',
+                        data:{
+                            id : c_id
+                        },
+                        type:'get',
+                        success:function(response)
+                        {
+                            if (response=="success") {
+                            swal({
+                                title: "Deleted !",
+                                text: "Successfull deleted Booking.",
+                                type: "success",
+                                timer: 500,
+                                showConfirmButton: false
+                            })
+                            $("#"+c_id).closest("tr").fadeOut(1000);
+                            } else {
+                                new PNotify({
+                                    title: 'Warning Notification',
+                                    text: 'Contact Support Team',
+                                    icon: 'icofont icofont-info-circle',
+                                    type: 'Warning'
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    swal("Ohhhhh........No!");
+                }
             });
+    });
 </script>
 @endsection

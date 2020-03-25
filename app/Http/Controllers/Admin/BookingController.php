@@ -37,7 +37,7 @@ class BookingController extends Controller
     public function create()
     {
         $data=array();
-        $data['bus_list']=Bus::select('id','bus_name','bus_reg_no')->get();
+        $data['bus_list']=Bus::select('id','bus_name','bus_reg_no','start_time','ending_time')->get();
         $data['customer_list']=Customer::select('id','first_name','last_name')->get();
         return view('admin.booking-details.create',$data);
     }
@@ -53,7 +53,7 @@ class BookingController extends Controller
         // return $request;
         $validator= $request->validate([
             'customer_name' => 'required',
-            'start_date' => 'required|before:today',
+            'start_date' => 'required',
             'bus_name' => 'required',
             'route_name' => 'required',
             'starting_point' => 'required',
@@ -63,7 +63,7 @@ class BookingController extends Controller
             'seatno' => 'required|numeric',
         ]);
 
-        // return ($validator->fails());
+        // dd($validator->fails());
         // return $request;
 
         if($validator == false)
@@ -86,10 +86,11 @@ class BookingController extends Controller
         $newbus->insurance_policy= 0;
         $newbus->payment_method= $request->paymentstatus;
         $newbus->booking_date= date('Y-m-d', strtotime($request->start_date));
+        $newbus->payment_status= "1";
         $newbus->booking_status= "1";
         $newbus->status= "1";
         $newbus->created_by= "admin";
-        // dd($newbus)->all();
+        // dd($newbus);
         $data = $newbus->save();
         if($data)
         {

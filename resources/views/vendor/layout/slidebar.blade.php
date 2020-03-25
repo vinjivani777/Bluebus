@@ -120,15 +120,10 @@
 
                 {{-- Cancellation --}}
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{ route('vendor.cancellation-detail') }}">
                         <i class="fas fa-ban"></i>
                         <span>Cancellation</span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{ route('vendor.cancellation-detail') }}">View All</a>
-                        </li>
-                    </ul>
                 </li>
 
 

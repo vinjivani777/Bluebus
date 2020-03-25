@@ -10,6 +10,7 @@ use App\Model\Bustoroute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class BusController extends Controller
@@ -73,14 +74,14 @@ class BusController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
-
+        // return $request->amenities;
         $newbus=Array();
         $amenities =  implode(',',($request->amenities));
         $routes =  implode(',', ($request->route));
         $newbus['bus_name']= $request->bus_name;
-        $newbus['route_id']=$request->route;
+        $newbus['route_id']=$routes;
         $newbus['bus_type_id']= $request->bus_type;
-        $newbus['amenities_id']= $request->amenities;
+        $newbus['amenities_id']= $amenities;
         $newbus['bus_reg_no']= strtoupper($request->bus_reg_no) ;
         $newbus['starting_point']= $request->board_point;
         $newbus['ending_point']= $request->drop_point;
@@ -149,6 +150,7 @@ class BusController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request;
         $validator=Validator::Make($request->all(),[
             'bus_name'      => 'required|min:2',
             'bus_type'      => 'required',
@@ -163,8 +165,6 @@ class BusController extends Controller
             'dates'         => 'required',
             'total_fare'         => 'required',
         ]);
-
-
 
         if($validator->fails())
         {
@@ -184,7 +184,7 @@ class BusController extends Controller
         $newbus->start_time= $request->board_time;
         $newbus->ending_time= $request->drop_time;
         $newbus->max_seats= $request->max_seats;
-        $newbus->status= "0";
+        // $newbus->status= "0";
         $newbus->vendor_id= $request->vendor;
 
         $newbus->save();

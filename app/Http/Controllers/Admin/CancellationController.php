@@ -145,7 +145,7 @@ class CancellationController extends Controller
      */
     public function destroy(Request $request)
     {
-         $Find=Cancellation::find($request->id);
+        $Find=Cancellation::find($request->id);
         $Delete=$Find->delete();
 
         if($Delete)
@@ -154,5 +154,11 @@ class CancellationController extends Controller
         }else{
             return "error";
         }
+    }
+
+    public function busdates(Request $request)
+    {
+        $dates=Bus::whereId($request->bus_id)->select('dates')->first();
+        return $dates->dates;
     }
 }

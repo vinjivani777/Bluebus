@@ -24,7 +24,7 @@ class BookingController extends Controller
     public function index()
     {
         $total_bus_id=Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->select('id')->get();
-        $Booking=Booking::whereIn('bus_id',$total_bus_id)->with('bus')->get();
+        $Booking=Booking::whereIn('bus_id',$total_bus_id)->whereStatus(1)->with('bus')->get();
         // dd($Booking);
         return view('vendor.booking-details.index',['Booking'=>$Booking]);
     }
@@ -38,7 +38,7 @@ class BookingController extends Controller
     {
         $data=array();
         $total_bus_id=Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->select('id')->get();
-        $data['bus_list']=Bus::whereIn('id',$total_bus_id)->select('id','bus_name','bus_reg_no')->get();
+        $data['bus_list']=Bus::whereIn('id',$total_bus_id)->select('id','bus_name','bus_reg_no','start_time','ending_time')->whereStatus(1)->get();
         $data['customer_list']=Customer::select('id','first_name','last_name')->get();
         return view('vendor.booking-details.create',$data);
     }
@@ -190,7 +190,11 @@ class BookingController extends Controller
 
     public function bookingroute(Request $request)
     {
-        return Route::whereStatus(true)->select('id','source_name','destination_name')->get();
+        $Total_route_id=DB::table('bustoroutes')
+        ->select('route_id', DB::raw('count(*) as total'))
+        ->groupBy('route_id')->wherebus_id($request->bus_id)
+        ->pluck('route_id')->all();
+        return Route::whereStatus(true)->whereIn('id',$Total_route_id)->select('id','source_name','destination_name')->get();
     }
     public function bustotalfare(Request $request)
     {
@@ -217,11 +221,11 @@ class BookingController extends Controller
 
     public function bookingboardpoint(Request $request)
     {
-        return BoardPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','pickup_point')->get();
+        return BoardPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','board_point')->get();
     }
     public function bookingdroppoint(Request $request)
     {
-        return DropPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','stoping_point')->get();
+        return DropPoint::where(['status'=>'1',"bus_id"=>$request->bus_id,"route_id"=>$request->route_id])->select('id','bus_id','drop_point')->get();
     }
     public function bookingboardpointdetails(Request $request)
     {

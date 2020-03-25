@@ -6,6 +6,7 @@ use App\Model\Bus;
 use App\Model\Cancellation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CancellationController extends Controller
@@ -17,7 +18,8 @@ class CancellationController extends Controller
      */
     public function index()
     {
-        $Cancellation=Cancellation::with('bus')->get();
+        $total_bus_id=Bus::whereVendor_id((Auth::guard('vendor')->user()->id))->whereStatus(1)->select('id')->get();
+        $Cancellation=Cancellation::with('bus')->whereIn('bus_id',$total_bus_id)->get();
         return view('vendor.cancellation.index',['Cancellation'=> $Cancellation]);
     }
 
@@ -28,7 +30,8 @@ class CancellationController extends Controller
      */
     public function create()
     {
-        $bus=Bus::get();
+        // return $total_bus_id=(Bus::where('vendor_id',(Auth::guard('vendor')->user()->id))->select('id')->get());
+        $bus=Bus::where('vendor_id',(Auth::guard('vendor')->user()->id))->whereStatus(1)->get();
         return view('vendor.cancellation.create',['Bus'=>$bus]);
     }
 
@@ -42,10 +45,10 @@ class CancellationController extends Controller
     {
         $validator=Validator::make($request->all(),[
             'bus_name'=>'required',
-            'cancel_time'=>'required',
-            'percentage'=>'required',
-            'flat'=>'required',
-            'type'=>'required'
+            'cancellation_time'=>'required',
+            'cancellation_date'=>'required',
+            'refund_amount'=>'required',
+            'route_name'=>'required',
         ]);
 
         if($validator->fails())
@@ -56,12 +59,12 @@ class CancellationController extends Controller
         $params=array();
 
         $params['bus_id']=$request->bus_name;
-        $params['advertisement_status']=1;
-        $params['cancel_time']=$request->cancel_time;
-        $params['percentage']=$request->percentage;
-        $params['flat']=$request->flat;
-        $params['type']=$request->type;
-
+        $params['route_id']=$request->route_name;
+        $params['cancellation_date']=(date('Y-m-d',(strtotime($request->cancellation_date))));
+        $params['cancellation_time']=(date('H:i:s',(strtotime($request->cancellation_time))));
+        $params['note']="";
+        $params['compensation_amount']=0;
+        $params['refund_amount']=$request->refund_amount;
         $Data_save=Cancellation::create($params);
 
         if($Data_save)
@@ -91,7 +94,7 @@ class CancellationController extends Controller
      */
     public function edit($id)
     {
-        $bus=Bus::get();
+        $bus=Bus::where('vendor_id',(Auth::guard('vendor')->user()->id))->whereStatus(1)->get();
         $Cancellation=Cancellation::whereId($id)->first();
         return view('vendor.cancellation.edit',['Bus'=>$bus,'Cancellation'=>$Cancellation]);
     }
@@ -107,10 +110,10 @@ class CancellationController extends Controller
     {
         $validator=Validator::make($request->all(),[
             'bus_name'=>'required',
-            'cancel_time'=>'required',
-            'percentage'=>'required',
-            'flat'=>'required',
-            'type'=>'required'
+            'cancellation_time'=>'required',
+            'cancellation_date'=>'required',
+            'refund_amount'=>'required',
+            'route_name'=>'required',
         ]);
 
         if($validator->fails())
@@ -121,13 +124,14 @@ class CancellationController extends Controller
         $params=array();
 
         $params['bus_id']=$request->bus_name;
-        $params['advertisement_status']=1;
-        $params['cancel_time']=$request->cancel_time;
-        $params['percentage']=$request->percentage;
-        $params['flat']=$request->flat;
-        $params['type']=$request->type;
-
+        $params['route_id']=$request->route_name;
+        $params['cancellation_date']=(date('Y-m-d',(strtotime($request->cancellation_date))));
+        $params['cancellation_time']=(date('H:i:s',(strtotime($request->cancellation_time))));
+        $params['note']="";
+        $params['compensation_amount']=0;
+        $params['refund_amount']=$request->refund_amount;
         $Data_save=Cancellation::whereId($id)->update($params);
+
 
         if($Data_save)
         {
@@ -154,5 +158,11 @@ class CancellationController extends Controller
         }else{
             return "error";
         }
+    }
+
+    public function busdates(Request $request)
+    {
+        $dates=Bus::whereId($request->bus_id)->select('dates')->first();
+        return $dates->dates;
     }
 }
