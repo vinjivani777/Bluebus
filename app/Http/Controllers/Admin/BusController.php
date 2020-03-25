@@ -9,6 +9,7 @@ use App\Model\Amenitie;
 use App\Model\Bustoroute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class BusController extends Controller
@@ -63,9 +64,10 @@ class BusController extends Controller
             'amenities'     => 'required',
             'dates'         => 'required',
             'total_fare'         => 'required',
+            'vendor'        => 'required',
         ]);
 
-
+        // dd($validator->fails());
 
         if($validator->fails())
         {
@@ -73,12 +75,12 @@ class BusController extends Controller
         }
 
         $newbus=Array();
-        $amenities =  implode(',', $request->amenities);
-        $routes =  implode(',', $request->route);
+        // $amenities =  implode(',',($request->amenities));
+        // $routes =  implode(',', ($request->route));
         $newbus['bus_name']= $request->bus_name;
-        $newbus['route_id']=$routes;
+        $newbus['route_id']=$request->route;
         $newbus['bus_type_id']= $request->bus_type;
-        $newbus['amenities_id']= $amenities;
+        $newbus['amenities_id']= $request->amenities;
         $newbus['bus_reg_no']= strtoupper($request->bus_reg_no) ;
         $newbus['starting_point']= $request->board_point;
         $newbus['ending_point']= $request->drop_point;
@@ -89,8 +91,8 @@ class BusController extends Controller
         $newbus['vendor_id']= $request->vendor;
         $newbus['dates']=$request->dates;
         $newbus['total_fare']=$request->total_fare;
-        $request['created_by']="admin";
-        $request['created_id']=Auth::guard('vendor')->user()->id;
+        $newbus['created_by']="admin";
+        $newbus['created_id']=Auth::guard('admin')->user()->id;
         // return ($newbus);
         $Bus=Bus::create($newbus);
 
