@@ -75,8 +75,8 @@ class BusController extends Controller
         }
 
         $newbus=Array();
-        // $amenities =  implode(',',($request->amenities));
-        // $routes =  implode(',', ($request->route));
+        $amenities =  implode(',',($request->amenities));
+        $routes =  implode(',', ($request->route));
         $newbus['bus_name']= $request->bus_name;
         $newbus['route_id']=$request->route;
         $newbus['bus_type_id']= $request->bus_type;
