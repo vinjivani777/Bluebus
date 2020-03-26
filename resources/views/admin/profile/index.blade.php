@@ -48,7 +48,7 @@
                 <p class="text-muted">bluebus</p>
 
                 <div class="text-left mt-3">
-                    <h4 class="font-13 text-uppercase">About Me :</h4>
+                    <h4 class="font-13 text-uppercase"><u>About Me :</u></h4>
                     <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2">{{ Auth::guard('admin')->user()->username }}</span></p>
 
                     <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">{{ $admin_details->mobile_no }}</span></p>
@@ -120,7 +120,7 @@
                                 <div class="col-12">
                                     <h5 class="mb-2 text-uppercase"><i class="mdi mdi-account-circle mr-1"></i> Profile Image Update </h5>
                                     <div class="row">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6 col-md-6 col-xl-6 col-sm-6">
                                             <div class="mt-3">
                                                 <input type="hidden" name="old_profile" value="{{ $admin_details->avatar }}">
                                                 <input type="file" class="dropify" name="profile_image" data-default-file="profile_image"  />

@@ -153,7 +153,6 @@ class AdminController extends Controller
     {
         $auth_id=Auth::guard('admin')->user()->id;
         $get_admin=Admin::whereId($auth_id)->first();
-
         return view('admin.profile.index',['admin_details'=>$get_admin]);
     }
 
@@ -204,6 +203,7 @@ class AdminController extends Controller
         $params['avatar']=$profile_picture;
         // return $params;
          $Save_Profile=Admin::whereId(Auth::guard('admin')->user()->id)->update($params);
+         $Save_Profile=User::whereRole_id('1')->whereUsername(Auth::guard('admin')->user()->username)->whereFirst_name(Auth::guard('admin')->user()->first_name)->whereLast_name(Auth::guard('admin')->user()->last_name)->update($params);
 
          if($Save_Profile)
          {
@@ -229,6 +229,7 @@ class AdminController extends Controller
         }
 
         $pass=Admin::whereId(Auth::guard('admin')->user()->id)->first();
+        // dd(Hash::check($request->old_password, $pass->password));
         if (Hash::check($request->old_password, $pass->password))
         {
             $params=array();
@@ -236,6 +237,7 @@ class AdminController extends Controller
             $params['password']=bcrypt($request->new_password);
             // return $params;
             $admin_password_update=Admin::whereId(Auth::guard('admin')->user()->id)->update($params);
+            $admin_password_update=User::whereRole_id('1')->whereUsername(Auth::guard('admin')->user()->username)->whereFirst_name(Auth::guard('admin')->user()->first_name)->whereLast_name(Auth::guard('admin')->user()->last_name)->update($params);
         }
         else{
             return redirect()->back()->with(['status' => 'Old Password Mismatch']);
@@ -247,6 +249,7 @@ class AdminController extends Controller
         }
         else
         {
+            return "No";
             return redirect()->back();
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vendor;
 
 use App\Model\Bus;
+use App\Model\User;
 use App\Model\Admin;
 use App\Model\Agent;
 use App\Model\Route;
@@ -18,9 +19,9 @@ use App\Mail\SendRegisterMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendVendorForgetpasswordMail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\SendVendorForgetpasswordMail;
 
 
 class VendorController extends Controller
@@ -172,10 +173,11 @@ class VendorController extends Controller
 
        $params['username']=$request->username;
        $params['email']=$request->email;
-       $params['phone_number']=$request->mobile_no;
-
+       $params['mobile_no']=$request->mobile_no;
+       $param['username']=$request->username;
+       $param['email']=$request->email;
+       $param['mobile_no']=$request->mobile_no;
        $profile_picture="vendor/images/admin.png";
-
        if ($request->hasFile('profile_image')) {
            $type = $request->file('profile_image')->getMimeType();
            if(strpos($type, 'image/') !== false){
@@ -215,11 +217,12 @@ class VendorController extends Controller
         $logo= $request->input('old_logo');
     }
 
-       $params['profile_picture']=$profile_picture;
+       $params['avatar']=$profile_picture;
        $params['logo']=$logo;
-
-        $Save_Profile=Vendor::whereId(Auth::guard('vendor')->user()->id)->update($params);
-
+       $param['avatar']=$profile_picture;
+       $Save_Profile=Vendor::whereId(Auth::guard('vendor')->user()->id)->update($params);
+       $Save_Profile=User::whereRole_id('2')->whereUsername(Auth::guard('vendor')->user()->username)->whereFirst_name(Auth::guard('vendor')->user()->first_name)->whereLast_name(Auth::guard('vendor')->user()->last_name)->update($param);
+        // return $Save_Profile;
         if($Save_Profile)
         {
             return redirect()->back();
