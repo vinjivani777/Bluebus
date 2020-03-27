@@ -50,6 +50,8 @@
                     <div class="container-fluid" style="position: absolute;top:-64px;z-index: 1;">
                         <div class="row">
                             <div class="col-7 mx-auto" >
+
+                                @isset($promoFirst)
                                 <div class="card" style="height:120px;">
                                     <div class="card-body">
                                         <div class="row">
@@ -63,6 +65,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endisset
                             </div>
                             {{-- <div class="col-7 mx-auto" >
 
