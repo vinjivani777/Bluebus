@@ -299,7 +299,7 @@ booking
             $('#stoping_point_address').val("");
             $('#stoping_point_landmark').val("");
             bus_id = this.value;
-            alert(bus_id)
+            // alert(bus_id)
             if(bus_id != "" && bus_id != 0){
                 $.ajax({
                     url:'{{route('vendor.booking-busroutes.get')}}',

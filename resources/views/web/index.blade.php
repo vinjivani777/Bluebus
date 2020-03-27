@@ -13,6 +13,7 @@
       <link href="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.css') }}" rel="stylesheet" type="text/css" />
       <link href=" {{ asset('web/libs/animate/animate.min.css') }} " rel="stylesheet" type="text/css" />
 
+      {{-- <script src="{{ asset('web/libs/pages/form-pickers.min.css') }}"></script> --}}
 
 
 @endsection
@@ -111,6 +112,15 @@
     <!-- Login JS -->
         <script>
 
+            $(document).ready(function(){
+                 //mini screen operations
+                $('#bus_img').click(function(){
+                    var source= $("#minisource_place").val();
+                    var dest= $("#minidestination_place").val();
+                    $("#minisource_place").val(dest);
+                    $("#minidestination_place").val(source);
+                });
+            });
             $('#optLayout').hide();
             $('#optLayout').css("display","none");
 
@@ -199,8 +209,6 @@
             });
 
 
-
-
         </script>
 
 
@@ -214,7 +222,7 @@
 
             var path = "{{ route('source') }}";
                 $(document).ready(function() {
-                    $('.source_palace').autocomplete({
+                    $('.source_place').autocomplete({
 
                         source: function(request, response) {
                             $.ajax({
@@ -240,7 +248,7 @@
 
             var path = "{{ route('dest') }}";
                 $(document).ready(function() {
-                    $('.destination_palace').autocomplete({
+                    $('.destination_place').autocomplete({
 
                         source: function(request, response) {
                             $.ajax({
@@ -264,8 +272,6 @@
                 });
 
         </script>
-
-
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

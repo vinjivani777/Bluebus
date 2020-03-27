@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -152,12 +153,12 @@ class AdminController extends Controller
     {
         $auth_id=Auth::guard('admin')->user()->id;
         $get_admin=Admin::whereId($auth_id)->first();
-
         return view('admin.profile.index',['admin_details'=>$get_admin]);
     }
 
     public function profileupdate(Request $request)
     {
+        // return $request;
         $validator=Validator::make($request->all(),[
             'username'  => 'required',
             'email'     =>  'required',
@@ -167,7 +168,7 @@ class AdminController extends Controller
 
         if($validator->fails())
         {
-            return redirect()->back()->withErrors($validator)->withInput($request->all());
+            return redirect()->back()->withErrors($validator)->withInput($request->all())->with(['status' => 'Something Went Wrong']);
         }
 
 
@@ -189,7 +190,7 @@ class AdminController extends Controller
             }
             if($request->input('old_profile'))
             {
-                unlink(public_path().'/'.$request->old_profile);
+                    unlink(public_path().'/'.$request->old_profile);
             }else{
                 $profile_picture;
             }
@@ -199,15 +200,16 @@ class AdminController extends Controller
 
 
 
-        $params['profile_picture']=$profile_picture;
-
+        $params['avatar']=$profile_picture;
+        // return $params;
          $Save_Profile=Admin::whereId(Auth::guard('admin')->user()->id)->update($params);
+         $Save_Profile=User::whereRole_id('1')->whereUsername(Auth::guard('admin')->user()->username)->whereFirst_name(Auth::guard('admin')->user()->first_name)->whereLast_name(Auth::guard('admin')->user()->last_name)->update($params);
 
          if($Save_Profile)
          {
-             return redirect()->back();
+            return redirect()->back()->with(['status' => 'Settings Updated Successfully']);
          }else{
-            return redirect()->back();
+            return redirect()->back()->with(['status' => 'Something Went Wrong']);
         }
 
     }
@@ -222,25 +224,33 @@ class AdminController extends Controller
 
         if ($validator->fails()) {
 
-            return redirect()->back()->withErrors($validator);
+            return redirect()->back()->withErrors($validator)->with(['status' => 'Something Went Wrong']);
 
         }
 
-        $params=array();
+        $pass=Admin::whereId(Auth::guard('admin')->user()->id)->first();
+        // dd(Hash::check($request->old_password, $pass->password));
+        if (Hash::check($request->old_password, $pass->password))
+        {
+            $params=array();
 
-        $params['password']=bcrypt($request->password);
-
-        $admin_password_update=Admin::whereId(Auth::guard('admin')->user()->id)->update($params);
+            $params['password']=bcrypt($request->new_password);
+            // return $params;
+            $admin_password_update=Admin::whereId(Auth::guard('admin')->user()->id)->update($params);
+            $admin_password_update=User::whereRole_id('1')->whereUsername(Auth::guard('admin')->user()->username)->whereFirst_name(Auth::guard('admin')->user()->first_name)->whereLast_name(Auth::guard('admin')->user()->last_name)->update($params);
+        }
+        else{
+            return redirect()->back()->with(['status' => 'Old Password Mismatch']);
+        }
 
         if($admin_password_update)
         {
-
+            return redirect()->back()->with(['status' => 'Password Updated Successfully']);
+        }
+        else
+        {
+            return "No";
             return redirect()->back();
-
-        }else{
-
-            return redirect()->back();
-
         }
     }
 
