@@ -81,8 +81,10 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
+        // return $request;
         $source=$request->source_place;
         $dest=$request->destination_place;
+        $jdate=$request->journey_date;
         $route_id=Route::select('id')->where(['status'=>'1','source_name'=>$source,'destination_name'=>$dest])->first();
         // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
         $Total_route_id=DB::table('bustoroutes')

@@ -1,9 +1,9 @@
 <div class="col-lg-12 col-sm-12 col-md-12 col-12 col-xs-12">
     <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="card p-2 " style="position:relative;box-shadow: 0 0 4px 0 rgba(0,0,0,.30)">
+        <div class="card p-2" style="position:relative;box-shadow: 0 0 4px 0 rgba(0,0,0,.30)">
             {{-- <label for="">From</label>  --}}
-            <textarea class="form-control search_input source_place" name="source_place" autocomplete="off" id="minisource_place" cols="1" rows="1" placeholder="From"></textarea>
+            <textarea class="form-control pb-0 search_input source_place" name="source_place" autocomplete="off" id="minisource_place" cols="1" rows="1" placeholder="From"></textarea>
             <div class="row">
                 <div class="col-10 col-sm-10 col-md-10 col-lg-11">
                     <hr class=" mx-auto" style="border: 0.5px solid #ddd;">
@@ -13,7 +13,7 @@
                 </div>
             </div>
             {{-- <label for="" class="mt-0 pt-0">To</label> --}}
-            <textarea class="form-control mb-2 search_input minidestination_place" name="destination_place" autocomplete="off" id="minidestination_place" cols="1" rows="1" placeholder="To"></textarea>
+            <textarea class="form-control pb-0 search_input destination_place" name="destination_place" autocomplete="off" id="minidestination_place" cols="1" rows="1" placeholder="To"></textarea>
         </div>
 
         <div class="card p-2 " style="box-shadow: 0 0 5px 0 rgba(0,0,0,.30)">

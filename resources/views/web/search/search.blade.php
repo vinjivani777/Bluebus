@@ -4,7 +4,7 @@
 
 <head>
         <meta charset="utf-8" />
-        <title>Blue Bus Travels  | Searech Bus Tickets</title>
+        <title>Blue Bus | Search Bus Tickets</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured web theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -506,14 +506,14 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-5">
-                                    <input type="text" class="form-control m-0" name="broad_point" id="broad_point" placeholder="Broad Point">
+                                    <input type="text" class="form-control m-0" name="source_place" id="source_place" placeholder="Broad Point">
                             </div>
 
                             <div class="col-2 text-center">
                                 <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
                             </div>
                             <div class="col-5 ">
-                                    <input type="text" class="form-control" name="drop_point" id="drop_point" placeholder="Drop Point">
+                                    <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point">
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -567,7 +567,10 @@
        <script>
 
         $('.return_bus').click(function(){
-            $(this).toggleClass("return");
+            var source =$("#source_place").val();
+            var destination =$("#destination_place").val();
+            $("#destination_place").val(source);
+            $("#source_place").val(destination);
         });
 
        </script>
