@@ -18,22 +18,22 @@
                         <div class="form-row align-items-center ">
                             <div class="col-3 mr-0 pr-0 input-icons">
                                 <i class="far fa-building icon"></i>
-                                <input type="text" class="form-control mb-2 search_input source_palace text-center" name="source_palace"  autocomplete="off" id="inlineFormInput" placeholder="Source Place">
+                                <input type="text" class="form-control mb-2 search_input source_place text-center" name="source_place"  autocomplete="off" id="source_place" placeholder="Source Place">
                             </div>
                             <div class="col-3 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="far fa-building icon"></i>
-                                <input type="text" class="form-control mb-2 search_input destination_palace text-center" name="destination_palace"  autocomplete="off" id="inlineFormInput1" placeholder="Destination Place">
+                                <input type="text" class="form-control mb-2 search_input destination_place text-center" name="destination_place"  autocomplete="off" id="destination_place" placeholder="Destination Place">
                             </div>
                             <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="fe-calendar icon"></i>
-                                <input type="text" class="form-control mb-2 search_input basic-datepicker text-center" name="onward"  id="inlineFormInput2" placeholder="Onward Date">
+                                <input type="text" class="form-control mb-2 search_input basic-datepicker text-center" name="journey_date"  id="journey_date" placeholder="Onward Date">
                             </div>
                             <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="fe-calendar icon"></i>
-                                <input type="text" class="form-control mb-2 search_input return-datepicker text-center" name="return"  id="inlineFormInput3" placeholder="Return Date">
+                                <input type="text" class="form-control mb-2 search_input return-datepicker text-center" name="return_date"  id="return_date" placeholder="Return Date">
                             </div>
                             <div class="col-2 ml-0 pl-0">
-                                <button class="btn  btn-danger mb-2 search_input search_bus_btn" id="inlineFormInput"><b>Search Bus</b></button>
+                                <button class="btn  btn-danger mb-2 search_input search_bus_btn" id="search_bus"><b>Search Bus</b></button>
                             </div>
                         </div>
                     </form>
