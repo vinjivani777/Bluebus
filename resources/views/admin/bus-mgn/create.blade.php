@@ -89,10 +89,10 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4 ">
                                 <div class="form-group">
                                     <label for="route">Route</label>
-                                    <select name="route[]"value="{{old('route')}}" id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutiple Route" required>
+                                    <select name="route[]"   id="route"  class="form-control select2-multiple"  data-toggle="select2"  multiple="multiple" data-placeholder="Choose Mutiple Route" required>
                                         <option value="" >Select Route</option>
                                         @foreach ($route as $route)
-                                        <option value="{{$route->id}}">{{$route->Source->city_name . ' - ' . $route->Destination->city_name }}</option>
+                                        <option value="{{$route->id}}" @if (old('route')==$route->id)selected="selected"@endif>{{$route->Source->city_name . '  To ' . $route->Destination->city_name }}</option>
                                         @endforeach
                                     </select>
                                     <span>@error("route"){{$message}}@enderror</span>
@@ -136,9 +136,9 @@
                             <div class="col-6 col-md-6 col-lg-6 col-sm-4">
                                 <div class="form-group">
                                     <label for="amenities">Amenities</label>
-                                    <select name="amenities[]" value="{{old('amenities')}}" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
+                                    <select name="amenities[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose Amenities">
                                         @foreach ($amenities as $type)
-                                        <option value="{{$type->id}}">{{$type->description}}</option>
+                                        <option value="{{$type->id}}"  @if (old('amenities')==$type->id) {{ "selected" }} @endif > {{$type->description}}</option>
                                         @endforeach
                                     </select>
                                     <span>@error("amenities"){{$message}}@enderror</span>
