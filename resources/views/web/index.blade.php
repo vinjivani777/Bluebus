@@ -114,13 +114,77 @@
 
             $(document).ready(function(){
                  //mini screen operations
+                 $("#minisearch_bus").prop("disabled", true); 
                 $('#bus_img').click(function(){
                     var source= $("#minisource_place").val();
                     var dest= $("#minidestination_place").val();
                     $("#minisource_place").val(dest);
                     $("#minidestination_place").val(source);
                 });
+                $("#minisource_place").on("keyup",function(){ 
+                    var source= $("#minisource_place").val().length;
+                    var dest= $("#minidestination_place").val().length;
+                    console.log(source);
+                    console.log(dest);
+                    if((source > 0)&&(dest > 0))
+                    {
+                        console.log(true);
+                        $("#minisearch_bus").prop("disabled", false); 
+                    }else{
+                        console.log(false);
+                        $("#minisearch_bus").prop("disabled", true); 
+                    }                   
+                });
+
+                $("#minidestination_place").on("keyup",function(){ 
+                    var source= $("#minisource_place").val().length;
+                    var dest= $("#minidestination_place").val().length;
+                    console.log(source);
+                    console.log(dest);
+                    if((source > 0)&&(dest > 0))
+                    {
+                        console.log(true);
+                        $("#minisearch_bus").prop("disabled", false); 
+                    }else{
+                        console.log(false);
+                        $("#minisearch_bus").prop("disabled", true); 
+                    }                    
+                });
+
+                //max screen events
+                $("#search_bus").prop("disabled", true); 
+
+                $("#source_place").on("keyup",function(){ 
+                    var source= $("#source_place").val().length;
+                    var dest= $("#destination_place").val().length;
+                    console.log(source);
+                    console.log(dest);
+                    if((source > 0)&&(dest > 0))
+                    {
+                        console.log(true);
+                        $("#search_bus").prop("disabled", false); 
+                    }else{
+                        console.log(false);
+                        $("#search_bus").prop("disabled", true); 
+                    }                   
+                });
+
+                $("#destination_place").on("keyup",function(){ 
+                    var source= $("#source_place").val().length;
+                    var dest= $("#destination_place").val().length;
+                    console.log(source);
+                    console.log(dest);
+                    if((source > 0)&&(dest > 0))
+                    {
+                        console.log(true);
+                        $("#search_bus").prop("disabled", false); 
+                    }else{
+                        console.log(false);
+                        $("#search_bus").prop("disabled", true); 
+                    }                    
+                });
             });
+            
             $('#optLayout').hide();
             $('#optLayout').css("display","none");
 

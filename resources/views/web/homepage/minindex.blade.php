@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-8 col-md-3 col-lg-3 col-sm-10 col-xs-10 mx-auto ">
-            <button class="btn   btn-sm btn-danger" style="width:100%">Search Bus</button>
+            <button class="btn btn-sm btn-danger" style="width:100%" id="minisearch_bus">Search Bus</button>
         </div>
     </form>
     <div class="row mt-3">

@@ -37,13 +37,15 @@
 
             e(".basic-datepicker").flatpickr({
                 //    disable: ["2020-01-10", "2020-01-21", "2020-01-30"],
-                // dateFormat: "Y-m-d"
-                format: 'yyyy-mm-dd',
+                dateFormat: "d-m-Y",
+                // format: 'yyyy-mm-dd',
                 autoclose: true,
-                minDate: new Date()
+                minDate: new Date(),
+                defaultDate: new Date()
             }),
             e(".return-datepicker").flatpickr({
-                format: 'yyyy-mm-dd',
+                dateFormat: "d-m-Y",
+                // format: 'yyyy-mm-dd',
                 autoclose: true,
                 minDate: new Date()
             }),
