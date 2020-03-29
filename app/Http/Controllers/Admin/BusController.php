@@ -94,7 +94,7 @@ class BusController extends Controller
         $newbus['total_fare']=$request->total_fare;
         $newbus['created_by']="admin";
         $newbus['created_id']=Auth::guard('admin')->user()->id;
-       return  $Bus=Bus::create($newbus);
+         $Bus=Bus::create($newbus);
 
         $BusToRoute=Array();
 
