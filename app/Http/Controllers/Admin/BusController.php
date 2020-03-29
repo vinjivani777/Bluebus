@@ -185,9 +185,24 @@ class BusController extends Controller
         $newbus->max_seats= $request->max_seats;
         // $newbus->status= "0";
         $newbus->vendor_id= $request->vendor;
-
         $newbus->save();
+        try {
+        $deleteroute=Bustoroute::whereBus_id($id)->delete();
+        // $deleteroute->delete();
+        }
+        catch(FatalThrowableError $exception) {
+            $exception="";
+        }
+        $BusToRoute=Array();
 
+        foreach ($request->route as $val) {
+
+            $BusToRoute['bus_id']=$id;
+            $BusToRoute['route_id']=$val;
+
+            $BTR=Bustoroute::create($BusToRoute);
+
+        }
         return redirect()->route('bus-detail');
 
     }
@@ -202,7 +217,8 @@ class BusController extends Controller
     {
         $newbus =  Bus::findorfail($request->id);
         $newbus->delete();
-
+        $deleteroute=Bustoroute::whereBus_id($request->id)->delete();
+        $deleteroute->delete();
         if($newbus){
             return "success";
         }else{

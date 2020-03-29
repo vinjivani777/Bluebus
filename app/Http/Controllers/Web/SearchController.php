@@ -10,6 +10,7 @@ use App\Model\Bustoroute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+// use Exception;
 
 class SearchController extends Controller
 {
@@ -42,24 +43,42 @@ class SearchController extends Controller
         $source=$request->source_place;
         $dest=$request->destination_place;
         $jdate=$request->journey_date;
-         Bus::select('Dates')->first();
+        //  Bus::select('Dates')->first();
         $route_id=Route::select('id')->where(['status'=>'1','source_name'=>$source,'destination_name'=>$dest])->first();
+        if($route_id==""){
+            $params=array();
+            $params['result']="NoBus";
+            $params['total_bus']=0;
+            $params['source']=$source;
+            $params['dest']=$dest;
+            // return $params;
+            return view('web.search.search',$params);
+        }else{
+
         // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
-        $Total_route_id=DB::table('bustoroutes')
-                        ->select('bus_id', DB::raw('count(*) as total'))
-                        ->groupBy('bus_id')->whereRoute_id($route_id->id)
-                        ->pluck('bus_id')->all();
-
-
-        $Total_bus=Bus::whereIn('id',$Total_route_id)->get();
-        $aminaties=Amenitie::whereStatus(1)->get();
-
-
-        $params=array();
-        $params['source']=$source;
-        $params['dest']=$dest;
-        $params['aminaties']=$aminaties;
-        $params['total_bus']=$Total_bus;
-        return view('web.search.search',$params);
+            $Total_route_id=DB::table('bustoroutes')
+                                ->select('bus_id', DB::raw('count(*) as total'))
+                                ->groupBy('bus_id')->whereRoute_id($route_id->id)
+                                ->pluck('bus_id')->all();
+            $Total_bus=Bus::with('Bus_Type')->whereIn('id',$Total_route_id)->get();
+            // $data=array();
+            // return $Total_bus[1]->amenities_id;
+            foreach($Total_bus as $bus)
+            {
+                return $amenities[]=explode(",",$bus->amenities_id);
+                foreach($amenities as $amenitie)
+                {
+                    $path[$bus->id]=(Amenitie::whereId($amenitie)->select('image_path')->first());
+                }
+            }
+            return $path;
+            $params=array();
+            $params['result']="BusAreHere";
+            $params['source']=$source;
+            $params['dest']=$dest;
+            $params['aminaties']=$path;
+            $params['total_bus']=$Total_bus;
+            return view('web.search.search',$params);
+        }
     }
 }
