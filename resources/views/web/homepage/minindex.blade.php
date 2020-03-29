@@ -3,7 +3,7 @@
         @csrf
         <div class="card p-2" style="position:relative;box-shadow: 0 0 4px 0 rgba(0,0,0,.30)">
             {{-- <label for="">From</label>  --}}
-            <textarea class="form-control pb-0 search_input source_place" name="source_place" autocomplete="off" id="minisource_place" cols="1" rows="1" placeholder="From"></textarea>
+            <textarea class="form-control pb-0 search_input source_place" style="border-style:solid;border-width: 0px 0px 0px 0px;" name="source_place" autocomplete="off" id="minisource_place" cols="1" rows="1" placeholder="From"></textarea>
             <div class="row">
                 <div class="col-10 col-sm-10 col-md-10 col-lg-11">
                     <hr class=" mx-auto" style="border: 0.5px solid #ddd;">
@@ -13,13 +13,13 @@
                 </div>
             </div>
             {{-- <label for="" class="mt-0 pt-0">To</label> --}}
-            <textarea class="form-control pb-0 search_input destination_place" name="destination_place" autocomplete="off" id="minidestination_place" cols="1" rows="1" placeholder="To"></textarea>
+            <textarea class="form-control pb-0 search_input destination_place" style="border-style:solid;border-width: 0px 0px 0px 0px;" name="destination_place" autocomplete="off" id="minidestination_place" cols="1" rows="1" placeholder="To"></textarea>
         </div>
 
         <div class="card p-2 " style="box-shadow: 0 0 5px 0 rgba(0,0,0,.30)">
             {{-- <label for="">Journey Date</label> --}}
             {{-- <input type="text" class="form-control mb-2 search_input basic-datepicker text-center" name="onward"  id="journey_date" placeholder="Onward Date"> --}}
-            <input type="text" class="form-control mb-2 search_input basic-datepicker" name="journey_date" id="minijourney_date" placeholder="Journey Date">
+            <input type="text" class="form-control mb-2 search_input basic-datepicker" style="border-style:solid;border-width: 0px 0px 0px 0px;" name="journey_date" id="minijourney_date" placeholder="Journey Date">
         </div>
 
         <div class="col-8 col-md-3 col-lg-3 col-sm-10 col-xs-10 mx-auto ">

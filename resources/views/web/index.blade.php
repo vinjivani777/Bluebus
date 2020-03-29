@@ -22,9 +22,35 @@
 
         <style>
 
-            #ui-id-1{
-                height:200px;
-                overflow: auto;
+            ul.ui-menu{
+                position: absolute;
+                z-index: 10;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                font-size: 13px;
+                background: #fff;
+                border: 1px solid #aaa;
+                overflow-x: hidden;
+                overflow-y: auto;
+                max-height: 230px;
+                font-size: 14px;
+                color: #666;
+                line-height: 1;
+                color: #333;
+                width: 225px;
+                margin-left: -1px;
+            }
+
+            ul.ui-menu li.selected, ul.ui-menu li:hover {
+                background: #dcdcdc;
+            }
+
+            .ui-menu .ui-menu-item-wrapper {
+                padding: 13px 26px 13px 16px;
+                cursor: pointer;
+                text-align: left;
+                font-weight: 400;
             }
 
             .desc-op-new {
@@ -60,7 +86,7 @@
                 border-radius:0px;
             }
             .input-icons i {
-            position: absolute;
+                position: absolute;
             }
 
             .input-icons {
@@ -73,13 +99,35 @@
                 min-width: 50px;
                 text-align: center;
             }
-            .form-control{
-                border-style:solid;
-                border-width: 0px 0px 0px 0px;
-            }
             .return{
                 transform:rotate(180deg);
             }
+
+            .navbar-active{
+                border-bottom:2px solid white;
+            }
+            label.db {
+                color: #4a4a4a;
+                position: absolute;
+                bottom: 0;
+                left: 16%;
+                font-size: 12px;
+                top: 25%;
+                height: 25px;
+                transition: all .3s ease;
+                letter-spacing: 1px;
+                font-weight: 400;
+                letter-spacing: 0!important;
+                line-height: 15px;
+            }
+            .move-up {
+                top: 5%!important;
+                /* bottom: 2%!important; */
+                font-size: 10px!important;
+                color: #9b9b9b!important;
+                font-weight: 100!important;
+            }
+
         </style>
 
 @endsection
@@ -114,14 +162,14 @@
 
             $(document).ready(function(){
                  //mini screen operations
-                 $("#minisearch_bus").prop("disabled", true); 
+                 $("#minisearch_bus").prop("disabled", true);
                 $('#bus_img').click(function(){
                     var source= $("#minisource_place").val();
                     var dest= $("#minidestination_place").val();
                     $("#minisource_place").val(dest);
                     $("#minidestination_place").val(source);
                 });
-                $("#minisource_place").on("keyup",function(){ 
+                $("#minisource_place").on("keyup",function(){
                     var source= $("#minisource_place").val().length;
                     var dest= $("#minidestination_place").val().length;
                     console.log(source);
@@ -129,14 +177,14 @@
                     if((source > 0)&&(dest > 0))
                     {
                         console.log(true);
-                        $("#minisearch_bus").prop("disabled", false); 
+                        $("#minisearch_bus").prop("disabled", false);
                     }else{
                         console.log(false);
-                        $("#minisearch_bus").prop("disabled", true); 
-                    }                   
+                        $("#minisearch_bus").prop("disabled", true);
+                    }
                 });
 
-                $("#minidestination_place").on("keyup",function(){ 
+                $("#minidestination_place").on("keyup",function(){
                     var source= $("#minisource_place").val().length;
                     var dest= $("#minidestination_place").val().length;
                     console.log(source);
@@ -144,17 +192,17 @@
                     if((source > 0)&&(dest > 0))
                     {
                         console.log(true);
-                        $("#minisearch_bus").prop("disabled", false); 
+                        $("#minisearch_bus").prop("disabled", false);
                     }else{
                         console.log(false);
-                        $("#minisearch_bus").prop("disabled", true); 
-                    }                    
+                        $("#minisearch_bus").prop("disabled", true);
+                    }
                 });
 
                 //max screen events
-                $("#search_bus").prop("disabled", true); 
+                $("#search_bus").prop("disabled", true);
 
-                $("#source_place").on("keyup",function(){ 
+                $("#source_place").on("keyup",function(){
                     var source= $("#source_place").val().length;
                     var dest= $("#destination_place").val().length;
                     console.log(source);
@@ -162,14 +210,14 @@
                     if((source > 0)&&(dest > 0))
                     {
                         console.log(true);
-                        $("#search_bus").prop("disabled", false); 
+                        $("#search_bus").prop("disabled", false);
                     }else{
                         console.log(false);
-                        $("#search_bus").prop("disabled", true); 
-                    }                   
+                        $("#search_bus").prop("disabled", true);
+                    }
                 });
 
-                $("#destination_place").on("keyup",function(){ 
+                $("#destination_place").on("keyup",function(){
                     var source= $("#source_place").val().length;
                     var dest= $("#destination_place").val().length;
                     console.log(source);
@@ -177,14 +225,14 @@
                     if((source > 0)&&(dest > 0))
                     {
                         console.log(true);
-                        $("#search_bus").prop("disabled", false); 
+                        $("#search_bus").prop("disabled", false);
                     }else{
                         console.log(false);
-                        $("#search_bus").prop("disabled", true); 
-                    }                    
+                        $("#search_bus").prop("disabled", true);
+                    }
                 });
             });
-            
+
             $('#optLayout').hide();
             $('#optLayout').css("display","none");
 
@@ -297,7 +345,7 @@
                             dataType: "json",
                             success: function(data){
                             var resp = $.map(data,function(obj){
-                                    //console.log(obj.board_point);
+                                    // console.log(obj.city_name);
                                     return obj.city_name;
                             });
 
@@ -337,6 +385,26 @@
 
         </script>
 
+
+<script>
+
+$('.source_place').on('focusin',
+   function(){
+    $(this).siblings('label.db').addClass('move-up');
+   }).on('focusout', function(){
+    $(this).siblings('label.db').removeClass('move-up');
+  });
+
+  $('.destination_place').on('focusin',
+   function(){
+    $(this).siblings('label.db').addClass('move-up');
+   }).on('focusout', function(){
+    $(this).siblings('label.db').removeClass('move-up');
+  });
+
+
+// $('label.db').removeClass('move-up');
+</script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

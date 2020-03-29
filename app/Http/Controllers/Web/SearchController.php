@@ -18,31 +18,10 @@ class SearchController extends Controller
 
         $result = City::select("city_name")
                 ->where("city_name","LIKE","%{$request->input('term')}%")
+                ->take(100)
                 ->get();
 
         return response()->json($result);
-
-    //      $search=$request->get('Source');
-
-
-    //    $result = Route::where('board_point', 'LIKE', '%'. $search. '%')->get();
-
-    //      if($result == '')
-    //      {
-    //         $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
-    //         $output .= '<li><a href="#"> So Sorry !</a></li>';
-    //         $output .= '</ul>';
-    //         return  $output;
-    //      }else{
-    //         $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
-    //         foreach($result as $row)
-    //         {
-    //             $output .= '<li class="source_select"><a>'.$row->board_point.'</a></li>';
-    //         }
-    //         $output .= '</ul>';
-    //         return  $output;
-    //      }
-
 
     }
 
@@ -51,47 +30,25 @@ class SearchController extends Controller
 
         $result = City::select("city_name")
                 ->where("city_name","LIKE","%{$request->input('term')}%")
+                ->take(100)
                 ->get();
 
         return response()->json($result);
-
-    //      $search=$request->get('Destnation');
-
-
-    //    $result = Route::where('drop_point', 'LIKE', '%'. $search. '%')->get();
-
-    //      if($result == '')
-    //      {
-    //         $output = '<ul class="dropdown-menu" style="display:none;position:absolute;z-index:10;overflow:auto;height:150px;">';
-    //         $output .= '<li><a href="#"> So Sorry !</a></li>';
-    //         $output .= '</ul>';
-    //         return  $output;
-    //      }else{
-    //         $output = '<ul class="dropdown-menu" style="display:block;position:absolute;z-index:10;overflow:auto;height:150px;">';
-    //         foreach($result as $row)
-    //         {
-    //             $output .= '<li class="dest_select"><a>'.$row->drop_point.'</a></li>';
-    //         }
-    //         $output .= '</ul>';
-    //         return  $output;
-    //      }
-
 
     }
 
     public function search(Request $request)
     {
-        return $request;
         $source=$request->source_place;
         $dest=$request->destination_place;
         $jdate=$request->journey_date;
-        return Bus::select('Dates')->first();
+         Bus::select('Dates')->first();
         $route_id=Route::select('id')->where(['status'=>'1','source_name'=>$source,'destination_name'=>$dest])->first();
         // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
         $Total_route_id=DB::table('bustoroutes')
-        ->select('bus_id', DB::raw('count(*) as total'))
-        ->groupBy('bus_id')->whereRoute_id($route_id->id)
-        ->pluck('bus_id')->all();
+                        ->select('bus_id', DB::raw('count(*) as total'))
+                        ->groupBy('bus_id')->whereRoute_id($route_id->id)
+                        ->pluck('bus_id')->all();
 
 
         $Total_bus=Bus::whereIn('id',$Total_route_id)->get();

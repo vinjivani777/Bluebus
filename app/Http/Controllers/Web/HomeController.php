@@ -21,7 +21,7 @@ class HomeController extends Controller
         $Menus=Menu::whereStatus(1)->get();
         $nav=Array();
 
-        $nav['active']="active";
+        $nav['bookingNav']="navbar-active";
         $nav['promoCode']=$promoCode;
         $nav['promoFirst']=$promoFirst;
         $nav['promoCount']=count($promoCode);

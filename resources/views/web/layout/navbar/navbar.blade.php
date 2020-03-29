@@ -5,10 +5,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-            <a class="nav-link text-white" href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white {{ @$bookingNav }} "  href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white" href="{{ route('offer') }}">Offers</a>
+            <a class="nav-link text-white {{ @$active }} " href="{{ route('offer') }}">Offers</a>
             </li>
 
         </ul>
@@ -20,7 +20,7 @@
                 </li>
                 <li class="dropdown notification-list show">
                     <a class="nav-link dropdown-toggle nav-user mr-0 mt-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <span class="text-white">
+                        <span class="text-white" >
                             Manage Booking
                         </span>
                         <span class="pro-user-name ml-1">
@@ -107,7 +107,7 @@
     </div>
 </nav>
 
-<nav class="navbar navbar-expand-xl sticky-top  navbar-light  mini-nav" style="background-color:#d84f57">
+{{-- <nav class="navbar navbar-expand-xl sticky-top  navbar-light  mini-nav" style="background-color:#d84f57">
     <span style="font-size:30px;cursor:pointer" class="openbtn text-white" onclick="openNav()">&#9776;</span>
     <span  style="font-size:30px;cursor:pointer" class="closebtn text-white"  onclick="closeNav()">&times;</span>
 
@@ -119,4 +119,4 @@
    @foreach ($Menus as $menu)
         <a href="@if($menu->link == "#") {{ "#" }} @else {{ route(''. $menu->link) }} @endif" >{{ $menu->name }}</a>
    @endforeach
-</div>
+</div> --}}

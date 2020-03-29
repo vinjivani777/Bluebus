@@ -18,11 +18,14 @@
                         <div class="form-row align-items-center ">
                             <div class="col-3 mr-0 pr-0 input-icons">
                                 <i class="far fa-building icon"></i>
-                                <input type="text" class="form-control mb-2 search_input source_place" style="padding-left:16%;" name="source_place"  autocomplete="off" id="source_place" value="" placeholder="Source Place">
+                                <input type="text"  class="form-control mb-2 search_input source_place place" style="padding-left:16%;" name="source_place"  autocomplete="off" id="source_place" value="" >
+                                <label for="src" class="db " style="left:18%">FROM</label>
                             </div>
+
                             <div class="col-3 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="far fa-building icon"></i>
-                                <input type="text" class="form-control mb-2 search_input destination_place" style="padding-left:16%;" name="destination_place"  autocomplete="off" id="destination_place" value="" placeholder="Destination Place">
+                                <input type="text" class="form-control mb-2 search_input destination_place place" style="padding-left:16%;" name="destination_place"  autocomplete="off" id="destination_place" value="" >
+                                <label for="desc" class="db " style="left:18%">To</label>
                             </div>
                             <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="fe-calendar icon"></i>
@@ -30,7 +33,8 @@
                             </div>
                             <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
                                 <i class="fe-calendar icon"></i>
-                                <input type="text" class="form-control mb-2 search_input return-datepicker" style="padding-left:25%;" name="return_date"  id="return_date" placeholder="Return Date(Optional)">
+                                <input type="text" class="form-control mb-2 search_input return-datepicker" style="padding-left:25%;" name="return_date"  id="return_date" placeholder="Return Date">
+                                {{-- <label id="lblOptional" style="color: #F4F9ED; font-size: 12px; font-style:italic; margin-right: 38px;">(Optional)</label> --}}
                             </div>
                             <div class="col-2 ml-0 pl-0">
                                 <button type="submit" class="btn btn-danger mb-2 search_input search_bus_btn" id="search_bus">Search Bus</button>
