@@ -388,8 +388,8 @@ Blue Bus | Search Bus Tickets
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-12">
-                                                                @foreach($path as $icon)
-                                                                <img  style="font-size:17px;font-weight: 300;" src="{{ $icon[$item->id]->image_path }}"/>
+                                                                @foreach($path[$item->id] as $icon)
+                                                                <img  style="font-size:1px;margin-left:2px;height:20px;font-weight:100;" src="{{ $icon['image_path'] }}"/>
                                                                 @endforeach
                                                             </div>
                                                         </div>
@@ -532,8 +532,8 @@ Blue Bus | Search Bus Tickets
 
                 </div>
                 <!-- END wrapper -->
-        @endif
-            {{--  model  --}}
+                @endif
+                {{--  model  --}}
 
             <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-dialog-centered">

@@ -54,30 +54,34 @@ class SearchController extends Controller
             // return $params;
             return view('web.search.search',$params);
         }else{
-
-        // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
+            // $Total_route_id=Bustoroute::select('bus_id')->whereRoute_id($route_id->id)->get();
             $Total_route_id=DB::table('bustoroutes')
                                 ->select('bus_id', DB::raw('count(*) as total'))
                                 ->groupBy('bus_id')->whereRoute_id($route_id->id)
                                 ->pluck('bus_id')->all();
             $Total_bus=Bus::with('Bus_Type')->whereIn('id',$Total_route_id)->get();
             // $data=array();
-            // return $Total_bus[1]->amenities_id;
+            // return $Total_bus[0]['amenities_id'];
             foreach($Total_bus as $bus)
             {
-                return $amenities[]=explode(",",$bus->amenities_id);
-                foreach($amenities as $amenitie)
+                $busid=$bus->id;
+                $amenities[$busid]=explode(",",$bus->amenities_id);
+                foreach($amenities as $amenitie=>$key)
                 {
-                    $path[$bus->id]=(Amenitie::whereId($amenitie)->select('image_path')->first());
+                    // return $amenitie;
+                    $path[$busid]=Amenitie::whereIn('id',$amenities[$busid])->select('image_path')->get()->take(3);
                 }
             }
-            return $path;
+            // return $path[''];
+            $allamenities=Amenitie::get();
             $params=array();
             $params['result']="BusAreHere";
             $params['source']=$source;
             $params['dest']=$dest;
-            $params['aminaties']=$path;
+            $params['path']=$path;
+            $params['aminaties']=$allamenities;
             $params['total_bus']=$Total_bus;
+            // return $params['path']->1->image_path;
             return view('web.search.search',$params);
         }
     }
