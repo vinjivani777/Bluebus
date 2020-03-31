@@ -543,28 +543,34 @@ Blue Bus | Search Bus Tickets
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-5">
-                                        <input type="text" class="form-control m-0" name="source_place" id="source_place" placeholder="Broad Point">
-                                </div>
+                            <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-5">
+                                            <input type="text"  class="form-control m-0 search_input source_place place" name="source_place" placeholder="Broad Point" autocomplete="off" id="source_place" value="" >
+                                            {{-- <input type="text" class="form-control " name="source_place" id="source_place" > --}}
+                                    </div>
 
-                                <div class="col-2 text-center">
-                                    <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
+                                    <div class="col-2 text-center">
+                                        <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
+                                    </div>
+                                    <div class="col-5 ">
+                                        <input type="text" class="form-control m-0 search_input destination_place place" name="destination_place" placeholder="Drop Point" autocomplete="off" id="destination_place" value="" >
+                                        {{-- <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point"> --}}
+                                    </div>
                                 </div>
-                                <div class="col-5 ">
-                                        <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-12">
-                                    <input type="date" class="form-control" name="" id="">
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
-                                </div>
-                            </div>
+                                <div class="row mt-2">
+                                    <div class="col-1 mt-2 mr-2">
+                                        <label>Date</label>
+                                    </div>
+                                    <div class="col-5 mr-3">
+                                            <input type="text" class="form-control  search_input basic-datepicker" name="journey_date"  id="journey_date" placeholder="Onward Date">
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
+                                    </div>
+                                {{-- </div> --}}
+                            </form>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -612,6 +618,21 @@ Blue Bus | Search Bus Tickets
                     var destination =$("#destination_place").val();
                     $("#destination_place").val(source);
                     $("#source_place").val(destination);
+                    // $(this).animate({  transform: 360 deg }, {
+                    // step: function(now,fx) {
+                    //     $(this).css({
+                    //         '-webkit-transform':'rotate('+360+'deg)', 
+                    //         '-moz-transform':'rotate('+360+'deg)',
+                    //         'transform':'rotate('+360+'deg)'
+                    //     });
+                    // }
+                    // });
+                    // $(this).css("transform", "rotate(360deg)");
+                    $(this).rotate({
+                        duration:6000,
+                        angle: 0,
+                        animateTo:100
+                    });
                 });
 
             </script>

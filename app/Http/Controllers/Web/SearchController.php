@@ -40,6 +40,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
+        // return $request;
         $source=$request->source_place;
         $dest=$request->destination_place;
         $jdate=$request->journey_date;

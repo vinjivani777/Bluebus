@@ -172,14 +172,10 @@
                 $("#minisource_place").on("keyup",function(){
                     var source= $("#minisource_place").val().length;
                     var dest= $("#minidestination_place").val().length;
-                    console.log(source);
-                    console.log(dest);
                     if((source > 0)&&(dest > 0))
                     {
-                        console.log(true);
                         $("#minisearch_bus").prop("disabled", false);
                     }else{
-                        console.log(false);
                         $("#minisearch_bus").prop("disabled", true);
                     }
                 });
@@ -187,14 +183,10 @@
                 $("#minidestination_place").on("keyup",function(){
                     var source= $("#minisource_place").val().length;
                     var dest= $("#minidestination_place").val().length;
-                    console.log(source);
-                    console.log(dest);
                     if((source > 0)&&(dest > 0))
                     {
-                        console.log(true);
                         $("#minisearch_bus").prop("disabled", false);
                     }else{
-                        console.log(false);
                         $("#minisearch_bus").prop("disabled", true);
                     }
                 });
@@ -205,14 +197,10 @@
                 $("#source_place").on("keyup",function(){
                     var source= $("#source_place").val().length;
                     var dest= $("#destination_place").val().length;
-                    console.log(source);
-                    console.log(dest);
                     if((source > 0)&&(dest > 0))
                     {
-                        console.log(true);
                         $("#search_bus").prop("disabled", false);
                     }else{
-                        console.log(false);
                         $("#search_bus").prop("disabled", true);
                     }
                 });
@@ -220,14 +208,10 @@
                 $("#destination_place").on("keyup",function(){
                     var source= $("#source_place").val().length;
                     var dest= $("#destination_place").val().length;
-                    console.log(source);
-                    console.log(dest);
                     if((source > 0)&&(dest > 0))
                     {
-                        console.log(true);
                         $("#search_bus").prop("disabled", false);
                     }else{
-                        console.log(false);
                         $("#search_bus").prop("disabled", true);
                     }
                 });
@@ -345,7 +329,6 @@
                             dataType: "json",
                             success: function(data){
                             var resp = $.map(data,function(obj){
-                                    // console.log(obj.city_name);
                                     return obj.city_name;
                             });
 
@@ -371,7 +354,6 @@
                             dataType: "json",
                             success: function(data){
                             var resp = $.map(data,function(obj){
-                                    //console.log(obj.board_point);
                                     return obj.city_name;
                             });
 
