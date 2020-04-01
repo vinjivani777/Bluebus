@@ -71,6 +71,7 @@ class SearchController extends Controller
                 {
                     // return $amenitie;
                     $path[$busid]=Amenitie::whereIn('id',$amenities[$busid])->select('image_path')->get()->take(3);
+                    $allbusamenities[$busid]=Amenitie::whereIn('id',$amenities[$busid])->select('image_path')->get();
                 }
             }
             // return $path[''];
@@ -81,6 +82,7 @@ class SearchController extends Controller
             $params['dest']=$dest;
             $params['path']=$path;
             $params['aminaties']=$allamenities;
+            $params['allbusamenities']=$allbusamenities;
             $params['total_bus']=$Total_bus;
             // return $params['path']->1->image_path;
             return view('web.search.search',$params);

@@ -16,10 +16,10 @@ Blue Bus | Search Bus Tickets
     <link href="{{asset('web/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('web/libs/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
 
-    <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" /> --}}
 
     <!-- App css -->
     <link href="{{ asset('web/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -85,10 +85,10 @@ Blue Bus | Search Bus Tickets
 
                     <!-- Topbar Start -->
                    <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 mb-0">
                             <div class="container-fluid">
                                 <section class="section">
-                                    <div class="row mt-2">
+                                    <div class="row mt-2 ">
                                         <div class="col-6">
                                             <div class="ml-3 " style="font-size:18px;">
                                                 <span class="text-dark">{{ $source }} </span>
@@ -103,11 +103,11 @@ Blue Bus | Search Bus Tickets
                                             <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row"> --}}
                                         <div class="col-12">
                                             <hr class="" style="border:0.3px solid #ddd;">
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </section>
                             </div>
                         </div>
@@ -141,6 +141,7 @@ Blue Bus | Search Bus Tickets
                                                 <span class="text-dark"> {{ $dest }} </span>
                                                 <span class="text-dark ml-3">
                                                     <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
+                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".amenities-example-modal-center">Amenities</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -494,8 +495,8 @@ Blue Bus | Search Bus Tickets
                                                 <tr class="amenities mb-2" style="background-color:#f8f9fa;display:none" >
                                                     <td colspan="7" class="amenities_content">
                                                         <div class="row">
-                                                            <div class="col-12 mt-1 mb-1 ml-3 data">
-                                                            @foreach ($aminaties as $amt)
+                                                            <div class="col-12 mt-1 mb-1 ml-3 data ">
+                                                             @foreach ($aminaties as $amt)
                                                                     <span style="font-size:14px;font-weight: 100;">  @if(($amt->id) == ($item->amenities_id)) {{ $amt->description }} @endif</span>
                                                                 @endforeach
                                                             </div>
@@ -576,6 +577,47 @@ Blue Bus | Search Bus Tickets
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
+            <div class="modal fade amenities-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-5">
+                                            <input type="text"  class="form-control m-0 search_input source_place place" name="source_place" placeholder="Broad Point" autocomplete="off" id="source_place" value="" >
+                                            {{-- <input type="text" class="form-control " name="source_place" id="source_place" > --}}
+                                    </div>
+
+                                    <div class="col-2 text-center">
+                                        <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
+                                    </div>
+                                    <div class="col-5 ">
+                                        <input type="text" class="form-control m-0 search_input destination_place place" name="destination_place" placeholder="Drop Point" autocomplete="off" id="destination_place" value="" >
+                                        {{-- <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point"> --}}
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-1 mt-2 mr-2">
+                                        <label>Date</label>
+                                    </div>
+                                    <div class="col-5 mr-3">
+                                            <input type="text" class="form-control  search_input basic-datepicker" name="journey_date"  id="journey_date" placeholder="Onward Date">
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
+                                    </div>
+                                {{-- </div> --}}
+                            </form>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
 @endsection
 
 @section('other-page-js')
@@ -595,10 +637,10 @@ Blue Bus | Search Bus Tickets
             <!-- Init js-->
             <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
 
-            <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script>
-            <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script>
+            {{-- <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script> --}}
+            {{-- <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script> --}}
             <!-- Datatables init -->
-            <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script>
+            {{-- <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script> --}}
 
 
 
@@ -621,7 +663,7 @@ Blue Bus | Search Bus Tickets
                     // $(this).animate({  transform: 360 deg }, {
                     // step: function(now,fx) {
                     //     $(this).css({
-                    //         '-webkit-transform':'rotate('+360+'deg)', 
+                    //         '-webkit-transform':'rotate('+360+'deg)',
                     //         '-moz-transform':'rotate('+360+'deg)',
                     //         'transform':'rotate('+360+'deg)'
                     //     });
