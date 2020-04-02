@@ -103,11 +103,11 @@ Blue Bus | Search Bus Tickets
                                             <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
                                         </div>
                                     </div>
-                                    {{-- <div class="row"> --}}
-                                        <div class="col-12">
-                                            <hr class="" style="border:0.3px solid #ddd;">
+                                    <div class="row">
+                                        {{-- <div class="col-12"> --}}
+                                            <hr class="" style="border:0.9px solid #ddd;">
                                         </div>
-                                    {{-- </div> --}}
+                                    </div>
                                 </section>
                             </div>
                         </div>
@@ -128,14 +128,14 @@ Blue Bus | Search Bus Tickets
                 <div id="wrapper">
 
                     <!-- Topbar Start -->
-                <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-10">
+                <div class="row" style="margin-left: -41px;">
+                        <div class="col-2 col-md-2"></div>
+                        <div class="col-10 col-md-10">
                             <div class="container-fluid">
                                 <section class="section">
                                     <div class="row mt-2">
                                         <div class="col-6">
-                                            <div class="ml-3 " style="font-size:18px;">
+                                            <div class="ml-0" style="font-size:18px;">
                                                 <span class="text-dark">{{ $source }} </span>
                                                 <i class="fe-arrow-right "></i>
                                                 <span class="text-dark"> {{ $dest }} </span>
@@ -150,8 +150,8 @@ Blue Bus | Search Bus Tickets
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12">
-                                            <hr class="" style="border:0.5px solid #ddd;">
+                                        <div class="col-12 col-md-12">
+                                            <hr class="" style="border:0.9px solid #ddd;">
                                         </div>
                                     </div>
                                 </section>
@@ -540,7 +540,7 @@ Blue Bus | Search Bus Tickets
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
-                            <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
+                            <h4 class="modal-title text-white mt-2" id="myCenterModalLabel">Search Bus</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
