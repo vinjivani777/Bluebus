@@ -140,8 +140,7 @@ Blue Bus | Search Bus Tickets
                                                 <i class="fe-arrow-right "></i>
                                                 <span class="text-dark"> {{ $dest }} </span>
                                                 <span class="text-dark ml-3">
-                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
-                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".amenities-example-modal-center">Amenities</button>
+                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target="#bs-example-modal-center">Modify</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -388,7 +387,7 @@ Blue Bus | Search Bus Tickets
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
-                                                            <div class="col-12">
+                                                            <div class="col-6" title="@foreach($allbusamenities[$item->id] as $icon)<img  style='font-size:1px;margin-left:15px;margin-top:15px;height:40px;font-weight:100;'' src='{{ $icon['image_path'] }}'/>@endforeach" data-plugin="tippy" data-tippy-theme="light"  data-tippy-arrow="true">
                                                                 @foreach($path[$item->id] as $icon)
                                                                 <img  style="font-size:1px;margin-left:2px;height:20px;font-weight:100;" src="{{ $icon['image_path'] }}"/>
                                                                 @endforeach
@@ -536,7 +535,7 @@ Blue Bus | Search Bus Tickets
                 @endif
                 {{--  model  --}}
 
-            <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal hide fade " id="bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
@@ -577,46 +576,22 @@ Blue Bus | Search Bus Tickets
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
-            <div class="modal fade amenities-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-5">
-                                            <input type="text"  class="form-control m-0 search_input source_place place" name="source_place" placeholder="Broad Point" autocomplete="off" id="source_place" value="" >
-                                            {{-- <input type="text" class="form-control " name="source_place" id="source_place" > --}}
-                                    </div>
+            <div class="modal hide fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myCenterModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
 
-                                    <div class="col-2 text-center">
-                                        <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
-                                    </div>
-                                    <div class="col-5 ">
-                                        <input type="text" class="form-control m-0 search_input destination_place place" name="destination_place" placeholder="Drop Point" autocomplete="off" id="destination_place" value="" >
-                                        {{-- <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point"> --}}
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-1 mt-2 mr-2">
-                                        <label>Date</label>
-                                    </div>
-                                    <div class="col-5 mr-3">
-                                            <input type="text" class="form-control  search_input basic-datepicker" name="journey_date"  id="journey_date" placeholder="Onward Date">
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
-                                    </div>
-                                {{-- </div> --}}
-                            </form>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 @endsection
 
@@ -636,7 +611,7 @@ Blue Bus | Search Bus Tickets
             <script src="{{ asset('web/libs/daterangepicker/daterangepicker.js') }}"></script>
             <!-- Init js-->
             <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
-
+            <script src="{{ asset('web/libs/tippy-js/tippy.all.min.js') }}"></script>
             {{-- <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script> --}}
             {{-- <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script> --}}
             <!-- Datatables init -->
