@@ -389,7 +389,7 @@ Blue Bus | Search Bus Tickets
                                                         <div class="row mt-2">
                                                             <div class="col-6" title="@foreach($allbusamenities[$item->id] as $icon)<img  style='font-size:1px;margin-left:15px;margin-top:15px;height:40px;font-weight:100;'' src='{{ $icon['image_path'] }}'/>@endforeach" data-plugin="tippy" data-tippy-theme="light"  data-tippy-arrow="true">
                                                                 @foreach($path[$item->id] as $icon)
-                                                                <img  style="font-size:1px;margin-left:2px;height:20px;font-weight:100;" src="{{ $icon['image_path'] }}"/>
+                                                                <img  style="font-size:1px;margin-left:5px;height:20px;font-weight:100;" src="{{ $icon['image_path'] }}"/>
                                                                 @endforeach
                                                             </div>
                                                         </div>
@@ -539,7 +539,7 @@ Blue Bus | Search Bus Tickets
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-danger">
-                            <h4 class="modal-title text-white mt-2" id="myCenterModalLabel">Search Bus</h4>
+                            <h4 class="modal-title text-white mt-0" id="myCenterModalLabel">Search Bus</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
                         <div class="modal-body">
@@ -559,14 +559,14 @@ Blue Bus | Search Bus Tickets
                                         {{-- <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point"> --}}
                                     </div>
                                 </div>
-                                <div class="row mt-2">
-                                    <div class="col-1 mt-2 mr-2">
+                                <div class="row mt-3">
+                                    <div class="col-1 mt-1 mr-2 mb-1">
                                         <label>Date</label>
                                     </div>
                                     <div class="col-5 mr-3">
                                             <input type="text" class="form-control  search_input basic-datepicker" name="journey_date"  id="journey_date" placeholder="Onward Date">
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-4 mt-0.5">
                                         <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
                                     </div>
                                 {{-- </div> --}}
@@ -575,23 +575,6 @@ Blue Bus | Search Bus Tickets
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-
-            <div class="modal hide fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h4 class="modal-title" id="myCenterModalLabel"></h4>
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
 @endsection
 
