@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2020 at 05:18 PM
+-- Generation Time: Apr 04, 2020 at 05:23 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -187,9 +187,89 @@ CREATE TABLE `bb_board_points` (
 
 INSERT INTO `bb_board_points` (`id`, `bus_id`, `route_id`, `board_point`, `board_point_position`, `pickup_time`, `address`, `landmark`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Jakatnaka,Surat', 2, '21:30:00', 'Talu Education,Jakatnaka,Surat-10', 'SimadaNaka', 1, '2020-03-17 00:30:11', '2020-03-19 03:20:56'),
-(2, 2, 4, 'Surat Colony', 1, '19:30:00', 'Adajan', 'Sardar Chowk', 1, '2020-03-19 00:58:21', '2020-03-19 02:28:25'),
+(2, 1, 1, 'Shyamdham Mandir', 4, '21:45:00', 'Shyamdham Chowk,NH-8,Surat', 'Shyam Dham Chowk', 1, '2020-03-19 00:58:21', '2020-04-04 03:47:58'),
 (3, 6, 1, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02'),
-(5, 1, 1, 'tytyty', 3, '21:35:00', 'tytyty', 'tytyty', 1, '2020-03-22 07:01:41', '2020-03-22 07:01:41');
+(5, 1, 1, 'Navjivan Hotel', 3, '21:35:00', 'Near SBI bank,Jakatnaka,Surat', 'Navjivan Hotel', 1, '2020-03-22 07:01:41', '2020-04-04 03:43:32'),
+(7, 1, 1, 'Valak Patiya', 5, '22:05:00', 'Valak Patiya,Surat-Kamrej Road,Surat', 'Valak Park', 1, '2020-04-04 03:56:09', '2020-04-04 03:56:09'),
+(8, 1, 2, 'Ankleshvar Textile Mill', 1, '20:30:00', 'Ankleshvar East Zone,Textile Park,Ankleshvar', 'Central Textile Mill,Ankleshvar', 1, '2020-04-04 03:58:15', '2020-04-04 03:58:15'),
+(9, 1, 2, 'Mercantile Park', 2, '21:05:00', 'Govind Park,Ankleshvar Central Zone,Ankleshvar', 'Near Mercantile Mania', 1, '2020-04-04 04:00:18', '2020-04-04 04:00:18'),
+(10, 1, 2, 'Bharat Nagar', 3, '21:20:00', 'Bharat Nagar,Kolin,Ankleshvar', 'Near Bhagat Chowk', 1, '2020-04-04 04:01:39', '2020-04-04 04:01:39'),
+(11, 1, 2, 'Ankur Bridge', 4, '21:30:00', 'Antarctic Building,Near Ankur Bridge,Ankleshvar', 'Antarctic Welfare Building', 1, '2020-04-04 04:04:07', '2020-04-04 04:04:07'),
+(12, 1, 3, 'Dholiya Chowkdi', 1, '21:50:00', 'NH-8,Bharuch', 'Near National Highway', 1, '2020-04-04 04:07:11', '2020-04-04 04:07:11'),
+(13, 1, 3, 'Anand Bahar', 2, '22:15:00', 'Bahut Enterprise,Anand Bahar,Bharuch', 'Near Public Park(Old)', 1, '2020-04-04 04:09:14', '2020-04-04 04:09:14'),
+(14, 3, 4, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(15, 3, 4, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(16, 3, 4, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(17, 3, 4, 'Pasodra', 4, '20:30:00', 'Surat-Kamrej Road,Kamrej,Surat', 'Pasodra Patiya', 1, '2020-04-04 04:15:10', '2020-04-04 04:15:10'),
+(18, 3, 6, 'Mercantile Park', 1, '21:30:00', 'Govind Park,Ankleshvar Central Zone,Ankleshvar', 'Near Mercantile Mania', 1, '2020-04-04 04:15:52', '2020-04-04 04:16:35'),
+(19, 3, 6, 'Ankleshvar Textile Mill', 2, '21:50:00', 'Ankleshvar East Zone,Textile Park,Ankleshvar', 'Central Textile Mill,Ankleshvar', 1, '2020-04-04 04:18:37', '2020-04-04 04:18:37'),
+(20, 3, 6, 'Ankur Bridge', 3, '22:30:00', 'Antarctic Building,Near Ankur Bridge,Ankleshvar', 'Antarctic Welfare Building', 1, '2020-04-04 04:19:33', '2020-04-04 04:19:33'),
+(21, 6, 1, 'Bapa Sitaram Chowk', 3, '20:05:00', 'Near BRTS Road,Simada,Surat', 'Bapa Sitaram Society', 1, '2020-04-04 04:21:21', '2020-04-04 04:21:21'),
+(22, 6, 1, 'Belgium Square', 4, '21:30:00', 'BakanPura Road,NH-8,Surat', 'Near BakanPura', 1, '2020-04-04 04:35:47', '2020-04-04 04:35:47'),
+(23, 6, 1, 'Pasodra', 5, '21:45:00', 'Surat-Kamrej Road,Kamrej,Surat', 'Pasodra Patiya', 1, '2020-04-04 04:37:00', '2020-04-04 04:37:00'),
+(24, 6, 3, 'Angad Chowk', 1, '22:00:00', 'G-12,Vulkan Nagar,Anand Chowk,Bharuch', 'Near Bahadur Park', 1, '2020-04-04 04:40:12', '2020-04-04 04:40:12'),
+(25, 6, 3, 'Bharuch Railway Station', 2, '22:30:00', 'BhaiKhalla Shop,Railway Station,Bharuch', 'Near Central Railway Station', 1, '2020-04-04 04:41:34', '2020-04-04 04:41:34'),
+(32, 10, 3, 'Millenium Mill', 1, '23:30:00', 'Near Mark Antique Shop,Millenium Park.Bharuch', 'Millenium Park', 1, '2020-04-04 04:59:35', '2020-04-04 04:59:35'),
+(33, 10, 3, 'Yukta Nagar', 2, '23:40:00', 'Yukta Nagar,ValamTala,Bharuch', 'Near ValamTala', 1, '2020-04-04 05:08:52', '2020-04-04 05:08:52'),
+(34, 10, 3, 'Anand Bahar', 2, '23:45:00', 'Bahut Enterprise,Anand Bahar,Bharuch', 'Near Public Park(Old)', 1, '2020-04-04 04:09:14', '2020-04-04 04:09:14'),
+(35, 10, 4, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(36, 10, 4, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(37, 10, 4, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(38, 10, 4, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02'),
+(39, 3, 6, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(40, 3, 6, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(41, 3, 6, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(42, 3, 6, 'Pasodra', 4, '20:30:00', 'Surat-Kamrej Road,Kamrej,Surat', 'Pasodra Patiya', 1, '2020-04-04 04:15:10', '2020-04-04 04:15:10'),
+(43, 3, 6, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02'),
+(44, 6, 3, 'Dholiya Chowkdi', 1, '21:50:00', 'NH-8,Bharuch', 'Near National Highway', 1, '2020-04-04 04:07:11', '2020-04-04 04:07:11'),
+(45, 6, 3, 'Anand Bahar', 2, '22:15:00', 'Bahut Enterprise,Anand Bahar,Bharuch', 'Near Public Park(Old)', 1, '2020-04-04 04:09:14', '2020-04-04 04:09:14'),
+(46, 7, 1, 'Jakatnaka,Surat', 2, '21:30:00', 'Talu Education,Jakatnaka,Surat-10', 'SimadaNaka', 1, '2020-03-17 00:30:11', '2020-03-19 03:20:56'),
+(47, 7, 1, 'Shyamdham Mandir', 4, '21:45:00', 'Shyamdham Chowk,NH-8,Surat', 'Shyam Dham Chowk', 1, '2020-03-19 00:58:21', '2020-04-04 03:47:58'),
+(48, 7, 1, 'Navjivan Hotel', 3, '21:35:00', 'Near SBI bank,Jakatnaka,Surat', 'Navjivan Hotel', 1, '2020-03-22 07:01:41', '2020-04-04 03:43:32'),
+(49, 7, 1, 'Valak Patiya', 5, '22:05:00', 'Valak Patiya,Surat-Kamrej Road,Surat', 'Valak Park', 1, '2020-04-04 03:56:09', '2020-04-04 03:56:09'),
+(50, 7, 2, 'Ankleshvar Textile Mill', 1, '20:30:00', 'Ankleshvar East Zone,Textile Park,Ankleshvar', 'Central Textile Mill,Ankleshvar', 1, '2020-04-04 03:58:15', '2020-04-04 03:58:15'),
+(51, 7, 2, 'Mercantile Park', 2, '21:05:00', 'Govind Park,Ankleshvar Central Zone,Ankleshvar', 'Near Mercantile Mania', 1, '2020-04-04 04:00:18', '2020-04-04 04:00:18'),
+(52, 7, 2, 'Bharat Nagar', 3, '21:20:00', 'Bharat Nagar,Kolin,Ankleshvar', 'Near Bhagat Chowk', 1, '2020-04-04 04:01:39', '2020-04-04 04:01:39'),
+(53, 7, 2, 'Ankur Bridge', 4, '21:30:00', 'Antarctic Building,Near Ankur Bridge,Ankleshvar', 'Antarctic Welfare Building', 1, '2020-04-04 04:04:07', '2020-04-04 04:04:07'),
+(54, 7, 3, 'Dholiya Chowkdi', 1, '21:50:00', 'NH-8,Bharuch', 'Near National Highway', 1, '2020-04-04 04:07:11', '2020-04-04 04:07:11'),
+(55, 7, 3, 'Anand Bahar', 2, '22:15:00', 'Bahut Enterprise,Anand Bahar,Bharuch', 'Near Public Park(Old)', 1, '2020-04-04 04:09:14', '2020-04-04 04:09:14'),
+(56, 11, 6, 'Mercantile Park', 1, '21:30:00', 'Govind Park,Ankleshvar Central Zone,Ankleshvar', 'Near Mercantile Mania', 1, '2020-04-04 04:15:52', '2020-04-04 04:16:35'),
+(57, 11, 6, 'Ankleshvar Textile Mill', 2, '21:50:00', 'Ankleshvar East Zone,Textile Park,Ankleshvar', 'Central Textile Mill,Ankleshvar', 1, '2020-04-04 04:18:37', '2020-04-04 04:18:37'),
+(58, 11, 6, 'Ankur Bridge', 3, '22:30:00', 'Antarctic Building,Near Ankur Bridge,Ankleshvar', 'Antarctic Welfare Building', 1, '2020-04-04 04:19:33', '2020-04-04 04:19:33'),
+(59, 11, 6, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(60, 11, 6, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(61, 11, 6, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(62, 11, 6, 'Pasodra', 4, '20:30:00', 'Surat-Kamrej Road,Kamrej,Surat', 'Pasodra Patiya', 1, '2020-04-04 04:15:10', '2020-04-04 04:15:10'),
+(63, 11, 6, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02'),
+(64, 11, 4, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(65, 11, 4, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(66, 11, 4, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(67, 11, 4, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02'),
+(68, 12, 5, 'Amreli Bus Stand', 1, '19:30:00', 'Aman Chowk,Amreli Bus Stand,Amreli', 'Amreli Central Bus Stand', 1, '2020-04-04 08:14:31', '2020-04-04 08:14:31'),
+(69, 12, 5, 'Sankul', 2, '20:10:00', 'Amreli-Lathi Road,Amreli', 'Amreli Boys Sankul', 1, '2020-04-04 08:16:33', '2020-04-04 08:16:33'),
+(70, 12, 5, 'Jahar Nagar', 3, '21:25:00', 'Jahar Nagar,Amreli', 'Near Najim Chowk', 1, '2020-04-04 08:18:24', '2020-04-04 08:18:24'),
+(71, 13, 9, 'Jakatnaka,Surat', 2, '21:30:00', 'Talu Education,Jakatnaka,Surat-10', 'SimadaNaka', 1, '2020-03-17 00:30:11', '2020-03-19 03:20:56'),
+(72, 13, 9, 'Shyamdham Mandir', 4, '21:45:00', 'Shyamdham Chowk,NH-8,Surat', 'Shyam Dham Chowk', 1, '2020-03-19 00:58:21', '2020-04-04 03:47:58'),
+(73, 13, 9, 'Navjivan Hotel', 3, '21:35:00', 'Near SBI bank,Jakatnaka,Surat', 'Navjivan Hotel', 1, '2020-03-22 07:01:41', '2020-04-04 03:43:32'),
+(74, 13, 9, 'Valak Patiya', 5, '22:05:00', 'Valak Patiya,Surat-Kamrej Road,Surat', 'Valak Park', 1, '2020-04-04 03:56:09', '2020-04-04 03:56:09'),
+(75, 13, 13, 'Ankleshvar Textile Mill', 1, '20:30:00', 'Ankleshvar East Zone,Textile Park,Ankleshvar', 'Central Textile Mill,Ankleshvar', 1, '2020-04-04 03:58:15', '2020-04-04 03:58:15'),
+(76, 13, 13, 'Mercantile Park', 2, '21:05:00', 'Govind Park,Ankleshvar Central Zone,Ankleshvar', 'Near Mercantile Mania', 1, '2020-04-04 04:00:18', '2020-04-04 04:00:18'),
+(77, 13, 13, 'Bharat Nagar', 3, '21:20:00', 'Bharat Nagar,Kolin,Ankleshvar', 'Near Bhagat Chowk', 1, '2020-04-04 04:01:39', '2020-04-04 04:01:39'),
+(78, 13, 13, 'Ankur Bridge', 4, '21:30:00', 'Antarctic Building,Near Ankur Bridge,Ankleshvar', 'Antarctic Welfare Building', 1, '2020-04-04 04:04:07', '2020-04-04 04:04:07'),
+(79, 13, 14, 'Dholiya Chowkdi', 1, '21:50:00', 'NH-8,Bharuch', 'Near National Highway', 1, '2020-04-04 04:07:11', '2020-04-04 04:07:11'),
+(80, 13, 14, 'Anand Bahar', 2, '22:15:00', 'Bahut Enterprise,Anand Bahar,Bharuch', 'Near Public Park(Old)', 1, '2020-04-04 04:09:14', '2020-04-04 04:09:14'),
+(81, 13, 14, 'Angad Chowk', 1, '22:00:00', 'G-12,Vulkan Nagar,Anand Chowk,Bharuch', 'Near Bahadur Park', 1, '2020-04-04 04:40:12', '2020-04-04 04:40:12'),
+(82, 13, 14, 'Bharuch Railway Station', 2, '22:30:00', 'BhaiKhalla Shop,Railway Station,Bharuch', 'Near Central Railway Station', 1, '2020-04-04 04:41:34', '2020-04-04 04:41:34'),
+(83, 14, 15, 'Nari Chowkdi', 1, '18:45:00', 'Bhavesh Complex,Nari Chowkdi,Bhavnagar', 'Nari Chowkdi Circle', 1, '2020-04-04 09:11:05', '2020-04-04 09:11:05'),
+(84, 14, 15, 'RTO Circle', 2, '19:10:00', 'Hardik Pan,Near RTO,Bhavnagar', 'Bhavnagar RTO', 1, '2020-04-04 09:13:05', '2020-04-04 09:13:05'),
+(85, 14, 15, 'Rangoli Hotel', 3, '19:45:00', 'Rangoli Hotel,Bhavnagar', 'Rangoli Hotel', 1, '2020-04-04 09:14:07', '2020-04-04 09:14:07'),
+(86, 14, 10, 'Nari Chowkdi', 1, '18:45:00', 'Bhavesh Complex,Nari Chowkdi,Bhavnagar', 'Nari Chowkdi Circle', 1, '2020-04-04 09:11:05', '2020-04-04 09:11:05'),
+(87, 14, 10, 'RTO Circle', 2, '19:10:00', 'Hardik Pan,Near RTO,Bhavnagar', 'Bhavnagar RTO', 1, '2020-04-04 09:13:05', '2020-04-04 09:13:05'),
+(88, 14, 10, 'Rangoli Hotel', 3, '19:45:00', 'Rangoli Hotel,Bhavnagar', 'Rangoli Hotel', 1, '2020-04-04 09:14:07', '2020-04-04 09:14:07'),
+(89, 15, 12, 'Shyamdham Chowk', 1, '18:30:00', 'Shiv Ice,ShyamDham Chowk,Varachha,Surat', 'ShyamDham,Nana Varachha', 1, '2020-04-04 04:11:24', '2020-04-04 04:11:24'),
+(90, 15, 12, 'SimadaNaka', 2, '18:45:00', 'Near Natvar Nagar,SimadaNaka,Surat', 'Natvar Nagar,Simada', 1, '2020-04-04 04:12:33', '2020-04-04 04:12:33'),
+(91, 15, 12, 'JakatNaka,Surat', 3, '19:30:00', 'JakatNaka,Simada,Surat', 'TakshShila Complex', 1, '2020-04-04 04:13:59', '2020-04-04 04:13:59'),
+(92, 15, 12, 'Yogi Chowk', 2, '19:35:00', 'Beside Shivdharshan Society,Surat', 'Savaliya Circle', 1, '2020-03-21 10:00:58', '2020-03-22 14:18:02');
 
 -- --------------------------------------------------------
 
@@ -265,12 +345,16 @@ CREATE TABLE `bb_buses` (
 --
 
 INSERT INTO `bb_buses` (`id`, `route_id`, `bus_type_id`, `amenities_id`, `bus_name`, `bus_reg_no`, `starting_point`, `start_time`, `ending_point`, `ending_time`, `max_seats`, `total_fare`, `status`, `vendor_id`, `dates`, `created_by`, `created_id`, `created_at`, `updated_at`) VALUES
-(1, '1,2,3', 1, '1', 'Ridds', 'MH09YT2222', 'Matawadi', '17:00:00', 'LalChowk', '07:00:00', 30, 300, 1, 1, '2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19', 'admin', '3', '2020-03-15 10:58:04', '2020-03-18 23:39:51'),
-(3, '4,6', 2, '2,4,5,6', 'Kaveri', '#7771', 'KamWadi', '16:00:00', 'LalBag', '09:00:00', 3, 250, 1, 2, '2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19', 'vendor', '2', '2020-03-15 10:58:04', '2020-03-22 09:50:13'),
-(6, '1,3', 1, '1,3,4', 'Express Travels', 'GJ05TH7878', 'Varachha', '19:30:00', 'Green Land Chowkdi', '08:45:00', 34, 500, 1, 2, '2020-03-31, 2020-03-01, 2020-03-02, 2020-03-03, 2020-03-04, 2020-03-05, 2020-03-06, 2020-03-07, 2020-03-14, 2020-03-13, 2020-03-12, 2020-03-11, 2020-03-10, 2020-03-09, 2020-03-08, 2020-03-15, 2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19, 2020-03-20, 2020-03-21, 2020-03-28, 2020-03-27, 2020-03-26, 2020-03-25, 2020-03-24, 2020-03-23, 2020-03-22, 2020-03-29, 2020-03-30', 'vendor', '1', '2020-03-22 10:47:17', '2020-03-22 11:17:22'),
-(7, '1,2,3', 2, '1,3,4,5,9', 'Bandhu Travels', 'GJ09UI8890', 'Varachha,Surat', '19:30:00', 'Green Land Chowkdi', '08:45:00', 60, 520, 0, 2, '2020-03-01, 2020-03-02, 2020-03-03, 2020-03-04, 2020-03-05, 2020-03-06, 2020-03-07, 2020-03-08, 2020-03-09, 2020-03-10, 2020-03-11, 2020-03-12, 2020-03-14, 2020-03-13, 2020-03-21, 2020-03-20, 2020-03-19, 2020-03-17, 2020-03-18, 2020-03-16, 2020-03-15, 2020-03-22, 2020-03-23, 2020-03-24, 2020-03-25, 2020-03-26, 2020-03-27, 2020-03-28, 2020-03-31, 2020-03-30, 2020-03-29', 'vendor', '2', '2020-03-22 12:27:20', '2020-03-24 10:02:28'),
-(8, '4', 2, '3', 'aaaa', 'GJ89DD6767', 'tttt', '19:30:00', 'eeee', '08:45:00', 54, 600, 0, 2, '2020-03-25, 2020-03-26, 2020-03-27, 2020-03-28, 2020-03-31, 2020-03-30, 2020-03-29', 'admin', '4', '2020-03-25 02:46:45', '2020-03-25 02:46:45'),
-(10, '3,4', 2, '2,3,4', 'Das Travels', 'GJ08IU8898', 'Kapodra', '19:30:00', 'Amreli Bus Stand', '08:45:00', 31, 700, 1, 2, '2020-03-25, 2020-03-26, 2020-03-27', 'admin', '4', '2020-03-25 06:37:45', '2020-03-25 06:45:59');
+(1, '1,2,3', 1, '1,2,5', 'Ridds', 'MH09YT2222', 'Matawadi', '17:00:00', 'LalChowk', '07:00:00', 30, 300, 1, 1, '2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19', 'admin', '3', '2020-03-15 10:58:04', '2020-03-18 23:39:51'),
+(3, '4,6', 2, '2,4,5,6', 'Kaveri', 'GJ09UI7789', 'KamWadi', '16:00:00', 'LalBag', '09:00:00', 3, 250, 1, 2, '2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19', 'vendor', '2', '2020-03-15 10:58:04', '2020-03-22 09:50:13'),
+(6, '1,3', 1, '1,3,4,11', 'Express Travels', 'GJ05TH7878', 'Varachha', '19:30:00', 'Green Land Chowkdi', '08:45:00', 34, 500, 1, 2, '2020-03-31, 2020-03-01, 2020-03-02, 2020-03-03, 2020-03-04, 2020-03-05, 2020-03-06, 2020-03-07, 2020-03-14, 2020-03-13, 2020-03-12, 2020-03-11, 2020-03-10, 2020-03-09, 2020-03-08, 2020-03-15, 2020-03-16, 2020-03-17, 2020-03-18, 2020-03-19, 2020-03-20, 2020-03-21, 2020-03-28, 2020-03-27, 2020-03-26, 2020-03-25, 2020-03-24, 2020-03-23, 2020-03-22, 2020-03-29, 2020-03-30', 'vendor', '1', '2020-03-22 10:47:17', '2020-03-22 11:17:22'),
+(7, '1,2,3', 2, '1,3,4,5,9,8,4,6,2,7,10,12,13', 'Bandhu Travels', 'GJ09UI8890', 'Varachha,Surat', '19:30:00', 'Green Land Chowkdi', '08:45:00', 60, 520, 1, 2, '2020-03-01, 2020-03-02, 2020-03-03, 2020-03-04, 2020-03-05, 2020-03-06, 2020-03-07, 2020-03-08, 2020-03-09, 2020-03-10, 2020-03-11, 2020-03-12, 2020-03-14, 2020-03-13, 2020-03-21, 2020-03-20, 2020-03-19, 2020-03-17, 2020-03-18, 2020-03-16, 2020-03-15, 2020-03-22, 2020-03-23, 2020-03-24, 2020-03-25, 2020-03-26, 2020-03-27, 2020-03-28, 2020-03-31, 2020-03-30, 2020-03-29', 'vendor', '2', '2020-03-22 12:27:20', '2020-04-04 06:41:39'),
+(10, '3,4', 2, '2,3,4', 'Das Travels', 'GJ08IU8898', 'Kapodra', '19:30:00', 'Amreli Bus Stand', '08:45:00', 31, 700, 1, 2, '2020-03-25, 2020-03-26, 2020-03-27', 'admin', '4', '2020-03-25 06:37:45', '2020-03-25 06:45:59'),
+(11, '4,6', 3, '1,3,4,5,6,9,10', 'Akash Travels', 'GJ09II6660', 'Varachha,Surat', '19:30:00', 'Green Land Chowkdi', '08:45:00', 32, 520, 1, 1, '2020-03-01, 2020-03-02, 2020-03-03, 2020-03-04, 2020-03-05, 2020-03-06, 2020-03-07, 2020-03-08, 2020-03-09, 2020-03-10, 2020-03-11, 2020-03-12, 2020-03-14, 2020-03-13, 2020-03-21, 2020-03-20, 2020-03-19, 2020-03-17, 2020-03-18, 2020-03-16, 2020-03-15, 2020-03-22, 2020-03-23, 2020-03-24, 2020-03-25, 2020-03-26, 2020-03-27, 2020-03-28, 2020-03-31, 2020-03-30, 2020-03-29', 'vendor', '2', '2020-03-22 12:27:20', '2020-04-02 10:57:30'),
+(12, '5', 4, '1,3,4,5,11,13,14,15', 'GuruChhaya Travels', 'GJ14UY6678', 'Amreli Bus Stand', '19:30:00', 'Puna Parking', '08:45:00', 32, 600, 1, 1, '2020-04-30, 2020-04-29, 2020-04-28, 2020-04-27, 2020-04-26, 2020-04-19, 2020-04-20, 2020-04-21, 2020-04-22, 2020-04-24, 2020-04-23, 2020-04-25, 2020-05-01, 2020-05-02, 2020-05-09, 2020-05-08, 2020-04-01, 2020-04-08, 2020-04-15, 2020-04-02, 2020-04-03, 2020-04-04, 2020-04-11, 2020-04-18, 2020-04-17, 2020-04-10, 2020-04-09, 2020-04-16, 2020-04-14, 2020-04-13, 2020-04-12, 2020-04-05, 2020-04-06, 2020-04-07', 'admin', '4', '2020-04-04 06:45:04', '2020-04-04 06:45:20'),
+(13, '9,13,14', 2, '1,3,4,5,10,14,15', 'Shiv', 'GJ08UI6657', 'Gajera Circle,Katargam', '19:30:00', 'Bhavnagar Bus Stand', '10:45:00', 32, 550, 1, 2, '2020-04-04, 2020-04-11, 2020-04-10, 2020-04-09, 2020-04-08, 2020-04-07, 2020-04-06, 2020-04-05, 2020-04-12, 2020-04-13, 2020-04-14, 2020-04-15, 2020-04-16, 2020-04-18, 2020-04-17, 2020-04-25, 2020-04-24, 2020-04-23, 2020-04-22, 2020-04-21, 2020-04-20, 2020-04-19, 2020-04-26, 2020-04-27, 2020-04-29, 2020-04-28, 2020-04-30', 'admin', '4', '2020-04-04 08:34:42', '2020-04-04 08:34:52'),
+(14, '10,15', 2, '1,3,4,5,11,14', 'Gayatri Travels', 'GJ04JH7789', 'Bhavnagar Bus Stand', '18:30:00', 'PunaGam,Surat', '08:45:00', 32, 600, 1, 2, '2020-04-08, 2020-04-09, 2020-04-10, 2020-04-11, 2020-04-07, 2020-04-06, 2020-04-05, 2020-04-12, 2020-04-13, 2020-04-14, 2020-04-15, 2020-04-16, 2020-04-17, 2020-04-18, 2020-04-25, 2020-04-24, 2020-04-30, 2020-04-29, 2020-04-22, 2020-04-23, 2020-04-21, 2020-04-28, 2020-04-20, 2020-04-27, 2020-04-19, 2020-04-26', 'admin', '4', '2020-04-04 08:52:47', '2020-04-04 09:09:00'),
+(15, '12', 3, '12,14,15', 'Naitik Travels', 'GJ10OI2222', 'Nana Varachha', '18:30:00', 'Jamnagar Bus Stand', '10:45:00', 32, 700, 1, 2, '2020-04-05, 2020-04-06, 2020-04-07, 2020-04-08, 2020-04-09, 2020-04-10, 2020-04-11, 2020-04-18, 2020-04-25, 2020-04-17, 2020-04-24, 2020-04-16, 2020-04-30, 2020-04-23, 2020-04-15, 2020-04-22, 2020-04-29, 2020-04-28, 2020-04-21, 2020-04-14, 2020-04-13, 2020-04-20, 2020-04-27, 2020-04-26, 2020-04-19, 2020-04-12', 'admin', '4', '2020-04-04 09:00:03', '2020-04-04 09:09:03');
 
 -- --------------------------------------------------------
 
@@ -305,11 +389,20 @@ INSERT INTO `bb_bustoroutes` (`id`, `bus_id`, `route_id`, `created_at`, `updated
 (12, 6, 6, '2020-03-18 03:50:51', '2020-03-18 03:50:51'),
 (13, 6, 1, '2020-03-22 10:47:17', '2020-03-22 10:47:17'),
 (14, 6, 3, '2020-03-22 10:47:17', '2020-03-22 10:47:17'),
-(15, 7, 1, NULL, NULL),
-(16, 7, 2, NULL, NULL),
-(17, 7, 3, NULL, NULL),
 (18, 10, 3, '2020-03-25 06:37:45', '2020-03-25 06:37:45'),
-(19, 10, 4, '2020-03-25 06:37:45', '2020-03-25 06:37:45');
+(19, 10, 4, '2020-03-25 06:37:45', '2020-03-25 06:37:45'),
+(24, 7, 1, '2020-03-29 10:07:28', '2020-03-29 10:07:28'),
+(25, 7, 2, '2020-03-29 10:07:28', '2020-03-29 10:07:28'),
+(26, 7, 3, '2020-03-29 10:07:28', '2020-03-29 10:07:28'),
+(27, 11, 4, '2020-04-02 10:57:30', '2020-04-02 10:57:30'),
+(28, 11, 6, '2020-04-02 10:57:30', '2020-04-02 10:57:30'),
+(29, 12, 5, '2020-04-04 06:45:04', '2020-04-04 06:45:04'),
+(30, 13, 9, '2020-04-04 08:34:42', '2020-04-04 08:34:42'),
+(31, 13, 13, '2020-04-04 08:34:42', '2020-04-04 08:34:42'),
+(32, 13, 14, '2020-04-04 08:34:42', '2020-04-04 08:34:42'),
+(33, 14, 10, '2020-04-04 08:52:47', '2020-04-04 08:52:47'),
+(34, 14, 15, '2020-04-04 08:52:47', '2020-04-04 08:52:47'),
+(35, 15, 12, '2020-04-04 09:00:03', '2020-04-04 09:00:03');
 
 -- --------------------------------------------------------
 
@@ -335,7 +428,8 @@ CREATE TABLE `bb_bus_cancellations` (
 --
 
 INSERT INTO `bb_bus_cancellations` (`id`, `bus_id`, `route_id`, `cancellation_date`, `cancellation_time`, `note`, `compensation_amount`, `refund_amount`, `created_at`, `updated_at`) VALUES
-(1, 3, 6, '2017-12-27', '16:00:00', '', 0, 250, '2020-03-18 07:34:41', '2020-03-25 12:11:36');
+(1, 3, 6, '2017-12-27', '16:00:00', '', 0, 250, '2020-03-18 07:34:41', '2020-03-25 12:11:36'),
+(11, 1, 2, '2020-04-30', '17:00:00', '', 0, 300, '2020-04-02 10:59:28', '2020-04-02 10:59:28');
 
 -- --------------------------------------------------------
 
@@ -20569,11 +20663,79 @@ CREATE TABLE `bb_drop_points` (
 
 INSERT INTO `bb_drop_points` (`id`, `bus_id`, `route_id`, `drop_point`, `drop_point_position`, `drop_time`, `address`, `landmark`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 'BusDepo', 2, '07:45:00', 'Near Parle Point circle,Amreli', 'Amreli Bus Depo', 1, '2020-03-17 00:46:09', '2020-03-19 03:50:40'),
-(3, 1, 2, 'Ankleshvar Chowkdi', 3, '08:45:00', 'Ankleshvar Main Chowkdi,Ankleshvar,Surat', 'Ankleshvar Highway', 1, '2020-03-22 08:12:28', '2020-03-22 14:41:27'),
-(4, 3, 4, 'Kiran Hospital', 1, '08:45:00', 'Kiran Hospital,Near Katargam Darwaja,Surat', 'Katargam', 1, '2020-03-22 14:37:04', '2020-03-22 14:37:04'),
-(5, 1, 1, 'Kapodra', 1, '08:45:00', 'Varachha main road,Surat', 'Kapodra', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
-(6, 3, 4, 'ssss', 2, '08:50:00', 'sssss', 'sssss', 1, '2020-03-22 14:44:07', '2020-03-22 14:44:07'),
-(7, 6, 1, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49');
+(3, 1, 2, 'Green Land Chowk', 3, '08:45:00', 'Green Land Chowk,Rakot', 'Rajkot Highway', 1, '2020-03-22 08:12:28', '2020-03-22 14:41:27'),
+(5, 1, 1, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(7, 6, 1, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(8, 1, 1, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(9, 1, 1, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(10, 1, 2, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(11, 1, 2, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(12, 1, 2, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(13, 1, 2, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(14, 1, 3, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(15, 1, 3, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(16, 1, 3, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(17, 1, 3, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(19, 7, 2, 'Green Land Chowk', 3, '08:45:00', 'Green Land Chowk,Rakot', 'Rajkot Highway', 1, '2020-03-22 08:12:28', '2020-03-22 14:41:27'),
+(20, 7, 1, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(21, 7, 1, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(22, 7, 1, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(23, 7, 2, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(24, 7, 2, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(25, 7, 2, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(26, 7, 2, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(27, 7, 3, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(28, 7, 3, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(29, 7, 3, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(30, 7, 3, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(31, 6, 1, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(32, 6, 1, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(33, 6, 1, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(34, 6, 3, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(35, 6, 3, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(36, 6, 3, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(37, 6, 3, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(38, 10, 3, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(39, 10, 3, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(40, 10, 3, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(41, 10, 3, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(42, 3, 4, 'Amreli Bus Stand', 1, '08:45:00', 'Angur Pan,Near Amreli Bus Stand', 'Near Amar Steel', 1, '2020-04-04 07:34:33', '2020-04-04 07:34:33'),
+(43, 3, 4, 'Sankul', 2, '09:00:00', 'Amreli-Lathi Road,Amreli', 'Amreli Sankul', 1, '2020-04-04 07:35:30', '2020-04-04 07:35:30'),
+(44, 3, 4, 'Lakhan Chowk', 3, '09:05:00', 'Man Pan,Lakhan Chowk,Amreli', 'Near Lakshmi Society', 1, '2020-04-04 07:38:38', '2020-04-04 07:38:38'),
+(45, 3, 6, 'Amreli Bus Stand', 1, '08:45:00', 'Angur Pan,Near Amreli Bus Stand', 'Near Amar Steel', 1, '2020-04-04 07:34:33', '2020-04-04 07:34:33'),
+(46, 3, 6, 'Sankul', 2, '09:00:00', 'Amreli-Lathi Road,Amreli', 'Amreli Sankul', 1, '2020-04-04 07:35:30', '2020-04-04 07:35:30'),
+(47, 3, 6, 'Lakhan Chowk', 3, '09:05:00', 'Man Pan,Lakhan Chowk,Amreli', 'Near Lakshmi Society', 1, '2020-04-04 07:38:38', '2020-04-04 07:38:38'),
+(48, 10, 4, 'Amreli Bus Stand', 1, '08:45:00', 'Angur Pan,Near Amreli Bus Stand', 'Near Amar Steel', 1, '2020-04-04 07:34:33', '2020-04-04 07:34:33'),
+(49, 10, 4, 'Sankul', 2, '09:00:00', 'Amreli-Lathi Road,Amreli', 'Amreli Sankul', 1, '2020-04-04 07:35:30', '2020-04-04 07:35:30'),
+(50, 10, 4, 'Lakhan Chowk', 3, '09:05:00', 'Man Pan,Lakhan Chowk,Amreli', 'Near Lakshmi Society', 1, '2020-04-04 07:38:38', '2020-04-04 07:38:38'),
+(51, 11, 6, 'Amreli Bus Stand', 1, '08:45:00', 'Angur Pan,Near Amreli Bus Stand', 'Near Amar Steel', 1, '2020-04-04 07:34:33', '2020-04-04 07:34:33'),
+(52, 11, 6, 'Sankul', 2, '09:00:00', 'Amreli-Lathi Road,Amreli', 'Amreli Sankul', 1, '2020-04-04 07:35:30', '2020-04-04 07:35:30'),
+(53, 11, 6, 'Lakhan Chowk', 3, '09:05:00', 'Man Pan,Lakhan Chowk,Amreli', 'Near Lakshmi Society', 1, '2020-04-04 07:38:38', '2020-04-04 07:38:38'),
+(54, 11, 4, 'Amreli Bus Stand', 1, '08:45:00', 'Angur Pan,Near Amreli Bus Stand', 'Near Amar Steel', 1, '2020-04-04 07:34:33', '2020-04-04 07:34:33'),
+(55, 11, 4, 'Sankul', 2, '09:00:00', 'Amreli-Lathi Road,Amreli', 'Amreli Sankul', 1, '2020-04-04 07:35:30', '2020-04-04 07:35:30'),
+(56, 11, 4, 'Lakhan Chowk', 3, '09:05:00', 'Man Pan,Lakhan Chowk,Amreli', 'Near Lakshmi Society', 1, '2020-04-04 07:38:38', '2020-04-04 07:38:38'),
+(57, 12, 5, 'Jakatnaka,Surat', 2, '08:30:00', 'Talu Education,Jakatnaka,Surat-10', 'SimadaNaka', 1, '2020-03-17 00:30:11', '2020-03-19 03:20:56'),
+(58, 12, 5, 'Shyamdham Mandir', 4, '08:45:00', 'Shyamdham Chowk,NH-8,Surat', 'Shyam Dham Chowk', 1, '2020-03-19 00:58:21', '2020-04-04 03:47:58'),
+(59, 12, 5, 'Navjivan Hotel', 3, '09:35:00', 'Near SBI bank,Jakatnaka,Surat', 'Navjivan Hotel', 1, '2020-03-22 07:01:41', '2020-04-04 03:43:32'),
+(60, 12, 5, 'Valak Patiya', 5, '10:05:00', 'Valak Patiya,Surat-Kamrej Road,Surat', 'Valak Park', 1, '2020-04-04 03:56:09', '2020-04-04 03:56:09'),
+(61, 6, 1, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(62, 6, 1, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(63, 6, 3, 'Green Land Chowk', 1, '08:45:00', 'Main Road,Rajkot', 'Green Park', 1, '2020-03-22 14:42:27', '2020-03-22 14:42:27'),
+(64, 6, 3, 'Rajkot Chowk', 1, '08:45:00', 'Rajkot Chowk,Rajkot-Jamnagar Highway,Rajkot', 'Rajkot Highway', 1, '2020-03-25 06:50:49', '2020-03-25 06:50:49'),
+(65, 6, 3, 'Rajkot Bus Stand', 2, '08:50:00', 'Valam Pan,Rajkot Bus Stand,Rajkot', 'Near Rajkot Central Bus Stand', 1, '2020-04-04 06:48:39', '2020-04-04 06:48:39'),
+(66, 6, 3, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(67, 6, 1, 'Panik Parking', 3, '09:15:00', 'Panik Parking,Ram Chowk,Rajkot', 'Near Ram Chowk', 1, '2020-04-04 06:49:59', '2020-04-04 06:49:59'),
+(68, 13, 9, 'Nari Chowkdi', 1, '06:45:00', 'Bhavesh Complex,Nari Chowkdi,Bhavnagar', 'Nari Chowkdi Circle', 1, '2020-04-04 09:11:05', '2020-04-04 09:11:05'),
+(69, 13, 9, 'RTO Circle', 2, '07:10:00', 'Hardik Pan,Near RTO,Bhavnagar', 'Bhavnagar RTO', 1, '2020-04-04 09:13:05', '2020-04-04 09:13:05'),
+(70, 13, 9, 'Rangoli Hotel', 3, '07:45:00', 'Rangoli Hotel,Bhavnagar', 'Rangoli Hotel', 1, '2020-04-04 09:14:07', '2020-04-04 09:14:07'),
+(71, 13, 13, 'Nari Chowkdi', 1, '06:45:00', 'Bhavesh Complex,Nari Chowkdi,Bhavnagar', 'Nari Chowkdi Circle', 1, '2020-04-04 09:11:05', '2020-04-04 09:11:05'),
+(72, 13, 13, 'RTO Circle', 2, '07:10:00', 'Hardik Pan,Near RTO,Bhavnagar', 'Bhavnagar RTO', 1, '2020-04-04 09:13:05', '2020-04-04 09:13:05'),
+(73, 13, 13, 'Rangoli Hotel', 3, '07:45:00', 'Rangoli Hotel,Bhavnagar', 'Rangoli Hotel', 1, '2020-04-04 09:14:07', '2020-04-04 09:14:07'),
+(74, 13, 14, 'Nari Chowkdi', 1, '06:45:00', 'Bhavesh Complex,Nari Chowkdi,Bhavnagar', 'Nari Chowkdi Circle', 1, '2020-04-04 09:11:05', '2020-04-04 09:11:05'),
+(75, 13, 14, 'RTO Circle', 2, '07:10:00', 'Hardik Pan,Near RTO,Bhavnagar', 'Bhavnagar RTO', 1, '2020-04-04 09:13:05', '2020-04-04 09:13:05'),
+(76, 13, 14, 'Rangoli Hotel', 3, '07:45:00', 'Rangoli Hotel,Bhavnagar', 'Rangoli Hotel', 1, '2020-04-04 09:14:07', '2020-04-04 09:14:07'),
+(77, 15, 12, 'Sardar Chowk', 1, '08:45:00', 'Anand Store,Sardar Chowk,Jamnagar', 'Near Sardar Circle', 1, '2020-04-04 09:50:13', '2020-04-04 09:50:13'),
+(78, 15, 12, 'Jamnagar RTO', 2, '09:20:00', 'RTO Circle,Anjara,Jamnagar', 'Near Angle Park', 1, '2020-04-04 09:52:10', '2020-04-04 09:52:10');
 
 -- --------------------------------------------------------
 
@@ -20960,7 +21122,8 @@ CREATE TABLE `bb_promocodes` (
 INSERT INTO `bb_promocodes` (`id`, `promocode`, `start_date`, `expiry_date`, `description`, `discount_type`, `amount`, `max_amount`, `usage_count`, `indivisual_use`, `exclude_bus_id`, `include_bus_id`, `thumbnail_image`, `promocode_image`, `t_and_c`, `min_order_amount`, `created_by`, `created_id`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'BUS100', '2020-03-16', '2020-03-31', 'BUS100 CODE IS FOR LUCKY 100 USER ', 'Percentage', 10, 200, 100, 1, NULL, NULL, NULL, 'admin/images/promo-code/bus100_0hTdI.png', 'Use code FIRST to get 20% off up to Rs 150 + Rs 100 Cashback on bus ticket bookings.', 500, 'admin', '4', 1, '2020-03-16 05:19:07', '2020-03-16 05:19:07'),
 (2, 'SUPER DEAL', '2020-03-17', '2020-03-31', 'save up to Rs 150 on bus tickets in GJ, Gujarat routes', 'Percentage', 10, 150, 10, 1, NULL, NULL, NULL, 'admin/images/promo-code/super-deal_3cAsH.png', 'Get assured cashback between Rs.50 to Rs.500 using OlaMoney Postpaid on HappyJourney.', 800, 'vendor', '2', 1, '2020-03-16 06:00:36', '2020-03-16 06:00:36'),
-(5, 'V1', '2020-03-23', '2020-03-31', '20% Savings', 'Flat', 20, 100, 100, 10, NULL, NULL, 'vendor/images/promo-code/v1_Mcq93.png', 'vendor/images/promo-code/v1_tczhw.png', 'No T&C', 200, 'vendor', '2', 1, '2020-03-22 14:53:38', '2020-03-22 14:53:38');
+(5, 'V1', '2020-03-23', '2020-03-31', '20% Savings', 'Flat', 20, 100, 100, 10, NULL, NULL, 'vendor/images/promo-code/v1_Mcq93.png', 'vendor/images/promo-code/v1_tczhw.png', 'No T&C', 200, 'vendor', '2', 1, '2020-03-22 14:53:38', '2020-03-22 14:53:38'),
+(6, 'SUPER DEAL', '2020-03-17', '2020-03-31', 'save up to Rs 150 on bus tickets in GJ, Gujarat routes', 'Percentage', 10, 150, 10, 1, NULL, NULL, NULL, 'admin/images/promo-code/super-deal_3cAsH.png', 'Get assured cashback between Rs.50 to Rs.500 using OlaMoney Postpaid on HappyJourney.', 800, 'vendor', '2', 1, '2020-03-16 06:00:36', '2020-03-16 06:00:36');
 
 -- --------------------------------------------------------
 
@@ -21039,7 +21202,14 @@ INSERT INTO `bb_routes` (`id`, `source_point`, `source_name`, `destination_point
 (3, '819', 'Bharuch', '1011', 'Rajkot', NULL, 1, NULL, NULL, NULL),
 (4, '1041', 'Surat', '789', 'Amreli', NULL, 1, NULL, '2020-03-15 10:46:43', '2020-03-15 10:46:43'),
 (5, '789', 'Amreli', '1041', 'Surat', NULL, 1, NULL, '2020-03-15 10:47:37', '2020-03-15 10:47:37'),
-(6, '795', 'Ankleshwar', '789', 'Amreli', NULL, 1, NULL, '2020-03-15 10:49:24', '2020-03-19 23:17:24');
+(6, '795', 'Ankleshwar', '789', 'Amreli', NULL, 1, NULL, '2020-03-15 10:49:24', '2020-03-19 23:17:24'),
+(9, '1041', 'Surat', '821', 'Bhavnagar', NULL, 1, NULL, '2020-04-04 08:25:54', '2020-04-04 08:25:54'),
+(10, '821', 'Bhavnagar', '1041', 'Surat', NULL, 1, NULL, '2020-04-04 08:26:27', '2020-04-04 08:26:27'),
+(11, '905', 'Jamnagar', '1041', 'Surat', NULL, 1, NULL, '2020-04-04 08:26:55', '2020-04-04 08:26:55'),
+(12, '1041', 'Surat', '905', 'Jamnagar', NULL, 1, NULL, '2020-04-04 08:27:43', '2020-04-04 08:27:43'),
+(13, '795', 'Ankleshwar', '821', 'Bhavnagar', NULL, 1, NULL, '2020-04-04 08:28:54', '2020-04-04 08:28:54'),
+(14, '819', 'Bharuch', '821', 'Bhavnagar', NULL, 1, NULL, '2020-04-04 08:29:33', '2020-04-04 08:29:33'),
+(15, '821', 'Bhavnagar', '795', 'Ankleshwar', NULL, 1, NULL, '2020-04-04 08:30:25', '2020-04-04 08:30:25');
 
 -- --------------------------------------------------------
 
@@ -25364,7 +25534,7 @@ CREATE TABLE `bb_vendors` (
 
 INSERT INTO `bb_vendors` (`id`, `username`, `first_name`, `last_name`, `gender`, `email`, `mobile_no`, `password`, `avatar`, `logo`, `status`, `remember_token`, `token`, `otp`, `forget_token`, `token_time`, `referral_code`, `parent_id`, `created_at`, `updated_at`) VALUES
 (1, 'Raju', 'Raju', 'Rajwadi', 'm', 'raju@happyjourney.com', 9664675543, '$2y$10$ZGwXayP8miZ3/9bgBqzpLenPycz1LgvWLp3aPba2roOxy086/sjJG', 'admin/images/admin-profile/raju_B8DME.jpg', NULL, 1, NULL, NULL, '', '00OVUO5yDuECF0hibGHRUlncjbk10OGjTc8LySFhae2VH2v6IsqC4hW6P1j1', '2020-03-19 12:31:16', NULL, 0, '2020-03-15 03:50:31', '2020-03-19 07:01:16'),
-(2, 'mayur', 'Mayur', 'Italiya', 'm', 'mayur@happyjourney.com', 8989767653, '$2y$10$NRci8fLCpI3b2MqMcyclt.Duni/aks57Uvq2h99ZMW5LMnkkd0F26', 'vendor/images/admin-profile/mayur_SgXPK.jpg', 'vendor/images/logo/mayur_OqYzF.png', 1, 'I5dfGTGV3vYztcn48tyKeo1RMuARC7NCcXklEGHtLHq3IRUQ7BMk4O9czD6o', NULL, NULL, '', '2020-03-19 13:33:28', NULL, 0, '2020-03-19 07:04:23', '2020-03-26 10:43:46');
+(2, 'mayur', 'Mayur', 'Italiya', 'm', 'mayur@happyjourney.com', 8989767653, '$2y$10$NRci8fLCpI3b2MqMcyclt.Duni/aks57Uvq2h99ZMW5LMnkkd0F26', 'vendor/images/admin-profile/mayur_SgXPK.jpg', 'vendor/images/logo/mayur_OqYzF.png', 1, 'XiCsL9KcpGwp1op8ZOfmV5pkGadOHhhar44jcU6RLrWtNaBNpGV5D6e6JNRg', NULL, NULL, '', '2020-03-19 13:33:28', NULL, 0, '2020-03-19 07:04:23', '2020-03-26 10:43:46');
 
 --
 -- Indexes for dumped tables
@@ -25741,7 +25911,7 @@ ALTER TABLE `bb_block_devices`
 -- AUTO_INCREMENT for table `bb_board_points`
 --
 ALTER TABLE `bb_board_points`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `bb_booking_details`
@@ -25753,19 +25923,19 @@ ALTER TABLE `bb_booking_details`
 -- AUTO_INCREMENT for table `bb_buses`
 --
 ALTER TABLE `bb_buses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `bb_bustoroutes`
 --
 ALTER TABLE `bb_bustoroutes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `bb_bus_cancellations`
 --
 ALTER TABLE `bb_bus_cancellations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `bb_bus_gallarys`
@@ -25837,7 +26007,7 @@ ALTER TABLE `bb_devices`
 -- AUTO_INCREMENT for table `bb_drop_points`
 --
 ALTER TABLE `bb_drop_points`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `bb_labels`
@@ -25903,7 +26073,7 @@ ALTER TABLE `bb_payment_method_details`
 -- AUTO_INCREMENT for table `bb_promocodes`
 --
 ALTER TABLE `bb_promocodes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bb_promocode_transactions`
@@ -25927,7 +26097,7 @@ ALTER TABLE `bb_referral_codes`
 -- AUTO_INCREMENT for table `bb_routes`
 --
 ALTER TABLE `bb_routes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `bb_seat_layouts`

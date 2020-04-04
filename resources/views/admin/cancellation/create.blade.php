@@ -209,7 +209,7 @@
                     $.each(ind, function(index,value){
                                 dates=dates+'"'+value+'",' ;
                     });
-                    alert(dates);
+                    // alert(dates);
                     // $("#cancel_booking_date").flatpickr({
                     //     enable: [dates]
                     // } );
