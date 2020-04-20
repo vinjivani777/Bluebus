@@ -32,14 +32,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $promoCode=PromoCode::wherestatus(1)->get();
-        $promoFirst=PromoCode::wherestatus(1)->first();
+        $promoCode=PromoCode::wherestatus(1)->limit(4)->get();
         $Menus=Menu::whereStatus(1)->get();
         $nav=Array();
 
         $nav['bookingNav']="navbar-active";
         $nav['promoCode']=$promoCode;
-        $nav['promoFirst']=$promoFirst;
         $nav['promoCount']=count($promoCode);
         $nav['Menus']=$Menus;
 

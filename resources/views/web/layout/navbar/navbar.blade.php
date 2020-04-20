@@ -1,25 +1,25 @@
-<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-2" style="background-color:white">
+<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" style="background-color:white">
     <a class="navbar-brand text-info" href="{{ route('web.index')}}">HappyJourney</a>
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-            <a class="nav-link text-wdarkhite {{ @$bookingNav }} "  href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
+            <a class="nav-link  {{ @$bookingNav }} "  href="{{route('web.index')}}">Booking Ticket <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-dark {{ @$active }} " href="{{ route('offer') }}">Offers</a>
+            <a class="nav-link {{ @$active }} " href="{{ route('offer') }}">Offers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="{{route('bluecare')}}">Help</a>
+                <a class="nav-link " href="{{route('bluecare')}}">Help</a>
             </li>
             <li class=" dropdown notification-list show">
                 <a class="nav-link dropdown-toggle nav-user mr-0 mt-1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="text-dark" >
+                    <span class=" text" >
                         Manage Booking
                     </span>
                     <span class="pro-user-name ml-1">
-                    <i class="mdi mdi-chevron-down text-dark"></i>
+                    <i class="mdi mdi-chevron-down text"></i>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown " x-placement="bottom-end" style="background-color:#fff;position: absolute;margin-top:12px;width:220px; will-change: transform; top: 20px; left: 0px; transform: translate3d(-52px, 70px, 0px);">
@@ -77,7 +77,7 @@
                         </div>
                         <!-- item-->
                         @if (!Auth::guard('user')->check())
-                        <a  data-toggle="modal" data-target=".bs-example-modal-lg" class="dropdown-item notify-item">
+                        <a  data-toggle="modal" data-target="#con-close-modal" class="dropdown-item notify-item">
                             <i class="fe-user"></i>
                             <span>SignUp / SignIN</span>
                         </a>

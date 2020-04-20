@@ -27,7 +27,7 @@ class SearchController extends Controller
 
 
         $result = City::select("city_name")
-                ->where("city_name","LIKE","%{$request->input('term')}%")
+                ->where("city_name","LIKE","{$request->input('term')}%")
                 ->take(50)
                 ->get();
 
@@ -39,7 +39,7 @@ class SearchController extends Controller
     {
 
         $result = City::select("city_name")
-                ->where("city_name","LIKE","%{$request->input('term')}%")
+                ->where("city_name","LIKE","{$request->input('term')}%")
                 ->take(50)
                 ->get();
 
@@ -414,7 +414,7 @@ class SearchController extends Controller
                     {
                         $Alfa="A";
                         $No=1;
-                            $html.='<div class="col-3 col-sm-12 col-xs-12 p-1 ml-2">
+                            $html.='<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-1 ml-2">
                                     <span>Single Desk</span>
                                     <div class="card">
                                             <div class="card-header bg-secondary" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
@@ -544,7 +544,7 @@ class SearchController extends Controller
                                 $html.='</div>
                                     </div>
                                 </div>
-                                <div class="col-3 ml-2 all-seat-details">
+                                <div class="col-2 ml-2 all-seat-details">
                                     <div class="row">
                                         <div class="col-4 text-center">
                                             <img src='.$avlSeat.'>
@@ -711,7 +711,7 @@ class SearchController extends Controller
                     {
                         $Alfa="A";
                         $No=1;
-                            $html.='<div class="col-4 col-sm-12 col-xs-12 p-1 ml-1">
+                            $html.='<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 p-1 ml-1">
                                     <span>Single Desk</span>
                                     <div class="card">
                                             <div class="card-header bg-secondary" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
@@ -1032,7 +1032,7 @@ class SearchController extends Controller
                     {
                         $Alfa="A";
                         $No=1;
-                            $html.='<div class="col-lg-3 col-md-3  col-sm-8 col-xs-8 p-1 ml-2">
+                            $html.='<div class="col-lg-4 col-md-4  col-sm-8 col-xs-8 p-1 ml-2">
                                     <span>Single Desk</span>
                                     <div class="card">
                                             <div class="card-header bg-secondary" style="height:0px;padding-top: 2px;padding-bottom: 2px;">
@@ -1151,7 +1151,7 @@ class SearchController extends Controller
                                 $html.='</div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 ml-2 all-seat-details">
+                                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 ml-2 all-seat-details">
                                     <div class="row">
                                         <div class="col-4 text-center">
                                             <img src='.$avlSeat.'>

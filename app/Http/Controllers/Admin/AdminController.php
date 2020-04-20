@@ -15,6 +15,7 @@ use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
+use App\Model\SeatLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -70,6 +71,10 @@ class AdminController extends Controller
 
         }elseif ($model == "Menu") {
             $find_model = Menu::findorfail($request->id);
+            $find_model->status = $request->status;
+            $find_model->save();
+        }elseif ($model == "SeatLayout") {
+            $find_model = SeatLayout::findorfail($request->id);
             $find_model->status = $request->status;
             $find_model->save();
         }elseif ($model == "Amenitie") {

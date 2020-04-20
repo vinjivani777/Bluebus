@@ -15,8 +15,8 @@ class OfferController extends Controller
         $promoCode=PromoCode::wherestatus(1)->get();
         $promoFirst=PromoCode::wherestatus(1)->first();
         $Menus=Menu::whereStatus(1)->get();
-        $nav=Array();
 
+        $nav=Array();
         $nav['active']="active";
         $nav['promoCode']=$promoCode;
         $nav['promoFirst']=$promoFirst;
@@ -24,5 +24,21 @@ class OfferController extends Controller
         $nav['Menus']=$Menus;
 
         return view('web.offer',$nav);
+
+    }
+
+    public function details($id)
+    {
+        $promoCode=PromoCode::FindOrFail($id);
+        $Menus=Menu::whereStatus(1)->get();
+
+        $nav=array();
+        $nav['active-nav']="active";
+        $nav['promoCode']=$promoCode;
+        $nav['Menus']=$Menus;
+
+
+        return view('web.offers.offerdetails',$nav);
+
     }
 }

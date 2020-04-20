@@ -361,6 +361,7 @@
     Route::get('/old','Web\HomeController@oldindex')->name('web.old.index');
 
     Route::get('/offer','Web\OfferController@index')->name('offer');
+    Route::get('/offer-details/{id}','Web\OfferController@details')->name('offer.details');
 
     Route::get('/source','Web\SearchController@source')->name('source');
     Route::get('/dest','Web\SearchController@dest')->name('dest');

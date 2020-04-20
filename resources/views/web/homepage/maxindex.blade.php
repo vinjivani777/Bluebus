@@ -7,7 +7,7 @@
                             <path d="M2.386,21.467h2.386v14.312H2.386C1.067,35.779,0,34.717,0,33.394v-9.542C0,22.54,1.067,21.467,2.386,21.467z    M73.948,21.467h-2.388v14.312h2.388c1.317,0,2.386-1.062,2.386-2.385v-9.542C76.334,22.54,75.268,21.467,73.948,21.467z    M66.792,16.698v42.937c0,2.638-2.133,4.771-4.771,4.771v4.771c0,2.639-2.133,4.771-4.771,4.771h-4.772   c-2.637,0-4.771-2.137-4.771-4.771v-4.771H28.626v4.771c0,2.639-2.134,4.771-4.771,4.771h-4.769c-2.638,0-4.771-2.137-4.771-4.771   v-4.771c-2.637,0-4.771-2.137-4.771-4.771V16.698C9.542,8.796,15.954,2.386,23.855,2.386H52.48   C60.382,2.386,66.792,8.794,66.792,16.698z M28.626,11.928h19.083V7.157H28.626V11.928z M23.855,54.866   c0-2.641-2.134-4.771-4.769-4.771c-2.637,0-4.771,2.133-4.771,4.771c0,2.635,2.134,4.771,4.771,4.771   C21.72,59.636,23.855,57.499,23.855,54.866z M62.021,54.866c0-2.641-2.133-4.771-4.771-4.771s-4.771,2.133-4.771,4.771   c0,2.635,2.136,4.771,4.771,4.771C59.889,59.636,62.021,57.499,62.021,54.866z M62.021,16.698H14.313v28.625h47.708V16.698   L62.021,16.698z" fill="#ffffff"></path>
                         </g>
                     </svg>
-                    Online Bus Tickets 
+                    Online Bus Tickets
                 </h2>
             </div>
         </div>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </form>
     </div>
@@ -104,96 +104,41 @@
             <div class="col-12">
                 <div class="container mx-auto">
                     <div class="row  mx-auto">
+                        @foreach($promoCode as $promo)
                         <div class="col-lg-3 col-sm-12 col-md-3 ">
-                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
-                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\10-busnew31dec.png') }}" style="border-radius:0px " alt="Card image cap">
-                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
-                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
-                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
-                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
-                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
-                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
+                            <a href="{{ route('offer.details',['id'=> $promo->id]) }}">
+                                <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
+                                    <img class="card-img-top img-fluid" src="{{ asset(''. $promo->promocode_image ) }}" style="border-radius:0px " alt="Card image cap">
+                                    <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                        <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">{{ $promo->promocode }}</h5>
+                                        <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">{{ $promo->description  }}</p>
+                                    <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
+                                        <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
+                                        <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">{{ $promo->promocode }}</p>
+                                    </div>
+                                    <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
+                                            <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
+                                                <g id="surface1">
+                                                    <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
+                                                </g>
+                                            </svg>
+                                            Validity: {{ date($promo->expiry_date) }}
+                                    </div>
+                                    </div>
                                 </div>
-                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
-                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
-                                            <g id="surface1">
-                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
-                                            </g>
-                                        </svg>
-                                        Validity: 30th Apr,2020
-                                </div>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                        <div class="col-lg-3 col-sm-12 col-md-3 ">
-                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
-                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\100-off-bus-hp.png') }}" style="border-radius:0px " alt="Card image cap">
-                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
-                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
-                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
-                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
-                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
-                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
-                                </div>
-                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
-                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
-                                            <g id="surface1">
-                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
-                                            </g>
-                                        </svg>
-                                        Validity: 30th Apr,2020
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 col-md-3 ">
-                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
-                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\bus-22apr-2019-hp.png') }}" style="border-radius:0px " alt="Card image cap">
-                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
-                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
-                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
-                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
-                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
-                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
-                                </div>
-                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
-                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
-                                            <g id="surface1">
-                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
-                                            </g>
-                                        </svg>
-                                        Validity: 30th Apr,2020
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-12 col-md-3 ">
-                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
-                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\emt-bus-28feb-hp.png') }}" style="border-radius:0px " alt="Card image cap">
-                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
-                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
-                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
-                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
-                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
-                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
-                                </div>
-                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
-                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
-                                            <g id="surface1">
-                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
-                                            </g>
-                                        </svg>
-                                        Validity: 30th Apr,2020
-                                </div>
-                                </div>
-                            </div>
+                        @endforeach
+                        <div class="col-12 text-right">
+                            <a href="{{ route('offer') }}" class="text-dark">View More Offers</a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
- 
+
 
 
 

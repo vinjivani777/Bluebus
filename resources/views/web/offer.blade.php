@@ -12,20 +12,32 @@
 
 @section('page-css')
 
-
+<style>
+       .footer-row{
+                background-color:#1b2330;
+                overflow: hidden;
+            }
+            .footer-links a {
+                display: block;
+                color: #d7d7d7;
+                cursor: pointer;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+</style>
 @endsection
 
 @section('content')
 
 <div class="main-content ">
-    <div class="minoffer" id="minoffers">
+    {{-- <div class="minoffer" id="minoffers">
         @include('web.offers.mobileoffer')
 
-    </div>
-    <div class="maxoffer">
+    </div> --}}
+
         @include('web.offers.maxoffer')
 
-    </div>
+
 </div>
 
 @endsection

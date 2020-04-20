@@ -17,10 +17,6 @@ Blue Bus | Search Bus Tickets
     <link href="{{asset('web/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('web/libs/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
 
-    {{-- <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" /> --}}
 
     <!-- App css -->
     <link href="{{ asset('web/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -287,6 +283,15 @@ Blue Bus | Search Bus Tickets
                 border-right-color: #faeb95;
                 border-radius: 100%;
             }
+            .max-footer{
+                display:none;
+            }
+            .nav-big{
+                background-color:#6b8ef1;
+            }
+            .copyright{
+                display:none;
+            }
     </style>
 @endsection
 
@@ -351,7 +356,7 @@ Blue Bus | Search Bus Tickets
                 </div>
 
                 <div id="wrapper">
-                    <div class="max-search" style="display:none">
+                    <div class="max-search">
                         @include('web.search.maxsearch')
                     </div>
                     <div class="mini-search">
@@ -385,10 +390,6 @@ Blue Bus | Search Bus Tickets
             <!-- Init js-->
             <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
             <script src="{{ asset('web/libs/tippy-js/tippy.all.min.js') }}"></script>
-            {{-- <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script> --}}
-            {{-- <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script> --}}
-            <!-- Datatables init -->
-            {{-- <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script> --}}
 
             <!-- Loading buttons js -->
             <script src="{{asset('web/libs/ladda/spin.js')}}"></script>
@@ -623,16 +624,10 @@ Blue Bus | Search Bus Tickets
                                                 // $('.all-seat-details').next('div').show();
                                                 // $('.all-seat-details').next('div').removeClass('select-seat-fare-details-active');
 
-                                                if($('#table').hasClass('bus-list-table'))
-                                                {
-                                                    $('.fare-card').children('div:first-child').hide();
-
-                                                }else{
-
                                                     $('.fare-card').children('div:first-child').show();
                                                     $('.fare-card').children('div:first-child').removeClass('select-seat-fare-details-active');
                                                     $('.fare-card').children('div:last-child').hide();
-                                                }
+
 
                                             }
 
@@ -659,16 +654,10 @@ Blue Bus | Search Bus Tickets
                                         if(selectedSeats.length == 0 && selectedSeats.length < 1)
                                         {
 
-                                                if($('#table').hasClass('bus-list-table'))
-                                                {
-                                                    $('.fare-card').children('div:first-child').hide();
-
-                                                }else{
-
                                                     $('.fare-card').children('div:first-child').hide();
                                                     $('.fare-card').children('div:first-child').addClass('select-seat-fare-details-active');
                                                     $('.fare-card').children('div:last-child').hide();
-                                                }
+
 
 
 
@@ -706,17 +695,13 @@ Blue Bus | Search Bus Tickets
                                             if(selectedSeats.length != 0 && selectedSeats.length >= 1)
                                             {
 
-                                                if($('#table').hasClass('bus-list-table'))
-                                                {
-                                                    $('.fare-card').children('div:first-child').hide();
 
-                                                }else{
 
                                                     $('.fare-card').children('div:first-child').show();
                                                     $('.fare-card').children('div:first-child').removeClass('select-seat-fare-details-active');
                                                     $('.fare-card').children('div:last-child').hide();
                                                     $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
-                                                }
+
 
 
 
@@ -746,17 +731,12 @@ Blue Bus | Search Bus Tickets
                                         if(selectedSeats.length == 0 && selectedSeats.length < 1)
                                         {
 
-                                                if($('#table').hasClass('bus-list-table'))
-                                                {
-                                                    $('.fare-card').children('div:first-child').hide();
-
-                                                }else{
 
                                                     $('.fare-card').children('div:first-child').hide();
                                                     $('.fare-card').children('div:first-child').addClass('select-seat-fare-details-active');
                                                     $('.fare-card').children('div:last-child').hide();
                                                     $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
-                                                }
+
 
 
                                         }
@@ -956,8 +936,6 @@ Blue Bus | Search Bus Tickets
             </script>
 
             {{-- operator filetr --}}
-
-
             <script>
                     $('#insurance_amt').text('₹ '+ 20);
                     var action="Insurance";

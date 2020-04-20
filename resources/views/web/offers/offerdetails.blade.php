@@ -24,215 +24,75 @@
 @section('page-css')
 
         <style>
-            .top-bar{
-                width: 100%;
-                min-height: 280px;
-                position: relative;
-                background-color: rgb(66, 99, 193);
-                background-image: linear-gradient(0deg, rgb(107, 142, 242) 0px, rgb(66, 99, 193) 100%);
-            }
-            ul.ui-menu{
-                position: absolute;
-                z-index: 10;
-                padding: 0;
-                margin: 0;
-                list-style: none;
-                font-size: 13px;
-                background: #fff;
-                border: 1px solid #aaa;
-                overflow-x: hidden;
-                overflow-y: auto;
-                max-height: 230px;
-                font-size: 14px;
-                color: #666;
-                line-height: 1;
-                color: #333;
-                width: 225px;
-                margin-left: -1px;
-            }
-
-            ul.ui-menu li.selected, ul.ui-menu li:hover {
-                background: #dcdcdc;
-            }
-
-            .ui-menu .ui-menu-item-wrapper {
-                padding: 13px 26px 13px 16px;
-                cursor: pointer;
-                text-align: left;
-                font-weight: 400;
-            }
-
-            .desc-op-new {
-                color: #4a4a4a;
-                font-size: 16px;
-                font-weight: 300;
-                margin-top: 10px;
-            }
-            .seo a {
-                display: block;
-                color: #444343;
-                cursor: pointer;
-                margin-bottom: 15px;
-            }
-
-            nav a {
-                text-decoration: none;
-                display: block;
-                position: relative;
-                color: #ef6614;
-                text-transform: uppercase;
-            }
-
-
-            .footer-row{
-                background-color:#1b2330;
-                overflow: hidden;
-            }
-            .footer-links a {
-                display: block;
-                color: #d7d7d7;
-                cursor: pointer;
-                margin-bottom: 5px;
-                font-weight: 600;
-            }
-            .search_input{
-                border-radius:0px;
-                font-size:14px;
-            }
-             /* input:required {
-                box-shadow: none;
-            }
-            input:focus{
-                border:none;
+/*
+            .offr_img {
+                width: 337px;
+                height: 349px;
             } */
-            .input-icons i {
-                position: absolute;
+            .max-footer{
+                display:none;
             }
-
-            .input-icons {
-                width: 100%;
-                /* margin-bottom: 10px; */
+            .nav-big{
+                background-color:#6b8ef1;
             }
-
-            .icon {
-                padding: 18px;
-                min-width: 50px;
-                text-align: center;
-            }
-            .return{
-                transform:rotate(180deg);
-            }
-
-            .navbar-active{
-                border-bottom:2px solid white;
-            }
-            label.db {
-                color: #4a4a4a;
-                position: absolute;
-                bottom: 0;
-                left: 16%;
-                font-size: 14px;
-                top: 25%;
-                height: 25px;
-                transition: all .3s ease;
-                letter-spacing: 1px;
-                font-weight: 400;
-                letter-spacing: 0!important;
-                line-height: 15px;
-            }
-            .move-up {
-                top: 5%!important;
-                /* bottom: 2%!important; */
-                font-size: 10px!important;
-                color: #9b9b9b!important;
-                font-weight: 100!important;
-            }
-
-            .offer-list:hover{
-                box-shadow: 0 0 5px 0 rgba(0,0,0,.30);
-            }
-            .offer-list{
-                overflow: hidden;
-                max-height: 310px;
-
-            }
-
-            .cust-banifit:hover{
-                transition:transform 0.5s;
-                transform: scale(1.1);
-            }
-            .cust-banifit{
-                border:1px solid #bdbaba;
-                max-height: 240px;
-                box-shadow: 0.1px 0.1px 0.1px #ccc;
-                transition-duration: 0.5s;
-                border-radius: 15px;
-                background: #ffffff;
-                overflow: hidden;
-            }
-            .visa, .master, .american {
-                background-image: url('{{ asset("web/images/redbus/icon/wallet/ns-sprite.png") }}');
-                float: left;
-                height: 37px;
-                width: 57px;
-                margin-right: 10px;
-            }
-            .visa {
-                background-position: -1px -35px;
-            }
-            .master {
-                background-position: -69px -35px;
-            }
-            .american {
-                background-position: -138px -35px;
-            }
-            .py_pal {
-                background-image: url('{{ asset("web/images/redbus/icon/wallet/ns-sprite.png") }}');
-                float: left;
-                height: 37px;
-                width: 84px;
-                background-position: -315px -83px;
-            }
-            .rupaylg {
-                background-image: url('https://www.easemytrip.com/dm-img/rupay-lg-nw.png');
-                float: left;
-                height: 35px;
-                width: 57px;
-                background-position: 0 0;
-                margin-top: 6px;
-            }
-            .sm-nav-svg{
-                position: relative;
-                width:100%;
-                max-height:500px;
-            }
-            .min-sticky-footer{
-                font-size: 12px;
-                line-height: 100%;
-                font-weight: 500;
-                color: #666;
-                display: block;
-                padding-top: 5px;
-            }
-            .busInfo {
-                width: 71.66666667%;
-                float: left;
-                border-right: 1px solid #eaebed;
-                padding: 0 10px 0 0;
-            }
-
         </style>
 
 @endsection
 
 @section('content')
 
-        <div class="main-content">
-            <div class="max-home" id="max-home">
-                @include('web.homepage.maxindex')
-            </div>
-            <div class="row ml-2 mr-2 mt-3 mini-home" id="mini-home">
-                @include('web.homepage.minindex')
+        <div class="main-content bg-light" style="width:100%">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 ">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-xs-12 col-sm-12 col-md-6 mx-auto text-center">
+                                    <h4 class="text-dark">{{ $promoCode->description  }}</h4>
+                                    <img class=" img-fluid" src="{{ asset(''.$promoCode->promocode_image) }}" alt="{{ $promoCode->promocode }}" style="border-radius:0px " alt="Card image cap">                                </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row mt-2">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mx-auto ">
+                                    <div class="card text-center mx-auto" style="border:1px solid lightgray;">
+                                        <div class="text-dark">BOOKING PERIOD</div>
+                                        <div class="text-info">Till  {{ date($promoCode->expiry_date) }}</div>
+                                        <hr class="ml-1 mr-1" style="border:1px dotted #468be9">
+                                        <div class="text-dark">PROMOCODE</div>
+                                        <div class="text-info" >{{ $promoCode->promocode }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mx-auto ">
+                                    <div class="card" style="border:1px solid lightgray;">
+                                        <h4 class="card-header">What You Get?</h4>
+                                        <div class="card-body">
+                                            <div>
+                                                Users will get 5% instant discount (up to Rs.500) on bus tickets
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mx-auto ">
+                                    <div class="card" style="border:1px solid lightgray;">
+                                        <h4 class="card-header">Terms & Conditions</h4>
+                                        <div class="card-body">
+                                            <div>
+                                                {{ $promoCode->t_and_c }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

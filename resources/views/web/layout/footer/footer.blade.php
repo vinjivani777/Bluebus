@@ -1,5 +1,5 @@
-<footer class="m-0 p-0 footerss">
-    {{-- <div class="container-fluid " style="position: relative;background-color: #4263c1;background-image: linear-gradient(0deg, #6b8ef2 0, #4263c1 100%);">
+<footer class="m-0 p-0 footerss max-footer">
+    <div class="container-fluid  book-whit-us" style="position: relative;background-color: #4263c1;background-image: linear-gradient(0deg, #6b8ef2 0, #4263c1 100%);">
         <div class="row">
             <div class="col-sm-12 col-md-3 col-lg-3 mx-auto" >
                 <h3 class="text-white p-3" style="border-right:1px solid black">Why Book With Us?</h3>
@@ -43,18 +43,16 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="footer-row" style="background:#333" >
-        {{-- <div class="container-fluid">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-8 mt-3 ml-3">
                     <div class="row footer-links">
                         <div class="col-3 ">
-                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">ABOUT HAPPYjOURNEY</h3>
+                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">ABOUT HAPPYJOURNEY</h3>
                             <a href="/info/aboutus" target="_blank">About Us</a>
                             <a href="/info/contactus" target="_blank">Contact Us</a>
-                            <a href="//m.redbus.in" target="_blank">Mobile Version</a>
-                            <a href="/info/mobile" target="_blank">redBus on Mobile</a>
                             <a href="/sitemap.html" target="_blank">Sitemap</a>
                             <a href="/info/OfferTerms" target="_blank">Offers</a>
                             <a href="/careers" target="_blank">Careers</a>
@@ -66,7 +64,6 @@
                             <a href="/info/privacypolicy" target="_blank">Privacy Policy</a>
                             <a href="/info/faq" target="_blank">FAQ</a>
                             <a href="http://blog.redbus.in/" target="_blank">Blog</a>
-                            <a href="https://in3.seatseller.travel/" target="_blank">Agent Registration</a>
                             <a href="https://www.icicilombard.com/" target="_blank">Insurance Partner</a>
                             <a href="/info/useragreement" target="_blank">User Agreement</a>
                         </div>
@@ -99,35 +96,35 @@
                 <div class="col-3 mt-3">
                     <h3 class="text-white" href="#">HAPPYjOURNEY</h3>
                     <div style="color:#d7d7d7;font-size:14px">
-                        redBus is the world's largest online bus ticket booking service trusted by over
+                        HappyJourney is the world's largest online bus ticket booking service trusted by over
                         17 million happy customers globally. redBus offers bus ticket booking through its
-                        website,iOS and Android mobile apps for all major routes.
+                        website for all major routes.
                     </div>
                 </div>
             </div>
 
-        </div> --}}
-        {{-- <div class="container-fluid">
+        </div>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <hr style="border: 0.3px solid lightslategray">
                 </div>
             </div>
-        </div> --}}
-        <div class="container-fluid ">
-            <div class="row" style="height:70px">
-                <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                    <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">Copyright © 2019-2020 Bluebus Group. All rights reserved</h6>
-                </div>
-                <div class="col-12 col-md-12 col-lg-12 col-sm-12">
-                    <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">All product names, logos, brands, trademarks and registered trademarks are property of their respective owners.</h6>
-                </div>
-            </div>
+        </div>
+
+    </div>
+</footer>
+<div class="container-fluid copyright" style="background-color: #333;">
+    <div class="row" style="height:70px">
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+            <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">Copyright © 2019-2020 HappyJourney Group. All rights reserved</h6>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+            <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">All product names, logos, brands, trademarks and registered trademarks are property of their respective owners.</h6>
         </div>
     </div>
-    
-</footer>
-<div class="container-fluid  sticky-bottom bg-white footerss" style="position: sticky;bottom:0;box-shadow:0 -2px 3px #cac4c7">
+</div>
+<div class="container-fluid  sticky-bottom bg-white footerss mini-footer" style="z-index:50;position: sticky;bottom:0;box-shadow:0 -2px 3px #cac4c7">
     <div class="row p-1">
         <div class="col-3 mx-auto text-center">
             <div class="">

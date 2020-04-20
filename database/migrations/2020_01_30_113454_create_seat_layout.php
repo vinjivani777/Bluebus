@@ -23,6 +23,7 @@ class CreateSeatLayout extends Migration
             $table->string('layout_type');
             $table->integer('no_of_seat_at_last');
             $table->string('created_by');
+            $table->boolean('status')->default(1);
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
             $table->timestamps();
         });

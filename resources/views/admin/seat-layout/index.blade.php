@@ -70,7 +70,7 @@
                                         </td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('board-point.edit',['id'=>$Layout->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                            {{-- <a href="{{ route('board-point.edit',['id'=>$Layout->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a> --}}
                                             <a href="#"  class="mr-1 text-danger remove_board_point" id="{{$Layout->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
@@ -220,7 +220,7 @@
                     $.ajax({
                     type:'POST',
                     url:'{{route('status.change')}}',
-                    data:{'status':status,'id':id,'model':'BoardPoint',"_token": "{{ csrf_token() }}"},
+                    data:{'status':status,'id':id,'model':'SeatLayout',"_token": "{{ csrf_token() }}"},
                     success:function(response){
                         if (response=="success" && status==true) {
                             $('#'+id).addClass("btn-outline-primary ");
