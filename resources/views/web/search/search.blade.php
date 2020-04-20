@@ -17,10 +17,10 @@ Blue Bus | Search Bus Tickets
     <link href="{{asset('web/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('web/libs/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
 
-    <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('admin/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('admin/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" /> --}}
 
     <!-- App css -->
     <link href="{{ asset('web/css/app.min.css') }}" rel="stylesheet" type="text/css" />
@@ -369,7 +369,6 @@ Blue Bus | Search Bus Tickets
 @section('right-bar')
 
 
-
 @endsection
 
 @section('other-page-js')
@@ -385,11 +384,11 @@ Blue Bus | Search Bus Tickets
             <script src="{{ asset('web/libs/daterangepicker/daterangepicker.js') }}"></script>
             <!-- Init js-->
             <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
-
-            <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script>
-            <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script>
+            <script src="{{ asset('web/libs/tippy-js/tippy.all.min.js') }}"></script>
+            {{-- <script src="{{asset('admin/libs/datatables/jquery.dataTables.min.js')}}"></script> --}}
+            {{-- <script src="{{asset('admin/libs/datatables/dataTables.bootstrap4.js')}}"></script> --}}
             <!-- Datatables init -->
-            <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script>
+            {{-- <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script> --}}
 
             <!-- Loading buttons js -->
             <script src="{{asset('web/libs/ladda/spin.js')}}"></script>
@@ -411,7 +410,7 @@ Blue Bus | Search Bus Tickets
             {{-- Seat Layout --}}
             <script>
 
-                    
+
 
                     $(".bus-list-tr").mouseenter(function(){
                             var busTr=$(this).attr('id');

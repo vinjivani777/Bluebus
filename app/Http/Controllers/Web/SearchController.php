@@ -1372,7 +1372,7 @@ class SearchController extends Controller
         $fareAmt=$request->totalFare;
         $SeatNos=$request->seatNo;
         $SeatNo=explode(',',$SeatNos);
- 
+
         $bus=Bus::whereId($bus_id)->first();
         $dropPoint=DropPoint::whereId($Droppoint)->first();
         $boardPoint=BoardPoint::whereId($Broadpoint)->first();
@@ -1393,9 +1393,9 @@ class SearchController extends Controller
         $nav['Route']=$Route;
         $nav['Country']=$Country;
         $nav['Menus']=$menus;
-        
+
         return view('web.search.miniuserdetail',$nav);
-        
+
     }
 
 }

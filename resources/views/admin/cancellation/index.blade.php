@@ -49,7 +49,8 @@
                             <tbody>
                                 @foreach ($Cancellation as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <?php $no=0;?>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item->bus['bus_name'] }}</td>
                                     <td>{{ $item->route->source_name.'-'.$item->route->destination_name }}</td>
                                     <td>{{ date('d-m-Y',strtoTime($item->cancellation_date)) }}</td>

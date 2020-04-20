@@ -101,7 +101,7 @@
                             <div class="col-4 col-md-4 col-lg-4 col-sm-4">
                                 <div class="form-group">
                                     <label for="start_time">Boarding Time</label>
-                                    <input type="text" class="form-control" name="board_time" value="{{old('board_time')}}" id="board_time" placeholder="Start Time" required>
+                                    <input type="text" class="form-control" name="board_time" value="20:30" id="board_time" placeholder="Start Time" required>
                                     <span class="text-danger">@error('board_time') {{ "Boarding-Time should be greater than Selected Time" }}  @enderror</span>
                                 </div>
                             </div>
