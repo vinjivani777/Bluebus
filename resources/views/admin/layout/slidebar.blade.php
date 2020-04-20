@@ -208,14 +208,18 @@
                             <a href="{{ route('generalsetting') }}">Genaral Setting</a>
                         </li>
                         <li>
-                            <a href="{{ route('menus') }}">Menus Setting</a>
+                            <a href="{{ route('banner') }}">Banner Setting</a>
                         </li>
                         <li>
+                            <a href="{{ route('menus') }}">Menus Setting</a>
+                        </li>
+
+                        {{-- <li>
                             <a href="{{ route('emailsetting') }}">Email Setting</a>
                         </li>
                         <li>
                             <a href="{{ route('smssetting') }}">SMS Setting</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ route('contactsetting') }}">Contact Setting</a>
                         </li>

@@ -25,4 +25,5 @@ class IndexController extends Controller
 
         return  view('web.happycare.blue_help',$nav);
     }
+
 }

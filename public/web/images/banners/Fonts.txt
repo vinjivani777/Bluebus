@@ -1,0 +1,9 @@
+Fonts used in this design:
+
+Font: Sofia Pro
+Author: Mostardesign
+Url: http://www.fontsquirrel.com/fonts/sofia-pro
+
+Font: Galano Grotesque
+Author: Rene Bieder
+Url: https://www.fontsquirrel.com/fonts/galano-grotesque

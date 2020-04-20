@@ -13,7 +13,7 @@ class CreateBookingDetails extends Migration
      */
     public function up()
     {
-        
+
             Schema::create('booking_details', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->unsignedBiginteger('bus_id');
@@ -34,12 +34,11 @@ class CreateBookingDetails extends Migration
                 $table->string('payment_method');
                 $table->integer('total_fare');
                 $table->string('note')->nullable();
-                $table->boolean('insurance_policy')->default(0);;
+                $table->boolean('insurance_policy')->default(0);
                 $table->boolean('booking_status')->default(0);
                 $table->boolean('payment_status')->default(0);
                 $table->boolean('operator_confirmation_status')->default(0);
                 $table->string('created_by')->nullable();
-                // $table->unique(['ticket_no']);
                 $table->timestamps();
             });
         }

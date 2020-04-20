@@ -43,35 +43,35 @@
                         </div>
                         <div class="card-body">
                             <a href="{{ route('seat-layout.add') }}" class="btn btn-primary mb-2" ><i class="fas fa-plus mr-1"></i> Add Seat Layout</a>
-                            <table id="basic-datatable" class="table dt-responsive table-striped">
-                                <thead class="thead-light">
+                            <table id="basic-datatable" class="table dt-responsive table-striped table-centered text-center">
+                                <thead class="thead-light text-center">
                                     <tr>
-                                        <th>Bua Name</th>
-                                        <th>Route</th>
-                                        <th>New Boarding Point</th>
-                                        <th>Start Time</th>
-                                        <th>Landmark</th>
-                                        <th>Address</th>
+                                        <th>Bus Name</th>
+                                        <th>Total Seats</th>
+                                        <th>Seat Type</th>
+                                        <th>Bus Bath</th>
+                                        <th>Layout Type</th>
+                                        <th>Last Row Seats</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($board_list as $board)
+                                    @foreach ($SeatLayout as $Layout)
                                     <tr>
-                                        <td>{{$board->Bus_Name->bus_name}} - {{$board->Bus_Name->bus_reg_no}}</td>
-                                        <td>{{$board->Route_Name->board_point}}</td>
-                                        <td>{{$board->pickup_point}}</td>
-                                        <td>{{date("g:i A",strtotime($board->pickup_time))}}</td>
-                                        <td>{{$board->landmark}}</td>
-                                        <td>{{$board->address}}</td>
+                                        <td>{{$Layout->Bus->bus_name}} - {{$Layout->Bus->bus_reg_no}}</td>
+                                        <td>{{  $Layout->total_seat}}</td>
+                                        <td>@if($Layout->seat_type == 1) {{ "Seater" }} @elseif($Layout->seat_type == 2) {{ "Sleeper" }} @elseif($Layout->seat_type == 3) {{ "Seater && Sleeper" }} @endif</td>
+                                        <td>@if($Layout->bus_bath == 1) {{ "Single Bath" }} @elseif($Layout->bus_bath == 2) {{ "Dubble Dakker Bath" }} @endif</td>
+                                        <td>{{$Layout->layout_type}}</td>
+                                        <td>{{$Layout->no_of_seat_at_last}}</td>
                                         <td>
-                                            <button class="btn status-change {{$board->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$board->status==1?"Active":"Disable"}}" id="{{$board->id}}">{{$board->status==1?"Active":"Disable"}}</button>
+                                            <button class="btn status-change {{$Layout->status == 1?"btn-outline-primary":"btn-outline-danger"}} btn-rounded waves-effect waves-light btn-sm" value="{{$Layout->status==1?"Active":"Disable"}}" id="{{$Layout->id}}">{{$Layout->status==1?"Active":"Disable"}}</button>
                                         </td>
                                         <td>
                                             <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
-                                            <a href="{{ route('board-point.edit',['id'=>$board->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
-                                            <a href="#"  class="mr-1 text-danger remove_board_point" id="{{$board->id}}"><i class=" fas fa-trash-alt"></i></a>
+                                            <a href="{{ route('board-point.edit',['id'=>$Layout->id]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
+                                            <a href="#"  class="mr-1 text-danger remove_board_point" id="{{$Layout->id}}"><i class=" fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

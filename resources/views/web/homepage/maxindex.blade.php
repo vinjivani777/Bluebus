@@ -1,4 +1,51 @@
-    <div class="head-banner">
+    <div class="container-fluid top-bar pt-4 mx-auto">
+        <div class="row mx-auto">
+            <div class="col-12 text-center">
+                <h2 class="text-white" style="font-weight:300">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="bus_svg" version="1.1" id="Capa_1" width="35" height="35" viewBox="0 0 76.334 76.334" style="enable-background:new 0 0 76.334 76.334;" xml:space="preserve">
+                        <g>
+                            <path d="M2.386,21.467h2.386v14.312H2.386C1.067,35.779,0,34.717,0,33.394v-9.542C0,22.54,1.067,21.467,2.386,21.467z    M73.948,21.467h-2.388v14.312h2.388c1.317,0,2.386-1.062,2.386-2.385v-9.542C76.334,22.54,75.268,21.467,73.948,21.467z    M66.792,16.698v42.937c0,2.638-2.133,4.771-4.771,4.771v4.771c0,2.639-2.133,4.771-4.771,4.771h-4.772   c-2.637,0-4.771-2.137-4.771-4.771v-4.771H28.626v4.771c0,2.639-2.134,4.771-4.771,4.771h-4.769c-2.638,0-4.771-2.137-4.771-4.771   v-4.771c-2.637,0-4.771-2.137-4.771-4.771V16.698C9.542,8.796,15.954,2.386,23.855,2.386H52.48   C60.382,2.386,66.792,8.794,66.792,16.698z M28.626,11.928h19.083V7.157H28.626V11.928z M23.855,54.866   c0-2.641-2.134-4.771-4.769-4.771c-2.637,0-4.771,2.133-4.771,4.771c0,2.635,2.134,4.771,4.771,4.771   C21.72,59.636,23.855,57.499,23.855,54.866z M62.021,54.866c0-2.641-2.133-4.771-4.771-4.771s-4.771,2.133-4.771,4.771   c0,2.635,2.136,4.771,4.771,4.771C59.889,59.636,62.021,57.499,62.021,54.866z M62.021,16.698H14.313v28.625h47.708V16.698   L62.021,16.698z" fill="#ffffff"></path>
+                        </g>
+                    </svg>
+                    Online Bus Tickets 
+                </h2>
+            </div>
+        </div>
+        <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row mt-2">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
+                    <div class="container mx-auto">
+                        <div class="form-row align-items-center ">
+                            <div class="col-3 mr-0 pr-0 input-icons">
+                                <i class="far fa-building icon"></i>
+                                <input type="text"  class="form-control mb-2 pl-4 search_input source_place place" style="padding-left:40px;padding:25px;" name="source_place"  autocomplete="off" id="source_place" value="" >
+                                <label for="src" class="db " style="left:18%">FROM</label>
+                            </div>
+                            <div class="col-3 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                <i class="far fa-building icon"></i>
+                                <input type="text" class="form-control mb-2 pl-4 search_input destination_place place" style="padding-left:40px;padding:25px" name="destination_place"  autocomplete="off" id="destination_place" value="" >
+                                <label for="desc" class="db " style="left:18%">To</label>
+                            </div>
+                            <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                <i class="fe-calendar icon"></i>
+                                <input type="text" class="form-control mb-2 pl-4 search_input basic-datepicker" style="padding-left:50px;padding:25px" name="journey_date"  id="journey_date" placeholder="Onward Date">
+                            </div>
+                            <div class="col-2 ml-0 pl-0 mr-0 pr-0 input-icons">
+                                <i class="fe-calendar icon"></i>
+                                <input type="text" class="form-control mb-2 pl-4 search_input return-datepicker" style="padding-left:50px;padding:25px" name="return_date"  id="return_date" placeholder="Return Date">
+                                {{-- <label id="lblOptional" style="color: #F4F9ED; font-size: 12px; font-style:italic; margin-right: 38px;">(Optional)</label> --}}
+                            </div>
+                            <div class="col-2 ml-0 pl-0">
+                                <button type="submit" class="btn  mb-2 search_input search_bus_btn" style="padding:15px;width:100%;background:#ef6614" id="search_bus">Search Bus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </form>
+    </div>
+    {{-- <div class="head-banner">
         <div class="banner-wrapper">
                 <div id="image_div" style="background: url({{ asset('web/images/redbus/home-banner/diwali-2019-22.png') }}); background-size: cover; ">
                     <div id="welcome_image_div" style="background: url({{ asset('web/images/redbus/home-banner/diwali-2019-111.png') }}) top center no-repeat;position: relative;z-index:0;pointer-events: none;height:450px;"></div>
@@ -7,9 +54,9 @@
             <div id="search_div" class="clearfix">
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="search-bar" >
+    {{-- <div class="search-bar" >
         <div class="row" >
             <div class="col-9 col-md-9 mx-auto">
                 <div class="container ml-3" style="position:absolute;bottom: 186px;z-index:2;">
@@ -35,7 +82,7 @@
                                 <i class="fe-calendar icon"></i>
                                 <input type="text" class="form-control mb-2 search_input return-datepicker" style="padding-left:25%;" name="return_date"  id="return_date" placeholder="Return Date">
                                 {{-- <label id="lblOptional" style="color: #F4F9ED; font-size: 12px; font-style:italic; margin-right: 38px;">(Optional)</label> --}}
-                            </div>
+                            {{-- </div>
                             <div class="col-2 ml-0 pl-0">
                                 <button type="submit" class="btn btn-danger mb-2 search_input search_bus_btn" id="search_bus">Search Bus</button>
                             </div>
@@ -45,153 +92,112 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="offerforu bg-light" style="height:430px;background-color: #f7f7f7;margin-top: -9px;">
-        <div class="offer-body">
-            <div class="row">
-                <div class="col-10 mx-auto">
-                    <div class="container-fluid" style="position: absolute;top:-64px;z-index: 1;">
-                        <div class="row">
-                            <div class="col-7 mx-auto" >
-
-                                @isset($promoFirst)
-                                <div class="card" style="height:120px;">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <img  src="{{ asset('/'.$promoFirst->promocode_image) }}" alt="" style="width:100px;height:100px;margin-top:-15px;">
-                                            </div>
-                                            <div class="col-9">
-                                                <h4>{{ $promoFirst->description }}</h4>
-                                                <h5>Use code FIRST TIME sign up</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="container-fluid mt-3">
+        <div class="row mt-2">
+            <div class="col-12 mx-auto text-center">
+                <h3 style="font-weight:400">OFFER & DEALS FOR YOU</h3>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="container mx-auto">
+                    <div class="row  mx-auto">
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
+                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\10-busnew31dec.png') }}" style="border-radius:0px " alt="Card image cap">
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
+                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
+                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
+                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
+                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
                                 </div>
-                                @endisset
+                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
+                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
+                                            <g id="surface1">
+                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
+                                            </g>
+                                        </svg>
+                                        Validity: 30th Apr,2020
+                                </div>
+                                </div>
                             </div>
-                            {{-- <div class="col-7 mx-auto" >
-
-
-                                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-
-                                    <div class="carousel-inner" role="listbox">
-
-                                        <div class="carousel-item active">
-                                            <div class="col-12 mx-auto" >
-                                                <div class="card" style="height:120px;">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img  src="{{ asset('web/images/redbus/offer/100x100.png') }}" alt="" style="width:100px;height:100px;margin-top:-15px;">
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <h4>SAVE UPTO RS 150 ON BUS TICKET</h4>
-                                                                <h5>Use code FIRST on App</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="carousel-item ">
-                                            <div class="col-12 mx-auto">
-                                                <div class="card" style="height:120px;">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img  src="{{ asset('web/images/redbus/offer/100x100.png') }}" alt="" style="width:100px;height:100px;margin-top:-15px;">
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <h4>SAVE UPTO RS 150 ON BUS TICKET</h4>
-                                                                <h5>Use code FIRST on App</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div> --}}
                         </div>
-                        <div class="row">
-                            @if($promoCount <= 3 )
-                                <?php $r=0; ?>
-                                @foreach ($promoCode as $item)
-                                    <?php $r++; ?>
-                                        <div class="col-4 mx-auto">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <h6 class="text-center text-dark mt-0">
-                                                                {{ $item->description }}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12 text-center">
-                                                            <img src="{{ asset('/'.$item->promocode_image) }}" alt="" style="width:274px;height:147px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <h5 class="text-center">Limited Period Offer</h5>
-                                                            <h4 class="text-center">  Pay Using AmazonPay Postpaid </h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                @endforeach
-                            @else
-                                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        @foreach ($promoCode as $item)
-                                            <div class="carousel-item ">
-                                                <div class="col-4 mx-auto">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <h6 class="text-center text-dark mt-0">
-                                                                        {{ $item->description }}
-                                                                    </h6>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12 text-center">
-                                                                    <img src="{{ asset('/'.$item->promocode_image) }}" alt="" style="width:274px;height:147px;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <h5 class="text-center">Limited Period Offer</h5>
-                                                                    <h4 class="text-center">  Pay Using AmazonPay Postpaid </h4>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
+                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\100-off-bus-hp.png') }}" style="border-radius:0px " alt="Card image cap">
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
+                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
+                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
+                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
+                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
                                 </div>
-                            @endif
+                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
+                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
+                                            <g id="surface1">
+                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
+                                            </g>
+                                        </svg>
+                                        Validity: 30th Apr,2020
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
+                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\bus-22apr-2019-hp.png') }}" style="border-radius:0px " alt="Card image cap">
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
+                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
+                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
+                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
+                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
+                                </div>
+                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
+                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
+                                            <g id="surface1">
+                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
+                                            </g>
+                                        </svg>
+                                        Validity: 30th Apr,2020
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
+                                <img class="card-img-top img-fluid" src="{{ asset('web\images\offers\emt-bus-28feb-hp.png') }}" style="border-radius:0px " alt="Card image cap">
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <h5 class="card-title ml-0 pl-0 pr-0 mr-0 mt-0 pt-0">10% Discount On Bus Booking</h5>
+                                    <p style="    font-size: 12px;color: #000;font-weight: 400;margin: 0 0 7px;text-align: justify;">Get up to Rs.100 Off on VRL Travel Bus Tickets</p>
+                                <div class="float-left pl-1 pr-1 text-center" style="border:1px dashed #ef6614">
+                                    <p style="color:#ef6614;font-weight: 600;font-size:12px;margin:0;padding:0">Promocode</p>
+                                    <p style="color:#000;font-weight: 600;font-size:12px;margin:0;padding:0">SUP100</p>
+                                </div>
+                                <div class="float-right mt-3" style="box-sizing:border-box;font-size:10px;margin:0;padding:0" >
+                                        <svg class="vldt-icn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1" width="11px" height="11px">
+                                            <g id="surface1">
+                                                <path style=" " d="M 12 0 C 5.371094 0 0 5.371094 0 12 C 0 18.628906 5.371094 24 12 24 C 18.628906 24 24 18.628906 24 12 C 24 5.371094 18.628906 0 12 0 Z M 12 2 C 17.523438 2 22 6.476563 22 12 C 22 17.523438 17.523438 22 12 22 C 6.476563 22 2 17.523438 2 12 C 2 6.476563 6.476563 2 12 2 Z M 10.9375 3.875 L 10.5 12.0625 L 10.59375 12.9375 L 16.75 18.375 L 17.71875 17.375 L 12.625 11.96875 L 12.1875 3.875 Z " fill="#8d8a8a"></path>
+                                            </g>
+                                        </svg>
+                                        Validity: 30th Apr,2020
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+ 
 
-    <div class="how-to-help">
+
+
+    {{-- <div class="how-to-help">
         <div class="data-body mt-5">
             <div class="row">
                 <div class="col-10 mx-auto" style="border:1px solid #ddd">
@@ -248,13 +254,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="watch-ad">
+    {{-- <div class="watch-ad">
         <div class="main-body" style="background-image: url(https://s3.rdbuz.com/Images/TVC-Banner.jpg);background-repeat: no-repeat;position: relative;width: 1122px;height: 236px;margin: 0 auto; top: 25px;"><div class="video_section" style="position: relative;width: 375px;margin: 0 auto;float: left;top: 21px;x;left: 5px;"><iframe width="375" height="198" src="https://www.youtube.com/embed/NMsv_NPLTY4?rel=0"></iframe></div></div>
-    </div>
+    </div> --}}
 
-    <div class="bus-track">
+    {{-- <div class="bus-track">
         <div class="row" >
             <div class="col-10 mx-auto" style="width: 1122px; height: 524px;background-color: #e8ecef;margin: 0 auto;margin-top: 50px;">
                 <div class="container-fluid ">
@@ -299,9 +305,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="contect-us">
+    {{-- <div class="contect-us">
         <div class="row mt-5">
             <div class="col-12">
                 <div class="container" style="position:absolute;margin-left:14%">
@@ -599,9 +605,77 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div style="padding-bottom: 0;padding-top: 15px;background-color: #ededed;border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
+    <div class="container-fluid mt-3">
+        <div class="col-12 text-center">
+            <img src="{{ asset('web/images/redbus/custsupport/promise.png') }}"     height="100"  alt="">
+        </div>
+        <div class="col-12 text-center">
+            <h2>WE PROMISE TO DELIVER</h2>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row  mx-auto">
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card cust-banifit" >
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <div class="image text-center" style="min-height:125px">
+                                        <img src="{{ asset('web/images/redbus/custsupport/maximum_choices.png') }}" alt="" height="100">
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 style="font-weight: 400;">MAXIMUM CHOICE</h5>
+                                    </div>
+                                    <p style="font-size:12px;" class="text-center">Book from the selection of buses, including AC, Non-AC, Deluxe and more.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card cust-banifit" >
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <div class="image text-center" style="min-height:125px">
+                                        <img src="{{ asset('web/images/redbus/custsupport/customer_care.png') }}" alt="" height="100">
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 style="font-weight: 400;">SUPERIOR CUSTOMER SERVICE</h5>
+                                    </div>
+                                    <p style="font-size:12px;" class="text-center">We put our experience and relationships to good use and are available to solve your travel issues.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card cust-banifit" >
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <div class="image text-center" style="min-height:125px">
+                                        <img src="{{ asset('web/images/redbus/custsupport/lowest_Fare.png') }}" alt="" height="100">
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 style="font-weight: 400;">LOWEST PRICES</h5>
+                                    </div>
+                                    <p style="font-size:12px;" class="text-center">We always give you the lowest price with the best partner offers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-md-3 ">
+                            <div class="card cust-banifit" >
+                                <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
+                                    <div class="image text-center" style="min-height:125px">
+                                        <img src="{{ asset('web/images/redbus/custsupport/benefits.png') }}" alt="" height="100">
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 style="font-weight: 400;">UNMATCHED BENEFITS</h5>
+                                    </div>
+                                    <p style="font-size:12px;" class="text-center">We take care of your travel beyond ticketing by providing you with innovative and unique benefits.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="mt-5" style="padding-bottom: 0;padding-top: 15px;background-color: #ededed;border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
         <div>
             <div style="min-width: 1000px;
             max-width: 1300px;
@@ -620,7 +694,7 @@
                     <div class="col-11 mx-auto">
                         <div class="row" >
                             <div class="col-3" style="box-shadow: 0 0 1.2px #686868;height: 390px;color: #3c3d41;background-color: #fff">
-                                <div class="image text-center" style="    margin-top: 35px; margin-bottom: 15px;min-height: 125px">
+                                <div class="image text-center" style=" margin-bottom: 15px;min-height: 125px">
                                     <img src="{{ asset('web/images/redbus/custsupport/maximum_choices.png') }}" alt="" height="100">
                                 </div>
                                 <div class="adv_title text-center" style="color: #4a4a4a;font-weight: 400;font-size: 17px;letter-spacing: 1px;word-spacing: 8px;margin-bottom: 27px;margin: 0 auto;width: 215px;text-align: center;text-transform: uppercase;">
@@ -670,7 +744,7 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
 
     <div class="growing" style="min-width: 1000px;max-width: 1300px;margin: 0 auto;overflow: hidden;">
         <div class="" style="margin: 50px 0;margin-bottom: 85px">
@@ -686,7 +760,7 @@
                             <div class="title" style="letter-spacing:2px;font-size: 17px;">
                                 CUSTOMERS
                             </div>
-                            <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                            <div class="counter " style="font-size: 46px;font-weight: 400;color:rgb(33, 150, 243)">
                                 17 M
                             </div>
                             <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
@@ -697,7 +771,7 @@
                             <div class="title" style="letter-spacing:2px;font-size: 17px;">
                                 OPERATORS
                             </div>
-                            <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                            <div class="counter " style="font-size: 46px;font-weight: 400;color:rgb(33, 150, 243)">
                                 2300
                             </div>
                             <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
@@ -708,7 +782,7 @@
                             <div class="title" style="letter-spacing:2px;font-size: 17px;">
                                 BUS TICKETS
                             </div>
-                            <div class="counter" style="color: #da4e52;font-size: 46px;font-weight: 400;">
+                            <div class="counter " style="font-size: 46px;font-weight: 400;color:rgb(33, 150, 243)">
                                 180+ M
                             </div>
                             <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
@@ -718,5 +792,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="border-top:1px solid #c3cbd1;border-bottom:1px solid #c3cbd1">
+        <div class="container" >
+             <div class="row mt-4 mb-0">
+                 <div class="col-8">
+                     <h2>Sign up for Exclusive Email-only Newsletter</h2>
+                     <h4>Exclusive access to coupons, special offers and promotions.</h4>
+                 </div>
+                 <div class="col-4 mb-4">
+                     <div class="form-group mb-3">
+                         <label>Newsletter</label>
+                         <div class="input-group m-b-20">
+                             <input class="form-control" id="single-input" type="text" value="" placeholder="Email">
+                             <div class="input-group-append">
+                                 <button type="button" id="check-minutes" class="btn waves-effect waves-light btn-info" style="background-color:rgb(33, 150, 243)">Newsletter</button>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
         </div>
     </div>

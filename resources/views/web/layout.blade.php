@@ -34,23 +34,26 @@
               height: 100%;
               width: 0;
               position: fixed;
-              z-index: 500;
-              top: 10;
+              z-index: 5000;
+              top: 0;
               left: 0;
-              background-color: white;
+              background-color: #4eb3ee;
               overflow-x: hidden;
               overflow-y: inherit;
               transition: 0.5s;
-              padding-top: 20px;
+              padding-top: 60px;
+
+
             }
 
             .sidenav a {
-              padding: 8px 8px 8px 32px;
+              padding: 15px 8px 15px 32px;
               text-decoration: none;
-              font-size: 15px;
-              color: #818181;
+              font-size: 16px;
+              color: #fff;
               display: block;
               transition: 0.3s;
+
             }
 
             .sidenav a:hover {
@@ -87,10 +90,11 @@
                 box-shadow: 0 0 5px 0 rgba(0,0,0,.75);
 
             }
+
         </style>
     </head>
 
-    <body class="bg-light" style="padding-bottom: 0px;">
+    <body class="bg-white" style="padding-bottom: 0px;min-height:500px;" id="main-body">
 
         <!-- Topbar Start -->
 
@@ -108,16 +112,27 @@
         {{-- </div> --}}
             <!-- Footer Start -->
 
-                {{-- @include('web.layout.footer.footer') --}}
+                @include('web.layout.footer.footer')
 
             <!-- end Footer -->
 
 
+        </div>
 
         <!-- ============================================================== -->
         <!-- End Page content -->
         <!-- ============================================================== -->
+   <!-- Right Sidebar -->
+        <div class="right-bar" >
 
+            @yield('right-bar')
+
+
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
 
             {{-- LOGIN MODEL --}}
 
@@ -234,9 +249,6 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-    </body>
-
-
 
 
         <!-- Vendor js -->
@@ -249,6 +261,8 @@
         <!-- App js -->
         <script src="{{ asset('web/js/app.min.js')}}"></script>
 
+    </body>
+
         @yield('after-js')
 
 
@@ -256,7 +270,7 @@
                 $('.closebtn').hide();
 
             function openNav() {
-              $("#mySidenav").css("width","200px");
+              $("#mySidenav").css("width","250px");
               $('.openbtn').hide();
               $('.closebtn').show();
             //   $(body).css('background-color','red');

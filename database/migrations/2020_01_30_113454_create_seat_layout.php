@@ -17,7 +17,9 @@ class CreateSeatLayout extends Migration
             $table->bigIncrements('id');
             $table->unsignedBiginteger('bus_id');
             $table->integer('total_seat');
-            $table->string('layout');
+            $table->integer('seat_type');
+            $table->integer('bus_bath');
+            $table->longtext('layout');
             $table->string('layout_type');
             $table->integer('no_of_seat_at_last');
             $table->string('created_by');

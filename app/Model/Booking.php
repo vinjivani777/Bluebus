@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     protected $table = "booking_details";
-    protected $fillable=['id','booking_id','amount', 'bus_id', 'route_id', 'boarding_point_id', 'vendor_id','customer_id','ticket_no', 'total_fare','note','insurance_policy','payment_status','seat_no', 'payment_status', 'payment_methos', 'booking_date', 'booking_status','created_by'];
+    protected $fillable=['id', 'bus_id', 'vendor_id', 'customer_id', 'route_id', 'board_point_id', 'drop_point_id', 'ticket_no', 'booking_date', 'seat_no', 'payment_method', 'total_fare', 'note', 'insurance_policy', 'booking_status', 'payment_status', 'operator_confirmation_status', 'created_by'];
     public $timestamps = true;
 
     public function customer()

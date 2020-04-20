@@ -117,7 +117,7 @@
                 height:15px;
                 margin-right:10px;
             }
-          
+
         </style>
 
     </head>
@@ -140,7 +140,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{ route('index') }}">Home</a></li>
-                                    <li><a href="{{ route('offers') }}">Offers</a></li>
+                                    <li><a href="{{ route('offer') }}">Offers</a></li>
                                     <li><a href="#">Print Ticket</a></li>
                                     <li><a href="#">Cancel Ticket</a></li>
                                     <li>|</li>
@@ -248,8 +248,8 @@
                         </div>
                     </div>
 
-                   
-                   
+
+
                     <div style="background-color:#f8fdfe">
                         <div class="offers-slider mt-4">
                             <div class="container">
@@ -339,14 +339,14 @@
                                                 <div class="input-group-append">
                                                     <button type="button" id="check-minutes" class="btn waves-effect waves-light btn-info">Newsletter</button>
                                                 </div>
-                                            </div>                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                            </div>
-                          
+
                         </div>
-                     
+
                     </div>
                 </div>
             </div>
@@ -376,12 +376,12 @@
                                     Infant Jesus |
                                     Patel Travels |
                                     JBT Travels |
-                                    Shatabdi Travels | 
-                                    Eagle Travels | 
+                                    Shatabdi Travels |
+                                    Eagle Travels |
                                     Kanker Roadways |
                                     Komitla |
                                     Sri Krishna Travels |
-                                    Humsafar Travels | 
+                                    Humsafar Travels |
                                     Mahasagar Travels |
                                     Raj Express |
                                     Sharma Travels |
@@ -402,7 +402,7 @@
                                     Pradhan Travels |
                                     YBM Travels |
                                     Hebron Transports |
-                                    Mahalaxmi travels | 
+                                    Mahalaxmi travels |
                                     MR Travels |
                                     Vivegam Travels |
                                     VST Travels |
@@ -413,7 +413,7 @@
                                     Yamani Travels |
                                     Arthi Travels |
                                     </p>
-                             </div> 
+                             </div>
                          </div>
                          <div class="row">
                             <div class="col-12">
@@ -434,7 +434,7 @@
                                <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
                                <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
                                <button type="button" class="btn btn-outline-info btn-rounded waves-effect"><i class="fe-facebook"></i></button>
-                              
+
                             </div>
                             <div class="col-3 mr-0">
                                 <h3>Our Website</h3>
@@ -444,7 +444,7 @@
                                 <h6><a href="" style="color:#6c757d">Offers</a></h6>
                                 <h6><a href="" style="color:#6c757d">Booking Ticket</a></h6>
                             </div>
-                     
+
                             <div class="col-3 ml-0">
                                 <h3>Information</h3>
                                 <hr>
@@ -468,9 +468,84 @@
                     </div>
                 </div>
                 <!-- end Footer -->
-       
-        <!-- END wrapper -->
 
+        <!-- END wrapper -->
+        <div class="offerforu" style="height:430px;display:none">
+            <div class="offer-body">
+                <div class="row">
+                    <div class="col-10 mx-auto">
+                        <div class="container-fluid">
+                           
+                            <div class="row">
+                                @if($promoCount <= 3 )
+                                    <?php $r=0; ?>
+                                    @foreach ($promoCode as $item)
+                                        <?php $r++; ?>
+                                            <div class="col-4 mx-auto">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h6 class="text-center text-dark mt-0">
+                                                                    {{ $item->description }}
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 text-center">
+                                                                <img src="{{ asset('/'.$item->promocode_image) }}" alt="" style="width:274px;height:147px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h5 class="text-center">Limited Period Offer</h5>
+                                                                <h4 class="text-center">  Pay Using AmazonPay Postpaid </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    @endforeach
+                                @else
+                                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner" role="listbox">
+                                            @foreach ($promoCode as $item)
+                                                <div class="carousel-item ">
+                                                    <div class="col-4 mx-auto">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <h6 class="text-center text-dark mt-0">
+                                                                            {{ $item->description }}
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 text-center">
+                                                                        <img src="{{ asset('/'.$item->promocode_image) }}" alt="" style="width:274px;height:147px;">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <h5 class="text-center">Limited Period Offer</h5>
+                                                                        <h4 class="text-center">  Pay Using AmazonPay Postpaid </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Vendor js -->

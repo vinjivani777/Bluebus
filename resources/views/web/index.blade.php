@@ -21,7 +21,13 @@
 @section('page-css')
 
         <style>
-
+            .top-bar{
+                width: 100%;
+                min-height: 280px;
+                position: relative;
+                background-color: rgb(66, 99, 193);
+                background-image: linear-gradient(0deg, rgb(107, 142, 242) 0px, rgb(66, 99, 193) 100%);
+            }
             ul.ui-menu{
                 position: absolute;
                 z-index: 10;
@@ -65,12 +71,16 @@
                 cursor: pointer;
                 margin-bottom: 15px;
             }
-            a:hover{
+
+            nav a {
                 text-decoration: none;
-                color:#d84f57;
-                cursor: pointer;
-                -webkit-tap-highlight-color: transparent;
-            }
+                display: block;
+                position: relative;
+                color: #ef6614;
+                text-transform: uppercase;
+              }
+
+
             .footer-row{
                 background-color:#1b2330;
                 overflow: hidden;
@@ -84,6 +94,13 @@
             }
             .search_input{
                 border-radius:0px;
+                font-size:14px;
+            }
+             input:required {
+                box-shadow: none;
+            }
+            input:focus{
+                border:none;
             }
             .input-icons i {
                 position: absolute;
@@ -95,7 +112,7 @@
             }
 
             .icon {
-                padding: 10px;
+                padding: 18px;
                 min-width: 50px;
                 text-align: center;
             }
@@ -111,7 +128,7 @@
                 position: absolute;
                 bottom: 0;
                 left: 16%;
-                font-size: 12px;
+                font-size: 14px;
                 top: 25%;
                 height: 25px;
                 transition: all .3s ease;
@@ -127,6 +144,79 @@
                 color: #9b9b9b!important;
                 font-weight: 100!important;
             }
+
+            .offer-list:hover{
+                box-shadow: 0 0 5px 0 rgba(0,0,0,.30);
+            }
+            .offer-list{
+                overflow: hidden;
+                max-height: 310px;
+
+            }
+
+            .cust-banifit:hover{
+                transition:transform 0.5s;
+                transform: scale(1.1);
+            }
+            .cust-banifit{
+                border:1px solid #bdbaba;
+                max-height: 240px;
+                box-shadow: 0.1px 0.1px 0.1px #ccc;
+                transition-duration: 0.5s;
+                border-radius: 15px;
+                background: #ffffff;
+                overflow: hidden;
+            }
+            .visa, .master, .american {
+                background-image: url('{{ asset("web/images/redbus/icon/wallet/ns-sprite.png") }}');
+                float: left;
+                height: 37px;
+                width: 57px;
+                margin-right: 10px;
+            }
+            .visa {
+                background-position: -1px -35px;
+            }
+            .master {
+                background-position: -69px -35px;
+            }
+            .american {
+                background-position: -138px -35px;
+            }
+            .py_pal {
+                background-image: url('{{ asset("web/images/redbus/icon/wallet/ns-sprite.png") }}');
+                float: left;
+                height: 37px;
+                width: 84px;
+                background-position: -315px -83px;
+            }
+            .rupaylg {
+                background-image: url('https://www.easemytrip.com/dm-img/rupay-lg-nw.png');
+                float: left;
+                height: 35px;
+                width: 57px;
+                background-position: 0 0;
+                margin-top: 6px;
+            }
+            .sm-nav-svg{
+                position: relative;
+                width:100%;
+                max-height:500px;
+            }
+            .min-sticky-footer{
+                font-size: 12px;
+                line-height: 100%;
+                font-weight: 500;
+                color: #666;
+                display: block;
+                padding-top: 5px;
+            }
+            .busInfo {
+    width: 71.66666667%;
+    float: left;
+    border-right: 1px solid #eaebed;
+    padding: 0 10px 0 0;
+}
 
         </style>
 
@@ -148,13 +238,13 @@
 
 @section('other-page-js')
 
-            <!-- Plugins js-->
-            <script src="{{ asset('web/libs/flatpickr/flatpickr.min.js') }}"></script>
-            <script src="{{ asset('web/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
-            <script src="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
+    <!-- Plugins js-->
+        <script src="{{ asset('web/libs/flatpickr/flatpickr.min.js') }}"></script>
+        <script src="{{ asset('web/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js') }}"></script>
+        <script src="{{ asset('web/libs/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
 
-            <!-- Init js-->
-            <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
+    <!-- Init js-->
+        <script src="{{ asset('web/js/pages/form-pickers.init.js') }}"></script>
 
 
     <!-- Login JS -->
@@ -367,28 +457,39 @@
 
         </script>
 
+        <script>
 
-<script>
+            $('.db').click(function(){
+                $(this).siblings('.place').focus();
+            });
+            $('.source_place').on('focusin',
+            function(){
+                $(this).siblings('label.db').addClass('move-up');
+            }).on('focusout', function(){
+                var  source_place=$('.source_place').val();
+                if(source_place == "")
+                {
+                        $(this).siblings('label.db').removeClass('move-up');
+                }
+            });
 
-$('.source_place').on('focusin',
-   function(){
-    $(this).siblings('label.db').addClass('move-up');
-   }).on('focusout', function(){
-    $(this).siblings('label.db').removeClass('move-up');
-  });
-
-  $('.destination_place').on('focusin',
-   function(){
-    $(this).siblings('label.db').addClass('move-up');
-   }).on('focusout', function(){
-    $(this).siblings('label.db').removeClass('move-up');
-  });
+            $('.destination_place').on('focusin',
+            function(){
+                $(this).siblings('label.db').addClass('move-up');
+            }).on('focusout', function(){
+                var  destination_place=$('.destination_place').val();
+                if(destination_place == "")
+                {
+                        $(this).siblings('label.db').removeClass('move-up');
+                }
+            });
 
 
-// $('label.db').removeClass('move-up');
-</script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        </script>
 
+        {{-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
 
+        <script src="{{ asset('web\searchJquery\jquery-1.12.4.js') }}"></script>
+        <script src="{{ asset('web\searchJquery\jquery-ui.js')  }}"></script>
 @endsection

@@ -142,7 +142,7 @@
                         <nav>
                             <ul>
                                 <li><a href="{{ route('index') }}">Home</a></li>
-                                <li><a href="{{ route('offers') }}">Offers</a></li>
+                                <li><a href="{{ route('offer') }}">Offers</a></li>
                                 <li><a href="#">Print Ticket</a></li>
                                 <li><a href="#">Cancel Ticket</a></li>
                                 <li>|</li>
@@ -206,7 +206,7 @@
                                         </div>
                                     </div>
                                     <div class="row bg-light">
-                                        <div class="col-3 m-4 mx-auto mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/1.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -219,7 +219,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/2.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/3.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -247,7 +247,7 @@
                                         </div>
                                     </div>
                                     <div class="row  bg-light">
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/4.png') }}" alt="Card image cap"  width="360px" height="18px">
                                                 <div class="card-body">
@@ -260,7 +260,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/5.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -273,7 +273,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/6.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -288,7 +288,7 @@
                                         </div>
                                     </div>
                                     <div class="row  bg-light">
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/7.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -301,7 +301,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/8.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -314,7 +314,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/9.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -329,7 +329,7 @@
                                         </div>
                                     </div>
                                     <div class="row  bg-light">
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/10.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -342,7 +342,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/11.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -355,7 +355,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/12.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -370,7 +370,7 @@
                                         </div>
                                     </div>
                                     <div class="row  bg-light">
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/13.jpg') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -383,7 +383,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/14.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -396,7 +396,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/15.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -411,7 +411,7 @@
                                         </div>
                                     </div>
                                     <div class="row  bg-light">
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/16.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -424,7 +424,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/17.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">
@@ -437,7 +437,7 @@
                                                 </div>
                                             </div> <!-- end card-box-->
                                         </div>
-                                        <div class="col-3 m-4 mx-auto">
+                                        <div class="col-md-3 col-sm-12 col-lg-3 m-4 mx-auto">
                                             <div class="card shadow-lg ">
                                                 <img class="card-img-top img-fluid" src="{{ asset('web/images/offers/18.png') }}" alt="Card image cap" width="360px" height="18px">
                                                 <div class="card-body">

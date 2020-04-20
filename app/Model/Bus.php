@@ -21,10 +21,16 @@ class Bus extends Model
 
     }
 
+    
     public function Destination()
     {
         return $this->belongsTo('App\Model\City', 'ending_point');
 
+    }
+
+    public function SeatLayout()
+    {
+        return $this->hasOne('App\Model\SeatLayout');
     }
 
 }

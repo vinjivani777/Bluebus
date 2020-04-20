@@ -6,7 +6,8 @@ Blue Bus | Search Bus Tickets
 
 @section('other-page-css')
 
-    {{-- <link rel="shortcut icon" href="{{asset('web/images/favicon.ico')}}"> --}}
+    <link href="{{asset('web/libs/ladda/ladda-themeless.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('web/libs/jquery-toast/jquery.toast.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Plugins css -->
     <link href="{{ asset('web/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
@@ -29,6 +30,42 @@ Blue Bus | Search Bus Tickets
 
 @section('page-css')
     <style>
+        .select-seat-fare-details-active{
+            display:none;
+        }
+        .SeatsLayout{
+            display:none;
+        }
+            ul.ui-menu{
+                position: absolute;
+                z-index: 101000000;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                font-size: 13px;
+                background: #fff;
+                border: 1px solid #aaa;
+                overflow-x: hidden;
+                overflow-y: auto;
+                max-height: 230px;
+                font-size: 14px;
+                color: #666;
+                line-height: 1;
+                color: #333;
+                width: 180px;
+                margin-left: -1px;
+            }
+
+            ul.ui-menu li.selected, ul.ui-menu li:hover {
+                background: #dcdcdc;
+            }
+
+            .ui-menu .ui-menu-item-wrapper {
+                padding: 13px 26px 13px 16px;
+                cursor: pointer;
+                text-align: left;
+                font-weight: 400;
+            }
         #loading {
             width: 100%;
             height: 100%;
@@ -36,7 +73,7 @@ Blue Bus | Search Bus Tickets
             left: 0px;
             position: fixed;
             display: block;
-            opacity: 0.7;
+            opacity: 1;
             background-color: #fff;
             z-index: 99;
             text-align: center;
@@ -53,11 +90,13 @@ Blue Bus | Search Bus Tickets
             width: 240px;
             background: #fff;
             bottom: 0;
-            padding: 20px 0;
+            padding: 10px 0;
             position: absolute;
             -webkit-transition: all .2s ease-out;
             transition: all .2s ease-out;
-            top: 70px;
+            top: 45px;
+            height:650px;
+            max-height:700px;
 
             }
             .filter-sec .fil-search input[type=text] {
@@ -69,54 +108,240 @@ Blue Bus | Search Bus Tickets
             border-radius: 3px;
         }
         .return{
-            transform:rotate(180deg);
+            transform:rotate(350deg);
         }
+        .bus_not_found{
+            display: block;
+            font-size: 1.17em;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        .bus-list-tr:hover{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 1px solid #ddd;
+        }
+        .bus_icn {
+            width: 20px;
+            height: 19px;
+            display: inline-block;
+            background: url('{{ asset("web/images/redbus/icon/bus-icon-n2.png") }}') 0 0;
+            background-size: 20px 19px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        .busName{
+
+            font-size: 15px;
+            font-weight: 700;
+            color: #353333;
+            text-transform: uppercas
+        }
+        .ellipsis {
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+                text-overflow: ellipsis;
+            }
+            .busType {
+                font-size: 11px;
+                font-weight: 500;
+                color: #6d6d6d;
+                margin-top: 3px;
+            }
+            .bus_ad {
+                width: 100%;
+                float: left;
+                margin: 10px 0 0 0;
+            }
+            .d_timing {
+                font-size: 11px;
+                width: 25%;
+                float: left;
+                border: 1px solid #f09a36;
+                border-radius: 20px;
+                text-align: center;
+                font-weight: 600;
+                padding: 2px 0;
+            }
+            .uiDestPoints {
+                position: relative;
+                margin-top: 6px;
+                width: 50%;
+                float: left;
+            }
+            .ttl_hrs {
+                background: #ffffff;
+                font-size: 11px;
+                padding: 1px 5px;
+                width: 52%;
+                margin-left: auto;
+                margin-right: auto;
+                position: relative;
+                top: -4px;
+                color: #6d6d6d;
+                text-align: center;
+            }
+            .a_timing {
+                font-size: 11px;
+                width: 25%;
+                float: left;
+                border: 1px solid #4cdf53;
+                border-radius: 20px;
+                text-align: center;
+                font-weight: 600;
+                padding: 2px 0;
+            }
+            .uiDestPoints:before {
+                content: '';
+                display: block;
+                border-bottom: 1px dashed #CCCCCC;
+                width: 100%;
+                height: 1px;
+                z-index: 0;
+                top: 4px;
+                position: absolute;
+            }
+            .busTprice {
+                width: 27.33333333%;
+                float: left;
+                padding: 0;
+            }
+            .ti_prc {
+                float: right;
+                text-align: right;
+                width: 100%;
+            }
+            .rs_nicn {
+                width: 14px;
+                height: 14px;
+                background: url(img/rupees-icn.svg) 0 0;
+                background-size: 14px 14px;
+                display: inline-block;
+            }
+            .ttl_b_amt {
+                font-size: 22px;
+                display: inline-block;
+                color: #d13617;
+            }
+            .s_avil {
+                color: #6d6d6d;
+                font-size: 11px;
+                float: right;
+                text-align: right;
+            }
+            .m_ticket {
+                width: 86%;
+                background-color: #faeb95;
+                padding: 0;
+                float: right;
+                display: table;
+                font-size: 10px;
+                color: #af970d;
+                font-weight: 600;
+                text-align: center;
+                margin-top: 5px;
+                height:10px;
+            }
+            .rip {
+                margin: 0;
+                padding: 2px 0 4px 0;
+                position: relative;
+            }
+            .rip:before {
+                left: 2px;
+            }
+            .rip:before {
+                content: "";
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background: #fff;
+                top: 1px;
+                /* -webkit-transform: translate(-50%, -50%) rotate(45deg); */
+                transform: translate(-55%, 39%) rotate(45deg);
+                border: 1px solid transparent;
+                border-top-color: #faeb95;
+                border-right-color: #faeb95;
+                border-radius: 100%;
+            }
+            .rip:after {
+                /* -webkit-transform: translate(-50%, -50%) rotate(225deg); */
+                transform: translate(-50%, -50%) rotate(225deg);
+                right: 5px;
+            }
+            .rip:after {
+                content: "";
+                position: absolute;
+                width: 10px;
+                background: #fff;
+                height: 10px;
+                top: -2px;
+                /* -webkit-transform: translate(-50%, -50%) rotate(45deg); */
+                transform: translate(68%, 62%) rotate(223deg);
+                border: 1px solid transparent;
+                border-top-color: #faeb95;
+                border-right-color: #faeb95;
+                border-radius: 100%;
+            }
     </style>
 @endsection
 
 @section('content')
 
-        @if(($result)=="NoBus")
-                {{-- <div id="loading">
-                    <img id="loading-image" src="{{ asset('vendor/images/bus-image/1_uQi2P.gif') }}" alt="Loading..." />
-                </div> --}}
-                <!-- Begin page -->
-                <div id="wrapper">
+        <div class="container-fluid">
+            @if(($result)=="NoBus")
+                    <div id="loading">
+                        <img id="loading-image" src="{{ asset('vendor/images/bus-image/1_uQi2P.gif') }}" alt="Loading..." />
+                    </div>
+                    <!-- Begin page -->
+                    <div id="wrapper">
 
-                    <!-- Topbar Start -->
-                   <div class="row">
-                        <div class="col-12">
-                            <div class="container-fluid">
-                                <section class="section">
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <div class="ml-3 " style="font-size:18px;">
-                                                <span class="text-dark">{{ $source }} </span>
-                                                <i class="fe-arrow-right "></i>
-                                                <span class="text-dark"> {{ $dest }} </span>
-                                                <span class="text-dark ml-3">
-                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
-                                                </span>
+                        <!-- Topbar Start -->
+                        <div class="row">
+                                <div class="col-12">
+                                    <div class="container-fluid">
+                                        <section class="section">
+                                            <div class="row mt-2">
+                                                <div class="col-6">
+                                                    <div class="ml-3 " style="font-size:18px;">
+                                                        <span class="text-dark">{{ $source }} </span>
+                                                        <i class="fe-arrow-right "></i>
+                                                        <span class="text-dark"> {{ $dest }} </span>
+                                                        <span class="text-dark ml-3">
+                                                            <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 ">
+                                                    <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
-                                        </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <hr class="" style="border:0.3px solid #ddd;">
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <hr class="" style="border:0.3px solid #ddd;">
-                                        </div>
-                                    </div>
-                                </section>
+                                </div>
+                        </div>
+                    </div>
+
+                        <!-- end Topbar -->
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 mx-auto text-center">
+                                <img src="{{asset('web/images/redbus/icon/no_bus.png')}}" style="width:416px;height:264px;">
+                                <h3 class="bus_not_found text-center">Oops! No buses found.</h3>
+                                <div>No routes available</div>
                             </div>
                         </div>
-                   </div>
-                </div>
-
-                    <!-- end Topbar -->
-
-                <center><img src="{{asset('web/nobusfound.png')}}" width="100%" height="100%"></center>
+                    </div>
 
 
             @else
@@ -124,465 +349,31 @@ Blue Bus | Search Bus Tickets
                 <div id="loading">
                     <img id="loading-image" src="{{ asset('vendor/images/bus-image/1_uQi2P.gif') }}" alt="Loading..." />
                 </div>
-                <!-- Begin page -->
+
                 <div id="wrapper">
-
-                    <!-- Topbar Start -->
-                <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-10">
-                            <div class="container-fluid">
-                                <section class="section">
-                                    <div class="row mt-2">
-                                        <div class="col-6">
-                                            <div class="ml-3 " style="font-size:18px;">
-                                                <span class="text-dark">{{ $source }} </span>
-                                                <i class="fe-arrow-right "></i>
-                                                <span class="text-dark"> {{ $dest }} </span>
-                                                <span class="text-dark ml-3">
-                                                    <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 ">
-                                            <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <hr class="" style="border:0.5px solid #ddd;">
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                </div>
-
-                    <!-- end Topbar -->
-
-                    <!-- ========== Left Sidebar Start ========== -->
-                    <div class="left-side-men" >
-
-                        <div class="slimscroll-menu">
-
-                            <div id="sidebar-menu">
-
-                                <ul class="metismenu" id="side-menu">
-
-                                    <li class="menu-title" style="font-size:13px;font-weight:500">Filters <span class="float-right text-danger">RESET</span></li>
-
-                                    <li>
-                                        <hr>
-                                    </li>
-
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DEPARTURE TIME</li>
-
-                                    {{-- DEPARTURE  TIME --}}
-                                    <li>
-                                        <div class="checkbox checkbox-danger checkbox-squre mb-2 ml-3 ">
-                                            <input id="checkbox-1" type="checkbox">
-                                            <label for="checkbox-1" class="text-xs">
-                                                <i class="mdi mdi-weather-partlycloudy"></i>
-                                                Before 6 am
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox2" type="checkbox">
-                                            <label for="checkbox2" class="text-xs">
-                                                <i class=" mdi mdi-weather-sunny"></i>
-                                                6 am to 12 pm
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox3" type="checkbox">
-                                            <label for="checkbox3" class="text-xs">
-                                                <i class="mdi mdi-weather-sunset-down"></i>
-                                                12 pm  to 6 pm
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox4" type="checkbox">
-                                            <label for="checkbox4" class="text-xs">
-                                                <i class="mdi mdi-weather-sunset-up"></i>
-                                                6 am after
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    {{--  BUS TYPE  --}}
-
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">BUS TYPE</li>
-
-                                    <li>
-                                        <div class="checkbox checkbox-danger checkbox-squre mb-2 ml-3 ">
-                                            <input id="checkbox-5" type="checkbox">
-                                            <label for="checkbox-5" class="text-xs">
-                                                SEATER
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox6" type="checkbox">
-                                            <label for="checkbox6" class="text-xs">
-                                                SLEEPER
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox7" type="checkbox">
-                                            <label for="checkbox7" class="text-xs">
-                                                AC
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox8" type="checkbox">
-                                            <label for="checkbox8" class="text-xs">
-                                                NONAC
-                                            </label>
-                                        </div>
-                                    </li>
-
-
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">ARRIVAL TIME</li>
-
-                                    {{-- ARRIVAL   TIME --}}
-                                    <li>
-                                        <div class="checkbox checkbox-danger checkbox-squre mb-2 ml-3 ">
-                                            <input id="checkbox-9" type="checkbox">
-                                            <label for="checkbox-9" class="text-xs">
-                                                <i class="mdi mdi-weather-partlycloudy"></i>
-                                                Before 6 am
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox-10" type="checkbox">
-                                            <label for="checkbox-10" class="text-xs">
-                                                <i class=" mdi mdi-weather-sunny"></i>
-                                                6 am to 12 pm
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox-11" type="checkbox">
-                                            <label for="checkbox-11" class="text-xs">
-                                                <i class="mdi mdi-weather-sunset-down"></i>
-                                                12 pm  to 6 pm
-                                            </label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="checkbox checkbox-danger mb-2 ml-3">
-                                            <input id="checkbox-12" type="checkbox">
-                                            <label for="checkbox-12" class="text-xs">
-                                                <i class="mdi mdi-weather-sunset-up"></i>
-                                                6 am after
-                                            </label>
-                                        </div>
-                                    </li>
-
-                                    {{--  BOARDING POINT  --}}
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">BOARDING POINT</li>
-
-                                    <li>
-                                        <div class="fil-search ml-3">
-                                            <input class="pl-2" type="text" placeholder="BOARDING POINT">
-                                        </div>
-                                    </li>
-
-                                    {{--  DROP POINT  --}}
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DROP POINT</li>
-
-                                    <li>
-                                        <div class="fil-search ml-3">
-                                            <input class="pl-2" type="text" placeholder="DROP POINT">
-                                        </div>
-                                    </li>
-
-                                    {{--  OPERATOR  --}}
-                                    <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">OPERATOR</li>
-
-                                    <li>
-                                        <div class="fil-search ml-3">
-                                            <input class="pl-2" type="text" placeholder="OPERATOR">
-                                        </div>
-                                    </li>
-
-                                    {{--  AMENITIES  --}}
-                                    <li class="menu-title mt-2" style="font-size:13px;font-weight:600;color:#3e3e52">AMENITIES</li>
-                                        <?php $r=12; ?>
-                                    @foreach ($aminaties as $item)
-                                        <li>
-                                            <div class="checkbox checkbox-danger mb-2 ml-3">
-                                                <input id="checkbox-{{  $r++ }}" type="checkbox">
-                                                <label for="checkbox-{{  $r++ }}" class="text-xs">
-                                                    <img src="{{ asset('/'.$item->image_path) }}" style="width:15px;height:15px;" class="ml-2"> &nbsp; {{ $item->description }}
-                                                </label>
-                                            </div>
-                                        </li>
-                                    @endforeach
-
-
-                                </ul>
-
-                            </div>
-
-                        </div>
-                        <!-- Sidebar -left -->
-
+                    <div class="max-search" style="display:none">
+                        @include('web.search.maxsearch')
                     </div>
-                    <!-- Left Sidebar End -->
-
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content here -->
-                    <!-- ============================================================== -->
-
-                    <div class="content-page mt-0">
-                        <div class="content">
-
-                            <!-- Start Content-->
-                            <div class="container-fluid">
-
-                                <!-- start page title -->
-                                <div class="row">
-                                    <div class="col-12">
-                                        <table  class=" table table-borderless ">
-                                            <thead class="">
-                                                <tr>
-                                                    <th>{{ count($total_bus) }} Buses <span style="font-weight: 400;">Found</span>  <span class="float-right">Sort By:</span></th>
-
-                                                    <th><span style="font-weight: 400;">Departure</span></th>
-                                                    <th><span style="font-weight: 400;">Duration</span></th>
-                                                    <th><span style="font-weight: 400;">Arrival</span></th>
-                                                    <th><span style="font-weight: 400;">Ratings</span></th>
-                                                    <th><span style="font-weight: 400;">Fare</span></th>
-                                                    <th><span style="font-weight: 400;">Seats Available
-                                                    </span></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($total_bus as $item)
-                                                <tr style="border:1px solid #ddd" class="mb-2">
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:16px;font-weight: 700;">{{ $item->bus_name }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            <span style="font-size:12px;font-weight: 300;">{{$item->Bus_Type->type_name}}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                                @foreach($path[$item->id] as $icon)
-                                                                <img  style="font-size:1px;margin-left:2px;height:20px;font-weight:100;" src="{{ $icon['image_path'] }}"/>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:19px;font-weight:400">{{ date("g:i A",strtotime($item->start_time)) }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-4">
-                                                                <span style="font-size:12px;font-weight: 300;">{{ $item->starting_point }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:18px;font-weight:400">{{ date('G:i',strtotime($item->ending_time) -  strtotime($item->start_time)) }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:18px;font-weight:400">{{date("g:i A",strtotime($item->ending_time)) }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-4">
-                                                                <span style="font-size:12px;font-weight: 300;">{{ $item->ending_point }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span class="badge badge-danger p-1" style="font-size:px;font-weight:300"><i class="fe-star mr-1"></i>4.2</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div><div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:18px;font-weight:400">INR {{ $item->total_fare }}</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="pb-0">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <span style="font-size:18px;font-weight:400">30 Seats</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12">
-                                                                <span style="font-size:12px;font-weight: 300;">31 Seats available</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-12 pr-0">
-                                                                <span style="font-size:12px;font-weight: 300;" class="float-right mb-0 mr-0"><button class="mb-0 mr-0 btn btn-sm btn-danger">VIEW BUSES</button></span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                </tr>
-                                                <tr class="amenities mb-2" style="background-color:#f8f9fa;display:none" >
-                                                    <td colspan="7" class="amenities_content">
-                                                        <div class="row">
-                                                            <div class="col-12 mt-1 mb-1 ml-3 data">
-                                                            @foreach ($aminaties as $amt)
-                                                                    <span style="font-size:14px;font-weight: 100;">  @if(($amt->id) == ($item->amenities_id)) {{ $amt->description }} @endif</span>
-                                                                @endforeach
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                {{-- <tr style="background-color:#f8f9fa;">
-                                                    <td colspan="7">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <canvas data-type="lower" width="489" height="211" class=""></canvas>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                fgfd
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr> --}}
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- content -->
-
-
+                    <div class="mini-search">
+                        @include('web.search.minisearch')
                     </div>
-
-                    <!-- ============================================================== -->
-                    <!-- End Page content -->
-                    <!-- ============================================================== -->
-
-
                 </div>
-                <!-- END wrapper -->
-                @endif
-                {{--  model  --}}
+            @endif
+        </div>
+                <!-- Begin page -->
 
-            <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title text-white" id="myCenterModalLabel">Search Bus</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-5">
-                                            <input type="text"  class="form-control m-0 search_input source_place place" name="source_place" placeholder="Broad Point" autocomplete="off" id="source_place" value="" >
-                                            {{-- <input type="text" class="form-control " name="source_place" id="source_place" > --}}
-                                    </div>
 
-                                    <div class="col-2 text-center">
-                                        <img src="{{ asset('web/images/redbus/icon/van.png') }}" class="return_bus"   width="40px" height="40px">
-                                    </div>
-                                    <div class="col-5 ">
-                                        <input type="text" class="form-control m-0 search_input destination_place place" name="destination_place" placeholder="Drop Point" autocomplete="off" id="destination_place" value="" >
-                                        {{-- <input type="text" class="form-control" name="destination_place" id="destination_place" placeholder="Drop Point"> --}}
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-1 mt-2 mr-2">
-                                        <label>Date</label>
-                                    </div>
-                                    <div class="col-5 mr-3">
-                                            <input type="text" class="form-control  search_input basic-datepicker" name="journey_date"  id="journey_date" placeholder="Onward Date">
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">Search Bus</button>
-                                    </div>
-                                {{-- </div> --}}
-                            </form>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+
+@endsection
+
+@section('right-bar')
+
+
 
 @endsection
 
 @section('other-page-js')
 
-            <!-- Right bar overlay-->
-            <div class="rightbar-overlay"></div>
-            <script src="{{ asset('web/js/vendor.min.js')}}"></script>
 
             <script src="{{ asset('web/js/pages/animation.init.js')}}"></script>
             <script src="{{ asset('web/libs/moment/moment.min.js') }}"></script>
@@ -600,17 +391,535 @@ Blue Bus | Search Bus Tickets
             <!-- Datatables init -->
             <script src="{{ asset('admin/js/pages/datatables.init.js')}}"></script>
 
+            <!-- Loading buttons js -->
+            <script src="{{asset('web/libs/ladda/spin.js')}}"></script>
+            <script src="{{asset('web/libs/ladda/ladda.js')}}"></script>
 
+             <!-- Tost-->
+            <script src="{{ asset('web/libs/jquery-toast/jquery.toast.min.js') }}"></script>
+
+            <!-- toastr init js-->
+            <script src="{{ asset('web/js/pages/toastr.init.js') }}"></script>
+
+
+            <!-- Buttons init js-->
+            <script src="{{asset('web/js/pages/loading-btn.init.js')}}"></script>
 
             <!-- App js -->
-            <script src="{{ asset('web/js/app.min.js')}}"></script>
+            <script src="{{ asset('web/libs/tippy-js/tippy.all.min.js')}}"></script>
+
+            {{-- Seat Layout --}}
             <script>
-                $(window).on('load',function() {
-                $('#loading').fadeOut();
-                $('.slimScrollBar').css({'width':'0px'});
-            });
+
+                    
+
+                    $(".bus-list-tr").mouseenter(function(){
+                            var busTr=$(this).attr('id');
+                            var No= busTr.split("_")[1];
+
+                            $('#collapseExample_'+No).fadeIn();
+                            // $('.AllAminitis').css('display','block');
+
+                    });
+
+                    $(".bus-list-tr").mouseleave(function(){
+                            var busTr=$(this).attr('id');
+                            var No= busTr.split("_")[1];
+
+                            $('#collapseExample_'+No).fadeOut();
+                            // $('.AllAminitis').css('display','block');
+
+                    });
+
+                    $('.collapsed').click(function(){
+
+                    });
+
+                    var selectedSeats =[];
+
+                    function validate(obj){
+
+                        var  rowNo = sessionStorage.getItem("rowNo")
+                        var total_select_seat = $('#total_select_seat_'+rowNo).val();
+                        var total_fare_amt = $('#total_fare_amt_'+rowNo).val();
+                        var selected_broadpoint = $('#selected_broadpoint_'+rowNo).val();
+                        var selected_droppoint = $('#selected_droppoint_'+rowNo).val();
+                        var bus_id = $('#bus_id_'+rowNo).val();
+
+                        var validate="";
+
+                        if(total_select_seat == 0 || total_select_seat=="")
+                        {
+                            validate = false;
+                        }else{
+                            validate = true;
+                        }
+
+                        if(total_fare_amt == 0 || total_fare_amt=="")
+                        {
+                            validate = false;
+                        }else{
+                            validate = true;
+                        }
+
+                        if(selected_broadpoint == 0 || selected_broadpoint=="")
+                        {
+                            validate = false;
+                        }else{
+                            validate = true;
+                        }
+
+                        if(selected_droppoint == 0 || selected_droppoint=="")
+                        {
+                            validate = false;
+                        }else{
+                            validate = true;
+                        }
+
+                        // window.open("{{  action('Web\UserDetailsController@index', ['selected_droppoint' =>"+ selected_droppoint + ",'selected_broadpoint' => " + selected_broadpoint +" ] ) }}")
+
+                        // var url=($(obj).data('href')+'?Droppoint=' + $('#selected_droppoint_'+ rowNo).val() + '&Broadpoint=' + $('#selected_broadpoint_'+rowNo).val() + '&SeatNo=' + $('#total_select_seat_'+rowNo).val() + '&fareAmt=' + $('#total_fare_amt_'+rowNo).val() + '&busId=' + $('#bus_id_'+rowNo).val());
+
+                        var formData = {
+                            'Droppoint'      :   $('#selected_droppoint_'+ rowNo).val(),
+                            'Broadpoint'     :   $('#selected_broadpoint_'+rowNo).val(),
+                            'SeatNo'         :   $('#total_select_seat_'+rowNo).val(),
+                            'fareAmt'        :   $('#total_fare_amt_'+rowNo).val(),
+                            'busId'          :   $('#bus_id_'+rowNo).val(),
+                            "_token"         :   "{{ csrf_token() }}",
+                        };
+
+                                $.ajax({
+
+                                    url:"{{ route('passanger.details') }}",
+                                    method:"POST",
+                                    data:formData,
+                                    success:function(data){
+
+                                        $('.right-bar').html(data);
+
+                                        $('body').addClass('right-bar-enabled');
+                                        }
+                                    });
+
+                        //    $('#total_select_seat_'+rowNo).val("");
+                            // $('#total_fare_amt_'+rowNo).val(0);
+                            // $('#selected_broadpoint_'+rowNo).val(0);
+                            // $('#selected_droppoint_'+rowNo).val(0);
+                            // $('#selected_broadpoint_'+rowNo).val(0);
+                            //  $('#selected_droppoint_'+rowNo).val(0);
+
+                            // sessionStorage.removeItem("bus_id");
+                            // sessionStorage.removeItem("totalFare");
+                            // sessionStorage.removeItem("rowNo");
+                            // sessionStorage.clear();
+
+                            // for (var i = selectedSeats.length; i >= 1; i--)
+                            //     {
+                            //         selectedSeats.pop();
+                            //     }
+
+                            //     $('#SeatsLayout_'+rowNo).addClass('SeatsLayout');
+                            //     $('#hideView_'+rowNo).hide();
+                            //     $('#viewSeats_'+rowNo).show();
+                            //     $('.viewSeats').attr('disabled',false)
+                            //     $('.seat_img').attr('disabled',false);
+
+                            //     // location.href=url;
+
+                    }
+
+                    $(document).ready(function(){
+
+                        $('body').on('click','.viewSeats',function(){
+
+                            var viewSeats = $(this).attr('id');
+                            var No= viewSeats.split("_")[1];
+                            var bus_id=$('#bus_id_'+No).val();
+                            var totalFare=$('#totalFare_'+No).val();
+
+                            var action="ViewSeats";
+
+                            sessionStorage.setItem("bus_id", bus_id);
+                            sessionStorage.setItem("totalFare", totalFare);
+                            sessionStorage.setItem("rowNo", No);
+
+                            if(!$('#SeatsLayout_'+No).hasClass('SeatsLayout'))
+                            {
+                                $('.viewSeats').attr('disabled',false)
+
+                            }else{
+
+                                $('.viewSeats').attr('disabled',true)
+
+                            }
+                            $('#'+viewSeats).attr('disabled',false)
+
+                            if((bus_id) == " ")
+                            {
+                                alert("Something Is Wrong")
+                                var valid=false;
+                                return valid;
+                            }
+                            $('#loading').fadeIn();
+
+                            $.ajax({
+                                url:"{{ route('viewseate') }}",
+                                method:"POST",
+                                data:{action:action, bus_id:bus_id,"_token": "{{ csrf_token() }}"},
+                                success:function(data){
+
+                                    if($('#table').hasClass('bus-list-table'))
+                                    {
+                                        $('.bus-list-table').hide();
+                                        $('.footerss').hide();
+                                        $('.view-seat-layout').show();
+                                        $('#SeatsLayout').html(data);
+                                    }
+
+                                    $('#loading').fadeOut();
+                                    $('#SeatsLayout_'+No).html(data);
+                                    $('#SeatsLayout_'+No).removeClass('SeatsLayout');
+                                    $('#hideView_'+No).show();
+                                    $('#viewSeats_'+No).hide();
+
+                                }
+                            });
+
+                        });
+
+                        $('body').on('click','.seat_img',function(){
+
+                            var  bus=sessionStorage.getItem("bus_id")
+                            var  totalFare=sessionStorage.getItem("totalFare")
+                            var  rowNo=sessionStorage.getItem("rowNo")
+
+                                var Type=$(this).attr('id');
+                                var seatType= Type.split("_")[0];
+                                var No= Type.split("_")[1];
+
+                                $('#busid').val(bus);
+
+                                if(seatType == "sofa")
+                                {
+                                    if(!$(this).hasClass('selected'))
+                                    {
+                                        if(selectedSeats.length <= 5 )
+                                        {
+                                            $(this).attr('src','/web/images/redbus/icon/2.png');
+                                            $(this).addClass('selected')
+                                            selectedSeats.push(No);
+                                            var arrayLen=selectedSeats.length;
+                                            var TotalAmt=TotalFare(arrayLen,totalFare)
+                                            allCount(TotalAmt,selectedSeats)
+                                            $('.all-seat-details').next('div').show();
+
+                                            $('#total_select_seat_'+rowNo).val(selectedSeats);
+                                            $('#total_fare_amt_'+rowNo).val(TotalAmt);
+                                            $('#totalFare').val(TotalAmt);
+                                            $('#seatNo').val(selectedSeats);
+
+                                            if(selectedSeats.length != 0 && selectedSeats.length >= 1)
+                                            {
+                                                // $('.all-seat-details').next('div').show();
+                                                // $('.all-seat-details').next('div').removeClass('select-seat-fare-details-active');
+
+                                                if($('#table').hasClass('bus-list-table'))
+                                                {
+                                                    $('.fare-card').children('div:first-child').hide();
+
+                                                }else{
+
+                                                    $('.fare-card').children('div:first-child').show();
+                                                    $('.fare-card').children('div:first-child').removeClass('select-seat-fare-details-active');
+                                                    $('.fare-card').children('div:last-child').hide();
+                                                }
+
+                                            }
+
+                                        }else{
+                                            alert("Sorry ! But Do Not More Seat Book");
+                                        }
+
+                                    }else{
+
+                                        $(this).attr('src','/web/images/redbus/icon/1.png');
+                                        $(this).removeClass('selected')
+                                        selectedSeats.pop(No);
+                                        var arrayLen=selectedSeats.length;
+                                        var TotalAmt=TotalFare(arrayLen,totalFare)
+
+                                        $('#total_select_seat_'+rowNo).val(selectedSeats);
+                                        $('#total_fare_amt_'+rowNo).val(TotalAmt);
+                                        $('#totalFare').val(TotalAmt);
+                                        $('#seatNo').val(selectedSeats);
+
+                                        allCount(TotalAmt,selectedSeats)
+
+
+                                        if(selectedSeats.length == 0 && selectedSeats.length < 1)
+                                        {
+
+                                                if($('#table').hasClass('bus-list-table'))
+                                                {
+                                                    $('.fare-card').children('div:first-child').hide();
+
+                                                }else{
+
+                                                    $('.fare-card').children('div:first-child').hide();
+                                                    $('.fare-card').children('div:first-child').addClass('select-seat-fare-details-active');
+                                                    $('.fare-card').children('div:last-child').hide();
+                                                }
+
+
+
+                                                // $('.all-seat-details').next('div').hide();
+                                                // $('.all-seat-details').next('div').addClass('select-seat-fare-details-active');
+                                        }else{
+
+                                            $('.fare-card').children('div:last-child').hide();
+                                            $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
+
+
+                                        }
+
+                                    }
+                                }
+
+                                if(seatType == "seat")
+                                {
+                                    if(!$(this).hasClass('selected'))
+                                    {
+                                        if(selectedSeats.length <= 5 )
+                                        {
+                                            $(this).attr('src','/web/images/redbus/icon/6.png');
+                                            $(this).addClass('selected')
+                                            selectedSeats.push(No);
+                                            var arrayLen=selectedSeats.length;
+                                            var TotalAmt=TotalFare(arrayLen,totalFare)
+                                            allCount(TotalAmt,selectedSeats)
+
+                                            $('#total_select_seat_'+rowNo).val(selectedSeats);
+                                            $('#total_fare_amt_'+rowNo).val(TotalAmt);
+                                            $('#totalFare').val(TotalAmt);
+                                            $('#seatNo').val(selectedSeats);
+
+                                            if(selectedSeats.length != 0 && selectedSeats.length >= 1)
+                                            {
+
+                                                if($('#table').hasClass('bus-list-table'))
+                                                {
+                                                    $('.fare-card').children('div:first-child').hide();
+
+                                                }else{
+
+                                                    $('.fare-card').children('div:first-child').show();
+                                                    $('.fare-card').children('div:first-child').removeClass('select-seat-fare-details-active');
+                                                    $('.fare-card').children('div:last-child').hide();
+                                                    $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
+                                                }
+
+
+
+                                            }
+
+                                        }else{
+                                            alert("Sorry ! But Do Not More Seat Book");
+                                        }
+
+                                    }else{
+
+                                        $(this).attr('src','/web/images/redbus/icon/4.png');
+                                        $(this).removeClass('selected')
+                                        selectedSeats.pop(No);
+                                        var arrayLen=selectedSeats.length;
+                                        var TotalAmt=TotalFare(arrayLen,totalFare)
+                                        allCount(TotalAmt,selectedSeats)
+
+                                        $('#total_select_seat_'+rowNo).val(selectedSeats);
+                                        $('#total_fare_amt_'+rowNo).val(TotalAmt);
+                                        $('#totalFare').val(TotalAmt);
+                                        $('#seatNo').val(selectedSeats);
+
+                                        $('.fare-card').children('div:last-child').hide();
+                                        $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
+
+                                        if(selectedSeats.length == 0 && selectedSeats.length < 1)
+                                        {
+
+                                                if($('#table').hasClass('bus-list-table'))
+                                                {
+                                                    $('.fare-card').children('div:first-child').hide();
+
+                                                }else{
+
+                                                    $('.fare-card').children('div:first-child').hide();
+                                                    $('.fare-card').children('div:first-child').addClass('select-seat-fare-details-active');
+                                                    $('.fare-card').children('div:last-child').hide();
+                                                    $('.fare-card').children('div:last-child').addClass('select-seat-fare-details-active');
+                                                }
+
+
+                                        }
+                                    }
+                                }
+
+                                // console.log(selectedSeats)
+                                function allCount(TotalAmt,selectedSeats)
+                                {
+
+                                    $('.Total_fare').text('Rs. '+ TotalAmt);
+                                    $('.Base_fare').text('Rs. '+ TotalAmt);
+                                    $('.select_seat_no').text(selectedSeats);
+                                }
+
+                                function TotalFare(arrayLen,totalFare)
+                                {
+                                    return totalFare=parseInt(arrayLen) * parseInt(totalFare);
+
+                                }
+
+                        });
+
+                        $('body').on('click','.processToBook' ,function(){
+
+                            $('.seat_img').attr('disabled',true);
+
+                            $('.fare-card').children('div:first-child').hide();
+                            $('.fare-card').children('div:first-child').addClass('select-seat-fare-details-active');
+                            $('.fare-card').children('div:last-child').show();
+                            $('.fare-card').children('div:last-child').removeClass('select-seat-fare-details-active');
+
+                            // var  bus_id=sessionStorage.getItem("bus_id")
+                            // var action="SeletcDropAndBroadPoint";
+
+
+                            // $.ajax({
+                            //     url:"{{ route('select.broadpoint.droppoint') }}",
+                            //     method:"POST",
+                            //     data:{action:action, bus_id:bus_id,"_token": "{{ csrf_token() }}"},
+                            //     success:function(data){
+                            //         $('.one-seat-fare-details-active').hide()
+                            //         $('.all-seat-details').next().html(data);
+                            //     }
+                            // });
+                        });
+
+                        $('body').on('click','.broadpoint' ,function(){
+
+                            var  rowNo = sessionStorage.getItem("rowNo")
+                            var BroadPoint=$(this).val();
+
+                            $('#selected_broadpoint_'+rowNo).val(BroadPoint);
+
+                        });
+
+                        $('body').on('click','.droppoint' ,function(){
+
+                            var  rowNo = sessionStorage.getItem("rowNo")
+                            var DropPoint=$(this).val();
+
+                            $('#selected_droppoint_'+rowNo).val(DropPoint);
+
+                        });
+
+                        $('body').on('click','.hideView',function(){
+
+                            var hideView = $(this).attr('id');
+                            var No= hideView.split("_")[1];
+
+                            $('#total_select_seat_'+No).val("");
+                            $('#total_fare_amt_'+No).val(0);
+                            $('#selected_broadpoint_'+No).val(0);
+                            $('#selected_droppoint_'+No).val(0);
+                            $('#selected_broadpoint_'+No).val(0);
+                             $('#selected_droppoint_'+No).val(0);
+
+                            sessionStorage.removeItem("bus_id");
+                            sessionStorage.removeItem("totalFare");
+                            sessionStorage.removeItem("rowNo");
+                            sessionStorage.clear();
+
+                            for (var i = selectedSeats.length; i >= 1; i--)
+                                {
+                                    selectedSeats.pop();
+                                }
+
+                                $('#SeatsLayout_'+No).addClass('SeatsLayout');
+                                $('#hideView_'+No).hide();
+                                $('#viewSeats_'+No).show();
+                                $('.viewSeats').attr('disabled',false)
+                                $('.seat_img').attr('disabled',false);
+
+                        });
+
+                        $('body').on('click','.all-aminaties',function(){
+                            $('.aminaties').show();
+                        });
+
+                    });
+
             </script>
 
+            {{-- loder --}}
+            <script>
+                $(window).on('load',function() {
+                    $('#loading').fadeOut();
+                    // $('.slimScrollBar').css({'width':'0px'});
+                });
+            </script>
+
+            {{-- filter --}}
+            <script>
+                $('.reset').click(function(){
+                    $('.common_selector').each(function(){
+                        $(this). prop("checked", false);
+                    });
+                });
+
+                $(document).ready(function(){
+
+
+                    function filter_data()
+                    {
+                        // $('.filter_data').html(' <div id="loading"><img id="loading-image" src="{{ asset("vendor/images/bus-image/1_uQi2P.gif") }}" alt="Loading..." /></div>');
+                        var action = 'filter_data';
+                        // var minimum_price = $('#hidden_minimum_price').val();
+                        // var maximum_price = $('#hidden_maximum_price').val();
+                        var busType = get_filter('bus_type_filter');
+                        var Aminaties = get_filter('aminaties');
+                        var Route = $('#route_id').val();
+                        // console.log(Aminaties)
+                        // var storage = get_filter('storage');
+                        $.ajax({
+                            url:"{{ route('filter') }}",
+                            method:"POST",
+                            data:{action:action, busType:busType, Aminaties:Aminaties,route:Route,"_token": "{{ csrf_token() }}"},
+                            success:function(data){
+                                console.log(data);
+
+                                $('.filter_data').html(data);
+                            }
+                        });
+                    }
+
+                    function get_filter(class_name)
+                    {
+                        var filter = [];
+                        $('.'+class_name+':checked').each(function(){
+                            filter.push($(this).val());
+                        });
+                        return filter;
+                    }
+
+                    $('.common_selector').click(function(){
+                        filter_data();
+                    });
+
+                });
+            </script>
+
+            {{-- BusIcon Animation --}}
             <script>
 
                 $('.return_bus').click(function(){
@@ -618,46 +927,283 @@ Blue Bus | Search Bus Tickets
                     var destination =$("#destination_place").val();
                     $("#destination_place").val(source);
                     $("#source_place").val(destination);
-                    // $(this).animate({  transform: 360 deg }, {
-                    // step: function(now,fx) {
-                    //     $(this).css({
-                    //         '-webkit-transform':'rotate('+360+'deg)', 
-                    //         '-moz-transform':'rotate('+360+'deg)',
-                    //         'transform':'rotate('+360+'deg)'
-                    //     });
-                    // }
-                    // });
-                    // $(this).css("transform", "rotate(360deg)");
-                    $(this).rotate({
-                        duration:6000,
-                        angle: 0,
-                        animateTo:100
-                    });
+                    $(this).toggleClass('return');
                 });
 
             </script>
-        {{--  //amenities  --}}
-        <script>
-            $('.amenitie').click(function(){
-                    $('.amenities').fadeToggle('fast');
-            });
-        </script>
 
-        <script>
-                $('.bus-image').click(function(){
-                    $('.amenities').fadeToggle('fast');
-                    var id=$(this).attr('id');
-                    $.ajax({
-                        url:'{{route('bus-image')}}',
-                        data:{id : id},
-                        type:'get',
-                        success:function(response)
-                        {
-                            $('.data').html(response);
-                        }
-                    });
+            {{-- Aminaties --}}
+            <script>
+                $('.amenitie').click(function(){
+                        $('.amenities').fadeToggle('fast');
                 });
-        </script>
+            </script>
+
+            {{-- Bus Image --}}
+            <script>
+                    $('.bus-image').click(function(){
+                        $('.amenities').fadeToggle('fast');
+                        var id=$(this).attr('id');
+                        $.ajax({
+                            url:'{{route('bus-image')}}',
+                            data:{id : id},
+                            type:'get',
+                            success:function(response)
+                            {
+                                $('.data').html(response);
+                            }
+                        });
+                    });
+            </script>
+
+            {{-- operator filetr --}}
+
+
+            <script>
+                    $('#insurance_amt').text('₹ '+ 20);
+                    var action="Insurance";
+
+                    $('body').on('change','input[type=radio][name=insurance]',function(){
+
+                        var fareAmt=$('.nowfareAmt').val();
+                        var ins_amt=$(this).val();
+                        $('#insurance_amt').text('₹ '+ins_amt);
+                        var action="Insurance";
+
+                        FareCount(ins_amt,action,fareAmt)
+                    });
+
+                    function FareCount(ins_amt,action,fareAmt)
+                    {
+                        if (action == "Insurance") {
+
+                            if(ins_amt == 0)
+                            {
+                                fareAmt=parseFloat(fareAmt) - parseFloat(20);
+
+                            }else{
+
+                                fareAmt=parseFloat(fareAmt) + parseFloat(20);
+
+                            }
+                        }
+
+
+                        $('#total_fare_amt').text('Total Amount : Rs .'+fareAmt);
+
+                        $('.final_fare_amt').val(fareAmt)
+                        $('.nowfareAmt').val(fareAmt)
+
+                    }
+
+                //  $(document).ready(function() {
+                    $('body').on('click','input[type=checkbox][name=tAndc]',function(){
+
+                        if($(this).is(':checked') == false)
+                        {
+                            $('.error-for-tAndc').text('Please Accept Terms and Condition')
+                            $(this).val(0)
+
+                        }else{
+
+                            $('.error-for-tAndc').text("")
+                            $(this).val(1)
+
+                        }
+
+                    })
+                    // process the form
+                    $('body').on('click','.process-to-pay',function(){
+                        // name
+                        var name=[];
+
+                            $('input[name="passanger_name[]"]').each( function() {
+
+                                if($(this).val() == "")
+                                {
+                                    $(this).css('border','1px dashed red')
+
+                                    return false;
+
+                                }else{
+
+                                    name.push($(this).val());
+
+                                    $(this).css('border','1px dashed #dcdcdc')
+                                    return true;
+
+
+                                }
+
+                            });
+
+                        // age
+                        var age=[];
+
+                            $('input[name="passanger_age[]"]').each( function() {
+                                $(this).css('border','1px dashed #dcdcdc')
+
+                                if($(this).val() == "")
+                                {
+                                    $(this).css('border','1px dashed red')
+                                    return false;
+
+                                }else{
+
+                                    age .push($(this).val());
+
+                                    $(this).css('border','1px dashed #dcdcdc')
+                                    return true;
+
+
+                                }
+
+
+                            });
+
+                              // gender
+                        var gender=[];
+
+                            $('input[name="gender[]"]').each( function() {
+                                $(this).css('border','1px dashed #dcdcdc')
+
+                                if($(this).val() == "")
+                                {
+                                    $(this).css('border','1px dashed red')
+                                    return false;
+
+                                }else{
+
+                                    gender .push($(this).val());
+
+                                    $(this).css('border','1px dashed #dcdcdc')
+                                    return true;
+
+
+                                }
+
+
+                            });
+
+
+                        // countrycode
+                        var country_code=$('.country_code').val();
+                        if(country_code == "" )
+                        {
+
+                                $('.error-for-country-code').text('Please Select Country Code')
+                                return false;
+                        }
+
+                        //mobileno
+                        var mobileno=$('.mobileno').val();
+                        if(mobileno == "" )
+                        {
+
+                                $('.error-for-mobileno').text('Please Enter MobileNo')
+                                return false;
+
+                        }
+
+                        if(mobileno.length != 10)
+                        {
+                                $('.error-for-mobileno').text('Only Enter 10 Digit No !')
+                                return false;
+
+                        }
+
+
+                        //email
+                        var email=$('.email').val();
+                        if(email == "" )
+                        {
+
+                                $('.error-for-email').text('Please Enter Email')
+                                return false;
+
+                        }
+
+                        //term & con
+                        if($('input[type=checkbox][name=tAndc]').is(':checked') == false)
+                        {
+                                $('.error-for-tAndc').text('Please Accept Terms and Condition')
+                                return false;
+                        }
+
+                        //    fareamt
+                        var TotalfareAmts;
+                        TotalfareAmts=$('input[type=hidden][name=final_fare_amt]').val();
+
+                        if(TotalfareAmts == "")
+                        {
+                            alert("Some thing is Wrong ! ");
+                            return false;
+                        }
+
+                        var tAndc=$('.tAndc').val();
+
+                        var busId=$('#nowbusid').val();
+                        var seatNo=$('#nowseatNo').val();
+                        var ins_amt=$('input[type=radio][name=insurance]:checked').val();
+                        var basefare=parseInt($('.final_fare_amt').val()) - parseInt(ins_amt)
+
+                        var formData = {
+                            'name'              :   name,
+                            'age'               :   age,
+                            'gender'            :   gender,
+                            'country_code'      :   country_code,
+                            'mobileno'          :   mobileno,
+                            'email'             :   email,
+                            'bus_id'            :   busId,
+                            'SeatNo'            :   seatNo,
+                            'BookingId'         :   1,
+                            'tAndc'             :   tAndc,
+                            "_token"            : "{{ csrf_token() }}",
+                        };
+
+                        var l = Ladda.create(document.querySelector('.ladda-button'));
+	 	                        l.start();
+                        // process the form
+                        $.ajax({
+                            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                            url         : "{{route('passanger.details.store')}}", // the url where we want to POST
+                            data        : formData, // our data object
+                            dataType    : 'json', // what type of data do we expect back from the server
+                            encode      : true
+                        })
+                            // using the done promise callback
+                            .done(function(data) {
+
+                                 //spinnee btn stop
+                                l.stop();
+
+                                if(data.success == true)
+                                {
+
+                                    var url=('payment/'+'?SeatNo=' + seatNo + '&fareAmt=' + $('.final_fare_amt').val() + '&basefare=' + basefare + '&busId=' + busId + '&insurance=' + ins_amt);
+                                    location.href=url;
+
+                                }else{
+
+                                    $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
+
+                                }
+
+                                // log data to the console so we can see
+                                console.log(data);
+
+                                // here we will handle errors and validation messages
+                            });
+
+                        // stop the form from submitting the normal way and refreshing the page
+                        event.preventDefault();
+                    });
+
+                // });
+
+            </script>
+
+
 @endsection
 
 @section('after-js')
@@ -719,27 +1265,9 @@ Blue Bus | Search Bus Tickets
     </script>
 
 
-<script>
+<script src="{{ asset('web\searchJquery\jquery-1.12.4.js') }}"></script>
+<script src="{{ asset('web\searchJquery\jquery-ui.js')  }}"></script>
 
-$('.source_place').on('focusin',
-   function(){
-    $(this).siblings('label.db').addClass('move-up');
-   }).on('focusout', function(){
-    $(this).siblings('label.db').removeClass('move-up');
-  });
-
-  $('.destination_place').on('focusin',
-   function(){
-    $(this).siblings('label.db').addClass('move-up');
-   }).on('focusout', function(){
-    $(this).siblings('label.db').removeClass('move-up');
-  });
-
-
-// $('label.db').removeClass('move-up');
-</script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 @endsection

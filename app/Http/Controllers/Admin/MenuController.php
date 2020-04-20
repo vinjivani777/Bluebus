@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Menu;
 use App\Model\Page;
 use Illuminate\Http\Request;
+use App\Model\PageDescription;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,6 +20,17 @@ class MenuController extends Controller
         $nav['menus']=$menus;
 
         return view('admin.menus.index',$nav);
+    }
+
+    public static function menuData()
+    {
+        $menus=Menu::whereStatus(1)->get();
+
+        $nav=Array();
+        $nav['active']="Active";
+        $nav['menus']=$menus;
+
+        return $nav;
     }
 
     public function create()
@@ -57,6 +69,12 @@ class MenuController extends Controller
 
             $pageSave=Page::create($page);
 
+            // $PageDescription=Array();
+
+            // $PageDescription['name']=$request->name;
+
+            // $PageDescriptionSave=PageDescription::create($PageDescription);
+
             $menus=Array();
 
             $menus['name']=$request->name;
@@ -68,7 +86,7 @@ class MenuController extends Controller
             $menus['type']=$request->type;
             $menus['status']=$request->status;
 
-            $menuSave=menu::create($menus);
+            $menuSave=Menu::create($menus);
 
             return redirect()->route('menus');
 

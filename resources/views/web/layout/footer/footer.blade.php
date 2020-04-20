@@ -1,86 +1,56 @@
-<footer>
-    <div style="padding-bottom: 0;padding-top: 15px;color:#444343;background-color: #e5e5e5;border-top:1px solid #c0c0c0;border-bottom:1px solid #c0c0c0;">
-            <div style="min-width: 1000px;max-width: 1300px;margin: 0 auto;overflow: hidden;">
-                <div class="container-fluid">
-                    <div class="row mt-3 mb-3">
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2 seo">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Bus Routes</h3>
-                            <a href="#" target="_blank" title="Hyderabad to Bangalore Bus" >Hyderabad to Bangalore Bus</a>
-                            <a href="#" target="_blank" title="Bangalore to Chennai Bus" >Bangalore to Chennai Bus</a>
-                            <a href="#" target="_blank" title="Pune to Bangalore Bus" >Pune to Bangalore Bus</a>
-                            <a href="#" target="_blank" title="Mumbai to Bangalore Bus" >Mumbai to Bangalore Bus</a>
-                            <a href="#" target="_blank" title="More" >More ></a>
-                        </div>
-                        <div class="col-2 seo">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Cities</h3>
-                            <a href="#" target="_blank" title="Hyderabad Bus Tickets" >Hyderabad Bus Tickets</a>
-                            <a href="#" target="_blank" title="Bangalore Bus Tickets" >Bangalore Bus Tickets</a>
-                            <a href="#" target="_blank" title="Pune Bus Tickets" >Pune Bus Tickets</a>
-                            <a href="#" target="_blank" title="Mumbai Bus Tickets" >Mumbai Bus Tickets</a>
-                            <a href="#" target="_blank" title="More" >More ></a>
-                        </div>
-                        <div class="col-2 seo">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top RTC's</h3>
-                            <a href="#" target="_blank" title="APSRTC" >APSRTC</a>
-                            <a href="#" target="_blank" title="MSRTC" >MSRTC</a>
-                            <a href="#" target="_blank" title="HRTC" >HRTC</a>
-                            <a href="#" target="_blank" title="UPSRTC" >UPSRTC</a>
-                            <a href="#" target="_blank" title="More" >More ></a>
-                        </div>
-                        <div class="col-2 seo">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Others</h3>
-                            <a href="#" target="_blank" title="GSRTC" >GSRTC</a>
-                            <a href="#" target="_blank" title="RSRTC" >RSRTC</a>
-                            <a href="#" target="_blank" title="KTCL" >KTCL</a>
-                            <a href="#" target="_blank" title="PEPSU" >PEPSU</a>
-                            <a href="#" target="_blank" title="More" >More ></a>
-                        </div>
-                        <div class="col-2 seo">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Tempo Traveller in Cities</h3>
-                            <a href="#" target="_blank" title="Tempo Traveller Bangalore">Tempo traveller in Bangalore</a>
-                            <a href="#" target="_blank" title="Tempo Traveller Chennai">Tempo traveller in Chennai</a>
-                            <a href="#" target="_blank" title="Tempo traveller in Mumbai">Tempo traveller in Mumbai</a>
-                            <a href="#" target="_blank" title="Tempo traveller in Hyderabad">Tempo traveller in Hyderabad</a>
-                            <a href="#" target="_blank" title="Tempo traveller in Ahmedabad">Tempo traveller in Ahmedabad</a>
-                        </div>
+<footer class="m-0 p-0 footerss">
+    {{-- <div class="container-fluid " style="position: relative;background-color: #4263c1;background-image: linear-gradient(0deg, #6b8ef2 0, #4263c1 100%);">
+        <div class="row">
+            <div class="col-sm-12 col-md-3 col-lg-3 mx-auto" >
+                <h3 class="text-white p-3" style="border-right:1px solid black">Why Book With Us?</h3>
+            </div>
+            <div class="col-md-9 col-lg-9 mx-auto p-1">
+                <div class="row">
+
+                    <div class="col-1" >
+                        <span class="lp_hp_i" style="width: 50px;height: 37px;margin: 0;float: left;background: url(https://www.easemytrip.com/img/home-sub-sprite.png) no-repeat -1px -1px;"></span>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-11 mx-auto">
-                            <hr class="" style="border:0.5px solid #999;">
-                        </div>
+                    <div class="col-2 ">
+                        <h4 class="text-white">EASY BOOKING</h4>
+                        <p  style="font-size:11px;color:rgb(176, 208, 251);">We offer easy and convenient flight bookings with attractive offers.</p>
                     </div>
-                    <div class="row mb-0">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-                            <h3 class="mb-2" style="font-weight: 800;font-size: 1.1em;">Top Operator</h3>
-                            <p style="font-size:16.2px">
-                                SRS Travels &nbsp; | &nbsp; Evacay Bus &nbsp; | &nbsp; Kallada Travels &nbsp; | &nbsp; KPN Travels &nbsp; | &nbsp; Orange Travels &nbsp; | &nbsp; Parveen Travels &nbsp; | &nbsp; Rajdhani Express &nbsp; | &nbsp; VRL Travels &nbsp; | &nbsp; Chartered Speed Bus
-                                Bengal Tiger &nbsp; | &nbsp; SRM Travels &nbsp; | &nbsp; Infant Jesus &nbsp; | &nbsp; Patel Travels &nbsp; | &nbsp; JBT Travels &nbsp; | &nbsp; Shatabdi Travels &nbsp; | &nbsp; Eagle Travels &nbsp; | &nbsp; Kanker Roadways &nbsp; | &nbsp; Komitla &nbsp; | &nbsp;
-                                Sri Krishna Travels &nbsp; | &nbsp; Humsafar Travels &nbsp; | &nbsp; Mahasagar Travels &nbsp; | &nbsp; Raj Express &nbsp; | &nbsp; Sharma Travels &nbsp; | &nbsp; Shrinath Travels &nbsp; | &nbsp; Universal Travels &nbsp; | &nbsp; Verma Travels &nbsp; | &nbsp;
-                                Gujarat Travels &nbsp; | &nbsp; Madurai Radha Travels &nbsp; | &nbsp; Patel Tours and Travels &nbsp; | &nbsp; Paulo Travels &nbsp; | &nbsp; Royal Travels &nbsp; | &nbsp; Amarnath Travels &nbsp; | &nbsp; Vaibhav Travels &nbsp; | &nbsp; Ganesh Travels &nbsp; | &nbsp;
-                                Jabbar Travels &nbsp; | &nbsp; Jain Travels &nbsp; | &nbsp; Manish Travels &nbsp; | &nbsp; Pradhan Travels &nbsp; | &nbsp; YBM Travels &nbsp; | &nbsp; Hebron Transports &nbsp; | &nbsp; Mahalaxmi travels &nbsp; | &nbsp; MR Travels &nbsp; | &nbsp;
-                                Vivegam Travels &nbsp; | &nbsp; VST Travels &nbsp; | &nbsp; Jakhar Travels &nbsp; | &nbsp; Kaleswari Travels &nbsp; | &nbsp; Mahendra Travels &nbsp; | &nbsp; Neeta Tours and Travels &nbsp; | &nbsp; Yamani Travels &nbsp; | &nbsp; Arthi Travels
-                            </p>
-                        </div>
+                    <div class="col-1 mr-0 pr-0" >
+                        <span class="lp_hp_i" style="width: 50px;height: 37px;margin: 0;float: left;background: url(https://www.easemytrip.com/img/home-sub-sprite.png) no-repeat -55px -2px;"></span>
                     </div>
-                    <div class="row mt-0">
-                        <div class="col-12 text-right ">
-                            <h3 class="mb-4 mr-5" style="font-weight: 800;font-size: 1.1em;">All Operator ></h3>
-                        </div>
+                    <div class="col-2  ml-0 pl-0" >
+                        <h4 class="text-white">LOWEST PRICE</h4>
+                        <p style="font-size:11px;color:rgb(176, 208, 251);">We ensure low rates on hotel reservation, holiday packages and on flight tickets.</p>
+                    </div>
+                    <div class="col-1" >
+                        <span class="lp_hp_i" style="width: 28px;height: 29px;float: left;margin:0px;background: url(https://www.easemytrip.com/img/home-sub-sprite.png) -121px -5px no-repeat;"></span>
+                    </div>
+                    <div class="col-2 ">
+                        <h4 class="text-white">
+                            EXCITING DEALS</h4>
+                        <p  style="font-size:11px;color:rgb(176, 208, 251);">Enjoy exciting deals on flights, hotels, buses, car rental and tour packages.</p>
+                    </div>
+                    <div class="col-1" >
+                        <span class="lp_hp_i" style="width: 37px;height: 37px;margin:0;float: left;background: url(https://www.easemytrip.com/img/home-sub-sprite.png)no-repeat -161px -3px;"></span>
+                    </div>
+                    <div class="col-2 ">
+
+                        <h4 class="text-white">24/7 SUPPORT</h4>
+                        <p  style="font-size:11px;color:rgb(176, 208, 251);">Get assistance 24/7 on any kind of travel related query. We are happy to assist you.
+
+                        </p>
                     </div>
 
                 </div>
             </div>
-    </div>
-    <div class="footer-row" >
-        <div class="container">
+        </div>
+    </div> --}}
+    <div class="footer-row" style="background:#333" >
+        {{-- <div class="container-fluid">
             <div class="row">
                 <div class="col-8 mt-3 ml-3">
                     <div class="row footer-links">
                         <div class="col-3 ">
-                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">About redBus</h3>
+                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">ABOUT HAPPYjOURNEY</h3>
                             <a href="/info/aboutus" target="_blank">About Us</a>
                             <a href="/info/contactus" target="_blank">Contact Us</a>
                             <a href="//m.redbus.in" target="_blank">Mobile Version</a>
@@ -91,7 +61,7 @@
                             <a href="/values" target="_blank">Values</a>
                         </div>
                         <div class="col-3 ">
-                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Info </h3>
+                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">INFO </h3>
                             <a href="/info/termscondition" target="_blank">T &amp; C</a>
                             <a href="/info/privacypolicy" target="_blank">Privacy Policy</a>
                             <a href="/info/faq" target="_blank">FAQ</a>
@@ -100,43 +70,96 @@
                             <a href="https://www.icicilombard.com/" target="_blank">Insurance Partner</a>
                             <a href="/info/useragreement" target="_blank">User Agreement</a>
                         </div>
-                        <div class="col-3 ">
-                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Global Sites </h3>
-                            <a href="https://www.redbus.in" target="_blank">India</a>
-                            <a href="https://www.redbus.sg" target="_blank">Singapore</a>
-                            <a href="https://www.redbus.my" target="_blank">Malaysia</a>
-                            <a href="https://www.redbus.id" target="_blank">Indonesia</a>
-                            <a href="https://www.redbus.pe" target="_blank">Peru</a>
-                            <a href="https://www.redbus.co" target="_blank">Colombia</a>
+                        <div class="col-4 " style="width: 100%;margin: 0px 0 40px 0;float: left;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">PAYMENT MODE </h3>
+                                    <div class="cards">
+                                        <a class="visa" title="Visa"></a>
+                                        <a class="master" title="Master Card"></a>
+                                        <a class="american" title="American Express"></a>
+                                        <a class="py_pal" title="PayPal"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color:white">FOLLOWS ON US</h3>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect"><i class="fe-facebook color-white"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-twitter color-white"></i></button>
+                                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-instagram color-white"></i></button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-3 ">
-                            <h3 class="mb-2 " style="font-weight: 700;font-size: 1.1em;color: #797979;">Our Partners</h3>
-                            <a href="https://www.redbus.in" target="_blank">Goibibo</a>
-                            <a href="https://www.redbus.sg" target="_blank">redbus</a>
-                            <a href="https://www.redbus.my" target="_blank">MakeMytrip</a>
-                            <a href="https://www.redbus.id" target="_blank">Easytotrip</a>
-                            <a href="https://www.redbus.pe" target="_blank">HappyJourny</a>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-3 mt-3">
-                    <h3 class="text-white" href="#">BlueBus</h3>
+                    <h3 class="text-white" href="#">HAPPYjOURNEY</h3>
                     <div style="color:#d7d7d7;font-size:14px">
                         redBus is the world's largest online bus ticket booking service trusted by over
                         17 million happy customers globally. redBus offers bus ticket booking through its
                         website,iOS and Android mobile apps for all major routes.
                     </div>
-                    <div class="mt-2">
-                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect"><i class="fe-facebook color-white"></i></button>
-                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-twitter color-white"></i></button>
-                        <button type="button" class="btn btn-outline-secondary btn-rounded waves-effect ml-2"><i class="fe-instagram color-white"></i></button>
-                    </div>
-                    <div class=" text-white mt-2 ml-0 ">
-                        <span>Ⓒ</span><span> 2019-2020 ......... All rights reserved</span>
-                    </div>
                 </div>
             </div>
 
+        </div> --}}
+        {{-- <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <hr style="border: 0.3px solid lightslategray">
+                </div>
+            </div>
+        </div> --}}
+        <div class="container-fluid ">
+            <div class="row" style="height:70px">
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                    <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">Copyright © 2019-2020 Bluebus Group. All rights reserved</h6>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                    <h6 class="text-center" style="font-weight: 400;font-size: 1.1em;color: #797979;">All product names, logos, brands, trademarks and registered trademarks are property of their respective owners.</h6>
+                </div>
+            </div>
         </div>
     </div>
+    
 </footer>
+<div class="container-fluid  sticky-bottom bg-white footerss" style="position: sticky;bottom:0;box-shadow:0 -2px 3px #cac4c7">
+    <div class="row p-1">
+        <div class="col-3 mx-auto text-center">
+            <div class="">
+                <i class="icon-home"></i>
+                <br>
+                <a href="" class="min-sticky-footer">Home</a>
+            </div>
+        </div>
+        <div class="col-3 mx-auto text-center">
+            <div class="">
+                <i class="icon-user"></i>
+                <br>
+                <a href="" class="min-sticky-footer">My Account</a>
+            </div>
+        </div>
+        <div class="col-3 mx-auto text-center">
+            <div class="">
+                <i class="icon-notebook"></i>
+                <br>
+                <a href="" class="min-sticky-footer">My Booking</a>
+            </div>
+        </div>
+        <div class="col-3 mx-auto text-center">
+            <div class="">
+                <i class="icon-home"></i>
+                <br>
+                <a href="" class="min-sticky-footer">Check Modify</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

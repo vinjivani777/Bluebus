@@ -32,6 +32,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+
         $nav=Array();
         $nav['total_bus']=count(Bus::get());
         $nav['total_route']=count(Route::get());
