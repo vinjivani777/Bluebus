@@ -181,7 +181,7 @@
                                             </div>
                                         </div>
                                     {{-- </form> --}}
-                                    <div class="row mt-2">
+                                    {{-- <div class="row mt-2">
                                         <div class="col-5">
                                             <hr style="border: 0.5px solid #ddd;">
                                         </div>
@@ -199,7 +199,7 @@
                                         <div class="col-6 text-center">
                                         <button class="btn bg-white btn-rounded width-lg pt-2 pb-2  " style="border:1px solid #ced4da"><span class="float-left"><img src="{{ asset('web\images\redbus\social-icon\facebook-icon.svg')}}" alt=""></span><span class=" font-weight-bold float-right" style="color:#485a96">Facebook</span></button>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mt-2">
                                         <div class="col-11 text-center">
                                             <p>By signing up, you agree to our <a href="#" class="text-info">Terms & Conditions</a> and <a href="#" class="text-info">Privacy Policy</a></p>
@@ -262,7 +262,7 @@
 
         @yield('other-page-js')
 
-       
+
 
         <!-- App js -->
         <script src="{{ asset('web/js/app.min.js')}}"></script>
@@ -281,6 +281,12 @@
               $('.closebtn').show();
             //   $(body).css('background-color','red');
             }
+
+            $('.signup').click(function(){
+                $("#mySidenav").css("width","0");
+                $('.openbtn').show();
+                $('.closebtn').hide();
+            })
 
             function closeNav() {
                 $("#mySidenav").css("width","0");

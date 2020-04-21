@@ -136,7 +136,7 @@
 
     <body class="bg-light" style="padding-bottom: 0px;">
 
-    <div class="container-fluid " style="position:sticky;top:0;">
+    <div class="container-fluid " style="position:sticky;top:0;z-index:5000">
         <div class="row" style="position: sticky;top:0;background:#4a81d4">
             <div class="col-12 p-1">
                 <div class="float-left pl-1">
@@ -184,6 +184,8 @@
                                     </div>
                                 </div>
                                 <input type="hidden" class="form-control" id="pwd" placeholder="Enter amount" name="amount" value=" {{ $fareAmt }}" required>
+                                <input type="hidden" class="form-control" id="booking" placeholder="Enter amount" name="booking" value=" {{ $BookingId }}" required>
+
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -250,7 +252,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4 class="float-left">Total Fare : <span class="text-danger">₹ {{ $fareAmt  }}</span></h4>
-                                <form action="{{ route('redirect') }}" method="GET">
+                                <form action="{{ route('redirect',['booking'=>$BookingId]) }}" method="GET">
                                     @csrf
                                 <script
                                     src="https://checkout.razorpay.com/v1/checkout.js"

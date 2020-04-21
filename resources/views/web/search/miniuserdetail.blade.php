@@ -23,6 +23,9 @@ Blue Bus | Search Bus Tickets
         .text-info{
             color:#337ab7;
         }
+        .copyright{
+            display: none;
+        }
     </style>
 @endsection
 
@@ -71,13 +74,13 @@ Blue Bus | Search Bus Tickets
                                         <div class="row">
                                             <input type="hidden" name="bus_name" value="{{ $bus->id }}">
                                             <div class="col-5">
-                                                <h5>DEL {{date("g:i A",strtotime($boardPoint->pickup_time)) }}</h5>
+                                                <h5 style="text-transform: uppercase;">{{ substr($Route->source_name,0,3) }} {{date("g:i A",strtotime($boardPoint->pickup_time)) }}</h5>
                                             </div>
                                             <div class="col-2 m-0 p-0 text-center">
                                                 {{ date('G:i',strtotime($boardPoint->pickup_time) -  strtotime($dropPoint->drop_time)) }}
                                             </div>
                                             <div class="col-5 ">
-                                                <h5 class="float-right">Bom {{date("g:i A",strtotime($dropPoint->drop_time)) }}</h5>
+                                                <h5 class="float-right" style="text-transform: uppercase;">{{ substr($Route->destination_name,0,3) }} {{date("g:i A",strtotime($dropPoint->drop_time)) }}</h5>
                                             </div>
                                         </div>
                                         <div class="row m-0 p-0">
@@ -253,7 +256,7 @@ Blue Bus | Search Bus Tickets
                                                     <select name="country_code" id="country_code" class="form-control country_code"  style="border:1px dashed #dcdcdc" placeholder="Country Code">
                                                         <option>Country Code</option>
                                                         @foreach($Country as $Code)
-                                                            <option value="{{ $Code->id }}">+{{ $Code->phone_code }}  -  {{ $Code->country_code }}</option>
+                                                            <option value="{{ $Code->id }}" @if($Code->id == 101) {{ "selected" }} @endif >+{{ $Code->phone_code }}  -  {{ $Code->country_code }}</option>
                                                         @endforeach
                                                     </select>
                                                     <span class="text-danger error-for-country-code"></span>

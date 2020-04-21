@@ -130,28 +130,28 @@
             <div class="">
                 <i class="icon-home"></i>
                 <br>
-                <a href="" class="min-sticky-footer">Home</a>
+                <a href="{{ route('web.index') }}" class="min-sticky-footer">Home</a>
             </div>
         </div>
         <div class="col-3 mx-auto text-center">
             <div class="">
                 <i class="icon-user"></i>
                 <br>
-                <a href="" class="min-sticky-footer">My Account</a>
+                <a @if (!Auth::guard('user')->check()) {{ ' data-toggle=modal data-target=#con-close-modal' }}  @endif @if (Auth::guard('user')->check()) {{ 'href='.route('user.profile') }}  @endif class="min-sticky-footer">My Account</a>
             </div>
         </div>
         <div class="col-3 mx-auto text-center">
             <div class="">
                 <i class="icon-notebook"></i>
                 <br>
-                <a href="" class="min-sticky-footer">My Booking</a>
+                <a   @if (!Auth::guard('user')->check()) {{ ' data-toggle=modal data-target=#con-close-modal' }}  @endif @if (Auth::guard('user')->check()) {{ 'href='.route('user.profile') }}  @endif class="min-sticky-footer">My Booking</a>
             </div>
         </div>
         <div class="col-3 mx-auto text-center">
             <div class="">
                 <i class="icon-home"></i>
                 <br>
-                <a href="" class="min-sticky-footer">Check Modify</a>
+                <a href="{{ route('offer') }}" class="min-sticky-footer">Offers</a>
             </div>
         </div>
     </div>

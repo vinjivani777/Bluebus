@@ -374,7 +374,9 @@ Blue Bus | Search Bus Tickets
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div> --}}
                             <div class="modal-body p-4">
-
+                                <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                </form>
                             </div>
 
                         </div>
@@ -460,30 +462,35 @@ Blue Bus | Search Bus Tickets
 
                         var validate="";
 
-                        if(total_select_seat == 0 || total_select_seat=="")
+                        if(total_select_seat == 0 || total_select_seat == "")
                         {
-                            validate = false;
+                            return validate = false;
                         }else{
                             validate = true;
                         }
 
                         if(total_fare_amt == 0 || total_fare_amt=="")
                         {
-                            validate = false;
+                           return  validate = false;
                         }else{
                             validate = true;
                         }
 
-                        if(selected_broadpoint == 0 || selected_broadpoint=="")
+                        if(selected_broadpoint == "")
                         {
-                            validate = false;
+                           alert("Please Select BroadPoint")
+                           return validate = false;
+
                         }else{
                             validate = true;
                         }
 
-                        if(selected_droppoint == 0 || selected_droppoint=="")
+                        if(selected_droppoint == "")
                         {
-                            validate = false;
+                            alert("Please Select DropPoint")
+
+                            return validate = false;
+                            
                         }else{
                             validate = true;
                         }

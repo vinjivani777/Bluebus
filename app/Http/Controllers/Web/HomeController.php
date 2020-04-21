@@ -6,6 +6,7 @@ use App\Model\Menu;
 use App\Model\User;
 use App\Model\Customer;
 use App\Model\PromoCode;
+use App\Model\Newsletter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -177,9 +178,9 @@ class HomeController extends Controller
 
             $Update=User::whereId($UserDetails->id)->update($User);
             $Customer=Array();
-            $Customer['otp']="";
-            $Customer['mobile_verification_status']=1;
-            $Customer=Customer::whereId($CustomerDetails->id)->update($User);
+            $Customer['otp']="0";
+            $Customer['mobileno_verification_status']=1;
+            $Customer=Customer::whereId($CustomerDetails->id)->update($Customer);
             // dd($Update);
             Auth::guard('user')->loginUsingId($Update);
 
@@ -198,5 +199,13 @@ class HomeController extends Controller
         Auth::guard('user')->logout();
 
         return redirect()->route('web.index');
+    }
+
+    public function newslatter(Request $request)
+    {
+
+        $Newsletter=Newsletter::create(['email'=>$request->email]);
+        
+        return redirect()->back();
     }
 }

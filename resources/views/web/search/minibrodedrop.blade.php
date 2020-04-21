@@ -20,6 +20,9 @@ Blue Bus | Search Bus Tickets
         .footerss{
             display:none;
         }
+        .copyright{
+            display: none;
+        }
     </style>
 @endsection
 
@@ -67,13 +70,13 @@ Blue Bus | Search Bus Tickets
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active show" id="broadoint-b2-{{ $str }}">
-                                    <div style="max-height:300px;overflow:auto;">
+                                    <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">
                                             @php $k=50; @endphp
                                             @foreach ($BoardPoint as $val)
                                                 @php  $k++; @endphp
 
-                                                        <div class="row m-1 p-0">
-                                                            <div class="col-12 m-0 p-0">
+                                                        <div class="row ">
+                                                            <div class="col-12 ml-1">
                                                                 <div class="radio radio-info  ml-1 mr-1 m-0 pl-1 pr-1 p-0">
                                                                     <input type="radio" class="broadpoint" name="broadpoint" id="{{ $k }}_{{ $val->id }}"  value="{{ $val->id }}">
                                                                     <label for="{{ $k }}_{{ $val->id }}">
@@ -81,12 +84,13 @@ Blue Bus | Search Bus Tickets
                                                                     <div class="float-right" style="margin-left:auto;font-size:16px;font-weight:600">{{ date("g:i A",strtotime($val->pickup_time)) }}  </div>
                                                                     </label>
                                                                 </div>
+                                                                <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
+
                                                             </div>
                                                         </div>
 
                                                         <div class="row m-0 p-0">
                                                             <div class="col-12 col-md-12 m-0 p-0">
-                                                                <hr style="border:0.5px solid #dcdcdc">
                                                             </div>
                                                         </div>
                                             @endforeach
@@ -103,8 +107,8 @@ Blue Bus | Search Bus Tickets
                                             $k++;
                                         @endphp
 
-                                                <div class="row m-1 p-0">
-                                                    <div class="col-12 m-0 p-0">
+                                                <div class="row ">
+                                                    <div class="col-12 ml-1">
                                                         <div class="radio radio-info  ml-1 mr-1 m-0 pl-1 pr-1 p-0">
                                                             <input type="radio" class="droppoint" name="droppoint" id="{{ $k }}_{{ $val->id }}"  value="{{ $val->id }}" checked=""    >
                                                             <label for="{{ $k }}_{{ $val->id }}">
@@ -112,14 +116,11 @@ Blue Bus | Search Bus Tickets
                                                             <div class="float-right" style="margin-left:auto;font-size:16px;font-weight:600">{{  date("g:i A",strtotime($val->drop_time)) }}</div>
                                                             </label>
                                                         </div>
+                                                        <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                     </div>
                                                 </div>
 
-                                                <div class="row m-0 p-0">
-                                                    <div class="col-12 col-md-12 m-0 p-0">
-                                                        <hr style="border:0.5px solid #dcdcdc">
-                                                    </div>
-                                                </div>
+                                               
                                     @endforeach
                                     </div>
                                         {{-- <div class="row mt-3 ml-0 mr-0">

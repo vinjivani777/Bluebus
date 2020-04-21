@@ -345,7 +345,7 @@
                     type:"POST",
                     success:function(responce)
                     {
-                        l.stop();
+
                         if(responce=="Success")
                         {
                             sessionStorage.setItem("mobileNo", mobileNo);
@@ -355,9 +355,9 @@
                             $('#optLayout').hide();
                             $('#optLayout').css("display","");
 
-
+                            l.stop();
                         }else{
-
+                            l.stop();
                             $('#optLayout').hide();
                             $('#optLayout').css("display","none");
                         }

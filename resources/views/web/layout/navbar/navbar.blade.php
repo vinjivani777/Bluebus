@@ -85,7 +85,7 @@
                         @auth('user')
                         <a  href="{{route('user.profile')}}" class="dropdown-item notify-item">
                             <i class="fe-user"></i>
-                            <span>Profile</span>
+                            <span>My Account</span>
                         </a>
                         {{-- <div class="dropdown-divider"></div> --}}
 
@@ -128,8 +128,27 @@
 
 <div id="mySidenav" class="sidenav" style="background:#4eb3ee">
     <span  style="font-size:30px;cursor:pointer" class="closebtn text-white"  onclick="closeNav()">&times;</span>
-
+    @if (!Auth::guard('user')->check())
+    <a  data-toggle="modal" data-target="#con-close-modal" class="text-white signup" style="border-bottom:1px dotted #9ed9ec">
+        <span>SignUp / SignIN</span>
+    </a>
+    @endif
    @foreach ($Menus as $menu)
         <a href="@if($menu->link == "#") {{ "#" }} @else {{ route(''. $menu->link) }} @endif"  style="border-bottom:1px dotted #9ed9ec">{{ $menu->name }}</a>
    @endforeach
+
+
+
+   @auth('user')
+   <a  href="{{route('user.profile')}}" class="text-white" style="border-bottom:1px dotted #9ed9ec">
+       <span>My Account</span>
+   </a>
+   {{-- <div class="dropdown-divider"></div> --}}
+
+   <!-- item-->
+   <a href="{{ route('user.logout') }}" class="text-white" style="border-bottom:1px dotted #9ed9ec">
+       <span>Logout</span>
+   </a>
+   @endauth
+
 </div>
