@@ -367,7 +367,19 @@ Blue Bus | Search Bus Tickets
         </div>
                 <!-- Begin page -->
 
+                <div id="con-close-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            {{-- <div class="modal-header custom-modal-title">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div> --}}
+                            <div class="modal-body p-4">
 
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
 @endsection
 
@@ -1041,7 +1053,7 @@ Blue Bus | Search Bus Tickets
                               // gender
                         var gender=[];
 
-                            $('input[name="gender[]"]').each( function() {
+                            $('.gender').each( function() {
                                 $(this).css('border','1px dashed #dcdcdc')
 
                                 if($(this).val() == "")
@@ -1118,11 +1130,14 @@ Blue Bus | Search Bus Tickets
                         }
 
                         var tAndc=$('.tAndc').val();
-
+                        var Route=$('#routeid').val();
                         var busId=$('#nowbusid').val();
                         var seatNo=$('#nowseatNo').val();
                         var ins_amt=$('input[type=radio][name=insurance]:checked').val();
                         var basefare=parseInt($('.final_fare_amt').val()) - parseInt(ins_amt)
+                        var boardPoint=$('#boardPoint').val();
+                        var dropPoint=$('#dropPoint').val();
+                        var fareAmt=$('#nowfareAmt').val();
 
                         var formData = {
                             'name'              :   name,
@@ -1133,13 +1148,16 @@ Blue Bus | Search Bus Tickets
                             'email'             :   email,
                             'bus_id'            :   busId,
                             'SeatNo'            :   seatNo,
-                            'BookingId'         :   1,
+                            'Route'             :   Route,
+                            'boardPoint'        :   boardPoint,
+                            'dropPoint'         :   dropPoint,
+                            'fareAmt'           :   fareAmt,
                             'tAndc'             :   tAndc,
                             "_token"            : "{{ csrf_token() }}",
                         };
 
                         var l = Ladda.create(document.querySelector('.ladda-button'));
-	 	                        l.start();
+	 	                        // l.start();
                         // process the form
                         $.ajax({
                             type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
@@ -1152,7 +1170,7 @@ Blue Bus | Search Bus Tickets
                             .done(function(data) {
 
                                  //spinnee btn stop
-                                l.stop();
+                                // l.stop();
 
                                 if(data.success == true)
                                 {
@@ -1162,7 +1180,7 @@ Blue Bus | Search Bus Tickets
 
                                 }else{
 
-                                    $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
+                                    // $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
 
                                 }
 

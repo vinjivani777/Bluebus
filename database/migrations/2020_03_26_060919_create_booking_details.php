@@ -24,7 +24,7 @@ class CreateBookingDetails extends Migration
                 $table->unsignedBiginteger('drop_point_id');
                 $table->string('ticket_no')->unique();
                 $table->string('booking_date');
-                $table->integer('seat_no');
+                $table->string('seat_no');
                 $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
                 $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
                 $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');

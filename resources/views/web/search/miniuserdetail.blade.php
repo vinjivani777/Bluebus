@@ -29,16 +29,16 @@ Blue Bus | Search Bus Tickets
 @section('content')
 
 
-    
+
     <div class="row bg-white">
         <div class="col-12 pt-2 pb-1" >
             <div class="container-fluid bus-list-table">
                 <div class="row" >
                     <div class="col-8" >
-                        <a href="#" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
-                        <span class="text-dark" style="font-size:19px;font-weight:600"> </span>
+                        <a href="{{  url()->previous() }} }}" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
+                        <span class="text-dark" style="font-size:19px;font-weight:600">{{ $Route->source_name }} </span>
                         To
-                        <span class="text-dark" style="font-size:19px;font-weight:600">  </span>
+                        <span class="text-dark" style="font-size:19px;font-weight:600">{{ $Route->destination_name }}  </span>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@ Blue Bus | Search Bus Tickets
                             <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 text-center mt-1">
                                 <span style="font-weight:600;font-size:14px">{{ $bus->bus_name }}</span> - <span style="font-weight:600;font-size:14px">{{ $bus->bus_reg_no }}</span>
                             </div>
-                           
+
                         </div>
                         <div class="collapse" id="viewBooking">
                             <div class="row mt-3">
@@ -170,7 +170,10 @@ Blue Bus | Search Bus Tickets
                         <input type="hidden" name="Route" id="routeid" class="routeid" value="{{ $Route->id }}">
                         <input type="hidden" name="bus_id" id="nowbusid" class="nowbusid" value="{{ $bus->id }}">
                         <input type="hidden" name="fareAmt"  id="nowfareAmt" class="nowfareAmt" value="{{ $fareAmt }}">
-                        <input type="hidden" name="fareAmt"  id="nowseatNo" class="nowseatNo" value="{{ $SeatNos }}">
+                        <input type="hidden" name="SeatNos"  id="nowseatNo" class="nowseatNo" value="{{ $SeatNos  }}">
+                        <input type="hidden" name="dropPoint"  id="dropPoint" class="dropPoint" value="{{ $dropPoint->id }}">
+                        <input type="hidden" name="boardPoint"  id="boardPoint" class="boardPoint" value="{{ $boardPoint->id }}">
+
                         @php  count($SeatNo); $r=0; @endphp
                         @foreach($SeatNo as $Details)
 
@@ -351,7 +354,7 @@ Blue Bus | Search Bus Tickets
     <div class="container-fluid" style="position: sticky;bottom:0;">
         <div class="row">
             <div class="col-5 bg-dark">
-                <div class="text-white" style="font-size:14px">Grand Total </div> 
+                <div class="text-white" style="font-size:14px">Grand Total </div>
                 <div class="text-white " id="total_fare_amt">Rs. {{ $fareAmt }}</div>
                 <input type="hidden" class="final_fare_amt" id="final_fare_amt" value="{{ $fareAmt }}">
 
@@ -387,248 +390,252 @@ Blue Bus | Search Bus Tickets
             <!-- App js -->
             <script src="{{ asset('web/libs/tippy-js/tippy.all.min.js')}}"></script>
 
+    {{-- operator filetr --}}
+        <script>
+            $('#insurance_amt').text('₹ '+ 20);
+            var action="Insurance";
 
-            <script>
-                $('#insurance_amt').text('₹ '+ 20);
+            $('body').on('change','input[type=radio][name=insurance]',function(){
+
+                var fareAmt=$('.nowfareAmt').val();
+                var ins_amt=$(this).val();
+                $('#insurance_amt').text('₹ '+ins_amt);
                 var action="Insurance";
 
-                $('body').on('change','input[type=radio][name=insurance]',function(){
+                FareCount(ins_amt,action,fareAmt)
+            });
 
-                    var fareAmt=$('.nowfareAmt').val();
-                    var ins_amt=$(this).val();
-                    $('#insurance_amt').text('₹ '+ins_amt);
-                    var action="Insurance";
+            function FareCount(ins_amt,action,fareAmt)
+            {
+                if (action == "Insurance") {
 
-                    FareCount(ins_amt,action,fareAmt)
-                });
-
-                function FareCount(ins_amt,action,fareAmt)
-                {
-                    if (action == "Insurance") {
-
-                        if(ins_amt == 0)
-                        {
-                            fareAmt=parseFloat(fareAmt) - parseFloat(20);
-
-                        }else{
-
-                            fareAmt=parseFloat(fareAmt) + parseFloat(20);
-
-                        }
-                    }
-
-
-                    $('#total_fare_amt').text('Rs .'+fareAmt);
-
-                    $('.final_fare_amt').val(fareAmt)
-                    $('.nowfareAmt').val(fareAmt)
-
-                }
-
-            //  $(document).ready(function() {
-                $('body').on('click','input[type=checkbox][name=tAndc]',function(){
-
-                    if($(this).is(':checked') == false)
+                    if(ins_amt == 0)
                     {
-                        $('.error-for-tAndc').text('Please Accept Terms and Condition')
-                        $(this).val(0)
+                        fareAmt=parseFloat(fareAmt) - parseFloat(20);
 
                     }else{
 
-                        $('.error-for-tAndc').text("")
-                        $(this).val(1)
+                        fareAmt=parseFloat(fareAmt) + parseFloat(20);
 
                     }
-
-                })
-                // process the form
-                $('body').on('click','.process-to-pay',function(){
-                    // name
-                    var name=[];
-
-                        $('input[name="passanger_name[]"]').each( function() {
-
-                            if($(this).val() == "")
-                            {
-                                $(this).css('border','1px dashed red')
-
-                                return false;
-
-                            }else{
-
-                                name.push($(this).val());
-
-                                $(this).css('border','1px dashed #dcdcdc')
-                                return true;
+                }
 
 
-                            }
+                $('#total_fare_amt').text('Total Amount : Rs .'+fareAmt);
 
-                        });
+                $('.final_fare_amt').val(fareAmt)
+                $('.nowfareAmt').val(fareAmt)
 
-                    // age
-                    var age=[];
+            }
 
-                        $('input[name="passanger_age[]"]').each( function() {
+            $('body').on('click','input[type=checkbox][name=tAndc]',function(){
+
+                if($(this).is(':checked') == false)
+                {
+                    $('.error-for-tAndc').text('Please Accept Terms and Condition')
+                    $(this).val(0)
+
+                }else{
+
+                    $('.error-for-tAndc').text("")
+                    $(this).val(1)
+
+                }
+
+            })
+
+            // process the form
+            $('body').on('click','.process-to-pay',function(){
+                // name
+                var name=[];
+
+                    $('input[name="passanger_name[]"]').each( function() {
+
+                        if($(this).val() == "")
+                        {
+                            $(this).css('border','1px dashed red')
+
+                            return false;
+
+                        }else{
+
+                            name.push($(this).val());
+
                             $(this).css('border','1px dashed #dcdcdc')
-
-                            if($(this).val() == "")
-                            {
-                                $(this).css('border','1px dashed red')
-                                return false;
-
-                            }else{
-
-                                age .push($(this).val());
-
-                                $(this).css('border','1px dashed #dcdcdc')
-                                return true;
+                            return true;
 
 
-                            }
+                        }
 
+                    });
 
-                        });
+                // age
+                var age=[];
 
-                          // gender
-                    var gender=[];
+                    $('input[name="passanger_age[]"]').each( function() {
+                        $(this).css('border','1px dashed #dcdcdc')
 
-                        $('input[name="gender[]"]').each( function() {
+                        if($(this).val() == "")
+                        {
+                            $(this).css('border','1px dashed red')
+                            return false;
+
+                        }else{
+
+                            age .push($(this).val());
+
                             $(this).css('border','1px dashed #dcdcdc')
-
-                            if($(this).val() == "")
-                            {
-                                $(this).css('border','1px dashed red')
-                                return false;
-
-                            }else{
-
-                                gender .push($(this).val());
-
-                                $(this).css('border','1px dashed #dcdcdc')
-                                return true;
+                            return true;
 
 
-                            }
+                        }
 
 
-                        });
+                    });
 
+                    // gender
+                var gender=[];
 
-                    // countrycode
-                    var country_code=$('.country_code').val();
-                    if(country_code == "" )
-                    {
+                    $('.gender').each( function() {
+                        $(this).css('border','1px dashed #dcdcdc')
 
-                            $('.error-for-country-code').text('Please Select Country Code')
-                            return false;
-                    }
-
-                    //mobileno
-                    var mobileno=$('.mobileno').val();
-                    if(mobileno == "" )
-                    {
-
-                            $('.error-for-mobileno').text('Please Enter MobileNo')
+                        if($(this).val() == "")
+                        {
+                            $(this).css('border','1px dashed red')
                             return false;
 
-                    }
+                        }else{
 
-                    if(mobileno.length != 10)
-                    {
-                            $('.error-for-mobileno').text('Only Enter 10 Digit No !')
-                            return false;
+                            gender .push($(this).val());
 
-                    }
+                            $(this).css('border','1px dashed #dcdcdc')
+                            return true;
 
 
-                    //email
-                    var email=$('.email').val();
-                    if(email == "" )
-                    {
+                        }
 
-                            $('.error-for-email').text('Please Enter Email')
-                            return false;
 
-                    }
+                    });
 
-                    //term & con
-                    if($('input[type=checkbox][name=tAndc]').is(':checked') == false)
-                    {
-                            $('.error-for-tAndc').text('Please Accept Terms and Condition')
-                            return false;
-                    }
 
-                    //    fareamt
-                    var TotalfareAmts;
-                    TotalfareAmts=$('input[type=hidden][name=final_fare_amt]').val();
+                // countrycode
+                var country_code=$('.country_code').val();
+                if(country_code == "" )
+                {
 
-                    if(TotalfareAmts == "")
-                    {
-                        alert("Some thing is Wrong ! ");
+                        $('.error-for-country-code').text('Please Select Country Code')
                         return false;
-                    }
+                }
 
-                    var tAndc=$('.tAndc').val();
+                //mobileno
+                var mobileno=$('.mobileno').val();
+                if(mobileno == "" )
+                {
 
-                    var busId=$('#nowbusid').val();
-                    var seatNo=$('#nowseatNo').val();
-                    var ins_amt=$('input[type=radio][name=insurance]:checked').val();
-                    var basefare=parseInt($('.final_fare_amt').val()) - parseInt(ins_amt)
+                        $('.error-for-mobileno').text('Please Enter MobileNo')
+                        return false;
 
-                    var formData = {
-                        'name'              :   name,
-                        'age'               :   age,
-                        'gender'            :   gender,
-                        'country_code'      :   country_code,
-                        'mobileno'          :   mobileno,
-                        'email'             :   email,
-                        'bus_id'            :   busId,
-                        'SeatNo'            :   seatNo,
-                        'BookingId'         :   1,
-                        'tAndc'             :   tAndc,
-                        "_token"            : "{{ csrf_token() }}",
-                    };
+                }
 
-                    var l = Ladda.create(document.querySelector('.ladda-button'));
-                             l.start();
-                    // process the form
-                    $.ajax({
-                        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-                        url         : "{{route('passanger.details.store')}}", // the url where we want to POST
-                        data        : formData, // our data object
-                        dataType    : 'json', // what type of data do we expect back from the server
-                        encode      : true
-                    })
-                        // using the done promise callback
-                        .done(function(data) {
+                if(mobileno.length != 10)
+                {
+                        $('.error-for-mobileno').text('Only Enter 10 Digit No !')
+                        return false;
 
-                             //spinnee btn stop
-                            l.stop();
+                }
 
-                            if(data.success == true)
-                            {
 
-                                var url=('minpayment/'+'?SeatNo=' + seatNo + '&fareAmt=' + $('.final_fare_amt').val() + '&basefare=' + basefare + '&busId=' + busId + '&insurance=' + ins_amt);
-                                location.href=url;
+                //email
+                var email=$('.email').val();
+                if(email == "" )
+                {
 
-                            }else{
+                        $('.error-for-email').text('Please Enter Email')
+                        return false;
 
-                                $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
+                }
 
-                            }
+                //term & con
+                if($('input[type=checkbox][name=tAndc]').is(':checked') == false)
+                {
+                        $('.error-for-tAndc').text('Please Accept Terms and Condition')
+                        return false;
+                }
 
-                            // log data to the console so we can see
-                            console.log(data);
+                //    fareamt
+                var TotalfareAmts;
+                TotalfareAmts=$('input[type=hidden][name=final_fare_amt]').val();
 
-                            // here we will handle errors and validation messages
-                        });
+                if(TotalfareAmts == "")
+                {
+                    alert("Some thing is Wrong ! ");
+                    return false;
+                }
 
-                    // stop the form from submitting the normal way and refreshing the page
-                    event.preventDefault();
-                });
+                var tAndc=$('.tAndc').val();
+                var Route=$('#routeid').val();
+                var busId=$('#nowbusid').val();
+                var seatNo=$('#nowseatNo').val();
+                var ins_amt=$('input[type=radio][name=insurance]:checked').val();
+                var basefare=parseInt($('.final_fare_amt').val()) - parseInt(ins_amt)
+                var boardPoint=$('#boardPoint').val();
+                var dropPoint=$('#dropPoint').val();
+                var fareAmt=$('#nowfareAmt').val();
 
-            // });
+                var formData = {
+                    'name'              :   name,
+                    'age'               :   age,
+                    'gender'            :   gender,
+                    'country_code'      :   country_code,
+                    'mobileno'          :   mobileno,
+                    'email'             :   email,
+                    'bus_id'            :   busId,
+                    'SeatNo'            :   seatNo,
+                    'Route'             :   Route,
+                    'boardPoint'        :   boardPoint,
+                    'dropPoint'         :   dropPoint,
+                    'fareAmt'           :   fareAmt,
+                    'tAndc'             :   tAndc,
+                    "_token"            : "{{ csrf_token() }}",
+                };
+
+                var l = Ladda.create(document.querySelector('.ladda-button'));
+                        // l.start();
+                // process the form
+                $.ajax({
+                    type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                    url         : "{{route('passanger.details.store')}}", // the url where we want to POST
+                    data        : formData, // our data object
+                    dataType    : 'json', // what type of data do we expect back from the server
+                    encode      : true
+                })
+                    // using the done promise callback
+                    .done(function(data) {
+
+                        //spinnee btn stop
+                        // l.stop();
+
+                        if(data.success == true)
+                        {
+
+                            var url=('minpayment/'+'?SeatNo=' + seatNo + '&fareAmt=' + $('.final_fare_amt').val() + '&basefare=' + basefare + '&busId=' + busId + '&insurance=' + ins_amt);
+                            location.href=url;
+
+                        }else{
+
+                            $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
+
+                        }
+
+                        // log data to the console so we can see
+                        // console.log(data);
+
+                        // here we will handle errors and validation messages
+                    });
+
+                // stop the form from submitting the normal way and refreshing the page
+                event.preventDefault();
+            });
 
         </script>
 @endsection

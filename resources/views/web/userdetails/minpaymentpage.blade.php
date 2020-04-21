@@ -135,7 +135,7 @@
     </head>
 
     <body class="bg-light" style="padding-bottom: 0px;">
-        
+
     <div class="container-fluid " style="position:sticky;top:0;">
         <div class="row" style="position: sticky;top:0;background:#4a81d4">
             <div class="col-12 p-1">
@@ -149,7 +149,7 @@
             </div>
         </div>
     </div>
-            
+
     <div class="container-fluid bg-light">
         <div class="row" >
             <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12 mt-2">
@@ -167,7 +167,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row collapse" id="InstaMojo">
             <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12 mt-2">
                 <div class="card" style="box-shadow: 0 0 4px rgba(0,0,0,.21);">
@@ -255,7 +255,7 @@
                                 <script
                                     src="https://checkout.razorpay.com/v1/checkout.js"
                                     data-key="rzp_test_LydWON1S4dDRfw" // Enter the Key ID generated from the Dashboard
-                                    data-amount="100" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
+                                    data-amount="{{ $fareAmt }}" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise or INR 500.
                                     data-button="Make Payment"
                                     data-name="Acme Corp"
                                     data-description="test txn with rozapay"
@@ -298,54 +298,75 @@
 
         <script>
 
-            // seesion counter
-            function countdown(minutes) {
+                    function countdown() {
 
-                    var seconds = 60;
-                    var mins = minutes
+                        initCounter();
 
-                    function tick() {
+                        window.onload = function() {
+                            initCounter();
+                        };
 
-                        var counter = document.getElementById("timer");
-                        var current_minutes = mins - 1
-                        seconds--;
 
-                        counter.innerHTML = 'session to expire is ' +
-                        current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-                        if (seconds > 0) {
-                        setTimeout(tick, 1000);
-                        } else {
-                        var newMin = mins-1;
+                        function initCounter() {
 
-                        if(newMin === 0 )
+                            if (localStorage.getItem('mins') === null ) {
+                                var seconds = 60;
+                                var mins = 7
 
-                            swal({
-                                    title: "Your Current Session is over!",
-                                    text: "Please try the booking again as the maximum time for this booking is complete. !",
-                                    type: "danger",
-                                    showCancelButton: false,
-                                    confirmButtonClass: "btn btn-confirm mt-2",
-                                    confirmButtonText: "Yes, delete it!"
-                                    }).then((result) => {
-                                        if (result.value) {
-                                                // location.href('https://127.0.0.1:8000')
-                                            }
-                                        });
+                            }else{
 
-                            if (mins > 1) {
-                                    // countdown(mins-1);   never reach “00? issue solved:Contributed    by Victor Streithorst
-                                    setTimeout(function() {
-                                    countdown(newMin);
-                                    }, 1000);
-                                }
+                                var mins=localStorage.getItem('mins');
+                                var seconds = localStorage.getItem('second');
+                                var mins=parseInt(mins) + 1
+
                             }
                         }
 
+
+
+                        function tick() {
+
+                            var counter = document.getElementById("timer");
+
+                            var current_minutes = mins - 1
+                            seconds--;
+
+
+                            localStorage.setItem('second',seconds)
+                            localStorage.setItem('mins',current_minutes)
+
+
+                            counter.innerHTML = 'Session Left To' +
+                            current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+                            if (seconds > 0) {
+                            setTimeout(tick, 1000);
+
+                            } else {
+                            var newMin = mins-1;
+
+                            if(newMin === 0 )
+                            {
+                                // var Url="{{ route('web.index') }}";
+                                // var r = alert("Your Session Expire");
+
+                                // location.replace(Url)
+
+                                if (mins > 1) {
+                                        // countdown(mins-1);   never reach “00? issue solved:Contributed    by Victor Streithorst
+                                        setTimeout(function() {
+                                        countdown(newMin);
+                                        }, 1000);
+                                    }
+                            }
+                            }
+                    }
+
                         tick();
 
-            }
+                    }
 
-            countdown(7)
+                    countdown()
+
 
             //end counter
 

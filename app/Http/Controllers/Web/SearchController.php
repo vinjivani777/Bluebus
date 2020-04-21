@@ -1333,9 +1333,12 @@ class SearchController extends Controller
             $busId=$request->busid;
             $seatNo=$request->seatNo;
             $totalFare=$request->totalFare;
+            $sourceCity=$request->sourceCity;
+            $destCity=$request->destCity;
 
             $BoardPoint=BoardPoint::whereStatus(1)->whereBus_id($busId)->get();
             $DropPoint=DropPoint::whereStatus(1)->whereBus_id($busId)->get();
+
             $str=str_random(10);
             $userurl='web.user';
             $menus=Menu::whereStatus(1)->get();
@@ -1349,6 +1352,8 @@ class SearchController extends Controller
             $nav['str']=$str;
             $nav['totalFare']=$totalFare;
             $nav['busId']=$busId;
+            $nav['sourceCity']=$sourceCity;
+            $nav['destCity']=$destCity;
 
 
 
@@ -1369,7 +1374,7 @@ class SearchController extends Controller
         $bus_id=$request->busid;
         $Droppoint=$request->broadpoint;
         $Broadpoint=$request->droppoint;
-        $fareAmt=$request->totalFare;
+        $fareAmt=$request->totalFare + 20;
         $SeatNos=$request->seatNo;
         $SeatNo=explode(',',$SeatNos);
 
@@ -1389,7 +1394,6 @@ class SearchController extends Controller
         $nav['fareAmt']=$fareAmt;
         $nav['SeatNo']=$SeatNo;
         $nav['SeatNos']=$SeatNos;
-
         $nav['Route']=$Route;
         $nav['Country']=$Country;
         $nav['Menus']=$menus;

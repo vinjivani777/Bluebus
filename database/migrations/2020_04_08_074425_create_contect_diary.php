@@ -15,7 +15,7 @@ class CreateContectDiary extends Migration
     {
         Schema::create('contect_diarys', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ticket_no');
+            $table->string('booking_id');
             $table->integer('country_code');
             $table->string('mobile_no');
             $table->string('email');

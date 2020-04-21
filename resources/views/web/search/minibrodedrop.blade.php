@@ -32,10 +32,10 @@ Blue Bus | Search Bus Tickets
             <div class="container-fluid bus-list-table">
                 <div class="row" >
                     <div class="col-8" >
-                        <a href="#" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
-                        <span class="text-dark" style="font-size:19px;font-weight:600"> </span>
+                        <a href="{{ route('web.index') }}" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
+                        <span class="text-dark" style="font-size:19px;font-weight:600">{{ $sourceCity }} </span>
                         To
-                        <span class="text-dark" style="font-size:19px;font-weight:600">  </span>
+                        <span class="text-dark" style="font-size:19px;font-weight:600"> {{ $destCity }} </span>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@ Blue Bus | Search Bus Tickets
                         <hr style="border-bottom:0.2px solid #d0d0d0" class="m-0 p-0">
                     </div>
                 </div>
-                
+
             </div>
             <div class="container-fluid bus-list-table mt-3">
                 <div class="row">
@@ -69,7 +69,7 @@ Blue Bus | Search Bus Tickets
                                 <div class="tab-pane active show" id="broadoint-b2-{{ $str }}">
                                     <div style="max-height:300px;overflow:auto;">
                                             @php $k=50; @endphp
-                                            @foreach ($BoardPoint as $val) 
+                                            @foreach ($BoardPoint as $val)
                                                 @php  $k++; @endphp
 
                                                         <div class="row m-1 p-0">
@@ -98,7 +98,7 @@ Blue Bus | Search Bus Tickets
                                         $k=50;
                                     @endphp
 
-                                    @foreach ($DropPoint as $val) 
+                                    @foreach ($DropPoint as $val)
                                         @php
                                             $k++;
                                         @endphp

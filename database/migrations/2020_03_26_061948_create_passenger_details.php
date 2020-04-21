@@ -18,6 +18,9 @@ class CreatePassengerDetails extends Migration
             $table->unsignedBiginteger('user_id');
             $table->unsignedBiginteger('bus_id');
             $table->unsignedBiginteger('ticket_id');
+            $table->string('name');
+            $table->string('age');
+            $table->string('gender');
             $table->date('date_of_journey');
             $table->boolean('insurance_status');
             $table->boolean('status');

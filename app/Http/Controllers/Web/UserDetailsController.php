@@ -284,7 +284,10 @@ class UserDetailsController extends Controller
                                             <input type="hidden" name="Route" id="routeid" class="routeid" value="'. $Route->id .'">
                                             <input type="hidden" name="bus_id" id="nowbusid" class="nowbusid" value="'. $bus->id .'">
                                             <input type="hidden" name="fareAmt"  id="nowfareAmt" class="nowfareAmt" value="'. $fareAmt .'">
-                                            <input type="hidden" name="fareAmt"  id="nowseatNo" class="nowseatNo" value="'. $SeatNos .'">';
+                                            <input type="hidden" name="SeatNos"  id="nowseatNo" class="nowseatNo" value="'. $SeatNos .'">
+                                            <input type="hidden" name="dropPoint"  id="dropPoint" class="dropPoint" value="'. $Droppoint .'">
+                                            <input type="hidden" name="boardPoint"  id="boardPoint" class="boardPoint" value="'. $Broadpoint .'">';
+
                                               $r=0;
                                                 foreach($SeatNo as $Details)
                                                 {
@@ -318,7 +321,7 @@ class UserDetailsController extends Controller
                                                                                 <div class="form-group">
                                                                                     <label class="">Gender</label>
                                                                                     <select name="gender[]" id="gender" class="gender form-control" style="border:1px dashed #dcdcdc">
-                                                                                        <option value="m">Male</option>
+                                                                                        <option value="m" selected>Male</option>
                                                                                         <option value="f">Female</option>
                                                                                     </select>
                                                                                 </div>
@@ -470,9 +473,9 @@ class UserDetailsController extends Controller
     public function passanger(Request $request)
     {
 
+        // return $request;
        try {
             //code...
-
             $validator=Validator::make($request->all(),[
                 'country_code'     =>  'required',
                 'mobileno'    =>  'required',
@@ -491,32 +494,66 @@ class UserDetailsController extends Controller
                 ));
             }
 
-            $params=array();
+            $book=Array();
 
-            $params['user_id']=1;
-            $params['bus_id']=$request->bus_id;
-            $params['ticket_id']=1;
-            $params['date_of_journey']=date('Y-m-d');
+            $book['bus_id']=$request->bus_id;
+
+            $BusIdData=Bus::FindorFail($request->bus_id);
+            $dropPoint=DropPoint::whereId($request->dropPoint)->first();
+            $boardPoint=BoardPoint::whereId($request->boardPoint)->first();
+            $Route=Route::whereId($dropPoint->route_id)->first();
+
+            $book['vendor_id']=$BusIdData->vendor_id;
+            $book['customer_id']=0;
+            $book['route_id']=$Route->id;
+            $book['board_point_id']=$request->boardPoint;
+            $book['drop_point_id']=$request->dropPoint;
+            $book['ticket_no']='#'.rand(10000,99999);
+            $book['booking_date']=date('Y-m-d');
+            $book['seat_no']=$request->SeatNo;
+            $book['payment_method']="padding";
+            $book['total_fare']=$request->fareAmt;
+            $book['note']="";
+            $book['insurance_policy']=0;
+            $book['booking_status']=0;
+            $book['payment_status']=0;
+            $book['operator_confirmation_status']=0;
+
+            $Booking =Booking::create($book);
 
             if ($request->insurance == 0) {
-                $params['insurance_status']=0;
+                $insurance=0;
             }else{
-                $params['insurance_status']=1;
+                $insurance=1;
 
             }
-            $params['status']=1;
 
-            // $passanger=Passenger_Detail::create($params);
+            foreach ($request->name as $key => $value) {
+
+                $params=array();
+
+                $params['user_id']=1;
+                $params['bus_id']=$request->bus_id;
+                $params['ticket_id']=$Booking->id;
+                $params['name']=$value;
+                $params['age']=$request->age[$key];
+                $params['gender']=$request->gender[$key];
+                $params['date_of_journey']=date('Y-m-d');
+                $params['insurance_status']=$insurance;
+                $params['status']=1;
+
+                $passanger=Passenger_Detail::create($params);
+            }
 
             $contect=array();
 
-            $contect['ticket_no']=1;
+            $contect['booking_id']=$Booking->id;
             $contect['country_code']=$request->country_code;
             $contect['mobile_no']=$request->mobileno;
             $contect['email']=$request->email;
-            $contect['customer_id']=1;
+            $contect['customer_id']=0;
 
-            // $CD=Contect_Diary::create($contect);
+            $CD=Contect_Diary::create($contect);
 
 
             return Response::json(array(
@@ -568,7 +605,7 @@ class UserDetailsController extends Controller
         $nav['busId']=$request->busId;
         $nav['insurance']=$request->insurance;
         $nav['PromoCode']=$PromoCode;
-// return $nav;
+
         return view('web.userdetails.paymentpage',$nav);
     }
 
@@ -644,7 +681,7 @@ class UserDetailsController extends Controller
 
             return redirect ($data['payment_request']['longurl']);
 
-        
+
     }
 
 
@@ -656,9 +693,6 @@ class UserDetailsController extends Controller
     public function promovalidate(Request $request)
     {
 
-        if (! $request->hasValidSignature()) {
-            abort(401);
-        }
 
         try {
 

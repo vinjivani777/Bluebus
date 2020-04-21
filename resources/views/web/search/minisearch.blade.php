@@ -3,13 +3,14 @@
         <div class="container bus-list-table">
             <div class="row" >
                 <div class="col-8" >
-                    <a href="#" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
+                    <a href="{{  url()->previous()  }}" class="text-dark" style="font-size:19px;font-weight:800"><i class="fe-arrow-left"></i></a>
                     <span class="text-dark" style="font-size:19px;font-weight:600"> {{ $source }} </span>
                     To
                     <span class="text-dark" style="font-size:19px;font-weight:600"> {{ $dest }} </span>
+                    <input type="hidden" name="route_id" class="route_id" id="route_id" value="{{ $route }}">
                 </div>
                 <div class="col-2 p-1" >
-                    <a href="" class="float-right text-dark ">
+                    <a data-toggle="modal" data-target="#con-close-modal" class="float-right text-dark ">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                 </div>
@@ -111,6 +112,8 @@
                     <input type="hidden" name="seatNo" id="seatNo" class="seatNo">
                     <input type="hidden" name="totalFare" id="totalFare" class="totalFare">
                     <input type="hidden" name="busid" id="busid" class="busid">
+                    <input type="hidden" name="sourceCity" id="sourceCity" class="sourceCity" value="{{ $source }}">
+                    <input type="hidden" name="destCity" id="destCity" class="destCity" value="{{ $dest }}">
 
                     <div class="select_seat_no" style="font-size: 11px;">
 

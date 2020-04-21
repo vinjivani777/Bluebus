@@ -205,14 +205,6 @@
                                                                            InstaMojo</a>
                                                                         <a class="nav-link text-dark payment-style" id="v-pills-net-banking-tab" data-toggle="pill" href="#v-pills-net-banking"  role="tab" aria-controls="v-pills-banking" aria-selected="false">
                                                                             Rozarpay</a>
-                                                                        {{-- <a class="nav-link text-dark payment-style" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet"  role="tab" aria-controls="v-pills-wallet" aria-selected="false">
-                                                                            My Wallet</a>
-                                                                        <a class="nav-link text-dark payment-style" id="v-pills-upi-tab" data-toggle="pill" href="#v-pills-upi"  role="tab" aria-controls="v-pills-upi" aria-selected="true">
-                                                                            UPI</a>
-                                                                        <a class="nav-link text-dark payment-style" id="v-pills-phonepe-tab" data-toggle="pill" href="#v-pills-phonepe"  role="tab" aria-controls="v-pills-phonepe" aria-selected="true">
-                                                                            PhonePe</a>
-                                                                        <a class="nav-link text-dark active show payment-style" id="v-pills-paypal-tab" data-toggle="pill" href="#v-pills-paypal"  role="tab" aria-controls="v-pills-paypal" aria-selected="true">
-                                                                            Paypal</a> --}}
                                                                     </div>
                                                                 </div> <!-- end col-->
                                                                 <div class="col-sm-9">
@@ -269,161 +261,11 @@
 
                                                                         </div>
                                                                         <div class="tab-pane fade " style="border:none;" id="v-pills-net-banking" role="tabpanel" aria-labelledby="v-pills-net-banking-tab">
-                                                                            {{-- <div class="row">
-                                                                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                                                                    <label style="font-size:16px">SELECT POPULAR BANKS</label>
-                                                                                </div>
-                                                                            </div> --}}
-                                                                            {{-- <div class="row">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio1" value="option1" checked=""    >
-                                                                                            <label for="radio1">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\ICIB.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">ICIC Bank</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio2" value="option1" >
-                                                                                            <label for="radio2">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\PNBB.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">Punjab National Bank</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio3" value="option1" checked=""    >
-                                                                                            <label for="radio3">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\SBIB.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">State Bank of India</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio4" value="option1" >
-                                                                                            <label for="radio4">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\YESB.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">Yes Bank</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio5" value="option1" checked=""    >
-                                                                                            <label for="radio5">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\hdfb.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">HDFC Bank</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="nbank" id="radio6" value="option1" >
-                                                                                            <label for="radio6">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\bank\PSBNB.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">Punjab And Sind Bank</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-3">
-                                                                                <div class="col-12 mx-auto text-center">
-                                                                                    <span style="font-size:16px;font-weight:600">OR</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-1">
-                                                                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                                                                    <label for="other_bank">SELECT OTHER BANK</label>
-                                                                                    <select class="form-control" name="other_bank" id="other_bank" style="border:1px solid #dcdcdc">
-                                                                                        <option value="Select">Select </option>
-                                                                                        <option value="" >ICICI&nbsp;Bank</option>
-                                                                                        <option value="" >Punjab National&nbsp;Bank</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;India</option>
-                                                                                        <option value="" >Yes Bank</option>
-                                                                                        <option value="" >HDFC Bank</option>
-                                                                                        <option value="" >Punjab And Sind Bank</option>
-                                                                                        <option value="" >Punjab And Maharashtra Co-operative Bank Limited</option>
-                                                                                        <option value="" >Lakshmi Vilas Bank - Corporate Netbanking</option>
-                                                                                        <option value="" >Lakshmi Vilas Bank - Retail Netbanking</option>
-                                                                                        <option value="" >UCO Bank</option>
-                                                                                        <option value="" >The Nainital Bank</option>
-                                                                                        <option value="" >The Bharat Co-op. Bank Ltd</option>
-                                                                                        <option value="" >Janata Sahakari Bank Pune</option>
-                                                                                        <option value="" >Cosmos Bank</option>
-                                                                                        <option value="" >IDFC Netbanking</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;Mysore</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;Patiala</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;Travancore</option>
-                                                                                        <option value="" >Syndicate&nbsp;Bank</option>
-                                                                                        <option value="" >Tamilnad Mercantile&nbsp;Bank</option>
-                                                                                        <option value="" >Union&nbsp;Bank&nbsp;of&nbsp;India</option>
-                                                                                        <option value="" >United&nbsp;Bank&nbsp;Of&nbsp;India</option>
-                                                                                        <option value="" >Vijaya&nbsp;Bank</option>
-                                                                                        <option value="" >Ratnakar Bank </option>
-                                                                                        <option value="" >Saraswat Bank</option>
-                                                                                        <option value="" >Shamrao Vitthal Co-operative Bank </option>
-                                                                                        <option value="" >South Indian&nbsp;Bank</option>
-                                                                                        <option value="" >Standard Chartered&nbsp;Bank</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of Travencore</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;Of&nbsp;Bikaner&nbsp;and Jaipur</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;Hyderabad</option>
-                                                                                        <option value="" >IDBI&nbsp;Bank</option>
-                                                                                        <option value="" >Indian Overseas Bank</option>
-                                                                                        <option value="" >Indian Overseas NetBanking</option>
-                                                                                        <option value="" >Indian&nbsp;Bank</option>
-                                                                                        <option value="" >IndusInd Bank</option>
-                                                                                        <option value="" >ING Vysya&nbsp;Bank</option>
-                                                                                        <option value="" >Jammu&nbsp;and&nbsp;kashmir&nbsp;Bank</option>
-                                                                                        <option value="" >Karnataka&nbsp;Bank</option>
-                                                                                        <option value="" >Karur Vysya - Corporate Netbanking</option>
-                                                                                        <option value="" >Karur Vysya&nbsp;Bank</option>
-                                                                                        <option value="" >Oriental&nbsp;Bank&nbsp;Of Commerce</option>
-                                                                                        <option value="" >Punjab National Bank-Corporate</option>
-                                                                                        <option value="" >City Union&nbsp;Bank</option>
-                                                                                        <option value="" >Corporation&nbsp;Bank</option>
-                                                                                        <option value="" >DCB&nbsp;BANK&nbsp;Personal</option>
-                                                                                        <option value="" >Dena Bank</option>
-                                                                                        <option value="" >Deutsche Bank</option>
-                                                                                        <option value="" >Development Credit Bank</option>
-                                                                                        <option value="" >Dhanlaxmi&nbsp;Bank</option>
-                                                                                        <option value="" >Federal&nbsp;Bank</option>
-                                                                                        <option value="" >Airtel Money</option>
-                                                                                        <option value="" >Allahabad&nbsp;Bank</option>
-                                                                                        <option value="" >Andhra Bank </option>
-                                                                                        <option value="" >Axis&nbsp;Bank</option>
-                                                                                        <option value="" >Bank of Baroda Corporate Banking</option>
-                                                                                        <option value="" >Bank of Baroda Retail Banking</option>
-                                                                                        <option value="" >Bank&nbsp;of&nbsp;Bahrain&nbsp;and&nbsp;Kuwait</option>
-                                                                                        <option value="" >Bank&nbsp;of&nbsp;Baroda</option>
-                                                                                        <option value="" >Bank&nbsp;of&nbsp;Maharashtra</option>
-                                                                                        <option value="" >Canara&nbsp;Bank</option>
-                                                                                        <option value="" >Catholic Syrian Bank</option>
-                                                                                        <option value="" >Central&nbsp;Bank&nbsp;of&nbsp;India</option>
-                                                                                        <option value="" >Kotak&nbsp;Mahindra&nbsp;Bank</option>
-                                                                                        <option value="" >State&nbsp;Bank&nbsp;of&nbsp;India-Coporate</option>
-                                                                                        <option value="" >RBL&nbsp;Bank</option>
-                                                                                        <option value="" >ICICI&nbsp;Bank</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div> --}}
+
                                                                             <div style="font-size:12px">A non-refundable Convenience fee of Rs.269 is added on this booking.</div>
                                                                             <div class="row">
                                                                                 <div class="col-12">
-                                                                                    <h4 class="float-left">Total Fare : <span class="text-danger">₹ {{ $fareAmt  }}</span></h4>
+                                                                                    <h4 class="float-left">Total Fare : ₹ <span class="text-danger final_fare_amt"> {{ $fareAmt  }}</span></h4>
                                                                                     <form action="{{ route('redirect') }}" method="GET">
                                                                                         @csrf
                                                                                     <script
@@ -447,251 +289,7 @@
                                                                             </div>
                                                                             <div style="font-size:12px" class="mt-1"> <i class="dripicons-lock" ></i> We use 128-bit secure encryption providing you a SAFE payment environment</div>
                                                                         </div>
-                                                                        {{-- <div class="tab-pane fade " style="border:none" id="v-pills-wallet" role="tabpanel" aria-labelledby="v-pills-wallet-tab">
-                                                                            <div class="row">
-                                                                                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                                                                                    <label style="font-size:16px">SELECT YOUR WALLET</label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio7" value="option1" checked=""    >
-                                                                                            <label for="radio7">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\mobikwik-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">mobikwik</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio8" value="option1" >
-                                                                                            <label for="radio8">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\payzapp-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">PayZapp</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio9" value="option1" >
-                                                                                            <label for="radio9">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\phonepay-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">Phonepe</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio10" value="option1" >
-                                                                                            <label for="radio10">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\amazon-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">Amazon</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio11" value="option1" >
-                                                                                            <label for="radio11">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\airtel-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">AirtelMoney</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" class="">
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio12" value="option1" >
-                                                                                            <label for="radio12">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\epaylater-sml-icon.png') }}" title="" width="25" > <span style="font-size:16px;font-weight:600">EpayLater</span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                    <div style="border:1px solid #dcdcdc" >
-                                                                                        <div class="radio m-2">
-                                                                                            <input type="radio"  name="wallet" id="radio13" value="option1" >
-                                                                                            <label for="radio13">
-                                                                                                <img class="ml-2" src="{{ asset('web\images\redbus\icon\wallet\lazy-pay.png') }}" title="" width="120" >
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="font-size:12px">A non-refundable Convenience fee of Rs.269 is added on this booking.</div>
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-                                                                                    <h4 class="float-left">Total Fare : <span class="text-danger">₹ 2628</span></h4>
-                                                                                    <div class="float-right">
-                                                                                        <button type="button" class="btn btn- btn-danger width-xl">Make Paymemt</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="font-size:12px" class="mt-1"> <i class="dripicons-lock" ></i> We use 128-bit secure encryption providing you a SAFE payment environment</div>
-                                                                        </div>
-                                                                        <div class="tab-pane fade " style="border:none" id="v-pills-upi" role="tabpanel" aria-labelledby="v-pills-upi-tab">
-                                                                            <div class="row">
-                                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                                                    <div class="form-group">
-                                                                                        <label for="upi_id">(Virtual Address ex: CustomerName@BankName) All Major Banks Are Here</label>
-                                                                                        <input type="text" id="upi_id" style="border:1px dashed #dcdcdc" class="form-control" name="upi_id" placeholder="xyz@BankName">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="font-size:12px">A non-refundable Convenience fee of Rs.269 is added on this booking.</div>
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-                                                                                    <h4 class="float-left">Total Fare : <span class="text-danger">₹ 2628</span></h4>
-                                                                                    <div class="float-right">
-                                                                                        <button type="button" class="btn btn- btn-danger width-xl">Make Paymemt</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="font-size:12px" class="mt-1"> <i class="dripicons-lock" ></i> We use 128-bit secure encryption providing you a SAFE payment environment</div>
 
-                                                                        </div>
-                                                                        <div class="tab-pane fade " style="border:none" id="v-pills-phonepe" role="tabpanel" aria-labelledby="v-pills-phonepe-tab">
-                                                                            <div style="font-size:12px">A non-refundable Convenience fee of Rs.269 is added on this booking.</div>
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-                                                                                    <h4 class="float-left">Total Fare : <span class="text-danger">₹ 2628</span></h4>
-                                                                                    <div class="float-right">
-                                                                                        <button type="button" class="btn btn- btn-danger width-xl">Make Paymemt</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="tab-pane fade active show" style="border:none" id="v-pills-paypal" role="tabpanel" aria-labelledby="v-pills-paypal-tab">
-                                                                            <div class="row">
-                                                                                <div class="col-12">
-                                                                                    <div class="card p-2 mb-0" style="border:1px solid #dcdcdc;">
-                                                                                        <div class="row">
-                                                                                            <div class="col-12 float-left">
-                                                                                                <img src="{{ asset('web\images\redbus\icon\wallet\paypal.png') }}" alt="">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row mt-2">
-                                                                                            <div class="col-12 ">
-                                                                                                <div style="border:1px solid #dcdcdc" >
-                                                                                                    <div class="radio m-2 p-1">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio14" value="option1" checked=""    >
-                                                                                                        <label for="radio14">
-                                                                                                            INR (Indian Rupee)
-                                                                                                            <div style="font-size:12px">No Conversion - This option is currently available to <strong>Indian Paypal Users</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row mt-1 mb-1 m-0 p-0">
-                                                                                            <div class="col-5 m-0 p-0">
-                                                                                                <hr style="border:0.5px solid  #dcdcdc">
-                                                                                            </div>
-                                                                                            <div class="col-2 mt-1 p-0 text-center">
-                                                                                                OR
-                                                                                            </div>
-                                                                                            <div class="col-5 m-0 p-0">
-                                                                                                <hr style="border:0.5px solid  #dcdcdc">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row ">
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" >
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio15" value="option1" checked=""    >
-                                                                                                        <label for="radio15">
-                                                                                                            EUR (Euro)
-                                                                                                            <div style="font-size:12px">€ 1 EUR = Rs. 78.86 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" class="">
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio16" value="option1" >
-                                                                                                        <label for="radio16">
-                                                                                                            GBP (British Pound)
-                                                                                                            <div style="font-size:12px">£ 1 GBP = Rs. 89.55 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row mt-2">
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" >
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio17" value="option1" checked=""    >
-                                                                                                        <label for="radio17">
-                                                                                                            HKD (Hong Kong Dollar)
-                                                                                                            <div style="font-size:12px">$ 1 HKD = Rs. 9.41 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" class="">
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio18" value="option1" >
-                                                                                                        <label for="radio18">
-                                                                                                            SGD (Singapore Dollar)
-                                                                                                            <div style="font-size:12px">$ 1 SGD = Rs. 50.69 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row mt-2">
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" >
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio19" value="option1" checked=""    >
-                                                                                                        <label for="radio19">
-                                                                                                            THB (Thai Baht)
-                                                                                                            <div style="font-size:12px">฿ 1 THB = Rs. 2.21 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 float-left">
-                                                                                                <div style="border:1px solid #dcdcdc" class="">
-                                                                                                    <div class="radio m-2">
-                                                                                                        <input type="radio"  name="paypalpay" id="radio20" value="option1" >
-                                                                                                        <label for="radio20">
-                                                                                                            USD ((United States Dollar)
-                                                                                                            <div style="font-size:12px">$ 1 USD = Rs.72.98 INR</strong></div>
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div style="font-size:12px" class="mt-0">A non-refundable Convenience fee of Rs.269 is added on this booking.</div>
-                                                                            <div class="row mt-2">
-                                                                                <div class="col-12">
-                                                                                    <h4 class="float-left">Total Fare : <span class="text-danger">₹ 2628</span></h4>
-                                                                                    <div class="float-right">
-                                                                                            <img tabindex="6" ng-click="PostPayPAlRQ()" src="https://www.easemytrip.com/paypal/img/paypal-button.png">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div> --}}
                                                                     </div>
                                                                 </div> <!-- end col-->
                                                             </div> <!-- end row-->
@@ -730,7 +328,8 @@
                                                             </div>
                                                             <div class="row mt-2">
                                                                 <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12" style="border-bottom:1px dashed #dcdcdc">
-                                                                    <span class="text-dark" style="font-weight:600;font-size:18px">Total Amount Fare</span> <div class="text-dark float-right total_fare_amt" style="font-weight:600;font-size:14px" id="total_fare_amt">₹ {{ $fareAmt }}</div>
+                                                                    <span class="text-dark" style="font-weight:600;font-size:18px">Total Amount Fare</span>
+                                                                    <div class="text-dark float-right total_fare_amt final_fare_amt" style="font-weight:600;font-size:14px" id="total_fare_amt">₹ {{ $fareAmt }}</div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mt-2">
@@ -743,7 +342,8 @@
                                                             <div class="col-12 col-sm-12 col-lg-12 col-xs-12 col-md-12 " style="    padding: 15px;background-color: #e0fde8;min-height: 59px;overflow: auto;">
                                                                 <span class="text-dark" style="font-weight:600;font-size:18px;margin:10px 0">Total PAYBAL AMT</span>
                                                                 <div class="text-dark float-right final_fare_amt" style="font-weight:600;font-size:14px" id="final_fare_amt">₹ {{ $fareAmt }}</div>
-                                                                <input type="hidden" name="final_fare_amt" class="final_fare_amt" value="{{ $fareAmt }}">
+                                                                <input type="hidden" name="final_fare_amts" class="final_fare_amt" value="{{ $fareAmt }}">
+                                                                <input type="hidden" name="seatno" class="seatno" value="{{ $SeatNo }}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -900,7 +500,8 @@
                 var valid=true;
                 var coupon=$('#couponcode').val();
                 var promoId=$('input[type=radio][name=promocodelist]:checked').val();
-                var fareAmts=$('input[type=hidden][name=final_fare_amt]').val();
+                var fareAmts=$('#final_fare_amts').val();
+                var SeatNo=$('input[type=hidden][name=seatno]').val();
 
 
                 if(coupon == "")
@@ -933,21 +534,12 @@
                             }
 
                             var PromoCode=data.promocode;
-                            var action="Promocode";
+                            $('.final_fare_amt').val(PromoCode);
+                            $('.final_fare_amt').text(PromoCode);
+
                             console.log(PromoCode)
 
-                            var insurance_amt=$('input[type=radio][name=insurance]:checked').val();
-                                if(insurance_amt == 0)
-                                {
-                                    now=parseFloat(fareAmt) - parseFloat(insurance_amt);
-                                    fareAmt=parseFloat(now)   - parseFloat(PromoCode);
 
-                                }else{
-
-                                    now=parseFloat(fareAmt) + parseFloat(insurance_amt);
-                                    fareAmt=parseFloat(now)   - parseFloat(PromoCode);
-
-                                }
                         }
                     });
             });
