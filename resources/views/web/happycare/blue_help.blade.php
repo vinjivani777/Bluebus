@@ -16,7 +16,7 @@
                 background: url({{asset('web/images/redbus/help-banner.png')}});
             }
     </style>
-    
+
 @endsection
 
 @section('page-css')
@@ -209,23 +209,18 @@
 @endsection
 
 
-@section('other-page-js')
-
-
-
-@endsection
 
 
 @section('after-js')
 
 
- 
+
 
 @endsection
 
 
 
 
-        
-   
+
+
 

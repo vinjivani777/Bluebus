@@ -312,7 +312,7 @@
                                                     </div>
                                                     <div class="row" style="margin-top: 4.2rem;">
                                                         <div class="col-12 ">
-                                                            <a class="text-danger collapsed " id="collapsedAllAminitis_{{ $r }}" data-toggle="collapse" href="#collapseExample{{ $r }}" aria-expanded="true" aria-controls="collapseExample" style="font-size:16px;font-style:oblique;">All Aminaties</a>
+                                                            <a class="text-danger collapsed " id="collapsedAllAminitis_{{ $r }}" data-toggle="collapse" href="#collapseExample{{ $r }}" aria-expanded="true" aria-controls="collapseExample" style="font-size:16px;font-style:oblique;">All Amenities</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -367,8 +367,8 @@
                                                             @php echo $aminiti[]=$item->amenities_id; @endphp
                                                             @foreach ($aminaties as $amt)
                                                                 @if(($amt->id) == ($item->amenities_id))
-                                                                    <img  style="font-size:1px;margin-left:10px;height:20px;font-weight:300;" class="amanitis_{{ $r }}"   src="{{ $amt->image_path }}"  />
-                                                                    <span style="font-size:16px;font-weight: 400;" >   {{ $amt->description }} </span>
+                                                                    <img  style="font-size:1px;margin-left:10px;height:20px;font-weight:300;" class="amanitis_{{ $r }}" src="{{ $amt->image_path }}"  />
+                                                                    <span style="font-size:16px;font-weight: 400;"> {{ $amt->description }} </span>
                                                                 @endif
                                                             @endforeach
                                                         </div>

@@ -26,4 +26,34 @@ class IndexController extends Controller
         return  view('web.happycare.blue_help',$nav);
     }
 
+    public function contactus()
+    {
+        $promoCode=PromoCode::wherestatus(1)->get();
+        $promoFirst=PromoCode::wherestatus(1)->first();
+        $Menus=Menu::whereStatus(1)->get();
+        $nav=Array();
+
+        $nav['bookingNav']="navbar-active";
+        $nav['promoCode']=$promoCode;
+        $nav['promoFirst']=$promoFirst;
+        $nav['promoCount']=count($promoCode);
+        $nav['Menus']=$Menus;
+
+        return  view('web.contactus',$nav);
+    }
+    public function faqs()
+    {
+        $promoCode=PromoCode::wherestatus(1)->get();
+        $promoFirst=PromoCode::wherestatus(1)->first();
+        $Menus=Menu::whereStatus(1)->get();
+        $nav=Array();
+
+        $nav['bookingNav']="navbar-active";
+        $nav['promoCode']=$promoCode;
+        $nav['promoFirst']=$promoFirst;
+        $nav['promoCount']=count($promoCode);
+        $nav['Menus']=$Menus;
+
+        return  view('web.faqs',$nav);
+    }
 }

@@ -379,6 +379,8 @@
 
     // blue helpcenter
     Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
+    Route::get('contactus','Web\Indexcontroller@contactus')->name('contactus');
+    Route::get('info/faq','Web\Indexcontroller@faqs')->name('faqs');
 
     //user Profile
     Route::get('userprofile','Web\ProfileController@index')->name('user.profile');
