@@ -17,6 +17,8 @@ use App\Model\SeatLayout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 // use Exception;
 
 class SearchController extends Controller
@@ -636,28 +638,25 @@ class SearchController extends Controller
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane active show" id="broadoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">';
                                                                 $k=0;
                                                                 foreach ($BoardPoint as $val) {
                                                                     $k++;
                                                                     $html.='
-                                                                            <div class="row m-1 p-0">
-                                                                                <div class="col-12 m-0 p-0">
-                                                                                    <div class="radio radio-danger m-0 p-0">
+                                                                            <div class="row ">
+                                                                                <div class="col-12 ml-1">
+                                                                                    <div class="radio radio-info">
                                                                                         <input type="radio" class="broadpoint" name="broadpoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                         <label for="'.$k.'_'.$val->id.'">
                                                                                         <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->board_point .'</div>
-                                                                                        <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
+                                                                                        <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
                                                                                         </label>
                                                                                     </div>
+                                                                                    <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row m-0 p-0">
-                                                                                <div class="col-12 col-md-12 m-0 p-0">
-                                                                                    <hr style="border:0.5px solid #dcdcdc">
-                                                                                </div>
-                                                                            </div>
+                                                                        
                                                                     ';
 
                                                                 }
@@ -666,28 +665,26 @@ class SearchController extends Controller
                                                             </div>
                                                     </div>
                                                     <div class="tab-pane" id="droppoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">';
                                                         $k=50;
                                                         foreach ($DropPoint as $val) {
                                                             $k++;
                                                             $html.='
-                                                                    <div class="row m-1 p-0">
-                                                                        <div class="col-12 m-0 p-0">
-                                                                            <div class="radio radio-danger m-0 p-0">
+                                                                    <div class="row ">
+                                                                        <div class="col-12 ml-1">
+                                                                            <div class="radio radio-info">
                                                                                 <input type="radio" class="droppoint" name="droppoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'" checked=""    >
                                                                                 <label for="'.$k.'_'.$val->id.'">
                                                                                 <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->drop_point .'</div>
-                                                                                <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
+                                                                                <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
                                                                                 </label>
                                                                             </div>
+                                                                            <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
+
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row m-0 p-0">
-                                                                        <div class="col-12 col-md-12 m-0 p-0">
-                                                                            <hr style="border:0.5px solid #dcdcdc">
-                                                                        </div>
-                                                                    </div>
+                                                                  
                                                             ';
 
                                                         }
@@ -957,28 +954,26 @@ class SearchController extends Controller
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane active show" id="broadoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">';
                                                                 $k=0;
                                                                 foreach ($BoardPoint as $val) {
                                                                     $k++;
                                                                     $html.='
-                                                                            <div class="row m-1 p-0">
-                                                                                <div class="col-12 m-0 p-0">
-                                                                                    <div class="radio radio-danger m-0 p-0">
+                                                                            <div class="row " >
+                                                                                <div class="col-12 ml-1"> 
+                                                                                    <div class="radio radio-info">
                                                                                         <input type="radio" class="broadpoint" name="broadpoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                         <label for="'.$k.'_'.$val->id.'">
                                                                                         <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->board_point .'</div>
-                                                                                        <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
+                                                                                        <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
                                                                                         </label>
                                                                                     </div>
+                                                                                    <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row m-0 p-0">
-                                                                                <div class="col-12 col-md-12 m-0 p-0">
-                                                                                    <hr style="border:0.5px solid #dcdcdc">
-                                                                                </div>
-                                                                            </div>
+                                                                           
+                                                                               
                                                                     ';
 
                                                                 }
@@ -987,28 +982,24 @@ class SearchController extends Controller
                                                             </div>
                                                     </div>
                                                     <div class="tab-pane" id="droppoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">';
                                                         $k=50;
                                                         foreach ($DropPoint as $val) {
                                                             $k++;
                                                             $html.='
-                                                                    <div class="row m-1 p-0">
-                                                                        <div class="col-12 m-0 p-0">
-                                                                            <div class="radio radio-danger m-0 p-0">
+                                                                    <div class="row ">
+                                                                        <div class="col-12 ml-1">
+                                                                            <div class="radio radio-info ">
                                                                                 <input type="radio" class="droppoint" name="droppoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                 <label for="'.$k.'_'.$val->id.'">
                                                                                 <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->drop_point .'</div>
-                                                                                <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
+                                                                                <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
                                                                                 </label>
                                                                             </div>
+                                                                            <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row m-0 p-0">
-                                                                        <div class="col-12 col-md-12 m-0 p-0">
-                                                                            <hr style="border:0.5px solid #dcdcdc">
-                                                                        </div>
-                                                                    </div>
                                                             ';
 
                                                         }
@@ -1243,28 +1234,24 @@ class SearchController extends Controller
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane active show" id="broadoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden"">';
                                                                 $k=0;
                                                                 foreach ($BoardPoint as $val) {
                                                                     $k++;
                                                                     $html.='
-                                                                            <div class="row m-1 p-0">
-                                                                                <div class="col-12 m-0 p-0">
-                                                                                    <div class="radio radio-danger m-0 p-0">
+                                                                            <div class="row">
+                                                                                <div class="col-12 ml-1">
+                                                                                    <div class="radio radio-info">
                                                                                         <input type="radio" class="broadpoint" name="broadpoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                         <label for="'.$k.'_'.$val->id.'">
                                                                                         <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->board_point .'</div>
-                                                                                        <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
+                                                                                        <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->pickup_time)) .'</div>
                                                                                         </label>
                                                                                     </div>
+                                                                                    <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row m-0 p-0">
-                                                                                <div class="col-12 col-md-12 m-0 p-0">
-                                                                                    <hr style="border:0.5px solid #dcdcdc">
-                                                                                </div>
-                                                                            </div>
                                                                     ';
 
                                                                 }
@@ -1273,28 +1260,25 @@ class SearchController extends Controller
                                                             </div>
                                                     </div>
                                                     <div class="tab-pane" id="droppoint-b2-'.$str.'">
-                                                        <div style="max-height:300px;overflow:auto;">';
+                                                        <div style="max-height:300px;overflow-y:auto;overflow-x:hidden"">';
                                                         $k=50;
                                                         foreach ($DropPoint as $val) {
                                                             $k++;
                                                             $html.='
-                                                                    <div class="row m-1 p-0">
-                                                                        <div class="col-12 m-0 p-0">
-                                                                            <div class="radio radio-danger m-0 p-0">
+                                                                    <div class="row ">
+                                                                        <div class="col-12 ml-1">
+                                                                            <div class="radio radio-info ">
                                                                                 <input type="radio" class="droppoint" name="droppoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                 <label for="'.$k.'_'.$val->id.'">
                                                                                 <div class="float-left" style="font-size:14px;font-weight:400;width:150px;" title="'. $val->address .' !" data-plugin="tippy" data-tippy-theme="success" data-tippy-arrow="true">'. $val->drop_point .'</div>
-                                                                                <div class="float-right" style="margin-left:100px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
+                                                                                <div class="float-right" style="margin-left:80px;font-size:16px;font-weight:600">'. date("g:i A",strtotime($val->drop_time)) .'</div>
                                                                                 </label>
                                                                             </div>
+                                                                            <hr style="border:0.5px solid #dcdcdc" class="mt-1 mb-1">
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row m-0 p-0">
-                                                                        <div class="col-12 col-md-12 m-0 p-0">
-                                                                            <hr style="border:0.5px solid #dcdcdc">
-                                                                        </div>
-                                                                    </div>
+                                                                 
                                                             ';
 
                                                         }
@@ -1371,12 +1355,24 @@ class SearchController extends Controller
 
     public function usercontect(Request $request)
     {
+
+        $validator=Validator::make($request->all(),[
+            'broadpoint'     =>  'required',
+            'droppoint'    =>  'required',
+        
+        ]);
+
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $bus_id=$request->busid;
-        $Droppoint=$request->broadpoint;
-        $Broadpoint=$request->droppoint;
-        $fareAmt=$request->totalFare + 20;
+        $Broadpoint=$request->broadpoint;
+        $Droppoint=$request->droppoint;
         $SeatNos=$request->seatNo;
         $SeatNo=explode(',',$SeatNos);
+        $fareAmt=$request->totalFare + 20;
 
         $bus=Bus::whereId($bus_id)->first();
         $dropPoint=DropPoint::whereId($Droppoint)->first();

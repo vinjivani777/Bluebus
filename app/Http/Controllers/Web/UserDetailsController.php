@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Model\Bus;
+use App\Model\User;
 use App\Model\Route;
 use App\Model\Booking;
 use App\Model\Country;
+use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
 use App\Model\Contect_Diary;
 use Illuminate\Http\Request;
 use App\Model\Passenger_Detail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
@@ -183,13 +186,13 @@ class UserDetailsController extends Controller
                                                                     <div class="row">
                                                                         <input type="hidden" name="bus_name" value="'. $bus->id .'">
                                                                         <div class="col-5">
-                                                                            <h4>DEL '.date("g:i A",strtotime($boardPoint->pickup_time)) .'</h4>
+                                                                            <h4 style="text-transform: uppercase;">'.substr($Route->source_name,0,3).' '. date("g:i A",strtotime($boardPoint->pickup_time)) .'</h4>
                                                                         </div>
                                                                         <div class="col-2 m-0 p-0 text-center">
                                                                             '. date('G:i',strtotime($boardPoint->pickup_time) -  strtotime($dropPoint->drop_time)) .'
                                                                         </div>
                                                                         <div class="col-5 ">
-                                                                            <h4 class="float-right">Bom '.date("g:i A",strtotime($dropPoint->drop_time)) .'</h4>
+                                                                            <h4 class="float-right" style="text-transform: uppercase;">'.substr($Route->destination_name,0,3).' '.date("g:i A",strtotime($dropPoint->drop_time)) .'</h4>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row m-0 p-0">
@@ -357,7 +360,7 @@ class UserDetailsController extends Controller
                                                                         <div class="form-group">
                                                                             <label for="country_code">Country Code</label>
                                                                             <select name="country_code" id="country_code" class="form-control country_code"  style="border:1px dashed #dcdcdc" placeholder="Country Code">
-                                                                                <option value="" >Country Code</option>';
+                                                                                <option value="101" >+91 - IN</option>';
                                                                                     foreach($Country as $Code)
                                                                                     {
                                                                                         $html.='<option value="'.$Code->id .'">+ '. $Code->phone_code .'  -  '. $Code->country_code .'</option>';
@@ -473,8 +476,7 @@ class UserDetailsController extends Controller
     public function passanger(Request $request)
     {
 
-        // return $request;
-       try {
+    //    try {
             //code...
             $validator=Validator::make($request->all(),[
                 'country_code'     =>  'required',
@@ -494,8 +496,64 @@ class UserDetailsController extends Controller
                 ));
             }
 
-            $book=Array();
+            $UserDetails=User::whereMobile_no($request->mobileno)->first();
 
+            if($UserDetails != " " && $UserDetails)
+            {
+                $UserId=$UserDetails->id;
+                $customerId=Customer::wheremobile_no($request->mobileno)->first();
+
+            }else{
+
+                $User=Array();
+                $Customer=Array();
+
+                $r=count(User::get());
+
+                $otp= mt_rand(000000,999999);
+                $forgot_token =  bcrypt($request->mobileno.$otp);
+
+                $User['role_id']=3;
+                $User['username']="User". $r . str_random(5);
+                $User['first_name']="User". $r . str_random(5);;
+                $User['last_name']="User". $r . str_random(5);;
+                $User['gender']="m";
+                $User['email']="User". $r . str_random(5) . "@happyjourney.com";
+                $User['mobile_no']=$request->mobileno;
+                $User['password']= bcrypt("User". $r . str_random(5));
+                $User['avatar']="admin/images/admin-profile/defaultimage.png";
+                $User['status']=1;
+                $User['remember_token']=md5($otp.$request->mobileno);
+                $User['token']='HappyJourny';
+                $User['otp']=$otp;
+                $User['forget_token']= $forgot_token;
+                $User['referral_code']=str_random(5);
+                $User['parent_id']=0;
+
+                $UserId =User::create($User);
+
+                //register in customertable
+                $Customer['username']="User". $r . str_random(5);
+                $Customer['first_name']="User". $r . str_random(5);;
+                $Customer['last_name']="User". $r . str_random(5);;
+                $Customer['gender']="m";
+                $Customer['email']="User". $r . str_random(5) . "@happyjourney.com";
+                $Customer['mobile_no']=$request->mobileno;
+                $Customer['password']= bcrypt("User". $r . str_random(5));
+                $Customer['avatar']="admin/images/admin-profile/defaultimage.png";
+                $Customer['status']=1;
+                $Customer['remember_token']=md5($otp.$request->mobileno);
+                $Customer['token']='HappyJourny';
+                $Customer['otp']=$otp;
+                $Customer['forget_token']= $forgot_token;
+                $Customer['referral_code']=str_random(5);
+
+                $customerId =Customer::create($Customer);
+
+            }
+
+            $book=Array();
+             $request->bus_id;
             $book['bus_id']=$request->bus_id;
 
             $BusIdData=Bus::FindorFail($request->bus_id);
@@ -504,7 +562,7 @@ class UserDetailsController extends Controller
             $Route=Route::whereId($dropPoint->route_id)->first();
 
             $book['vendor_id']=$BusIdData->vendor_id;
-            $book['customer_id']=0;
+            $book['customer_id']=$customerId->id;
             $book['route_id']=$Route->id;
             $book['board_point_id']=$request->boardPoint;
             $book['drop_point_id']=$request->dropPoint;
@@ -532,7 +590,7 @@ class UserDetailsController extends Controller
 
                 $params=array();
 
-                $params['user_id']=1;
+                $params['user_id']=$UserId;
                 $params['bus_id']=$request->bus_id;
                 $params['ticket_id']=$Booking->id;
                 $params['name']=$value;
@@ -551,17 +609,16 @@ class UserDetailsController extends Controller
             $contect['country_code']=$request->country_code;
             $contect['mobile_no']=$request->mobileno;
             $contect['email']=$request->email;
-            $contect['customer_id']=0;
+            $contect['customer_id']=$customerId->id;
 
             $CD=Contect_Diary::create($contect);
-
 
             return Response::json(array(
                 'success' => true
             ));
 
 
-        } catch (\Throwable $th) {
+        // } catch (\Throwable $th) {
 
 
 
@@ -570,7 +627,7 @@ class UserDetailsController extends Controller
 
             ));
 
-        }
+        // }
 
 
 
@@ -663,7 +720,7 @@ class UserDetailsController extends Controller
                 'phone' => $request->mobile,
                 'buyer_name' => $request->name,
                 "longurl"=> "https://test.instamojo.com/@jivanivinay777/d66cb29dd059482e8072999f995c4eef/",
-                'redirect_url' => '',
+                'redirect_url' => 'http://127.0.0.1:8000/redirect/'.$request->booking.'',
                 'send_email' => true,
                 'webhook' => 'http://www.example.com/webhook/',
                 'send_sms' => true,
@@ -685,9 +742,20 @@ class UserDetailsController extends Controller
     }
 
 
-    public function redirect(Request $request)
+    public function redirect(Request $request,$booking_id)
     {
-        return $request->all();
+        $request->all();
+
+        // $Booking = Booking::findorFail($booking_id);
+
+        // $Booking['payment_method']=$request->all();
+
+        // $Booking['payment_status']=1;
+
+
+
+        return redirect()->route('review.customer');
+
     }
 
     public function promovalidate(Request $request)
@@ -759,4 +827,8 @@ class UserDetailsController extends Controller
 
     }
 
+    public function review()
+    {
+        return view('web.rating');
+    }
 }

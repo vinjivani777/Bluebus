@@ -394,13 +394,16 @@
     Route::get('minpayment','Web\UserDetailsController@minpayment')->name('min.payment');
     Route::get('minpayment-view/','Web\UserDetailsController@minpaymentview')->name('min.payment.view');
     Route::post('/checkout','Web\UserDetailsController@createRequest')->name('checkout.pay');
-    Route::get('/redirect','Web\UserDetailsController@redirect')->name('redirect');
+    Route::get('/redirect/{booking_id}','Web\UserDetailsController@redirect')->name('redirect');
+    Route::get('/customer-review','Web\UserDetailsController@review')->name('review.customer');
+
     // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
 
     Route::post('/LoginVaiOTP','Web\HomeController@LoginVaiOTP')->name('mobileno.login');
     Route::post('/OTPVarify','Web\HomeController@optvarify')->name('opt.varify');
     Route::get('/logout','Web\HomeController@logout')->name('user.logout');
+    Route::post('/newslatter','Web\HomeController@newslatter')->name('newslatter');
 
 
     Auth::routes();

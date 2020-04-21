@@ -11,12 +11,12 @@
                                             <span class="text-dark"> {{ $dest }} </span>
                                             <span class="text-dark ml-3">
                                                 <input type="hidden" name="route_id" class="route_id" id="route_id" value="{{ $route }}">
-                                                <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target=".bs-example-modal-center">Modify</button>
+                                                <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target="#con-close-modal">Modify</button>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-6 ">
-                                        <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button>
+                                        {{-- <button class="btn btn-sm btn-light float-right" style="border:1px solid black">Add A Return Ticket</button> --}}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -45,9 +45,8 @@
                                     <hr>
                                 </li>
 
-                                <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DEPARTURE TIME</li>
+                                {{-- <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DEPARTURE TIME</li>
 
-                                {{-- DEPARTURE  TIME --}}
                                 <li>
                                     <div class="checkbox checkbox-danger checkbox-squre mb-2 ml-3 ">
                                         <input id="checkbox-1" type="checkbox">
@@ -83,7 +82,7 @@
                                             6 am after
                                         </label>
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{--  BUS TYPE  --}}
 
@@ -102,9 +101,8 @@
                                     </li>
                                 @endforeach
 
-                                <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">ARRIVAL TIME</li>
+                                {{-- <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">ARRIVAL TIME</li>
 
-                                {{-- ARRIVAL   TIME --}}
                                 <li>
                                     <div class="checkbox checkbox-danger checkbox-squre mb-2 ml-3 ">
                                         <input id="checkbox-9" type="checkbox">
@@ -140,34 +138,34 @@
                                             6 am after
                                         </label>
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{--  BOARDING POINT  --}}
-                                <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">BOARDING POINT</li>
+                                {{-- <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">BOARDING POINT</li>
 
                                 <li>
                                     <div class="fil-search ml-3">
                                         <input class="pl-2" type="text" placeholder="BOARDING POINT">
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{--  DROP POINT  --}}
-                                <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DROP POINT</li>
+                                {{-- <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">DROP POINT</li>
 
                                 <li>
                                     <div class="fil-search ml-3">
                                         <input class="pl-2" type="text" placeholder="DROP POINT">
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{--  OPERATOR  --}}
-                                <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">OPERATOR</li>
+                                {{-- <li class="menu-title" style="font-size:13px;font-weight:600;color:#3e3e52">OPERATOR</li>
 
                                 <li>
                                     <div class="fil-search ml-3">
                                         <input class="pl-2 oprators" id="oprators" data-toggle="modal" data-target=".myModal" name="oprators" type="text" placeholder="OPERATOR">
                                     </div>
-                                </li>
+                                </li> --}}
 
                                 {{--  AMENITIES  --}}
                                 <li class="menu-title mt-2" style="font-size:13px;font-weight:600;color:#3e3e52">AMENITIES</li>
@@ -310,9 +308,9 @@
                                                         <div class="col-12">
                                                         </div>
                                                     </div>
-                                                    <div class="row" style="margin-top: 4.2rem;">
+                                                    <div class="row" >
                                                         <div class="col-12 ">
-                                                            <a class="text-danger collapsed " id="collapsedAllAminitis_{{ $r }}" data-toggle="collapse" href="#collapseExample{{ $r }}" aria-expanded="true" aria-controls="collapseExample" style="font-size:16px;font-style:oblique;">All Aminaties</a>
+                                                            {{-- <a class="text-danger collapsed " id="collapsedAllAminitis_{{ $r }}" data-toggle="collapse" href="#collapseExample{{ $r }}" aria-expanded="true" aria-controls="collapseExample" style="font-size:16px;font-style:oblique;">All Aminaties</a> --}}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -327,9 +325,9 @@
                                                         <div class="col-12">
                                                         </div>
                                                     </div>
-                                                    <div class="row" style="margin-top: 4rem;">
+                                                    <div class="row" >
                                                         <div class="col-12 ">
-                                                        <a href="#" class="text-danger" style="font-size:16px;font-style:oblique">Bus Images </a>
+                                                        {{-- <a href="#" class="text-danger" style="font-size:16px;font-style:oblique">Bus Images </a> --}}
                                                         </div>
                                                     </div>
                                                 </td>

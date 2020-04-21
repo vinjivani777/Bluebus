@@ -741,23 +741,26 @@
     </div>
 
     <div class="container-fluid" style="border-top:1px solid #c3cbd1;border-bottom:1px solid #c3cbd1">
-        <div class="container" >
-             <div class="row mt-4 mb-0">
-                 <div class="col-8">
-                     <h2>Sign up for Exclusive Email-only Newsletter</h2>
-                     <h4>Exclusive access to coupons, special offers and promotions.</h4>
-                 </div>
-                 <div class="col-4 mb-4">
-                     <div class="form-group mb-3">
-                         <label>Newsletter</label>
-                         <div class="input-group m-b-20">
-                             <input class="form-control" id="single-input" type="text" value="" placeholder="Email">
-                             <div class="input-group-append">
-                                 <button type="button" id="check-minutes" class="btn waves-effect waves-light btn-info" style="background-color:rgb(33, 150, 243)">Newsletter</button>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-        </div>
+        <form action="{{ route('newslatter') }}" method="POST">
+        @csrf
+            <div class="container" >
+                    <div class="row mt-4 mb-0">
+                        <div class="col-8">
+                            <h2>Sign up for Exclusive Email-only Newsletter</h2>
+                            <h4>Exclusive access to coupons, special offers and promotions.</h4>
+                        </div>
+                        <div class="col-4 mb-4">
+                            <div class="form-group mb-3">
+                                <label>Newsletter</label>
+                                <div class="input-group m-b-20">
+                                    <input class="form-control" id="single-input" name="email" type="email" value="" placeholder="Email">
+                                    <div class="input-group-append">
+                                        <button type="submit" id="check-minutes" class="btn waves-effect waves-light btn-info" style="background-color:rgb(33, 150, 243)">Newsletter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </form>
     </div>

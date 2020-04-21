@@ -15,9 +15,9 @@
                     </a>
                 </div>
                 <div class="col-1 p-1   " >
-                    <a href="" class="float-right text-dark">
+                    {{-- <a href="" class="float-right text-dark">
                         <i class="fas fa-filter"></i>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <div class="row">
