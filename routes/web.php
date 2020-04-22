@@ -361,7 +361,7 @@
     Route::get('/old','Web\HomeController@oldindex')->name('web.old.index');
 
     Route::get('/offer','Web\OfferController@index')->name('offer');
-    Route::get('/offer-details/{id}','Web\OfferController@details')->name('offer.details');
+    Route::get('/offer-details/{code}','Web\OfferController@details')->name('offer.details');
 
     Route::get('/source','Web\SearchController@source')->name('source');
     Route::get('/dest','Web\SearchController@dest')->name('dest');
@@ -379,7 +379,7 @@
 
     // blue helpcenter
     Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
-    Route::get('contactus','Web\Indexcontroller@contactus')->name('contactus');
+    Route::get('info/contactus','Web\Indexcontroller@contactus')->name('contactus');
     Route::get('info/faq','Web\Indexcontroller@faqs')->name('faqs');
 
     //user Profile

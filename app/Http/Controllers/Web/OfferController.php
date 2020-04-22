@@ -27,9 +27,9 @@ class OfferController extends Controller
 
     }
 
-    public function details($id)
+    public function details($code)
     {
-        $promoCode=PromoCode::FindOrFail($id);
+        $promoCode=PromoCode::wherePromocode($code)->first();
         $Menus=Menu::whereStatus(1)->get();
 
         $nav=array();

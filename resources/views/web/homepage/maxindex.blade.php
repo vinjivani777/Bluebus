@@ -106,7 +106,7 @@
                     <div class="row  mx-auto">
                         @foreach($promoCode as $promo)
                         <div class="col-lg-3 col-sm-12 col-md-3 ">
-                            <a href="{{ route('offer.details',['id'=> $promo->id]) }}">
+                            <a href="{{ route('offer.details',['code'=> $promo->promocode]) }}">
                                 <div class="card offer-list" style="border:1px solid #bdbaba;border-radius:0px ">
                                     <img class="card-img-top img-fluid" src="{{ asset(''. $promo->promocode_image ) }}" style="border-radius:0px " alt="Card image cap">
                                     <div class="card-body ml-1 pl-0 pr-0 mr-1 pb-0 mb-1">
@@ -709,7 +709,7 @@
                                 17 M
                             </div>
                             <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
-                                redBus is trusted by over 17 million happy customers globally
+                                HappyJourney is trusted by over 17 million happy customers globally
                             </div>
                         </div>
                         <div class="col-4 text-center">
@@ -720,7 +720,7 @@
                                 2300
                             </div>
                             <div class="counter-content text-center" style="font-size:16px;width:208px;margin:0 auto;margin-top: 10px;">
-                                network of over 2300 bus operators worldwide
+                                Network of over 2300 bus operators worldwide
                             </div>
                         </div>
                         <div class="col-4 text-center">
