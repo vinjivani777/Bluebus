@@ -372,24 +372,35 @@ class SearchController extends Controller
             $url="web/images/redbus/icon/van.png";
             $userurl='web.user';
 
-            $avlSeat=asset('web/images/redbus/icon/4.png');
-            $seleSeat=asset('web/images/redbus/icon/5.png');
-            $bookSeat=asset('web/images/redbus/icon/6.png');
+            // $avlSeat=asset('web/images/redbus/icon/4.png');
+            // $seleSeat=asset('web/images/redbus/icon/5.png');
+            // $bookSeat=asset('web/images/redbus/icon/6.png');
+
+            $avlSeat=asset('web/images/redbus/icon/availableseater.png');
+            $seleSeat=asset('web/images/redbus/icon/selectedseater.png');
+            $bookSeat=asset('web/images/redbus/icon/bookedseater.png');
 
             if($seat_type == 1)
             {
-                $avlSeat=asset('web/images/redbus/icon/4.png');
-                $seleSeat=asset('web/images/redbus/icon/5.png');
-                $bookSeat=asset('web/images/redbus/icon/6.png');
+                // $avlSeat=asset('web/images/redbus/icon/4.png');
+                // $seleSeat=asset('web/images/redbus/icon/5.png');
+                // $bookSeat=asset('web/images/redbus/icon/6.png');
+
+                $avlSeat=asset('web/images/redbus/icon/availableseater.png');
+                $seleSeat=asset('web/images/redbus/icon/selectedseater.png');
+                $bookSeat=asset('web/images/redbus/icon/bookedseater.png');
 
                 $seat=asset('web/images/redbus/icon/4.png');
             }
             elseif($seat_type == 2)
             {
-                $avlSeat=asset('web/images/redbus/icon/1.png');
-                $seleSeat=asset('web/images/redbus/icon/2.png');
-                $bookSeat=asset('web/images/redbus/icon/3.png');
+                // $avlSeat=asset('web/images/redbus/icon/1.png');
+                // $seleSeat=asset('web/images/redbus/icon/2.png');
+                // $bookSeat=asset('web/images/redbus/icon/3.png');
 
+                $avlSeat=asset('web/images/redbus/icon/availableseat.png');
+                $seleSeat=asset('web/images/redbus/icon/selectedseat.png');
+                $bookSeat=asset('web/images/redbus/icon/bookedseat.png');
                 $sofa=asset('web/images/redbus/icon/1.png');
 
             }elseif($seat_type == 3)
@@ -547,18 +558,18 @@ class SearchController extends Controller
                                     </div>
                                 </div>
                                 <div class="col-2 ml-2 all-seat-details">
-                                    <div class="row">
-                                        <div class="col-4 text-center">
-                                            <img src='.$avlSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Avalible</span>
+                                    <div class="row pt-4">
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12" style="width:58%;height:67%" src='.$avlSeat.'>
+                                            <span class="col-12 pt-4 style="font-weight:200;font-size:10px">Available</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$seleSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Selected</span>
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:58%;height:67%" src='.$seleSeat.'>
+                                            <span class="col-12 pt-4 style="font-weight:200;font-size:10px">Selected</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$bookSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Booked</span>
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:58%;height:67%" src='.$bookSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Booked</span>
                                         </div>
                                     </div>
                                 </div>
@@ -656,7 +667,7 @@ class SearchController extends Controller
                                                                                 </div>
                                                                             </div>
 
-                                                                        
+
                                                                     ';
 
                                                                 }
@@ -684,7 +695,7 @@ class SearchController extends Controller
                                                                         </div>
                                                                     </div>
 
-                                                                  
+
                                                             ';
 
                                                         }
@@ -863,18 +874,18 @@ class SearchController extends Controller
                                     </div>
                                 </div>
                                 <div class="col-2 ml-2 all-seat-details">
-                                    <div class="row">
-                                        <div class="col-4 text-center">
-                                            <img src='.$avlSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Avalible</span>
+                                    <div class="row pt-4">
+                                        <div class="col-12 pt-1 text-center" style="height:110px">
+                                            <img class="col-12" style="width:48%;height:70%" src='.$avlSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Available</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$seleSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Selected</span>
+                                        <div class="col-12 pt-1 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:48%;height:70%" src='.$seleSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Selected</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$bookSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Booked</span>
+                                        <div class="col-12 pt-1 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:48%;height:70%" src='.$bookSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Booked</span>
                                         </div>
                                     </div>
                                 </div>
@@ -960,7 +971,7 @@ class SearchController extends Controller
                                                                     $k++;
                                                                     $html.='
                                                                             <div class="row " >
-                                                                                <div class="col-12 ml-1"> 
+                                                                                <div class="col-12 ml-1">
                                                                                     <div class="radio radio-info">
                                                                                         <input type="radio" class="broadpoint" name="broadpoint" id="'.$k.'_'.$val->id.'"  value="'.$val->id.'">
                                                                                         <label for="'.$k.'_'.$val->id.'">
@@ -972,8 +983,8 @@ class SearchController extends Controller
                                                                                 </div>
                                                                             </div>
 
-                                                                           
-                                                                               
+
+
                                                                     ';
 
                                                                 }
@@ -1143,18 +1154,18 @@ class SearchController extends Controller
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 ml-2 all-seat-details">
-                                    <div class="row">
-                                        <div class="col-4 text-center">
-                                            <img src='.$avlSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Avalible</span>
+                                    <div class="row pt-4">
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12" style="width:48%;height:70%" src='.$avlSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Available</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$seleSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Selected</span>
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:48%;height:70%" src='.$seleSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Selected</span>
                                         </div>
-                                        <div class="col-4 text-center">
-                                            <img src='.$bookSeat.'>
-                                            <span style="font-weight:200;font-size:10px">Booked</span>
+                                        <div class="col-12 text-center" style="height:110px">
+                                            <img class="col-12 pt-1" style="width:48%;height:70%" src='.$bookSeat.'>
+                                            <span class="col-12 pt-2" style="font-weight:200;font-size:10px">Booked</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1278,7 +1289,7 @@ class SearchController extends Controller
                                                                         </div>
                                                                     </div>
 
-                                                                 
+
                                                             ';
 
                                                         }
@@ -1359,7 +1370,7 @@ class SearchController extends Controller
         $validator=Validator::make($request->all(),[
             'broadpoint'     =>  'required',
             'droppoint'    =>  'required',
-        
+
         ]);
 
         if($validator->fails())
