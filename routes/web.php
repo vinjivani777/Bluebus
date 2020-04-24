@@ -380,6 +380,7 @@
     // blue helpcenter
     Route::get('bluecare','Web\Indexcontroller@bluecare')->name('bluecare');
     Route::get('info/contactus','Web\Indexcontroller@contactus')->name('contactus');
+    Route::post('info/contactus/request','Web\Indexcontroller@contactusrequest')->name('contactus.request');
     Route::get('info/faq','Web\Indexcontroller@faqs')->name('faqs');
 
     //user Profile
