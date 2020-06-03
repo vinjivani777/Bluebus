@@ -350,6 +350,7 @@
 
     });
 
+    
 
     //error
     Route::get('errors', function () {
@@ -397,7 +398,8 @@
     Route::get('minpayment-view/','Web\UserDetailsController@minpaymentview')->name('min.payment.view');
     Route::post('/checkout','Web\UserDetailsController@createRequest')->name('checkout.pay');
     Route::get('/redirect/{booking_id}','Web\UserDetailsController@redirect')->name('redirect');
-    Route::get('/customer-review','Web\UserDetailsController@review')->name('review.customer');
+    Route::get('/customer-review/{booking_id}','Web\UserDetailsController@review')->name('review.customer');
+    Route::post('/customer-review-sub','Web\UserDetailsController@revSubmit')->name('review.customer.submit');
 
     // findbus
     Route::get('/bus-image','Web\BusFindController@busimage')->name('bus-image');
@@ -408,6 +410,7 @@
     Route::post('/newslatter','Web\HomeController@newslatter')->name('newslatter');
 
 
+    
     Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');

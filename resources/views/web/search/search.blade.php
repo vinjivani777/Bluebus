@@ -26,6 +26,30 @@ Blue Bus | Search Bus Tickets
 
 @section('page-css')
     <style>
+        .nav-big{
+
+            background: #6b8ef1;
+        }
+        .nav-link{
+            color: white;
+        }
+        .ribbon-box .ribbon-danger {
+            background: #ef6614;
+        }
+        
+        .text-danger{
+            color: #4fc6e1;
+        }
+        .btn-danger{
+            background-color: #ef6614;
+        }
+        .badge-danger{
+            background-color: #ef6614; 
+        }
+        .checkbox-danger input[type=checkbox]:checked+label::before {
+    background-color: #ef6614;
+    border-color: #ef6614;
+    }
         .select-seat-fare-details-active{
             display:none;
         }
@@ -286,9 +310,7 @@ Blue Bus | Search Bus Tickets
             .max-footer{
                 display:none;
             }
-            .nav-big{
-                background-color:#6b8ef1;
-            }
+            
             .copyright{
                 display:none;
             }
@@ -365,23 +387,7 @@ Blue Bus | Search Bus Tickets
                 </div>
             @endif
         </div>
-                <!-- Begin page -->
 
-                <div id="con-close-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            {{-- <div class="modal-header custom-modal-title">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div> --}}
-                            <div class="modal-body p-4">
-                                <form action="{{ route('search') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
 
 @endsection
 
@@ -490,7 +496,7 @@ Blue Bus | Search Bus Tickets
                             alert("Please Select DropPoint")
 
                             return validate = false;
-                            
+
                         }else{
                             validate = true;
                         }
@@ -1182,12 +1188,12 @@ Blue Bus | Search Bus Tickets
                                 if(data.success == true)
                                 {
 
-                                    var url=('payment/'+'?SeatNo=' + seatNo + '&fareAmt=' + $('.final_fare_amt').val() + '&basefare=' + basefare + '&busId=' + busId + '&insurance=' + ins_amt);
+                                    var url=('payment/'+'?SeatNo=' + seatNo + '&fareAmt=' + $('.final_fare_amt').val() + '&basefare=' + basefare + '&busId=' + busId + '&insurance=' + ins_amt+ '&booking_id=' + data.booking_id);
                                     location.href=url;
 
                                 }else{
 
-                                    // $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
+                                    $.NotificationApp.send("Oh snap!", "Change a few things up and try submitting again.", "top-right", "#bf441d", "error");
 
                                 }
 

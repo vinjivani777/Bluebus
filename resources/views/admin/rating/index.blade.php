@@ -38,7 +38,7 @@
                                         <th style="width: 20px;">#</th>
                                         <th>Bus Name</th>
                                         <th>Average</th>
-                                        <th style="width: 70px;">Action</th>
+                                        <th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,12 +46,12 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->bus->bus_name }}</td>
-                                        <td>{{ $item->average }}</td>
-                                        <td>
-                                            <a  class="mr-1 text-info" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="far fa-eye"></i></a>
+                                        <td><span class="badge badge-danger"><i class="fe-star mr-1"></i>{{$item->rate}}</span></td>
+                                        <td>{{ $item->description }}</td>
+                                       <!--  <td>
                                             <a href="{{ route('promo-detail.edit',['id'=>1]) }}" class="mr-1 text-primary"><i class=" far fa-edit"></i></a>
                                             <a class="mr-1 text-danger remove_promo" id="1" ><i class=" fas fa-trash-alt"></i></a>
-                                        </td>
+                                        </td -->
 
                                     </tr>
                                     @endforeach

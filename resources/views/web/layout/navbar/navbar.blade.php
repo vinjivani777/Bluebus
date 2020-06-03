@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" style="background-color:white">
+<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" >
     <a class="navbar-brand text-info" href="{{ route('web.index')}}">HappyJourney</a>
 
 

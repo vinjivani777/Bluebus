@@ -266,7 +266,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-12">
                                                                                     <h4 class="float-left">Total Fare : ₹ <span class="text-danger final_fare_amt"> {{ $fareAmt  }}</span></h4>
-                                                                                    <form action="{{ route('redirect') }}" method="GET">
+                                                                                    <form action="{{ route('redirect',['booking_id'=>$BookingId]) }}" method="GET">
                                                                                         @csrf
                                                                                     <script
                                                                                         src="https://checkout.razorpay.com/v1/checkout.js"
