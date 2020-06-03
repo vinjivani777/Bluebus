@@ -145,7 +145,7 @@ Blue Bus | Search Bus Tickets
                                                             <li>Penalty is subject to <span ng-bind="(BaggageModel[0].segDTL.split('|')[1]=='AI' || BaggageModel[0].segDTL.split('|')[1]=='UL') &amp;&amp; !isDomestic ?'24':'4'" class="ng-binding">4</span> hours prior to departure and no changes are allowed after that.</li>
                                                             <li>The charges will be on per passenger per sector</li>
                                                             <li>Rescheduling Charges = Rescheduling/Change Penalty + Fare Difference (if applicable)</li>
-                                                            <li>Partial cancellation is not allowed on the flight tickets which are book under special discounted fares</li>
+                                                            <li>Partial cancellation is not allowed on the  tickets which are book under special discounted fares</li>
                                                             <li>In case, the customer have not cancelled the ticket within the stipulated time or no show then only statutory taxes are refundable from the respective airlines</li>
                                                             <li>For infants there is no baggage allowance</li>
                                                             <li>In certain situations of restricted cases, no amendments and cancellation is allowed</li>

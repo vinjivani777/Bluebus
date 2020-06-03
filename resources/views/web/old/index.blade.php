@@ -310,7 +310,7 @@
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <h2 class="">Why Choose BlueBus</h2>
-                                                        <p class="text-justify">On Bluebuspro.com, you can tailor your trip from end-to-end by scouring suitable flights and making your flight booking before proceeding with your hotel bookings. Yatra’s vast hotel repository will see you through this process seamlessly. Any intervening journey can be conveniently planned by searching up relevant train connectivity and making an IRCTC ticket booking. Look up well-researched holiday packages, sift through cruise packages and finalise your entire trip on just one platform.</p>
+                                                        <p class="text-justify">On Bluebuspro.com, you can tailor your trip from end-to-end by scouring suitable buses and making your bus booking before proceeding with your hotel bookings. Yatra’s vast hotel repository will see you through this process seamlessly. Any intervening journey can be conveniently planned by searching up relevant train connectivity and making an IRCTC ticket booking. Look up well-researched holiday packages, sift through cruise packages and finalise your entire trip on just one platform.</p>
                                                     </div>
                                                     <div class="col-6">
                                                         <img src="{{ asset('web/images/slider/1.jpg') }}" height="300px;" width="500px" alt="">
@@ -475,7 +475,7 @@
                 <div class="row">
                     <div class="col-10 mx-auto">
                         <div class="container-fluid">
-                           
+
                             <div class="row">
                                 @if($promoCount <= 3 )
                                     <?php $r=0; ?>

@@ -7,6 +7,8 @@ use App\Model\User;
 use App\Model\PromoCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Contact_us_request;
+use Illuminate\Support\Facades\Validator;
 
 class IndexController extends Controller
 {
@@ -41,6 +43,29 @@ class IndexController extends Controller
 
         return  view('web.contactus',$nav);
     }
+
+    public function contactusrequest(Request $request)
+    {
+        $validator=Validator::make($request->all(),[
+            'firstname' =>  'required',
+            'email'     =>  'required|email',
+            'lastname'  =>  'required',
+        ]);
+        if($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $data=$request;
+        $params=array();
+        $params['firstname']=$request->firstname;
+        $params['lastname']=$request->lastname;
+        $params['email']=$request->email;
+        $params['message']=$request->message;
+        $status=Contact_us_request::create($params);
+        dd($status);
+        return redirect()->route('web.index');
+    }
+
     public function faqs()
     {
         $promoCode=PromoCode::wherestatus(1)->get();

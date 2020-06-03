@@ -12,14 +12,14 @@
                     </div>
                     <div class="col-2 ">
                         <h4 class="text-white">EASY BOOKING</h4>
-                        <p  style="font-size:11px;color:rgb(176, 208, 251);">We offer easy and convenient flight bookings with attractive offers.</p>
+                        <p  style="font-size:11px;color:rgb(176, 208, 251);">We offer easy and convenient bus bookings with attractive offers.</p>
                     </div>
                     <div class="col-1 mr-0 pr-0" >
                         <span class="lp_hp_i" style="width: 50px;height: 37px;margin: 0;float: left;background: url(https://www.easemytrip.com/img/home-sub-sprite.png) no-repeat -55px -2px;"></span>
                     </div>
                     <div class="col-2  ml-0 pl-0" >
                         <h4 class="text-white">LOWEST PRICE</h4>
-                        <p style="font-size:11px;color:rgb(176, 208, 251);">We ensure low rates on hotel reservation, holiday packages and on flight tickets.</p>
+                        <p style="font-size:11px;color:rgb(176, 208, 251);">We ensure low rates on hotel reservation, holiday packages and on bus tickets.</p>
                     </div>
                     <div class="col-1" >
                         <span class="lp_hp_i" style="width: 28px;height: 29px;float: left;margin:0px;background: url(https://www.easemytrip.com/img/home-sub-sprite.png) -121px -5px no-repeat;"></span>
@@ -27,7 +27,7 @@
                     <div class="col-2 ">
                         <h4 class="text-white">
                             EXCITING DEALS</h4>
-                        <p  style="font-size:11px;color:rgb(176, 208, 251);">Enjoy exciting deals on flights, hotels, buses, car rental and tour packages.</p>
+                        <p  style="font-size:11px;color:rgb(176, 208, 251);">Enjoy exciting deals on buses.</p>
                     </div>
                     <div class="col-1" >
                         <span class="lp_hp_i" style="width: 37px;height: 37px;margin:0;float: left;background: url(https://www.easemytrip.com/img/home-sub-sprite.png)no-repeat -161px -3px;"></span>
