@@ -20,9 +20,9 @@ Blue Bus | Search Bus Tickets
             <img src="{{asset('web/images/mailbox.png')}}" class="bg-white" style="width: 30%;margin-left: 33%;margin-top: 23%;">
         </div>
         <div >
-            <label style="margin-left: 40%;margin-top: 2%;">Murait Infotech</label>
+            <label style="margin-left: 40%;margin-top: 2%;">Murait Enterprise</label>
             <label style="margin-left: 28%;margin-top:0%;">305,Amora Arcade,Uttran,Surat.</label>
-            <label style="margin-bottom: 20%;margin-left: 27%;margin-top:0%;">Email: muraitinfotech@gmail.com</label>
+            <label style="margin-bottom: 20%;margin-left: 27%;margin-top:0%;"><b>Email:</b> muraitenterprise@gmail.com</label>
         </div>
     </div>
     <div class="col-6 col-md-6 col-xl-6 col-sm-12" >
@@ -30,7 +30,7 @@ Blue Bus | Search Bus Tickets
             <div class="row" style="box-shadow: 5px 10px 8px 2px #8a92a9;">
                 <div class="col-12 col-md-12 col-xl-12 col-sm-12 border border-dark rounded p-2" >
                     <div class="row">
-                        <h2 class="mx-auto" >Send Us Message!</h2>
+                        <h2 class="mx-auto" >Send Us a Request!</h2>
                     </div>
                     <hr style="height:2px;background:black;">
                     <form method="POST" action="{{route('contactus.request')}}" style="font:small-caption">
