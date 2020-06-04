@@ -11,7 +11,7 @@
                                             <span class="text-dark"> {{ $dest }} </span>
                                             <span class="text-dark ml-3">
                                                 <input type="hidden" name="route_id" class="route_id" id="route_id" value="{{ $route }}">
-                                                <button type="button" class="btn btn-sm btn-light waves-effect waves-light" style="border:1px solid black" data-toggle="modal" data-target="#con-close-modal">Modify</button>
+                                                
                                             </span>
                                         </div>
                                     </div>

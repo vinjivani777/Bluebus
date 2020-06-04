@@ -24,6 +24,10 @@
 @section('page-css')
 
         <style>
+             .nav-big{
+
+            background: white;
+        }
             .top-bar{
                 width: 100%;
                 min-height: 280px;

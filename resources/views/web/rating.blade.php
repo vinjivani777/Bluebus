@@ -38,10 +38,11 @@
         
             <div class="row" id="post-review-box" >
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <form accept-charset="UTF-8" action="{{ route('web.index') }}" method="get">
+                    <form accept-charset="UTF-8" action="{{ route('review.customer.submit') }}" method="post">
+                        @csrf
                         <input id="ratings-hidden" name="rating" type="hidden"> 
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
-        
+                        <input type="hidden" name="booking_id" value="{{$booking_id}}">
                         <div class="text-right">
                             <div class="stars starrr" data-rating="0"></div>
                             <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="margin-right: 10px;">

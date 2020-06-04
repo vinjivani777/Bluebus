@@ -17,6 +17,8 @@ class HomeController extends Controller
 
     public function oldindex()
     {
+        return view('email.ticket');
+
         $promoCode=PromoCode::wherestatus(1)->get();
         $promoFirst=PromoCode::wherestatus(1)->first();
         $Menus=Menu::whereStatus(1)->get();

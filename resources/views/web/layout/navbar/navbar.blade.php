@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" style="background-color:white">
-    {{-- <a class="navbar-brand text-info" href="{{ route('web.index')}}">HappyJourney</a> --}}
-    {{-- <img class="img-fluid" src="{{asset('images/HappyJourneyLogo2.jpg')}}" style="width: 100px;height:200px"> --}}
-    <div><img class="img-fluid" src="http://127.0.0.1:8000/admin/images/HappyJourneyLogo.png" style="border-radius:0px;width:150px;height:40px;" alt="Card image cap"></div>
+<nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" >
+    <a class="navbar-brand text-info" href="{{ route('web.index')}}">HappyJourney</a>
+
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

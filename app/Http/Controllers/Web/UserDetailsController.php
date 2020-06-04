@@ -11,6 +11,7 @@ use App\Model\Customer;
 use App\Model\DropPoint;
 use App\Model\PromoCode;
 use App\Model\BoardPoint;
+use App\Model\Rating;
 use App\Model\Contect_Diary;
 use Illuminate\Http\Request;
 use App\Model\Passenger_Detail;
@@ -147,7 +148,7 @@ class UserDetailsController extends Controller
 
         $html.='
         <div style="height:auto;max-height:650px;overflow-x:hidden;overflow-y:auto">
-            <div class="rightbar-title bg-danger p-2" >
+            <div class="rightbar-title  p-2" style="background-color:#ef6614" >
                 <h5 class="m-0 text-white">Passanger Datails</h5>
             </div>
         ';
@@ -176,7 +177,7 @@ class UserDetailsController extends Controller
                                                         <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 text-center mt-1">
                                                             <span style="font-weight:600;font-size:16px">'. $bus->bus_name .'</span> - <span style="font-weight:600;font-size:16px">'. $bus->bus_reg_no .'</span>
                                                         </div>
-                                                            <span  type="button" class="text-danger"  data-toggle="collapse" data-target="#viewBooking" aria-expanded="true" aria-controls="collapseExample">
+                                                            <span  type="button" class="text-info"  data-toggle="collapse" data-target="#viewBooking" aria-expanded="true" aria-controls="collapseExample">
                                                                 View
                                                             </span>
                                                     </div>
@@ -223,7 +224,7 @@ class UserDetailsController extends Controller
                                                         <div class="row mt-2">
                                                             <div class="col-xl-12">
                                                                 <p>
-                                                                    <span  type="button" class="text-danger" style="border-bottom:1px solid #f1556c" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+                                                                    <span  type="button" class="text-info" style="border-bottom:1px solid #f1556c" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
                                                                         Fare Rules
                                                                     </span>
                                                                 </p>
@@ -281,7 +282,6 @@ class UserDetailsController extends Controller
                                 <div class="col-sm-12 col-md-12 col-lg-12">
                                     <div class="card-box ribbon-box">
                                         <div class="ribbon  float-left" style="background-color:#6ec7b4"><i class="fe-users mt-0"></i> Passenger Information</div>
-                                        <div class="text-danger float-right mt-0">Name should be same as in Goverment ID proof</div>
                                         <div class="ribbon-content" style="max-height:">
                                             <input type="hidden" name="BookingId" value="">
                                             <input type="hidden" name="Route" id="routeid" class="routeid" value="'. $Route->id .'">
@@ -423,11 +423,11 @@ class UserDetailsController extends Controller
 
                                                 <div class="row ml-1">
                                                     <div class="col-sm-12 col-xs-12 col-md-12 col-xl-12 col-lg-12">
-                                                        <div class="radio radio-danger ">
+                                                        <div class="radio radio-info ">
                                                             <input type="radio" id="radio111" class="insurance"  value="20" name="insurance" checked="">
                                                             <label for="radio111"> <p> Yes, secure my trip with Takaful. I agree to the</p> </label>
                                                         </div>
-                                                        <div class="radio radio-danger ">
+                                                        <div class="radio radio-info ">
                                                             <input type="radio"  value="0" class="insurance"  id="radio112" name="insurance">
                                                             <label for="radio112"> No, I am willing to risk my trip without Takaful </label>
                                                         </div>
@@ -440,13 +440,13 @@ class UserDetailsController extends Controller
                                                 </div>
                                                 <div class="row ml-1">
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                                        <div class="checkbox checkbox-danger mb-2">
+                                                        <div class="checkbox checkbox-info mb-2">
                                                             <input id="checkbox6" class="tAndc" type="checkbox" name="tAndc" value="1" checked="true">
                                                             <label for="checkbox6">
-                                                                I understand and agree to the rules, <a href="#" class="text-danger">Privacy Policy</a> , <a href="#" class="text-danger">User Agreement</a> and <a href="#" class="text-danger"">Terms &amp; Conditions</a>  of Happy Journey
+                                                                I understand and agree to the rules, <a href="#" class="text-info">Privacy Policy</a> , <a href="#" class="text-info">User Agreement</a> and <a href="#" class="text-info"">Terms &amp; Conditions</a>  of Happy Journey
                                                             </label>
                                                         </div>
-                                                        <span class="text-danger error-for-tAndc"></span>
+                                                        <span class="text-info error-for-tAndc"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -476,7 +476,7 @@ class UserDetailsController extends Controller
     public function passanger(Request $request)
     {
 
-    //    try {
+       try {
             //code...
             $validator=Validator::make($request->all(),[
                 'country_code'     =>  'required',
@@ -573,7 +573,7 @@ class UserDetailsController extends Controller
             $book['total_fare']=$request->fareAmt;
             $book['note']="";
             $book['insurance_policy']=0;
-            $book['booking_status']=0;
+            $book['booking_status']=1;
             $book['payment_status']=0;
             $book['operator_confirmation_status']=0;
 
@@ -614,11 +614,11 @@ class UserDetailsController extends Controller
             $CD=Contect_Diary::create($contect);
 
             return Response::json(array(
-                'success' => true
+                'success' => true,'booking_id'=>$Booking->id
             ));
 
 
-        // } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
 
 
 
@@ -627,7 +627,7 @@ class UserDetailsController extends Controller
 
             ));
 
-        // }
+        }
 
 
 
@@ -635,9 +635,8 @@ class UserDetailsController extends Controller
 
     public function payment(Request $request)
     {
-
           $url= URL::temporarySignedRoute(
-                'payment.view', now()->addMinutes(70), ['BookingId' => 1,'fareAmt'=>$request->fareAmt,'basefare'=>$request->basefare,'SeatNo'=>$request->SeatNo,'busId'=>$request->busId,'insurance'=>$request->insurance]
+                'payment.view', now()->addMinutes(7), ['BookingId' => $request->booking_id,'fareAmt'=>$request->fareAmt,'basefare'=>$request->basefare,'SeatNo'=>$request->SeatNo,'busId'=>$request->busId,'insurance'=>$request->insurance]
             );
 
             return redirect($url);
@@ -647,6 +646,8 @@ class UserDetailsController extends Controller
 
     public function paymentview(Request $request)
     {
+                // dd($request->all());
+
 
         if (! $request->hasValidSignature()) {
             abort(401);
@@ -671,7 +672,7 @@ class UserDetailsController extends Controller
     {
 
           $url= URL::temporarySignedRoute(
-                'min.payment.view', now()->addMinutes(70), ['BookingId' => 1,'fareAmt'=>$request->fareAmt,'basefare'=>$request->basefare,'SeatNo'=>$request->SeatNo,'busId'=>$request->busId,'insurance'=>$request->insurance]
+                'min.payment.view', now()->addMinutes(7), ['BookingId' => 1,'fareAmt'=>$request->fareAmt,'basefare'=>$request->basefare,'SeatNo'=>$request->SeatNo,'busId'=>$request->busId,'insurance'=>$request->insurance]
             );
 
             return redirect($url);
@@ -720,7 +721,7 @@ class UserDetailsController extends Controller
                 'phone' => $request->mobile,
                 'buyer_name' => $request->name,
                 "longurl"=> "https://test.instamojo.com/@jivanivinay777/d66cb29dd059482e8072999f995c4eef/",
-                'redirect_url' => 'http://127.0.0.1:8000/redirect/'.$request->booking.'',
+                'redirect_url' => 'http://127.0.0.1:8000/redirect/1',
                 'send_email' => true,
                 'webhook' => 'http://www.example.com/webhook/',
                 'send_sms' => true,
@@ -744,17 +745,17 @@ class UserDetailsController extends Controller
 
     public function redirect(Request $request,$booking_id)
     {
-        $request->all();
+       // dd($request->all());
 
-        // $Booking = Booking::findorFail($booking_id);
+        $Booking = Booking::findorFail($booking_id);
 
-        // $Booking['payment_method']=$request->all();
+        $Booking['payment_method']=$request->all();
 
-        // $Booking['payment_status']=1;
+        $Booking['payment_status']=1;
 
 
 
-        return redirect()->route('review.customer');
+        return redirect()->route('review.customer',['booking_id'=>$booking_id]);
 
     }
 
@@ -827,8 +828,23 @@ class UserDetailsController extends Controller
 
     }
 
-    public function review()
+    public function review($booking_id)
     {
-        return view('web.rating');
+        return view('web.rating',['booking_id'=>$booking_id]);
+    }
+
+    public function revSubmit(Request $request)
+    {
+                $Booking = Booking::findorFail($request->booking_id);
+
+                $params=array();
+
+                $params['user_id']=$Booking->customer_id;
+                $params['bus_id']=$Booking->bus_id;
+                $params['rate']=$request->rating;
+                $params['description']=$request->comment;
+                $params['type']="Bus";
+
+                return $rating=Rating::create($params);
     }
 }

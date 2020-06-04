@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     protected $table = "ratings";
-    protected $fillable=[  'id', 'user_id', 'bus_id', 'bus_quality', 'punctuality', 'Staff_behaviour', 'average', 'comments'];
+    protected $fillable=[  'id', 'user_id', 'bus_id', 'rate', 'description','type'];
     public $timestamps = true;
 
     public function bus()
