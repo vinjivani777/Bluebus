@@ -215,7 +215,7 @@
                                     </div>
                                     <div class="row ">
                                         <div class="col-12">
-                                            <img src="{{ asset('web\images\redbus\logo_r.png') }}">
+                                            <img src="{{ asset('web\images\redbus\logo_r.png') }}" style="width:100px;height:40px;">
                                         </div>
                                         <div class="col-12">
                                                 <h3 style="color:#f1556c;">Sign Into Happy Journey</h3>

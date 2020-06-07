@@ -78,7 +78,7 @@ class HomeController extends Controller
 
 
                 $User['remember_token']=md5($otp.$mobileNo);
-                $User['token']='HappyJourny';
+                $User['token']='HappyJourney';
                 $User['otp']=$otp;
                 $User['forget_token']= $forgot_token;
                 $User['referral_code']=str_random(5);
@@ -177,14 +177,13 @@ class HomeController extends Controller
             $User=Array();
 
             $User['otp']="";
-
             $Update=User::whereId($UserDetails->id)->update($User);
             $Customer=Array();
             $Customer['otp']="0";
             $Customer['mobileno_verification_status']=1;
             $Customer=Customer::whereId($CustomerDetails->id)->update($Customer);
             // dd($Update);
-            Auth::guard('user')->loginUsingId($Update);
+            Auth::guard('user')->loginUsingId('1');
 
             return "Success";
 
@@ -207,7 +206,7 @@ class HomeController extends Controller
     {
 
         $Newsletter=Newsletter::create(['email'=>$request->email]);
-        
+
         return redirect()->back();
     }
 }
