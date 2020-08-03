@@ -14,7 +14,7 @@ class SMSController extends Controller
         //     $mobileNo = "91".$mobileNo;
         // }
 
-        $ApiKey="bba08e98-66a8-11ea-9fa5-0200cd936042";
+        $ApiKey="5fc1ffa2-c104-11ea-9fa5-0200cd936042";
 
 
         // $curl = curl_init();

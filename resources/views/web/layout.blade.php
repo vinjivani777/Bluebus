@@ -214,11 +214,11 @@
                                         </div>
                                     </div>
                                     <div class="row ">
-                                        <div class="col-12">
+                                        {{-- <div class="col-12">
                                             <img src="{{ asset('web\images\redbus\logo_r.png') }}">
-                                        </div>
+                                        </div> --}}
                                         <div class="col-12">
-                                                <h3 style="color:#f1556c;">Sign Into Happy Journey</h3>
+                                                <h3 style="color:rgb(241, 85, 108), 85, 108);">Sign Into Happy Journey</h3>
                                         </div>
                                     </div>
                                     <p class="bg-light">To continue, please enter OTP sent to verify mobile number</p>
@@ -243,7 +243,7 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-12 text-center">
-                                        <button class="btn bg-white btn-rounded width-sm pt-2 pb-2 mr-2" style="border:1px solid #ced4da:width:100%" ><span class=" font-weight-bold " style="color:#ff3d00">Onother Way To Login</span></button>
+                                        {{-- <button class="btn bg-white btn-rounded width-sm pt-2 pb-2 mr-2" style="border:1px solid #ced4da:width:100%" ><span class=" font-weight-bold " style="color:#ff3d00">Onother Way To Login</span></button> --}}
                                         </div>
                                     </div>
                                 </div>
