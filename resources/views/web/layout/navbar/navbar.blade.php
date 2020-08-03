@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand-xl sticky-top  navbar-light  nav-big p-1" >
-    <a class="navbar-brand text-info" href="{{ route('web.index')}}">HappyJourney</a>
+    <a class="navbar-brand text-info" href="{{ route('web.index')}}">
+        <img src="{{asset('admin\images\HappyJourneyLogo.png')}}" style="width:100px;height:40px;">
+    </a>
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
